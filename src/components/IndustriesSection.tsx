@@ -1,61 +1,58 @@
 import { motion } from "framer-motion";
-import {
-  Building2,
-  GraduationCap,
-  Landmark,
-  DollarSign,
-  Users,
-  Hotel,
-  Home,
-} from "lucide-react";
+import { Landmark, GraduationCap, DollarSign, Users, Hotel, Home, Building2 } from "lucide-react";
 
-const industries = [
-  { icon: Landmark, label: "Civic Tech", number: "01" },
-  { icon: GraduationCap, label: "Education", number: "02" },
-  { icon: DollarSign, label: "Finance", number: "03" },
-  { icon: Building2, label: "Payroll", number: "04" },
-  { icon: Users, label: "Human Resources", number: "05" },
-  { icon: Hotel, label: "Hospitality", number: "06" },
-  { icon: Home, label: "Property Mgmt", number: "07" },
+const contexts = [
+  {
+    icon: Landmark,
+    title: "Civic tech",
+    description: "Public information systems, governance-heavy content, and service workflows that need clarity, accessibility, and long-term maintainability.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Education",
+    description: "Publishing platforms, search experiences, and structured content systems that help institutions communicate and scale knowledge.",
+  },
+  {
+    icon: DollarSign,
+    title: "Finance",
+    description: "Secure, structured, compliance-aware digital experiences where content and workflows need stronger technical foundations.",
+  },
+  {
+    icon: Users,
+    title: "HR and payroll",
+    description: "Internal platforms and process-driven systems that benefit from clearer architecture and smarter automation patterns.",
+  },
+  {
+    icon: Hotel,
+    title: "Hospitality",
+    description: "Operationally complex environments where service workflows, content management, and delivery experience need to work together.",
+  },
+  {
+    icon: Home,
+    title: "Property management",
+    description: "Content and operations platforms that support listings, processes, communication, and service coordination.",
+  },
+  {
+    icon: Building2,
+    title: "Agency delivery",
+    description: "Collaborative delivery models where senior technical depth, reusable assets, and platform thinking make teams stronger.",
+  },
 ];
 
 const IndustriesSection = () => {
   return (
-    <section id="industries" className="py-32 relative border-t border-border">
+    <section id="industries" className="border-t border-border py-32">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary mb-4 block">
-            Industries
-          </span>
-          <h2 className="font-mono font-bold text-3xl md:text-5xl tracking-tight">
-            Solutions that span
-            <br />
-            across sectors
-          </h2>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16 max-w-3xl">
+          <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Where This Work Applies</span>
+          <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">Applied across content-heavy and workflow-heavy platforms.</h2>
         </motion.div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-px bg-border">
-          {industries.map((ind, i) => (
-            <motion.div
-              key={ind.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="bg-background p-6 flex flex-col items-center text-center group hover:bg-surface transition-colors cursor-default"
-            >
-              <span className="font-mono text-[10px] text-text-dim mb-4">
-                {ind.number}
-              </span>
-              <ind.icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors mb-3" />
-              <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground group-hover:text-foreground transition-colors">
-                {ind.label}
-              </span>
+        <div className="grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
+          {contexts.map((context, i) => (
+            <motion.div key={context.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="bg-background p-6 transition-colors hover:bg-surface">
+              <context.icon className="mb-4 h-6 w-6 text-primary" />
+              <h3 className="font-mono text-lg font-semibold uppercase tracking-wide">{context.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{context.description}</p>
             </motion.div>
           ))}
         </div>

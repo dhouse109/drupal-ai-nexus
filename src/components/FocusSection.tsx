@@ -1,73 +1,47 @@
 import { motion } from "framer-motion";
-import { Brain, GitFork, Blocks } from "lucide-react";
+import { Workflow, Blocks, GitFork } from "lucide-react";
 
-const focuses = [
+const services = [
   {
-    icon: Brain,
-    title: "Drupal AI Initiative",
+    icon: Workflow,
+    title: "Drupal AI advisory",
     description:
-      "We're a driving force in bringing AI capabilities natively into Drupal — from LLM integrations to intelligent content workflows and autonomous agents.",
-    tags: ["GPT-4", "Claude", "LLM Pipelines", "Smart Content"],
+      "Senior guidance for teams that need architecture clarity, product judgment, and a stronger plan before delivery gets expensive.",
+    tags: ["Strategy", "Architecture", "Roadmaps"],
   },
   {
     icon: Blocks,
-    title: "R&D Engineering",
+    title: "Drupal and AI product engineering",
     description:
-      "Rapid prototyping, MVP development, and experimental product design. We treat software as iterative research — always asking 'does it work, is it better?'",
-    tags: ["Prototyping", "MVP", "Architecture", "DevOps"],
+      "Design and build content-rich platforms, editorial workflows, and practical intelligent features with Drupal at the core.",
+    tags: ["Platforms", "Workflows", "Integrations"],
   },
   {
     icon: GitFork,
-    title: "Open Source Tools",
+    title: "Research and prototype sprints",
     description:
-      "We build and contribute reusable frameworks, modules, and developer tools back to the community. Better ecosystems make better products for everyone.",
-    tags: ["Drupal Modules", "Dev Tools", "GraphQL", "APIs"],
+      "Explore new ideas, internal tools, and emerging technical directions before a larger commitment is made.",
+    tags: ["Prototypes", "Feasibility", "Experiments"],
   },
 ];
 
 const FocusSection = () => {
   return (
-    <section id="focus" className="py-32 relative">
+    <section id="focus" className="py-32">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary mb-4 block">
-            What We Do
-          </span>
-          <h2 className="font-mono font-bold text-3xl md:text-5xl tracking-tight">
-            Three pillars of
-            <br />
-            our practice
-          </h2>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16 max-w-3xl">
+          <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Services Snapshot</span>
+          <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">What 109.studio actually helps clients do.</h2>
         </motion.div>
-
-        <div className="grid md:grid-cols-3 gap-px bg-border">
-          {focuses.map((f, i) => (
-            <motion.div
-              key={f.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-background p-8 md:p-10 group hover:bg-surface transition-colors"
-            >
-              <f.icon className="w-8 h-8 text-primary mb-6 group-hover:text-glow transition-all" />
-              <h3 className="font-mono font-semibold text-xl mb-4">{f.title}</h3>
-              <p className="text-muted-foreground leading-relaxed mb-6 text-sm">
-                {f.description}
-              </p>
+        <div className="grid gap-px bg-border md:grid-cols-3">
+          {services.map((service, i) => (
+            <motion.div key={service.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="group bg-background p-8 md:p-10 transition-colors hover:bg-surface">
+              <service.icon className="mb-6 h-8 w-8 text-primary" />
+              <h3 className="mb-4 font-mono text-xl font-semibold">{service.title}</h3>
+              <p className="mb-6 text-sm leading-relaxed text-muted-foreground">{service.description}</p>
               <div className="flex flex-wrap gap-2">
-                {f.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="font-mono text-[10px] uppercase tracking-wider text-text-dim border border-border px-2 py-1"
-                  >
-                    {tag}
-                  </span>
+                {service.tags.map((tag) => (
+                  <span key={tag} className="border border-border px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-text-dim">{tag}</span>
                 ))}
               </div>
             </motion.div>
