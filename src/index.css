@@ -45,11 +45,14 @@
     --sidebar-border: 220 10% 16%;
     --sidebar-ring: 145 80% 48%;
 
-    /* Custom tokens */
     --glow: 145 80% 48%;
     --surface: 220 12% 9%;
     --surface-hover: 220 12% 12%;
     --text-dim: 220 8% 40%;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 }
 
@@ -60,6 +63,24 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-primary/20 text-foreground;
+  }
+}
+
+@layer components {
+  .section-eyebrow {
+    @apply mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary;
+  }
+
+  .section-heading {
+    @apply font-mono text-3xl font-bold tracking-tight md:text-5xl;
+  }
+
+  .section-copy {
+    @apply text-base leading-relaxed text-muted-foreground md:text-lg;
   }
 }
 
