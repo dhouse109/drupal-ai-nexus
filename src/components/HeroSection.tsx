@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden border-b border-border">
+    <section className="relative overflow-hidden border-b border-border py-24 md:py-32">
       <div className="absolute inset-0 grid-bg opacity-40" />
       <div className="absolute top-1/3 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]" />
-      <div className="container relative z-10 pt-24">
+      <div className="container relative z-10">
         <div className="max-w-5xl">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-6">
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary">Drupal and AI Product Engineering</span>
