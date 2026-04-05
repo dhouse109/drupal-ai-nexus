@@ -1,5 +1,6 @@
 import { ArrowRight, Github, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const inquiryTypes = [
   {
@@ -29,13 +30,13 @@ const Contact = () => {
       <section className="relative border-b border-border py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0 grid-bg opacity-40" />
         <div className="container">
-          <span className="mb-6 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Contact</span>
-          <h1 className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
+          <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-6 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Contact</motion.span>
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
             Start the right product or platform conversation.
-          </h1>
-          <p className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+          </motion.h1>
+          <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl">
             Whether you need Drupal AI guidance, product engineering support, or a collaboration partner for a complex build, this is the place to start.
-          </p>
+          </motion.p>
         </div>
       </section>
 

@@ -1,5 +1,6 @@
 import { ArrowRight, Bot, Code2, Github, Network, Workflow } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const supportAreas = [
   {
@@ -37,13 +38,13 @@ const DrupalAI = () => {
       <section className="relative border-b border-border py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0 grid-bg opacity-40" />
         <div className="container">
-          <span className="mb-6 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Drupal AI</span>
-          <h1 className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
+          <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-6 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Drupal AI</motion.span>
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
             Supporting Drupal AI work through practical research and delivery-minded experimentation.
-          </h1>
-          <p className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+          </motion.h1>
+          <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl">
             109.studio explores how AI can strengthen Drupal development, editorial workflows, and platform strategy across industries. The goal is reusable approaches that create real value for teams building and modernizing with Drupal.
-          </p>
+          </motion.p>
         </div>
       </section>
 
