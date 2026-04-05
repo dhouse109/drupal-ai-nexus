@@ -1,7 +1,8 @@
 const About = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <section className="border-b border-border py-24 md:py-32">
+      <section className="relative border-b border-border py-24 md:py-32 overflow-hidden">
+        <div className="absolute inset-0 grid-bg opacity-40" />
         <div className="container">
           <span className="mb-6 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
             About
