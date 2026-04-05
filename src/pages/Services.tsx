@@ -2,45 +2,45 @@ import { motion } from "framer-motion";
 
 const services = [
   {
-    title: "Drupal AI Advisory",
+    title: "Fractional CTO and technical advisory",
     description:
-      "Senior technical guidance for teams that need architecture clarity, product judgment, and a stronger plan before delivery gets expensive.",
+      "Senior guidance for teams that need architecture clarity, product judgment, and a stronger technical plan before delivery gets expensive.",
     features: ["Technology strategy", "Architecture direction", "Roadmap clarity", "Technical due diligence"],
   },
   {
-    title: "Drupal and AI Product Engineering",
+    title: "Platform and product engineering",
     description:
-      "Design and build content-rich platforms, editorial systems, and intelligent workflows with Drupal at the core and AI applied where it creates real value.",
-    features: ["Drupal architecture", "Intelligent workflows", "Platform builds", "Custom integrations"],
+      "Design and build content-rich platforms, operational systems, and practical intelligent features with durable architecture at the core.",
+    features: ["Platform architecture", "Workflow systems", "Product delivery", "Custom integrations"],
   },
   {
-    title: "Research and Prototype Sprints",
+    title: "Research and prototype sprints",
     description:
       "Focused exploration for new product ideas, internal tools, and emerging technical directions so teams can test concepts early and reduce delivery risk.",
     features: ["Prototype sprints", "Technical spikes", "Feasibility work", "Experiment design"],
   },
   {
-    title: "Platform Architecture and DevOps",
+    title: "Platform architecture and delivery systems",
     description:
-      "Cloud environments, delivery pipelines, and system design built to support reliability, maintainability, and long-term growth.",
-    features: ["Cloud architecture", "CI/CD workflows", "Containerized environments", "Operational reliability"],
+      "Cloud environments, release workflows, and system design built to support reliability, maintainability, and long-term change.",
+    features: ["Cloud architecture", "Delivery workflows", "Containerized environments", "Operational reliability"],
   },
 ];
 
 const Services = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <section className="relative border-b border-border py-24 md:py-32 overflow-hidden">
+      <section className="relative overflow-hidden border-b border-border py-24 md:py-32">
         <div className="absolute inset-0 grid-bg opacity-40" />
         <div className="container">
           <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-6 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
             Services
           </motion.span>
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
-            Services designed to bring clarity to product decisions and depth to technical execution.
+            Services designed to reduce risk, sharpen direction, and strengthen delivery.
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            109.studio helps founders, technical teams, and agency partners make better technical decisions, build stronger Drupal platforms, and explore new ideas without losing delivery discipline.
+            109.studio helps founders, technical teams, and agency partners make better product and platform decisions, build stronger systems, and explore new ideas without losing delivery discipline.
           </motion.p>
         </div>
       </section>
