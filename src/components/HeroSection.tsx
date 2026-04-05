@@ -9,19 +9,19 @@ const HeroSection = () => {
       <div className="container relative z-10">
         <div className="max-w-5xl">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-6">
-            <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary">Drupal and AI Product Engineering</span>
+            <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary">109.studio for Drupal, AI, and Product Engineering</span>
           </motion.div>
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="mb-8 max-w-5xl font-mono text-4xl font-bold leading-[0.95] tracking-tight md:text-6xl lg:text-7xl">
-            Drupal and AI product engineering
+            Senior technical direction
             <br />
-            for teams that need <span className="text-primary text-glow">senior technical direction</span>
+            for teams building <span className="text-primary text-glow">complex products and platforms</span>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="mb-12 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            109.studio helps founders, agencies, and technical teams turn complex Drupal and AI ideas into practical platforms, research-driven prototypes, and technical decisions they can trust.
+            109.studio helps founders, agencies, and technical teams turn complex ideas into practical platforms, research-driven prototypes, and technical decisions they can trust. Drupal and AI are part of the toolkit, not the limit of the work.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }} className="flex flex-col gap-4 sm:flex-row">
-            <Link to="/contact" className="bg-primary px-8 py-4 text-center font-mono text-sm uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90">Start a conversation</Link>
-            <Link to="/services" className="border border-border px-8 py-4 text-center font-mono text-sm uppercase tracking-widest transition-colors hover:border-primary hover:text-primary">Review services</Link>
+            <Link to="/contact" className="bg-primary px-8 py-4 text-center font-mono text-sm uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90">Book a strategy call</Link>
+            <Link to="/services" className="border border-border px-8 py-4 text-center font-mono text-sm uppercase tracking-widest transition-colors hover:border-primary hover:text-primary">See how we work</Link>
           </motion.div>
         </div>
       </div>
