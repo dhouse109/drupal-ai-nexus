@@ -4,14 +4,14 @@ const audienceGroups = [
   {
     title: "For founders and business leaders",
     description:
-      "When product direction is clear but technical execution is not, 109.studio helps reduce risk, shape the build, and move from idea to launch with more confidence.",
-    bullets: ["De-risk technical investments", "Clarify architecture and roadmap", "Build a credible path to launch"],
+      "When the product vision is clear but technical execution is still uncertain, 109.studio helps reduce risk, shape the build, and create a more credible path from idea to launch.",
+    bullets: ["De-risk technical investments", "Clarify architecture and roadmap", "Move toward launch with more confidence"],
   },
   {
     title: "For technical teams and agencies",
     description:
-      "When internal delivery leaves little room for exploration or specialized architecture work, 109.studio adds senior depth, focused implementation support, and practical R and D capacity.",
-    bullets: ["Senior support for platform work", "Architecture and implementation depth", "Team enablement and developer workflows"],
+      "When delivery leaves little room for exploration or specialized architecture work, 109.studio adds senior depth, focused implementation support, and practical research and development capacity.",
+    bullets: ["Senior support for complex platform work", "Architecture and implementation depth", "Team enablement and developer workflows"],
   },
 ];
 

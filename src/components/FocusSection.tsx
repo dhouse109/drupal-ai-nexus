@@ -4,23 +4,23 @@ import { Workflow, Blocks, GitFork } from "lucide-react";
 const services = [
   {
     icon: Workflow,
-    title: "Drupal AI advisory",
+    title: "Fractional CTO and technical advisory",
     description:
-      "Senior guidance for teams that need architecture clarity, product judgment, and a stronger plan before delivery gets expensive.",
+      "Senior guidance for teams that need architecture clarity, product judgment, and a stronger technical plan before delivery gets expensive.",
     tags: ["Strategy", "Architecture", "Roadmaps"],
   },
   {
     icon: Blocks,
-    title: "Drupal and AI product engineering",
+    title: "Platform and product engineering",
     description:
-      "Design and build content-rich platforms, editorial workflows, and practical intelligent features with Drupal at the core.",
+      "Design and build content-rich platforms, editorial workflows, and practical intelligent features with durable systems at the core.",
     tags: ["Platforms", "Workflows", "Integrations"],
   },
   {
     icon: GitFork,
     title: "Research and prototype sprints",
     description:
-      "Explore new ideas, internal tools, and emerging technical directions before a larger commitment is made.",
+      "Explore new product concepts, internal tools, and emerging technical directions before committing to a larger build.",
     tags: ["Prototypes", "Feasibility", "Experiments"],
   },
 ];
