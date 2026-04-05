@@ -4,24 +4,24 @@ import { motion } from "framer-motion";
 
 const inquiryTypes = [
   {
-    title: "Drupal AI strategy",
-    description: "For teams exploring practical AI adoption in Drupal, editorial workflows, search, or reusable platform capabilities.",
+    title: "Technical direction and strategy",
+    description: "For teams that need clearer architecture choices, roadmap guidance, or senior technical judgment before delivery gets more expensive.",
   },
   {
     title: "Product and platform delivery",
-    description: "For organizations that need architecture support, platform modernization, or senior engineering depth on an active initiative.",
+    description: "For organizations that need platform modernization, delivery support, or deeper engineering capacity on an active initiative.",
   },
   {
-    title: "Agency collaboration",
-    description: "For agencies and technical teams looking for a senior partner for research, implementation support, or shared open-source work.",
+    title: "Agency and partner collaboration",
+    description: "For agencies and technical teams looking for a senior partner for research, implementation support, or shared systems work.",
   },
 ];
 
 const collaborationModels = [
   "Embedded technical leadership",
   "Architecture and delivery support",
-  "Drupal AI workflow prototyping",
-  "Shared open-source and tooling work",
+  "Research and prototype sprints",
+  "Shared tooling and systems work",
 ];
 
 const Contact = () => {
@@ -35,7 +35,7 @@ const Contact = () => {
             Start the right product or platform conversation.
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Whether you need Drupal AI guidance, product engineering support, or a collaboration partner for a complex build, this is the place to start.
+            Whether you need strategic technical direction, platform delivery support, or a strong partner for a complex initiative, this is the place to start.
           </motion.p>
         </div>
       </section>
@@ -56,7 +56,7 @@ const Contact = () => {
           <div>
             <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Good fit</span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Best for teams that need clarity, depth, or a strong technical partner.
+              Best for teams that need clarity, depth, or a true technical partner.
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
               A strong first message usually includes what you are building, where you are stuck, and whether you are looking for strategy, delivery support, or collaboration.
@@ -78,9 +78,9 @@ const Contact = () => {
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Contact details</span>
-            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">Tell us what you are working on.</h2>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">Tell 109.studio what you are working on.</h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              109.studio is especially interested in conversations around Drupal AI strategy, platform modernization, product experimentation, and collaboration with agencies and technical teams working in adjacent spaces.
+              109.studio is especially interested in conversations around technical direction, platform modernization, product experimentation, and collaboration with agencies and technical teams working in adjacent spaces.
             </p>
           </div>
 
@@ -103,8 +103,8 @@ const Contact = () => {
                 Send inquiry
                 <ArrowRight className="h-3.5 w-3.5" />
               </a>
-              <Link to="/drupal-ai" className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
-                Review Drupal AI focus
+              <Link to="/services" className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
+                Review services
               </Link>
             </div>
           </div>
