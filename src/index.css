@@ -86,7 +86,7 @@
 
 @layer utilities {
   .font-mono-display {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Roboto Mono', monospace;
   }
 
   .text-glow {
