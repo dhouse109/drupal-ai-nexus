@@ -10,6 +10,13 @@ const navItems = [
   { label: "Contact", to: "/contact" },
 ];
 
+const footerFocus = [
+  "Fractional CTO advisory",
+  "Drupal and AI product engineering",
+  "Research-driven prototypes",
+  "Open-source collaboration",
+];
+
 const linkClass = ({ isActive }: { isActive: boolean }) =>
   [
     "font-mono text-xs uppercase tracking-[0.3em] transition-colors",
@@ -20,7 +27,7 @@ const Layout = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
         <div className="container flex h-16 items-center justify-between">
           <NavLink to="/" className="font-mono text-lg font-bold tracking-tight">
@@ -28,7 +35,7 @@ const Layout = () => {
             <span className="text-foreground">.studio</span>
           </NavLink>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden items-center gap-8 md:flex">
             {navItems.map((item) => (
               <NavLink key={item.to} to={item.to} className={linkClass} end={item.to === "/"}>
                 {item.label}
@@ -44,7 +51,7 @@ const Layout = () => {
           </nav>
 
           <button
-            className="md:hidden text-foreground"
+            className="text-foreground md:hidden"
             onClick={() => setOpen((value) => !value)}
             aria-label="Toggle menu"
           >
@@ -84,14 +91,37 @@ const Layout = () => {
       </main>
 
       <footer className="border-t border-border py-14">
-        <div className="container grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="container mb-12 border border-border bg-surface p-8 md:p-10">
+          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <div>
+              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
+              <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
+                Have a product, platform, or Drupal AI initiative that needs senior technical direction?
+              </h2>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                Start with a conversation about what you are building, where things are stuck, and what kind of support would create the most momentum.
+              </p>
+            </div>
+            <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
+              <NavLink to="/contact" className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90">
+                Start a conversation
+                <ArrowRight className="h-3.5 w-3.5" />
+              </NavLink>
+              <NavLink to="/services" className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
+                Review services
+              </NavLink>
+            </div>
+          </div>
+        </div>
+
+        <div className="container grid gap-10 md:grid-cols-[1.2fr_0.9fr_0.9fr_0.9fr]">
           <div>
-            <div className="font-mono text-lg font-bold tracking-tight mb-4">
+            <div className="mb-4 font-mono text-lg font-bold tracking-tight">
               <span className="text-primary">109</span>
               <span className="text-foreground">.studio</span>
             </div>
             <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-              109.studio is a Drupal and AI focused product engineering practice built around senior technical direction, practical R&amp;D, and open-source minded delivery.
+              109.studio is a Drupal and AI focused product engineering practice built around senior technical direction, practical research and development, and open-source minded delivery.
             </p>
           </div>
 
@@ -102,6 +132,17 @@ const Layout = () => {
                 <NavLink key={item.to} to={item.to} className="text-sm text-muted-foreground transition-colors hover:text-foreground" end={item.to === "/"}>
                   {item.label}
                 </NavLink>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-foreground">Focus</h3>
+            <div className="flex flex-col gap-3">
+              {footerFocus.map((item) => (
+                <div key={item} className="text-sm text-muted-foreground">
+                  {item}
+                </div>
               ))}
             </div>
           </div>

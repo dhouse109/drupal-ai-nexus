@@ -20,7 +20,7 @@ const HeroSection = () => {
             109.studio helps founders, agencies, and technical teams turn complex Drupal and AI ideas into practical platforms, research-driven prototypes, and technical decisions they can trust.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }} className="flex flex-col gap-4 sm:flex-row">
-            <Link to="/contact" className="bg-primary px-8 py-4 text-center font-mono text-sm uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90">Book a call</Link>
+            <Link to="/contact" className="bg-primary px-8 py-4 text-center font-mono text-sm uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90">Start a conversation</Link>
             <Link to="/services" className="border border-border px-8 py-4 text-center font-mono text-sm uppercase tracking-widest transition-colors hover:border-primary hover:text-primary">Review services</Link>
           </motion.div>
         </div>
