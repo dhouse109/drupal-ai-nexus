@@ -1,62 +1,54 @@
 import { motion } from "framer-motion";
-import { Github, Heart, ArrowRight } from "lucide-react";
+import { ArrowRight, Github, Network, Workflow, Code2 } from "lucide-react";
+import { Link } from "react-router-dom";
+
+const areas = [
+  {
+    icon: Workflow,
+    title: "AI-enabled editorial workflows",
+    description: "Patterns for generation, classification, summarization, and publishing support that work within Drupal content models and governance needs.",
+  },
+  {
+    icon: Network,
+    title: "Search and retrieval",
+    description: "Semantic search, retrieval, and discovery approaches that combine structured Drupal content with practical AI capabilities.",
+  },
+  {
+    icon: Code2,
+    title: "Developer acceleration",
+    description: "Faster Drupal development, integration scaffolding, and reusable delivery patterns that help teams move with stronger defaults.",
+  },
+];
 
 const OpenSourceSection = () => {
   return (
-    <section id="opensource" className="py-32 relative border-t border-border">
+    <section id="opensource" className="relative border-t border-border py-32">
       <div className="absolute inset-0 grid-bg opacity-20" />
       <div className="container relative z-10">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary mb-4 block">
-              Open Source
-            </span>
-            <h2 className="font-mono font-bold text-3xl md:text-5xl tracking-tight mb-6">
-              Built to give
+        <div className="grid items-start gap-16 md:grid-cols-[0.9fr_1.1fr]">
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Drupal AI R and D</span>
+            <h2 className="mb-6 font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              Open source is part of the practice,
               <br />
-              back
+              not a side note.
             </h2>
-            <p className="text-muted-foreground leading-relaxed mb-8 max-w-md">
-              We believe the best software is built in the open. Every tool we
-              create strengthens the ecosystem. Every contribution raises the
-              bar for everyone.
+            <p className="mb-8 max-w-md leading-relaxed text-muted-foreground">
+              109.studio explores how Drupal and AI can reinforce each other in practical ways, then turns the strongest ideas into reusable patterns, shared assets, and better delivery systems.
             </p>
-            <div className="flex items-center gap-3 text-primary font-mono text-sm uppercase tracking-widest">
-              <Github className="w-4 h-4" />
-              <span>View our contributions</span>
-              <ArrowRight className="w-4 h-4" />
-            </div>
+            <Link to="/drupal-ai" className="inline-flex items-center gap-3 font-mono text-sm uppercase tracking-widest text-primary">
+              <Github className="h-4 w-4" />
+              <span>Explore Drupal AI work</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="space-y-4"
-          >
-            {[
-              { name: "drupal/ai-toolkit", desc: "AI integration layer for Drupal CMS", stars: "—" },
-              { name: "109/content-intelligence", desc: "Smart content workflows powered by LLMs", stars: "—" },
-              { name: "109/devops-starter", desc: "CI/CD templates for Drupal projects", stars: "—" },
-            ].map((repo) => (
-              <div
-                key={repo.name}
-                className="border border-border p-6 hover:border-primary/40 hover:bg-surface transition-all group cursor-pointer"
-              >
-                <div className="flex items-start justify-between mb-2">
-                  <span className="font-mono text-sm text-foreground group-hover:text-primary transition-colors">
-                    {repo.name}
-                  </span>
-                  <div className="flex items-center gap-1 text-text-dim">
-                    <Heart className="w-3 h-3" />
-                    <span className="font-mono text-[10px]">{repo.stars}</span>
-                  </div>
-                </div>
-                <p className="text-xs text-muted-foreground">{repo.desc}</p>
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="space-y-4">
+            {areas.map((area) => (
+              <div key={area.title} className="border border-border bg-background p-6 transition-all hover:border-primary/40 hover:bg-surface">
+                <area.icon className="mb-4 h-5 w-5 text-primary" />
+                <h3 className="font-mono text-lg font-semibold">{area.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{area.description}</p>
               </div>
             ))}
           </motion.div>
