@@ -5,19 +5,19 @@ const experienceAreas = [
     number: "01",
     title: "Platform modernization",
     description:
-      "Modernizing mission-critical platforms through cloud migration, platform architecture, delivery improvements, and systems designed for long-term change.",
+      "Modernizing high-stakes platforms through cloud migration, architecture work, delivery improvements, and systems designed to stay useful as requirements change.",
   },
   {
     number: "02",
-    title: "AI-augmented engineering",
+    title: "Applied AI in product and delivery work",
     description:
-      "Using modern AI workflows, rapid prototyping, and practical intelligent automation to move from ambiguous ideas to working systems with stronger feedback loops.",
+      "Using AI where it improves the product, the workflow, or the speed of execution, while keeping the work observable, reviewable, and grounded in real operating conditions.",
   },
   {
     number: "03",
     title: "Team enablement and developer experience",
     description:
-      "Creating reusable tooling, documentation, development workflows, and stronger delivery practices so teams gain velocity without losing maintainability.",
+      "Building reusable tooling, documentation, development environments, and delivery practices that help teams gain velocity without giving up maintainability.",
   },
 ];
 
@@ -31,12 +31,15 @@ const ExperienceSection = () => {
           viewport={{ once: true }}
           className="mb-16 max-w-3xl"
         >
-          <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Selected Experience</span>
+          <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+            Selected experience
+          </span>
           <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-            Proof shaped by complex platforms, technical leadership, and modern delivery systems.
+            Experience shaped by platform modernization, applied AI work, and technical leadership
           </h2>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            The work spans public-sector modernization, product architecture, AI-enabled delivery, and team systems built to support real-world change.
+            The work spans public-sector modernization, product architecture, AI-enabled delivery,
+            and the internal systems teams need to ship reliably over time.
           </p>
         </motion.div>
 
