@@ -1,4 +1,4 @@
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X, ArrowRight, Github, Mail } from "lucide-react";
 
@@ -25,6 +25,8 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
 
 const Layout = () => {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const isContactPage = location.pathname === "/contact";
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
@@ -91,28 +93,30 @@ const Layout = () => {
       </main>
 
       <footer className="border-t border-border py-14">
-        <div className="container mb-12 border border-border bg-surface p-8 md:p-10">
-          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-            <div>
-              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
-              <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                Need senior technical direction on a product, platform, or modernization effort?
-              </h2>
-              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                Start with a conversation about what you are building, where decisions feel unclear, and where a principal-led technical partner could help.
-              </p>
-            </div>
-            <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
-              <NavLink to="/contact" className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90">
-                Start a conversation
-                <ArrowRight className="h-3.5 w-3.5" />
-              </NavLink>
-              <NavLink to="/services" className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
-                See how we help
-              </NavLink>
+        {!isContactPage && (
+          <div className="container mb-12 border border-border bg-surface p-8 md:p-10">
+            <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+              <div>
+                <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
+                <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
+                  Need senior technical direction on a product, platform, or modernization effort?
+                </h2>
+                <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                  Start with a conversation about what you are building, where decisions feel unclear, and where a principal-led technical partner could help.
+                </p>
+              </div>
+              <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
+                <NavLink to="/contact" className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90">
+                  Start a conversation
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </NavLink>
+                <NavLink to="/services" className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
+                  See how we help
+                </NavLink>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         <div className="container grid gap-10 md:grid-cols-[1.2fr_0.9fr_0.9fr_0.9fr]">
           <div>
