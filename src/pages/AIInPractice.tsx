@@ -35,6 +35,36 @@ const examples = [
   },
 ];
 
+const workStories = [
+  {
+    title: "Modernizing high-stakes platforms",
+    context:
+      "Large public-facing platforms often carry years of infrastructure complexity, content sprawl, and delivery risk. In those environments, the work usually starts with architecture, migration planning, and the release systems needed to change the platform safely.",
+    role:
+      "That kind of work means staying close to both strategy and implementation: helping shape the migration path, improving the technical foundation, and making sure the delivery process can support change without creating avoidable instability.",
+    result:
+      "The result is usually a platform that is easier to operate, safer to evolve, and better prepared for the next round of product or service work.",
+  },
+  {
+    title: "Reducing friction on content-rich systems",
+    context:
+      "Some teams do not need a rebuild. They need the platform and delivery workflow to stop fighting them. The real issue is often inconsistent environments, fragile deployments, or too much technical drag around everyday work.",
+    role:
+      "The work here is about tightening the path from local development to production, improving the delivery workflow, documenting the system, and making the platform easier for the team to use and maintain.",
+    result:
+      "When that foundation improves, teams tend to ship with more confidence, onboard faster, and spend less time recovering from preventable delivery problems.",
+  },
+  {
+    title: "Exploring applied AI without losing the thread of delivery",
+    context:
+      "AI becomes useful when it is tied to a real workflow, product need, or operating problem. Small teams especially need a practical way to test ideas before they commit too much complexity to them.",
+    role:
+      "This usually means focused prototype and workflow design work: exploring where AI can help with content operations, retrieval, internal tooling, or delivery support while keeping the output reviewable and grounded in real operating conditions.",
+    result:
+      "That leads to better next-step decisions, more reusable patterns, and less time wasted on ideas that sounded interesting but were never going to hold up in practice.",
+  },
+];
+
 const principles = [
   {
     title: "Observable",
@@ -147,6 +177,54 @@ const AIInPractice = () => {
                       {item}
                     </div>
                   ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border py-20 md:py-24">
+        <div className="container">
+          <div className="mb-16 max-w-3xl">
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              Work patterns
+            </span>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              A few short narratives that show how this work tends to create value
+            </h2>
+          </div>
+          <div className="space-y-px bg-border">
+            {workStories.map((story) => (
+              <div key={story.title} className="bg-background p-8 md:p-10">
+                <h3 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">
+                  {story.title}
+                </h3>
+                <div className="mt-8 grid gap-8 lg:grid-cols-3">
+                  <div>
+                    <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                      Context
+                    </div>
+                    <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+                      {story.context}
+                    </p>
+                  </div>
+                  <div>
+                    <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                      Role
+                    </div>
+                    <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+                      {story.role}
+                    </p>
+                  </div>
+                  <div>
+                    <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                      Result
+                    </div>
+                    <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+                      {story.result}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
