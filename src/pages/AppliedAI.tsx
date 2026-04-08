@@ -1,0 +1,272 @@
+import { ArrowRight, Bot, Code2, Network, Workflow } from "lucide-react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
+const supportAreas = [
+  {
+    icon: Bot,
+    title: "AI-enabled content and workflow systems",
+    description:
+      "Patterns for generation, summarization, classification, and editorial support that fit real publishing and governance environments.",
+  },
+  {
+    icon: Network,
+    title: "Search and retrieval",
+    description:
+      "Discovery experiences that combine structured content, retrieval, and AI-assisted querying in ways teams can maintain.",
+  },
+  {
+    icon: Workflow,
+    title: "AI-assisted platform delivery",
+    description:
+      "Developer workflows, implementation experiments, and delivery patterns that help teams move faster while keeping the work reviewable and maintainable.",
+  },
+  {
+    icon: Code2,
+    title: "Reusable assets and starter systems",
+    description:
+      "Starter systems, documentation, and tooling that support stronger reuse across client work, internal R&D, and partner collaboration.",
+  },
+];
+
+const examples = [
+  {
+    title: "Content operations that stay reviewable",
+    description:
+      "Applied AI can help editors with summarization, classification, metadata, and content support, but the work still needs to stay visible, editable, and under control.",
+    outcomes: [
+      "Less repetitive editorial work",
+      "Better content support at scale",
+      "Human review where it matters",
+    ],
+  },
+  {
+    title: "Search and retrieval that understand intent",
+    description:
+      "Search gets more useful when structured content, retrieval, and AI are designed together. The point is not novelty. The point is helping people find the right thing faster.",
+    outcomes: [
+      "More useful discovery",
+      "Better support for complex content sets",
+      "A clearer path from question to answer",
+    ],
+  },
+  {
+    title: "Internal workflows that reduce delivery friction",
+    description:
+      "Some of the best AI work happens behind the scenes: helping teams summarize information, support handoffs, generate first-pass documentation, or reduce repetitive technical work.",
+    outcomes: [
+      "Faster execution on repeatable tasks",
+      "Stronger delivery support systems",
+      "More time for higher-value judgment",
+    ],
+  },
+];
+
+const principles = [
+  {
+    title: "Observable",
+    description:
+      "Teams should be able to see what the system is doing, inspect the output, and understand where intervention is needed.",
+  },
+  {
+    title: "Reviewable",
+    description:
+      "AI should support decisions and workflows without quietly bypassing the people responsible for quality, accuracy, or risk.",
+  },
+  {
+    title: "Grounded",
+    description:
+      "The work needs to stay connected to structured content, real workflows, and actual operating conditions rather than floating as a disconnected layer.",
+  },
+  {
+    title: "Maintainable",
+    description:
+      "If a team cannot operate it, revise it, and extend it over time, it is not ready to become part of the platform.",
+  },
+];
+
+const nonGoals = [
+  "Black-box systems making consequential decisions without review",
+  "AI features that are harder to govern than the work they replace",
+  "Proof-of-concept demos that collapse the moment they meet real delivery constraints",
+  "Automation that creates more confusion for editors, developers, or operators",
+];
+
+const AppliedAI = () => {
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-border py-24 md:py-32">
+        <div className="absolute inset-0 grid-bg opacity-40" />
+        <div className="container">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-6 block font-mono text-xs uppercase tracking-[0.3em] text-primary"
+          >
+            Applied AI
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
+          >
+            Practical AI work for content platforms, delivery teams, and modern product environments
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
+          >
+            The focus is not AI for its own sake. It is how AI can support real platform work:
+            better publishing workflows, stronger search, more useful internal tooling, and
+            delivery systems that help teams move with more confidence.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Areas of work */}
+      <section className="border-b border-border py-20 md:py-24">
+        <div className="container">
+          <div className="mb-16 max-w-3xl">
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              Current areas of work
+            </span>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              Where 109.studio is actively building, testing, and refining patterns
+            </h2>
+          </div>
+          <div className="grid gap-px bg-border md:grid-cols-2">
+            {supportAreas.map((area) => (
+              <div key={area.title} className="bg-background p-8 md:p-10">
+                <area.icon className="mb-6 h-6 w-6 text-primary" />
+                <h3 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">
+                  {area.title}
+                </h3>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+                  {area.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Representative applications */}
+      <section className="border-b border-border py-20 md:py-24">
+        <div className="container">
+          <div className="mb-16 max-w-3xl">
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              Representative applications
+            </span>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              A few examples of where this work tends to become useful
+            </h2>
+          </div>
+          <div className="grid gap-px bg-border md:grid-cols-3">
+            {examples.map((example) => (
+              <div key={example.title} className="bg-background p-8 md:p-10">
+                <h3 className="font-mono text-2xl font-bold tracking-tight">{example.title}</h3>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+                  {example.description}
+                </p>
+                <div className="mt-6 space-y-3">
+                  {example.outcomes.map((item) => (
+                    <div key={item} className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Principles */}
+      <section className="border-b border-border py-20 md:py-24">
+        <div className="container">
+          <div className="mb-16 max-w-3xl">
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              Working standards
+            </span>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              The work should stay understandable, reviewable, and under control
+            </h2>
+          </div>
+          <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-4">
+            {principles.map((principle) => (
+              <div key={principle.title} className="bg-background p-8">
+                <h3 className="font-mono text-xl font-semibold">{principle.title}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+                  {principle.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What this is not */}
+      <section className="border-b border-border py-20 md:py-24">
+        <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <div>
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              What this is not
+            </span>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              A few things 109.studio is not interested in shipping
+            </h2>
+          </div>
+          <div className="space-y-4">
+            {nonGoals.map((item) => (
+              <div key={item} className="border-b border-border pb-4 text-base leading-relaxed text-muted-foreground md:text-lg last:border-b-0 last:pb-0">
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 md:py-24">
+        <div className="container border border-border bg-surface p-8 md:p-10">
+          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <div>
+              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                Next step
+              </span>
+              <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
+                If you are exploring an applied AI direction, start with the workflow you want to improve
+              </h2>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                The best starting point is usually not the model. It is the product, platform, or
+                delivery problem you want to make more useful.
+              </p>
+            </div>
+            <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
+              >
+                Start a conversation
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+              <Link
+                to="/services"
+                className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
+              >
+                See how we help
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default AppliedAI;

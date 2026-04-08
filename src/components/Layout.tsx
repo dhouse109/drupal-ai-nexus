@@ -6,7 +6,7 @@ const navItems = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
   { label: "How We Help", to: "/services" },
-  { label: "Applied AI", to: "/drupal-ai" },
+  { label: "Applied AI", to: "/applied-ai" },
   { label: "Contact", to: "/contact" },
 ];
 
