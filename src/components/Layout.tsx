@@ -25,6 +25,8 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
 
 const Layout = () => {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const isContactPage = location.pathname === "/contact";
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
