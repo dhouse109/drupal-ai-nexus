@@ -1,4 +1,4 @@
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X, ArrowRight, Github, Mail } from "lucide-react";
 
