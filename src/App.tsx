@@ -11,6 +11,7 @@ import Services from "./pages/Services";
 import Offerings from "./pages/Offerings";
 import DrupalAI from "./pages/DrupalAI";
 import AIInPractice from "./pages/AIInPractice";
+import Insights from "./pages/Insights";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -31,6 +32,7 @@ const App = () => (
             <Route path="/offerings" element={<Offerings />} />
             <Route path="/drupal-ai" element={<DrupalAI />} />
             <Route path="/ai-in-practice" element={<AIInPractice />} />
+            <Route path="/insights" element={<Insights />} />
             <Route path="/contact" element={<Contact />} />
           </Route>
           <Route path="*" element={<NotFound />} />
