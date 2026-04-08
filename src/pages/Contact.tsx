@@ -252,6 +252,27 @@ const Contact = () => {
           </div>
         </div>
       </section>
+
+      <section className="border-t border-border py-20 md:py-24">
+        <div className="container">
+          <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+            How an engagement starts
+          </span>
+          <div className="mt-8 grid gap-px bg-border md:grid-cols-3">
+            {[
+              { step: "01", title: "Send a note", description: "Describe what you are building and where things feel unclear. Even a few sentences is enough to start." },
+              { step: "02", title: "30-minute call", description: "Damien will follow up to understand the situation, talk through what might help, and see if the fit is right." },
+              { step: "03", title: "Scoped proposal", description: "If there is a clear way to help, you will get a plain-language proposal with scope, timeline, and cost." },
+            ].map((item) => (
+              <div key={item.step} className="bg-background p-8 md:p-10">
+                <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary">{item.step}</span>
+                <h3 className="mt-3 font-mono text-xl font-bold tracking-tight">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
