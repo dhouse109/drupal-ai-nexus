@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const services = [
   {
@@ -82,7 +83,7 @@ const Services = () => {
         </div>
       </section>
 
-      <section className="py-20 md:py-24">
+      <section className="border-b border-border py-20 md:py-24">
         <div className="container grid gap-px bg-border md:grid-cols-2">
           {services.map((service) => (
             <div key={service.title} className="bg-background p-8 md:p-10">
@@ -104,6 +105,39 @@ const Services = () => {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="py-20 md:py-24">
+        <div className="container border border-border bg-surface p-8 md:p-10">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                Looking for a more shaped engagement?
+              </span>
+              <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+                See the commercial offerings behind the broader service categories
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                If you already know you need something more defined, the offerings page lays out
+                the most common ways 109.studio structures the work.
+              </p>
+            </div>
+            <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
+              <Link
+                to="/offerings"
+                className="inline-flex items-center justify-center border border-border px-8 py-4 font-mono text-sm uppercase tracking-widest transition-colors hover:border-primary hover:text-primary"
+              >
+                Review offerings
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center bg-primary px-8 py-4 font-mono text-sm uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90"
+              >
+                Start a conversation
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </div>
