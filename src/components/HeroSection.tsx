@@ -8,24 +8,64 @@ const HeroSection = () => {
       <div className="absolute top-1/3 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]" />
       <div className="container relative z-10">
         <div className="max-w-5xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-6">
-            <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary">109.studio for Drupal, AI, and Product Engineering</span>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-6"
+          >
+            <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              109.studio · Product engineering, platform architecture, and applied AI
+            </span>
           </motion.div>
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="mb-8 max-w-5xl font-mono text-4xl font-bold leading-[0.95] tracking-tight md:text-6xl lg:text-7xl">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="mb-8 max-w-5xl font-mono text-4xl font-bold leading-[0.95] tracking-tight md:text-6xl lg:text-7xl"
+          >
             Senior technical direction
             <br />
-            for teams building <span className="text-primary text-glow">complex products and platforms</span>
+            for <span className="text-primary text-glow">complex products, platforms, and modernization work</span>
           </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="mb-12 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            109.studio helps founders, agencies, and technical teams turn complex ideas into practical platforms, research-driven prototypes, and technical decisions they can trust. Drupal and AI are part of the toolkit, not the limit of the work.
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="mb-12 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
+          >
+            109.studio helps founders, agencies, and technical teams turn complex ideas into
+            working platforms, clearer technical decisions, and delivery plans they can trust.
+            Drupal and AI are part of the work, but the focus is broader: building systems that
+            hold up in the real world.
           </motion.p>
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }} className="flex flex-col gap-4 sm:flex-row">
-            <Link to="/contact" className="bg-primary px-8 py-4 text-center font-mono text-sm uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90">Book a strategy call</Link>
-            <Link to="/services" className="border border-border px-8 py-4 text-center font-mono text-sm uppercase tracking-widest transition-colors hover:border-primary hover:text-primary">See how we work</Link>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="flex flex-col gap-4 sm:flex-row"
+          >
+            <Link
+              to="/contact"
+              className="bg-primary px-8 py-4 text-center font-mono text-sm uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90"
+            >
+              Start a conversation
+            </Link>
+            <Link
+              to="/services"
+              className="border border-border px-8 py-4 text-center font-mono text-sm uppercase tracking-widest transition-colors hover:border-primary hover:text-primary"
+            >
+              See how we help
+            </Link>
           </motion.div>
         </div>
       </div>
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="absolute bottom-8 left-1/2 -translate-x-1/2">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
         <div className="h-12 w-px bg-gradient-to-b from-primary/60 to-transparent" />
       </motion.div>
     </section>
