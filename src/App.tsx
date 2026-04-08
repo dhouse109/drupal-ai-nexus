@@ -8,6 +8,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import Offerings from "./pages/Offerings";
 import DrupalAI from "./pages/DrupalAI";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/offerings" element={<Offerings />} />
             <Route path="/drupal-ai" element={<DrupalAI />} />
             <Route path="/contact" element={<Contact />} />
           </Route>
