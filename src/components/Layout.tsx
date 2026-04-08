@@ -5,16 +5,16 @@ import { Menu, X, ArrowRight, Github, Mail } from "lucide-react";
 const navItems = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
-  { label: "Services", to: "/services" },
-  { label: "Drupal AI", to: "/drupal-ai" },
+  { label: "How We Help", to: "/services" },
+  { label: "Applied AI", to: "/drupal-ai" },
   { label: "Contact", to: "/contact" },
 ];
 
 const footerFocus = [
-  "Fractional CTO advisory",
-  "Drupal and AI product engineering",
-  "Research-driven prototypes",
-  "Open-source collaboration",
+  "Fractional CTO and technical advisory",
+  "Platform and product engineering",
+  "Applied AI in products and workflows",
+  "Research and prototype sprints",
 ];
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
@@ -96,10 +96,10 @@ const Layout = () => {
             <div>
               <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
               <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                Have a product, platform, or Drupal AI initiative that needs senior technical direction?
+                Need senior technical direction on a product, platform, or modernization effort?
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                Start with a conversation about what you are building, where things are stuck, and what kind of support would create the most momentum.
+                Start with a conversation about what you are building, where decisions feel unclear, and where a principal-led technical partner could help.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
@@ -108,7 +108,7 @@ const Layout = () => {
                 <ArrowRight className="h-3.5 w-3.5" />
               </NavLink>
               <NavLink to="/services" className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
-                Review services
+                See how we help
               </NavLink>
             </div>
           </div>
@@ -121,7 +121,7 @@ const Layout = () => {
               <span className="text-foreground">.studio</span>
             </div>
             <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-              109.studio is a Drupal and AI focused product engineering practice built around senior technical direction, practical research and development, and open-source minded delivery.
+              109.studio is Damien House’s principal-led practice for platform architecture, product engineering, and applied AI work.
             </p>
           </div>
 
