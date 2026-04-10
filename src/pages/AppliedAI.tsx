@@ -41,6 +41,29 @@ const focusAreas = [
   },
 ];
 
+const proofItems = [
+  {
+    metric: "40% to 60% better answer accuracy",
+    detail:
+      "Grounded retrieval and stronger context design improve answer quality on real product and knowledge workflows.",
+  },
+  {
+    metric: "50% fewer no-result dead ends",
+    detail:
+      "Search gets more useful when semantic retrieval and AI-assisted querying are designed together.",
+  },
+  {
+    metric: "6,000+ content items reviewed",
+    detail:
+      "AI-assisted content operations can expand audit coverage from small samples to full-estate visibility.",
+  },
+  {
+    metric: "80% to 90% faster alt-text generation",
+    detail:
+      "Accessibility support moves faster when repetitive work is automated and review remains part of the workflow.",
+  },
+];
+
 const startingPoints = [
   {
     problem: "You need to test where AI can help in a real workflow before scaling further.",
@@ -152,7 +175,6 @@ const AppliedAI = () => {
                 <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
                   {area.description}
                 </p>
-
                 <div className="mt-8">
                   <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
                     Good fit when
@@ -165,7 +187,6 @@ const AppliedAI = () => {
                     ))}
                   </div>
                 </div>
-
                 <div className="mt-8">
                   <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
                     Typical outcomes
@@ -178,6 +199,31 @@ const AppliedAI = () => {
                     ))}
                   </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border py-20 md:py-24">
+        <div className="container">
+          <div className="mb-16 max-w-3xl">
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              Selected proof
+            </span>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              A few concrete signals of what this work can improve
+            </h2>
+          </div>
+          <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-4">
+            {proofItems.map((item) => (
+              <div key={item.metric} className="bg-background p-8">
+                <div className="font-mono text-xl font-semibold tracking-tight md:text-2xl">
+                  {item.metric}
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+                  {item.detail}
+                </p>
               </div>
             ))}
           </div>

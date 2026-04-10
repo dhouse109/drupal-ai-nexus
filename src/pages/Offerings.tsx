@@ -113,6 +113,29 @@ const offerings = [
   },
 ];
 
+const evidenceItems = [
+  {
+    metric: "3-to-4 week delivery paths",
+    detail:
+      "Prototype-to-production and modernization work can move much faster when the effort is shaped around architecture, decisions, and disciplined execution from the start.",
+  },
+  {
+    metric: "40% to 60% better answer accuracy",
+    detail:
+      "Applied AI work becomes more useful when context, retrieval, and review paths are designed into the system.",
+  },
+  {
+    metric: "6,000+ content items with full audit coverage",
+    detail:
+      "Content operations engagements can expand far beyond sample-based review without scaling manual effort linearly.",
+  },
+  {
+    metric: "20% lower PR review time",
+    detail:
+      "Delivery-system and DevEx improvements create measurable gains even before a broader modernization effort is complete.",
+  },
+];
+
 const guideItems = [
   {
     problem: "You need clarity before approving a larger technical effort",
@@ -186,8 +209,7 @@ const Offerings = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            These are the starting offers 109.studio uses most often. Each one is meant to reduce
-            ambiguity, improve the quality of the next decision, and give the work a stronger technical footing.
+            These are the starting offers 109.studio uses most often. Each one is meant to reduce ambiguity, improve the quality of the next decision, and give the work a stronger technical footing.
           </motion.p>
         </div>
       </section>
@@ -202,8 +224,7 @@ const Offerings = () => {
               Six practical entry points for product, platform, and applied AI work
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              The work often expands beyond the first engagement. What matters is choosing the right
-              place to begin.
+              The work often expands beyond the first engagement. What matters is choosing the right place to begin.
             </p>
           </div>
 
@@ -254,6 +275,31 @@ const Offerings = () => {
                     {offering.nextStep}
                   </p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border py-20 md:py-24">
+        <div className="container">
+          <div className="mb-16 max-w-3xl">
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              Selected proof
+            </span>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              A few recent signals of the kind of leverage these offers are built to create
+            </h2>
+          </div>
+          <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-4">
+            {evidenceItems.map((item) => (
+              <div key={item.metric} className="bg-background p-8">
+                <div className="font-mono text-xl font-semibold tracking-tight md:text-2xl">
+                  {item.metric}
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+                  {item.detail}
+                </p>
               </div>
             ))}
           </div>
