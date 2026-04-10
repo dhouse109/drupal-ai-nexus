@@ -10,11 +10,11 @@ const navItems = [
   { label: "Contact", to: "/contact" },
 ];
 
-const footerFocus = [
-  "Fractional CTO and technical advisory",
-  "Platform and product engineering",
-  "Applied AI in products and workflows",
-  "Research and prototype sprints",
+const footerExplore = [
+  { label: "How We Help", to: "/services" },
+  { label: "Offerings", to: "/offerings" },
+  { label: "AI in Practice", to: "/ai-in-practice" },
+  { label: "Insights", to: "/insights" },
 ];
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
@@ -110,8 +110,8 @@ const Layout = () => {
                   Start a conversation
                   <ArrowRight className="h-3.5 w-3.5" />
                 </NavLink>
-                <NavLink to="/services" className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
-                  See how we help
+                <NavLink to="/offerings" className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
+                  Review offerings
                 </NavLink>
               </div>
             </div>
@@ -141,12 +141,12 @@ const Layout = () => {
           </div>
 
           <div>
-            <h3 className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-foreground">Focus</h3>
+            <h3 className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-foreground">Explore</h3>
             <div className="flex flex-col gap-3">
-              {footerFocus.map((item) => (
-                <div key={item} className="text-sm text-muted-foreground">
-                  {item}
-                </div>
+              {footerExplore.map((item) => (
+                <NavLink key={item.to} to={item.to} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                  {item.label}
+                </NavLink>
               ))}
             </div>
           </div>
