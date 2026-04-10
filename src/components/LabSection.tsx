@@ -65,7 +65,7 @@ const LabSection = () => {
             {areas.map((area) => (
               <div
                 key={area.title}
-                className="border border-border bg-background p-6 transition-all hover:border-primary/40 hover:bg-surface"
+                className="border border-border bg-background p-6"
               >
                 <area.icon className="mb-4 h-5 w-5 text-primary" />
                 <h3 className="font-mono text-lg font-semibold">{area.title}</h3>

@@ -299,6 +299,59 @@ const Services = () => {
         </div>
       </section>
 
+      {/* Shaped offerings */}
+      <section className="border-b border-border py-20 md:py-24">
+        <div className="container">
+          <div className="mb-16 max-w-3xl">
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              Shaped engagements
+            </span>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              Four practical ways 109.studio usually plugs into the work
+            </h2>
+          </div>
+          <div className="grid gap-px bg-border md:grid-cols-2">
+            {offerings.map((offering) => (
+              <div key={offering.title} className="bg-background p-8 md:p-10">
+                <h3 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">
+                  {offering.title}
+                </h3>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+                  {offering.outcome}
+                </p>
+                <div className="mt-8">
+                  <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                    Good fit when
+                  </div>
+                  <div className="space-y-3">
+                    {offering.fit.map((item) => (
+                      <div key={item} className="text-sm leading-relaxed text-muted-foreground">
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-8">
+                  <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                    Typical deliverables
+                  </div>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {offering.deliverables.map((item) => (
+                      <div
+                        key={item}
+                        className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim"
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Where to start guide */}
       <section className="border-b border-border py-20 md:py-24">
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
@@ -377,10 +430,10 @@ const Services = () => {
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
               <Link
-                to="/offerings"
+                to="/applied-ai"
                 className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
               >
-                Review shaped offerings
+                Explore applied AI
               </Link>
             </div>
           </div>

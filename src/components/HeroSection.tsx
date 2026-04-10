@@ -32,12 +32,20 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="mb-12 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
+            className="mb-6 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
             109.studio helps founders, agencies, and technical teams turn complex ideas into
             working platforms, clearer technical decisions, and delivery plans they can trust.
             Drupal and AI are part of the work, but the focus is broader: building systems that
             hold up in the real world.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25 }}
+            className="mb-12 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground"
+          >
+            20+ years across startups, public-sector platforms, and agency delivery environments
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
