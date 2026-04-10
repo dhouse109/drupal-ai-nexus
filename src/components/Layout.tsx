@@ -99,10 +99,10 @@ const Layout = () => {
               <div>
                 <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
                 <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                  Need senior technical direction on a product, platform, or modernization effort?
+                  Start with a short note about the product, platform, or technical decision in front of you
                 </h2>
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                  Start with a conversation about what you are building, where decisions feel unclear, and where a principal-led technical partner could help.
+                  The clearest path through the site is simple: review the offerings if you want a shaped starting point, or start a conversation if you already know the work needs senior technical direction.
                 </p>
               </div>
               <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
