@@ -4,47 +4,58 @@ import { ArrowRight } from "lucide-react";
 
 const services = [
   {
-    title: "Fractional CTO and technical advisory",
+    title: "Fractional CTO and technical strategy",
     description:
-      "Senior technical leadership for teams that need clearer architecture, better product judgment, and stronger decisions around roadmap, delivery, and technical risk.",
+      "Senior technical leadership for teams that need clearer product direction, stronger architecture decisions, and better judgment around sequencing, delivery, and technical risk.",
     features: [
-      "Technology strategy",
+      "Technical strategy",
       "Architecture direction",
       "Roadmap clarity",
-      "Technical due diligence",
+      "Decision support",
     ],
   },
   {
-    title: "Platform and product engineering",
+    title: "Prototype-to-production architecture",
     description:
-      "Design and build content-rich platforms, operational systems, and intelligent features with architecture that can hold up under real delivery pressure.",
+      "Turn early product ideas, mockups, and brittle prototypes into working architecture, versioned specifications, and delivery plans a team can actually build against.",
     features: [
-      "Platform architecture",
-      "Workflow systems",
-      "Product delivery",
-      "Custom integrations",
+      "Technical roadmaps",
+      "System design",
+      "Specification work",
+      "Production planning",
     ],
   },
   {
-    title: "Research and prototype sprints",
+    title: "Agentic workflows and AI governance",
     description:
-      "Focused exploration for new product ideas, internal tools, or technical directions so teams can test concepts, learn quickly, and make better decisions before scaling the work.",
+      "Design reviewable AI workflows, retrieval-backed context, and explicit action paths so models can support meaningful work without drifting into guesswork or hidden risk.",
     features: [
-      "Prototype sprints",
-      "Technical spikes",
-      "Feasibility work",
-      "Experiment design",
+      "Workflow design",
+      "Context control",
+      "Review paths",
+      "Human oversight",
     ],
   },
   {
-    title: "Platform architecture and delivery systems",
+    title: "AI-enabled content operations",
     description:
-      "Cloud environments, release workflows, and system design work that support reliability, maintainability, and long-term change.",
+      "Apply AI to content audits, accessibility support, metadata, editorial workflows, and large content environments where manual review alone does not scale.",
     features: [
-      "Cloud architecture",
-      "Delivery workflows",
-      "Containerized environments",
-      "Operational reliability",
+      "Content audits",
+      "Accessibility support",
+      "Metadata workflows",
+      "Editorial operations",
+    ],
+  },
+  {
+    title: "Platform modernization, DevEx, and delivery systems",
+    description:
+      "Improve environments, release workflows, documentation, and platform foundations so teams can ship with less friction, lower rework, and more confidence over time.",
+    features: [
+      "Modernization",
+      "CI/CD systems",
+      "Developer experience",
+      "Release confidence",
     ],
   },
 ];
@@ -174,7 +185,7 @@ const Services = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            Services built to reduce risk, sharpen direction, and strengthen delivery
+            Senior technical help across strategy, architecture, applied AI, and delivery systems
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -183,35 +194,108 @@ const Services = () => {
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
             109.studio helps founders, technical teams, and agency partners make better product
-            and platform decisions, build stronger systems, and explore new ideas without losing
-            delivery discipline.
+            and platform decisions, build stronger systems, and apply AI in ways that stay
+            reviewable, useful, and grounded in real delivery work.
           </motion.p>
         </div>
       </section>
 
       {/* Service categories */}
       <section className="border-b border-border py-20 md:py-24">
-        <div className="container grid gap-px bg-border md:grid-cols-2">
-          {services.map((service) => (
-            <div key={service.title} className="bg-background p-8 md:p-10">
-              <h2 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">
-                {service.title}
-              </h2>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-                {service.description}
-              </p>
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {service.features.map((feature) => (
-                  <div
-                    key={feature}
-                    className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim"
-                  >
-                    {feature}
-                  </div>
-                ))}
+        <div className="container">
+          <div className="mb-16 max-w-3xl">
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              Core areas of work
+            </span>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              Five areas that describe the practice most clearly
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+              Most engagements span more than one of these areas. The point is not to force the
+              work into a neat category. It is to make the role 109.studio plays easier to
+              understand before a project gets underway.
+            </p>
+          </div>
+          <div className="grid gap-px bg-border md:grid-cols-2">
+            {services.map((service) => (
+              <div key={service.title} className="bg-background p-8 md:p-10">
+                <h2 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">
+                  {service.title}
+                </h2>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+                  {service.description}
+                </p>
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {service.features.map((feature) => (
+                    <div
+                      key={feature}
+                      className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim"
+                    >
+                      {feature}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Shaped offerings */}
+      <section className="border-b border-border py-20 md:py-24">
+        <div className="container">
+          <div className="mb-16 max-w-3xl">
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              Common starting points
+            </span>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              Most engagements begin as a focused diagnostic, advisory track, build effort, or applied AI sprint
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+              These are practical ways the work usually starts. The underlying scope often reaches
+              across several of the core areas above, but this is the easiest way to match the next
+              step to the decision in front of you.
+            </p>
+          </div>
+          <div className="grid gap-px bg-border md:grid-cols-2">
+            {offerings.map((offering) => (
+              <div key={offering.title} className="bg-background p-8 md:p-10">
+                <h3 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">
+                  {offering.title}
+                </h3>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+                  {offering.outcome}
+                </p>
+                <div className="mt-8">
+                  <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                    Good fit when
+                  </div>
+                  <div className="space-y-3">
+                    {offering.fit.map((item) => (
+                      <div key={item} className="text-sm leading-relaxed text-muted-foreground">
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-8">
+                  <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                    Typical deliverables
+                  </div>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {offering.deliverables.map((item) => (
+                      <div
+                        key={item}
+                        className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim"
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
