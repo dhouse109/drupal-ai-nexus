@@ -65,7 +65,9 @@ const IndustriesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="bg-background p-6"
+              className={`bg-background p-6 ${
+                i === contexts.length - 1 ? "md:col-span-2 xl:col-span-1" : ""
+              }`}
             >
               <context.icon className="mb-4 h-6 w-6 text-primary" />
               <h3 className="font-mono text-lg font-semibold uppercase tracking-wide">

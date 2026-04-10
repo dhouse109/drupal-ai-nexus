@@ -185,8 +185,13 @@ const Services = () => {
             </p>
           </div>
           <div className="grid gap-px bg-border md:grid-cols-2">
-            {services.map((service) => (
-              <div key={service.title} className="bg-background p-8 md:p-10">
+              {services.map((service, index) => (
+                <div
+                  key={service.title}
+                  className={`bg-background p-8 md:p-10 ${
+                    index === services.length - 1 ? "md:col-span-2" : ""
+                  }`}
+                >
                 <h2 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">
                   {service.title}
                 </h2>
