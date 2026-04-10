@@ -60,10 +60,10 @@ const HeroSection = () => {
               Start a conversation
             </Link>
             <Link
-              to="/services"
+              to="/offerings"
               className="border border-border px-8 py-4 text-center font-mono text-sm uppercase tracking-widest transition-colors hover:border-primary hover:text-primary"
             >
-              See how we help
+              Review offerings
             </Link>
           </motion.div>
         </div>

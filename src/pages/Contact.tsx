@@ -31,6 +31,27 @@ const inquiryTypes = [
   },
 ];
 
+const startingOptions = [
+  {
+    title: "Review offerings",
+    description:
+      "Start here if you want to see the shaped entry points before sending a note.",
+    to: "/offerings",
+  },
+  {
+    title: "See how Damien helps",
+    description:
+      "Start here if you need the overview of services and practice areas first.",
+    to: "/services",
+  },
+  {
+    title: "Explore applied AI",
+    description:
+      "Start here if the question is specifically about AI in products, workflows, or content operations.",
+    to: "/applied-ai",
+  },
+];
+
 const Contact = () => {
   const { toast } = useToast();
   const [submitted, setSubmitted] = useState(false);
@@ -97,7 +118,7 @@ const Contact = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            Start the right product or platform conversation
+            Start a conversation about the product, platform, or technical decision in front of you
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -105,8 +126,7 @@ const Contact = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            Whether you need senior technical direction, delivery support, or a strong partner
-            for a complex initiative, this is the place to start.
+            A useful first note can be simple. Describe what you are building, where things feel unclear, and what kind of senior technical help would make the next step easier.
           </motion.p>
         </div>
       </section>
@@ -124,6 +144,29 @@ const Contact = () => {
         </div>
       </section>
 
+      <section className="border-b border-border py-20 md:py-24">
+        <div className="container">
+          <div className="mb-16 max-w-3xl">
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              Before you reach out
+            </span>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              The clearest paths through the site all lead to the same next step
+            </h2>
+          </div>
+          <div className="grid gap-px bg-border md:grid-cols-3">
+            {startingOptions.map((item) => (
+              <Link key={item.title} to={item.to} className="bg-background p-8 transition-colors hover:bg-surface md:p-10">
+                <h3 className="font-mono text-2xl font-bold tracking-tight">{item.title}</h3>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                  {item.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="py-20 md:py-24">
         <div className="container grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div>
@@ -134,8 +177,7 @@ const Contact = () => {
               Tell Damien what you are working on
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              A strong first message usually includes what you are building, where things are
-              stuck, and whether you are looking for strategy, delivery support, or collaboration.
+              A strong first message usually includes the product, platform, or workflow in front of you, where the technical uncertainty is, and whether you are looking for strategy, delivery support, or collaboration.
             </p>
             <p className="mt-4 text-sm text-muted-foreground">
               Damien typically responds within one business day.
@@ -168,10 +210,9 @@ const Contact = () => {
             {submitted ? (
               <div className="flex flex-col items-center justify-center py-12 text-center">
                 <CheckCircle className="mb-6 h-12 w-12 text-primary" />
-                <h3 className="font-mono text-2xl font-bold tracking-tight">Message received</h3>
+                <h3 className="font-mono text-2xl font-bold tracking-tight">Conversation started</h3>
                 <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
-                  Thanks for reaching out. Damien will review your message and get back to you
-                  within one business day.
+                  Thanks for reaching out. Damien will review your message and get back to you within one business day.
                 </p>
               </div>
             ) : (
@@ -244,7 +285,7 @@ const Contact = () => {
                   disabled={loading}
                   className="inline-flex w-full items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50"
                 >
-                  {loading ? "Sending..." : "Send inquiry"}
+                  {loading ? "Sending..." : "Start the conversation"}
                   {!loading && <ArrowRight className="h-3.5 w-3.5" />}
                 </button>
               </form>
@@ -261,8 +302,8 @@ const Contact = () => {
           <div className="mt-8 grid gap-px bg-border md:grid-cols-3">
             {[
               { step: "01", title: "Send a note", description: "Describe what you are building and where things feel unclear. Even a few sentences is enough to start." },
-              { step: "02", title: "30-minute call", description: "Damien will follow up to understand the situation, talk through what might help, and see if the fit is right." },
-              { step: "03", title: "Scoped proposal", description: "If there is a clear way to help, you will get a plain-language proposal with scope, timeline, and cost." },
+              { step: "02", title: "30-minute conversation", description: "Damien will follow up to understand the situation, talk through what might help, and see if the fit is right." },
+              { step: "03", title: "Recommended next step", description: "If there is a clear way to help, the next step might be an audit, an advisory track, a scoped proposal, or another shaped engagement." },
             ].map((item) => (
               <div key={item.step} className="bg-background p-8 md:p-10">
                 <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary">{item.step}</span>
