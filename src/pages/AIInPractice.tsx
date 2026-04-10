@@ -16,7 +16,7 @@ const examples = [
   {
     title: "Search and retrieval that understand intent",
     description:
-      "Search gets more useful when structured content, retrieval, and AI are designed together. The point is not novelty. The point is helping people find the right thing faster.",
+      "Search becomes much more useful when structured content, retrieval, and AI are designed together to help people find the right thing faster across complex content sets.",
     outcomes: [
       "More useful discovery",
       "Better support for complex content sets",
@@ -123,9 +123,7 @@ const AIInPractice = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            The focus here is not AI as spectacle. It is AI used in ways that help teams publish,
-            find information, reduce delivery friction, and improve the platform without giving up
-            clarity or control.
+            This page shows applied AI used in ways that help teams publish, find information, reduce delivery friction, and improve the platform without giving up clarity or control.
           </motion.p>
         </div>
       </section>
@@ -137,18 +135,15 @@ const AIInPractice = () => {
               Why this matters
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Applied AI is most useful when it improves a real workflow, not when it just sounds impressive
+              Applied AI becomes most useful when it improves a real workflow
             </h2>
           </div>
           <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
             <p>
-              Some teams need help with content operations. Some need better search. Some need
-              stronger internal tooling or cleaner delivery systems. In each case, the value comes
-              from solving an actual point of friction.
+              Some teams need help with content operations. Some need better search. Some need stronger internal tooling or cleaner delivery systems. In each case, the value comes from solving an actual point of friction.
             </p>
             <p>
-              That is the standard 109.studio works from: use AI where it makes the system more
-              useful, the workflow more efficient, or the delivery path easier to sustain.
+              That is the standard 109.studio works from: use AI where it makes the system more useful, the workflow more efficient, or the delivery path easier to sustain.
             </p>
           </div>
         </div>
@@ -286,8 +281,7 @@ const AIInPractice = () => {
                 If you are exploring an applied AI direction, start with the workflow you want to improve
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                The best starting point is usually not the model. It is the product, platform, or
-                delivery problem you want to make more useful.
+                The best starting point is usually not the model. It is the product, platform, or delivery problem you want to make more useful.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">

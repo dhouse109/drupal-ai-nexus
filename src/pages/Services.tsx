@@ -60,73 +60,6 @@ const services = [
   },
 ];
 
-const offerings = [
-  {
-    title: "2-Week architecture audit",
-    outcome:
-      "Get a clear read on platform risk, delivery friction, and the technical decisions that need to happen next.",
-    fit: [
-      "A product or platform feels harder to change than it should",
-      "The team needs senior technical judgment before committing to a larger build",
-      "You want an outside view on architecture, workflows, or AI readiness",
-    ],
-    deliverables: [
-      "Architecture and delivery review",
-      "Prioritized findings and recommendations",
-      "Clear next-step roadmap",
-      "Executive readout",
-    ],
-  },
-  {
-    title: "Fractional CTO and technical advisory",
-    outcome:
-      "Bring senior technical leadership into the work without adding a full-time executive layer before the timing is right.",
-    fit: [
-      "A founder needs help shaping product and platform decisions",
-      "A team needs architecture guidance, roadmap support, or technical due diligence",
-      "The work spans strategy, delivery, and communication with non-technical stakeholders",
-    ],
-    deliverables: [
-      "Technical strategy and architecture direction",
-      "Roadmap and prioritization support",
-      "Decision support for product and platform trade-offs",
-      "Hands-on involvement where needed",
-    ],
-  },
-  {
-    title: "Platform and product engineering",
-    outcome:
-      "Design and build stronger platforms, workflows, and product systems that can hold up under real operating conditions.",
-    fit: [
-      "The team needs help on a content-rich or process-heavy platform",
-      "There is active delivery work that needs senior depth",
-      "Architecture, integrations, and maintainability all matter at the same time",
-    ],
-    deliverables: [
-      "Platform architecture and implementation support",
-      "Workflow and systems design",
-      "Delivery systems and technical foundations",
-      "Reusable patterns and documentation",
-    ],
-  },
-  {
-    title: "Applied AI prototypes and workflow design",
-    outcome:
-      "Explore where AI can improve the product, the workflow, or the speed of execution without making the system harder to trust.",
-    fit: [
-      "You want to test a practical AI use case before scaling it",
-      "The team needs help connecting AI to real product or delivery work",
-      "You want something more concrete than a general AI strategy conversation",
-    ],
-    deliverables: [
-      "Prototype scope and design",
-      "Working proof of concept",
-      "Reviewable workflow patterns",
-      "Recommendations for production next steps",
-    ],
-  },
-];
-
 const proofPoints = [
   {
     metric: "40% to 60% better answer accuracy",
@@ -162,20 +95,28 @@ const proofPoints = [
 
 const guideItems = [
   {
-    problem: "You need clarity before making a bigger technical commitment",
+    problem: "You need clarity before approving a larger technical effort",
     recommendation: "Start with the 2-Week architecture audit.",
   },
   {
-    problem: "You need a senior technical partner across roadmap, architecture, and delivery",
-    recommendation: "Start with fractional CTO and technical advisory.",
+    problem: "You have a concept, mockup, or brittle prototype that needs real structure",
+    recommendation: "Start with the prototype-to-production sprint.",
   },
   {
-    problem: "You already have delivery work in motion and need deeper engineering support",
-    recommendation: "Start with platform and product engineering.",
+    problem: "You want AI to support a real workflow without making the system harder to trust",
+    recommendation: "Start with the agentic workflow design sprint.",
   },
   {
-    problem: "You want to test an applied AI direction in a controlled way",
-    recommendation: "Start with applied AI prototypes and workflow design.",
+    problem: "Content operations, accessibility, or metadata work are absorbing too much time",
+    recommendation: "Start with the content operations audit and automation plan.",
+  },
+  {
+    problem: "You need ongoing senior technical direction across roadmap and delivery",
+    recommendation: "Start with fractional CTO advisory.",
+  },
+  {
+    problem: "Modernization and delivery systems need a reset before the next phase of work",
+    recommendation: "Start with the platform modernization and delivery reset.",
   },
 ];
 
@@ -294,56 +235,32 @@ const Services = () => {
       </section>
 
       <section className="border-b border-border py-20 md:py-24">
-        <div className="container">
-          <div className="mb-16 max-w-3xl">
+        <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <div>
             <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Common starting points
+              Starting offers
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Most engagements begin as a focused diagnostic, advisory track, build effort, or applied AI sprint
+              Services explains the practice. Offerings explains the clearest ways to begin.
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              These are practical ways the work usually starts. The underlying scope often reaches across several of the core areas above, but this is the easiest way to match the next step to the decision in front of you.
+              If you already know the work needs a shaped starting point, the offerings page is the best place to match the problem in front of you to an audit, sprint, advisory track, or modernization reset.
             </p>
           </div>
-          <div className="grid gap-px bg-border md:grid-cols-2">
-            {offerings.map((offering) => (
-              <div key={offering.title} className="bg-background p-8 md:p-10">
-                <h3 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">
-                  {offering.title}
-                </h3>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {offering.outcome}
-                </p>
-                <div className="mt-8">
-                  <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                    Good fit when
-                  </div>
-                  <div className="space-y-3">
-                    {offering.fit.map((item) => (
-                      <div key={item} className="text-sm leading-relaxed text-muted-foreground">
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="mt-8">
-                  <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                    Typical deliverables
-                  </div>
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {offering.deliverables.map((item) => (
-                      <div
-                        key={item}
-                        className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim"
-                      >
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-center">
+            <Link
+              to="/offerings"
+              className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
+            >
+              Review offerings
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
+            >
+              Start a conversation
+            </Link>
           </div>
         </div>
       </section>
@@ -355,7 +272,7 @@ const Services = () => {
               Where to start
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Choose the engagement that matches the decision in front of you
+              Choose the starting point that matches the decision in front of you
             </h2>
           </div>
           <div className="space-y-6">
@@ -422,10 +339,10 @@ const Services = () => {
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
               <Link
-                to="/applied-ai"
+                to="/offerings"
                 className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
               >
-                Explore applied AI
+                Review offerings
               </Link>
             </div>
           </div>
