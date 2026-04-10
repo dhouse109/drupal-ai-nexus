@@ -156,7 +156,11 @@ const Contact = () => {
           </div>
           <div className="grid gap-px bg-border md:grid-cols-3">
             {startingOptions.map((item) => (
-              <Link key={item.title} to={item.to} className="bg-background p-8 transition-colors hover:bg-surface md:p-10">
+              <Link
+                key={item.title}
+                to={item.to}
+                className="border border-transparent bg-background p-8 transition-all duration-300 ease-out hover:border-border hover:bg-muted/20 md:p-10"
+              >
                 <h3 className="font-mono text-2xl font-bold tracking-tight">{item.title}</h3>
                 <p className="mt-4 text-base leading-relaxed text-muted-foreground">
                   {item.description}
