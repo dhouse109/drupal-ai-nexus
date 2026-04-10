@@ -127,6 +127,39 @@ const offerings = [
   },
 ];
 
+const proofPoints = [
+  {
+    metric: "40% to 60% better answer accuracy",
+    detail:
+      "Retrieval-backed context and explicit review paths help AI produce more useful, more grounded answers.",
+  },
+  {
+    metric: "50% fewer no-result dead ends",
+    detail:
+      "Better search, retrieval, and structured knowledge systems create a clearer path from question to answer.",
+  },
+  {
+    metric: "6,000+ content items reviewed",
+    detail:
+      "AI-assisted content operations can expand audit coverage far beyond small manual samples.",
+  },
+  {
+    metric: "80% to 90% faster alt-text generation",
+    detail:
+      "Accessibility support moves faster when repetitive tasks are automated and review stays human.",
+  },
+  {
+    metric: "20% lower PR review time",
+    detail:
+      "AI-assisted review and summary workflows reduce friction without giving up engineering discipline.",
+  },
+  {
+    metric: "5 to 10 hours of manual QA saved per team each week",
+    detail:
+      "Delivery systems, testing workflows, and better DevEx reduce repetitive checking and avoidable rework.",
+  },
+];
+
 const guideItems = [
   {
     problem: "You need clarity before making a bigger technical commitment",
@@ -167,7 +200,6 @@ const processSteps = [
 const Services = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Hero */}
       <section className="relative overflow-hidden border-b border-border py-24 md:py-32">
         <div className="absolute inset-0 grid-bg opacity-40" />
         <div className="container">
@@ -193,14 +225,11 @@ const Services = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            109.studio helps founders, technical teams, and agency partners make better product
-            and platform decisions, build stronger systems, and apply AI in ways that stay
-            reviewable, useful, and grounded in real delivery work.
+            109.studio helps founders, technical teams, and agency partners make better product and platform decisions, build stronger systems, and apply AI in ways that stay reviewable, useful, and grounded in real delivery work.
           </motion.p>
         </div>
       </section>
 
-      {/* Service categories */}
       <section className="border-b border-border py-20 md:py-24">
         <div className="container">
           <div className="mb-16 max-w-3xl">
@@ -211,9 +240,7 @@ const Services = () => {
               Five areas that describe the practice most clearly
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              Most engagements span more than one of these areas. The point is not to force the
-              work into a neat category. It is to make the role 109.studio plays easier to
-              understand before a project gets underway.
+              Most engagements span more than one of these areas. The point is not to force the work into a neat category. It is to make the role 109.studio plays easier to understand before a project gets underway.
             </p>
           </div>
           <div className="grid gap-px bg-border md:grid-cols-2">
@@ -241,7 +268,31 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Shaped offerings */}
+      <section className="border-b border-border py-20 md:py-24">
+        <div className="container">
+          <div className="mb-16 max-w-3xl">
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              Selected proof
+            </span>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              A few concrete signals of how this work creates leverage
+            </h2>
+          </div>
+          <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
+            {proofPoints.map((item) => (
+              <div key={item.metric} className="bg-background p-8">
+                <div className="font-mono text-xl font-semibold tracking-tight md:text-2xl">
+                  {item.metric}
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+                  {item.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="border-b border-border py-20 md:py-24">
         <div className="container">
           <div className="mb-16 max-w-3xl">
@@ -252,9 +303,7 @@ const Services = () => {
               Most engagements begin as a focused diagnostic, advisory track, build effort, or applied AI sprint
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              These are practical ways the work usually starts. The underlying scope often reaches
-              across several of the core areas above, but this is the easiest way to match the next
-              step to the decision in front of you.
+              These are practical ways the work usually starts. The underlying scope often reaches across several of the core areas above, but this is the easiest way to match the next step to the decision in front of you.
             </p>
           </div>
           <div className="grid gap-px bg-border md:grid-cols-2">
@@ -299,60 +348,6 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Shaped offerings */}
-      <section className="border-b border-border py-20 md:py-24">
-        <div className="container">
-          <div className="mb-16 max-w-3xl">
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Shaped engagements
-            </span>
-            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Four practical ways 109.studio usually plugs into the work
-            </h2>
-          </div>
-          <div className="grid gap-px bg-border md:grid-cols-2">
-            {offerings.map((offering) => (
-              <div key={offering.title} className="bg-background p-8 md:p-10">
-                <h3 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">
-                  {offering.title}
-                </h3>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {offering.outcome}
-                </p>
-                <div className="mt-8">
-                  <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                    Good fit when
-                  </div>
-                  <div className="space-y-3">
-                    {offering.fit.map((item) => (
-                      <div key={item} className="text-sm leading-relaxed text-muted-foreground">
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="mt-8">
-                  <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                    Typical deliverables
-                  </div>
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {offering.deliverables.map((item) => (
-                      <div
-                        key={item}
-                        className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim"
-                      >
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Where to start guide */}
       <section className="border-b border-border py-20 md:py-24">
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
@@ -378,7 +373,6 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Process */}
       <section className="border-b border-border py-20 md:py-24">
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
@@ -405,7 +399,6 @@ const Services = () => {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-20 md:py-24">
         <div className="container border border-border bg-surface p-8 md:p-10">
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
@@ -417,8 +410,7 @@ const Services = () => {
                 If one of these sounds close to the work in front of you, start a conversation
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                A strong starting point is a short note about what you are building, where things
-                feel unclear, and what kind of help would be most useful.
+                A strong starting point is a short note about what you are building, where things feel unclear, and what kind of help would be most useful.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
