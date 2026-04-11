@@ -125,7 +125,7 @@ const Layout = () => {
               <span className="text-foreground">.studio</span>
             </div>
             <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-              109.studio is Damien House’s principal-led practice for platform architecture, product engineering, and applied AI work.
+              109.studio is a principal-led practice for platform architecture, product engineering, and applied AI work.
             </p>
           </div>
 
