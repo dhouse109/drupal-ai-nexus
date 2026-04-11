@@ -35,19 +35,19 @@ const startingOptions = [
   {
     title: "Review offerings",
     description:
-      "Start here if you want to see the shaped entry points before sending a note.",
+      "A good place to start if you want to see the shaped starting points first.",
     to: "/offerings",
   },
   {
     title: "See how 109 helps",
     description:
-      "Start here if you need the overview of services and practice areas first.",
+      "A broader overview of the practice, the kinds of problems it fits, and how Damien typically plugs into the work.",
     to: "/services",
   },
   {
     title: "Explore applied AI",
     description:
-      "Start here if the question is specifically about AI in products, workflows, or content operations.",
+      "Useful if the question is specifically about AI in products, workflows, search, or content operations.",
     to: "/applied-ai",
   },
 ];
@@ -118,7 +118,7 @@ const Contact = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            Start a conversation about the product, platform, or technical decision in front of you
+            Start with a quick conversation
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -126,7 +126,7 @@ const Contact = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            A useful first note can be simple. Describe what you are building, where things feel unclear, and what kind of senior technical help would make the next step easier.
+            Whether you are shaping a new product, improving an existing platform, or sorting through a complex technical decision, this is a good place to begin.
           </motion.p>
         </div>
       </section>
@@ -151,7 +151,7 @@ const Contact = () => {
               Before you reach out
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              The clearest paths through the site all lead to the same next step
+              You can start with a note, or browse a little more first
             </h2>
           </div>
           <div className="grid gap-px bg-border md:grid-cols-3">
@@ -178,13 +178,13 @@ const Contact = () => {
               Get in touch
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Tell 109 what you are working on
+              Share a little about what you are working on
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              A strong first message usually includes the product, platform, or workflow in front of you, where the technical uncertainty is, and whether you are looking for strategy, delivery support, or collaboration.
+              A few sentences is enough. You can share what you are building, where things feel unclear, or what kind of support you may need.
             </p>
             <p className="mt-4 text-sm text-muted-foreground">
-              109 typically responds within one business day.
+              Damien typically replies within one business day.
             </p>
 
             <div className="mt-8 border border-border bg-surface p-6">
@@ -279,7 +279,7 @@ const Contact = () => {
                     value={form.message}
                     onChange={handleChange}
                     className="w-full resize-none border border-border bg-background px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
-                    placeholder="Describe what you are building, where things feel unclear, and what kind of help would be most useful."
+                    placeholder="A short note is enough. What are you building, where are you stuck, or what kind of help would be useful?"
                   />
                   {errors.message && <p className="mt-1 text-xs text-destructive">{errors.message}</p>}
                 </div>
@@ -289,7 +289,7 @@ const Contact = () => {
                   disabled={loading}
                   className="inline-flex w-full items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50"
                 >
-                  {loading ? "Sending..." : "Start the conversation"}
+                  {loading ? "Sending..." : "Send your note"}
                   {!loading && <ArrowRight className="h-3.5 w-3.5" />}
                 </button>
               </form>
