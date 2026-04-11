@@ -19,7 +19,7 @@ const offerings = [
       "Executive readout",
     ],
     nextStep:
-      "This usually leads to a clearer roadmap, a modernization plan, or an ongoing advisory engagement.",
+      "This often leads to a clearer roadmap, a modernization plan, or an ongoing advisory engagement.",
   },
   {
     title: "Prototype-to-production sprint",
@@ -37,7 +37,7 @@ const offerings = [
       "Implementation plan",
     ],
     nextStep:
-      "The outcome is usually a stronger handoff into product engineering or a retained technical leadership role.",
+      "The outcome is often a stronger handoff into product engineering or a retained technical leadership role.",
   },
   {
     title: "Agentic workflow design sprint",
@@ -55,7 +55,7 @@ const offerings = [
       "Production recommendations",
     ],
     nextStep:
-      "This usually becomes a proof of concept, a workflow implementation, or a broader applied AI engagement.",
+      "This often becomes a proof of concept, a workflow implementation, or a broader applied AI engagement.",
   },
   {
     title: "Content operations audit and automation plan",
@@ -73,7 +73,7 @@ const offerings = [
       "Phased implementation plan",
     ],
     nextStep:
-      "The result is usually a clearer content operations roadmap and a smaller set of high-value automation decisions.",
+      "The result is often a clearer content operations roadmap and a smaller set of high-value automation decisions.",
   },
   {
     title: "Fractional CTO advisory",
@@ -91,7 +91,7 @@ const offerings = [
       "Ongoing advisory cadence",
     ],
     nextStep:
-      "This is usually the right fit when the work is active, evolving, and needs senior judgment over time.",
+      "This is often the right fit when the work is active, evolving, and needs senior judgment over time.",
   },
   {
     title: "Platform modernization and delivery reset",
@@ -109,7 +109,7 @@ const offerings = [
       "Modernization priorities",
     ],
     nextStep:
-      "This usually leads to a modernization roadmap, a delivery-systems overhaul, or follow-on engineering support.",
+      "This often leads to a modernization roadmap, a delivery-systems overhaul, or follow-on engineering support.",
   },
 ];
 
@@ -201,7 +201,7 @@ const Offerings = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            Clear ways to start when the work needs senior technical direction
+            Clear starting points for product, platform, and applied AI work
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -209,7 +209,7 @@ const Offerings = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            These are the starting offers 109.studio uses most often. Each one is meant to reduce ambiguity, improve the quality of the next decision, and give the work a stronger technical footing.
+            These offers are meant to help you choose a sensible way to begin. You do not need the full scope figured out yet. The first step is simply matching the work in front of you to the right kind of engagement.
           </motion.p>
         </div>
       </section>
@@ -221,10 +221,10 @@ const Offerings = () => {
               Starting offers
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Six practical entry points for product, platform, and applied AI work
+              Six practical ways to begin
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              The work often expands beyond the first engagement. What matters is choosing the right place to begin.
+              Some teams need a short diagnostic. Some need a focused sprint. Some need ongoing senior direction. What matters is choosing the starting point that gives the work better structure.
             </p>
           </div>
 
@@ -269,7 +269,7 @@ const Offerings = () => {
 
                 <div className="mt-8 border-t border-border pt-6">
                   <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                    What usually happens next
+                    What this can lead to
                   </div>
                   <p className="text-sm leading-relaxed text-muted-foreground">
                     {offering.nextStep}
@@ -313,7 +313,7 @@ const Offerings = () => {
               Where to start
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Match the starting point to the decision you are trying to make
+              Choose the one that matches the decision in front of you
             </h2>
           </div>
           <div className="space-y-6">
@@ -338,7 +338,7 @@ const Offerings = () => {
               How these offers work
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              The point is to create clarity early, then expand only where the work justifies it
+              Start with the smallest engagement that creates real clarity
             </h2>
           </div>
           <div className="space-y-8">
@@ -365,10 +365,10 @@ const Offerings = () => {
                 Next step
               </span>
               <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                If one of these looks like the right starting point, send a short note and we can take it from there
+                Not sure which starting point fits?
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                A useful message usually includes what you are building, what feels unclear, and what kind of support would make the next decision easier.
+                Send a short note about what you are building or where things feel stuck. Damien will help you figure out the clearest place to begin.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
@@ -383,7 +383,7 @@ const Offerings = () => {
                 to="/services"
                 className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
               >
-                Review core services
+                See how 109 helps
               </Link>
             </div>
           </div>
