@@ -63,7 +63,7 @@ const About = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            109.studio is Damien House’s principal-led practice for product engineering, platform architecture, and applied AI work
+            109.studio is a principal-led practice for product engineering, platform architecture, and applied AI work
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -71,7 +71,8 @@ const About = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            The practice helps founders, agencies, and technical teams move from concept to production with clearer architecture, stronger delivery systems, and technical decisions that hold up over time.
+            The practice helps founders, agencies, and technical teams move from concept to production with clearer
+            architecture, stronger delivery systems, and technical decisions that hold up over time.
           </motion.p>
         </div>
       </section>
@@ -88,13 +89,17 @@ const About = () => {
           </div>
           <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
             <p>
-              Many teams have a familiar gap. Strategy sits too far from implementation, or delivery is moving without enough senior technical direction around architecture, sequencing, and risk.
+              Many teams have a familiar gap. Strategy sits too far from implementation, or delivery is moving without
+              enough senior technical direction around architecture, sequencing, and risk.
             </p>
             <p>
-              109.studio was built to close that gap. The work spans product direction, platform modernization, applied AI, content operations, and the delivery systems teams need to keep shipping reliably.
+              109.studio was built to close that gap. The work spans product direction, platform modernization, applied
+              AI, content operations, and the delivery systems teams need to keep shipping reliably.
             </p>
             <p>
-              The model is principal-led throughout. Clients get senior judgment, hands-on technical depth, and an engagement that is meant to leave the team with stronger architecture, clearer workflows, and better delivery confidence after the work is done.
+              The model is principal-led throughout. Clients get senior judgment, hands-on technical depth, and an
+              engagement that is meant to leave the team with stronger architecture, clearer workflows, and better
+              delivery confidence after the work is done.
             </p>
           </div>
         </div>
@@ -103,26 +108,30 @@ const About = () => {
       <section className="border-b border-border py-20 md:py-24">
         <div className="container grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="border border-border bg-surface p-8 md:p-10">
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Founder
-            </span>
-            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-4xl">
-              Damien House
-            </h2>
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Founder</span>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-4xl">Damien House</h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-              Fractional CTO, senior engineering advisor, and hands-on principal architect focused on moving complex products and platforms from concept to production.
+              Fractional CTO, senior engineering advisor, and hands-on principal architect focused on moving complex
+              products and platforms from concept to production.
             </p>
           </div>
 
           <div className="space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
             <p>
-              Damien brings more than two decades of experience across startups, agencies, and large public-sector platforms. His background includes Drupal architecture, cloud migration, DevOps transformation, accessibility remediation, team leadership, and the delivery discipline required on systems that cannot afford to be fragile.
+              Damien brings more than two decades of experience across startups, agencies, and large public-sector
+              platforms. His background includes Drupal architecture, cloud migration, DevOps transformation,
+              accessibility remediation, team leadership, and the delivery discipline required on systems that cannot
+              afford to be fragile.
             </p>
             <p>
-              Today that experience extends into applied AI, agentic workflows, retrieval-backed systems, content operations, and AI-augmented delivery. The common thread is practical technical leadership that helps teams use new capabilities without losing control of architecture, process, or long-term maintainability.
+              Today that experience extends into applied AI, agentic workflows, retrieval-backed systems, content
+              operations, and AI-augmented delivery. The common thread is practical technical leadership that helps
+              teams use new capabilities without losing control of architecture, process, or long-term maintainability.
             </p>
             <p>
-              Clients usually value the ability to move between high-level technical judgment and hands-on execution without losing the thread. That might mean shaping a roadmap, reviewing platform risk, designing a workflow, or getting directly into architecture and implementation details as the work takes shape.
+              Clients usually value the ability to move between high-level technical judgment and hands-on execution
+              without losing the thread. That might mean shaping a roadmap, reviewing platform risk, designing a
+              workflow, or getting directly into architecture and implementation details as the work takes shape.
             </p>
           </div>
         </div>
@@ -141,12 +150,8 @@ const About = () => {
           <div className="grid gap-px bg-border md:grid-cols-2">
             {proofItems.map((item) => (
               <div key={item.title} className="bg-background p-8 md:p-10">
-                <h3 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">
-                  {item.title}
-                </h3>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {item.description}
-                </p>
+                <h3 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">{item.title}</h3>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">{item.description}</p>
               </div>
             ))}
           </div>
@@ -169,9 +174,7 @@ const About = () => {
                 <div className="font-mono text-sm text-text-dim">0{index + 1}</div>
                 <div>
                   <h3 className="font-mono text-xl font-semibold">{item.title}</h3>
-                  <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
-                    {item.description}
-                  </p>
+                  <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">{item.description}</p>
                 </div>
               </div>
             ))}
@@ -183,14 +186,14 @@ const About = () => {
         <div className="container border border-border bg-surface p-8 md:p-10">
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
             <div>
-              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                Next step
-              </span>
+              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
               <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                If the work in front of you needs clearer architecture, stronger delivery, or senior technical direction, start a conversation
+                If the work in front of you needs clearer architecture, stronger delivery, or senior technical
+                direction, start a conversation
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                A useful first note usually includes what you are building, where the technical uncertainty is, and what kind of help would make the next decision easier.
+                A useful first note usually includes what you are building, where the technical uncertainty is, and what
+                kind of help would make the next decision easier.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
