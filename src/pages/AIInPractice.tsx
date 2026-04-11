@@ -278,10 +278,10 @@ const AIInPractice = () => {
                 Next step
               </span>
               <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-                If you are exploring an applied AI direction, start with the workflow you want to improve
+                If this feels close to the kind of problem you are working through, this is a good place to begin
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                The best starting point is usually not the model. It is the product, platform, or delivery problem you want to make more useful.
+                Start a conversation if you want to talk through a similar situation, or see the shaped starting points first.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
@@ -296,7 +296,7 @@ const AIInPractice = () => {
                 to="/offerings"
                 className="inline-flex items-center justify-center border border-border px-8 py-4 font-mono text-sm uppercase tracking-widest transition-colors hover:border-primary hover:text-primary"
               >
-                Review offerings
+                See starting points
               </Link>
             </div>
           </div>

@@ -306,18 +306,18 @@ const AppliedAI = () => {
                 Next step
               </span>
               <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                If you are exploring an applied AI direction, start with the workflow, content problem, or search issue you want to improve
+                If you are exploring an applied AI direction, start with the problem you want to improve
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                The best next step is usually either a focused starting offer or a closer look at what applied AI work looks like in practice.
+                You can start a conversation if it would help to talk through the situation, or see practical examples first.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
               <Link
-                to="/offerings"
+                to="/contact"
                 className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
               >
-                Review offerings
+                Start a conversation
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
               <Link
