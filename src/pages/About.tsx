@@ -188,12 +188,10 @@ const About = () => {
             <div>
               <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
               <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                If the work in front of you needs clearer architecture, stronger delivery, or senior technical
-                direction, start a conversation
+                Have a platform, product, or technical initiative that needs senior judgment?
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                A useful first note usually includes what you are building, where the technical uncertainty is, and what
-                kind of help would make the next decision easier.
+                Start with your situation. A short note is enough. Damien can help you figure out whether the right next step is an audit, a sprint, or ongoing advisory support.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
@@ -201,14 +199,14 @@ const About = () => {
                 to="/contact"
                 className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
               >
-                Start a conversation
+                Start with your situation
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
               <Link
                 to="/offerings"
                 className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
               >
-                Review offerings
+                See starting points
               </Link>
             </div>
           </div>
