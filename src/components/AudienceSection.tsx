@@ -37,7 +37,7 @@ const AudienceSection = () => {
             Who this work is for
           </span>
           <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-            Two kinds of teams tend to get the most value from 109.studio
+            Two kinds of teams tend to get the most value from 109
           </h2>
         </motion.div>
         <div className="grid gap-px bg-border md:grid-cols-2">
