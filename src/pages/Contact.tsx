@@ -39,7 +39,7 @@ const startingOptions = [
     to: "/offerings",
   },
   {
-    title: "See how Damien helps",
+    title: "See how 109 helps",
     description:
       "Start here if you need the overview of services and practice areas first.",
     to: "/services",
@@ -178,13 +178,13 @@ const Contact = () => {
               Get in touch
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Tell Damien what you are working on
+              Tell 109 what you are working on
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
               A strong first message usually includes the product, platform, or workflow in front of you, where the technical uncertainty is, and whether you are looking for strategy, delivery support, or collaboration.
             </p>
             <p className="mt-4 text-sm text-muted-foreground">
-              Damien typically responds within one business day.
+              109 typically responds within one business day.
             </p>
 
             <div className="mt-8 border border-border bg-surface p-6">
