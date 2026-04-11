@@ -33,9 +33,9 @@ const inquiryTypes = [
 
 const startingOptions = [
   {
-    title: "Review offerings",
+    title: "See starting points",
     description:
-      "A good place to start if you want to see the shaped starting points first.",
+      "A good place to start if you want to compare the clearest entry options first.",
     to: "/offerings",
   },
   {
