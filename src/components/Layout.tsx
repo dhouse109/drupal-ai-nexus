@@ -99,10 +99,10 @@ const Layout = () => {
               <div>
                 <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
                 <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                  Start with a short note about the product, platform, or technical decision in front of you
+                  Need a clearer path for a product, platform, or modernization effort?
                 </h2>
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                  The clearest path through the site is simple: review the offerings if you want a shaped starting point, or start a conversation if you already know the work needs senior technical direction.
+                  Start with a short note about what you are building or where things feel stuck. Damien will review it personally and suggest the clearest next step.
                 </p>
               </div>
               <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
@@ -110,8 +110,8 @@ const Layout = () => {
                   Start a conversation
                   <ArrowRight className="h-3.5 w-3.5" />
                 </NavLink>
-                <NavLink to="/offerings" className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
-                  Review offerings
+                <NavLink to="/services" className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
+                  See how 109 helps
                 </NavLink>
               </div>
             </div>
