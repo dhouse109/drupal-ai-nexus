@@ -278,10 +278,10 @@ const AIInPractice = () => {
                 Next step
               </span>
               <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-                If this feels close to the kind of problem you are working through, this is a good place to begin
+                Interested in a practical next step?
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                Start a conversation if you want to talk through a similar situation, or see the shaped starting points first.
+                If you are trying to make a workflow, search experience, or content system more useful, Damien can help you think through a grounded next move.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">

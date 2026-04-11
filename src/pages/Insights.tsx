@@ -179,11 +179,10 @@ const Insights = () => {
                 Next step
               </span>
               <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-                If one of these ideas is close to the problem you are working through, start there
+                Working through something similar?
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                The most useful follow-up is usually a conversation about the platform, the team,
-                and the decision that needs to be made next.
+                Start with your situation. If one of these ideas sounds close to the problem in front of you, Damien can help you sort the technical decision, delivery risk, or AI question that comes next.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
@@ -191,14 +190,14 @@ const Insights = () => {
                 to="/contact"
                 className="inline-flex items-center justify-center gap-2 bg-primary px-8 py-4 font-mono text-sm uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90"
               >
-                Start a conversation
+                Talk through a similar challenge
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 to="/offerings"
                 className="inline-flex items-center justify-center border border-border px-8 py-4 font-mono text-sm uppercase tracking-widest transition-colors hover:border-primary hover:text-primary"
               >
-                Review offerings
+                See starting points
               </Link>
             </div>
           </div>
