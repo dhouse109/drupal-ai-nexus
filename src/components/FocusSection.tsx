@@ -39,7 +39,7 @@ const FocusSection = () => {
             How 109.studio helps
           </span>
           <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-            A few ways Damien typically plugs into the work
+            A few ways 109 typically plugs into the work
           </h2>
         </motion.div>
         <div className="grid gap-px bg-border md:grid-cols-3">
