@@ -183,8 +183,8 @@ const Contact = () => {
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
               A few sentences is enough. You can share what you are building, where things feel unclear, or what kind of support you may need.
             </p>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Damien typically replies within one business day.
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Damien reviews each inquiry personally and typically replies within one business day.
             </p>
 
             <div className="mt-8 border border-border bg-surface p-6">
@@ -216,11 +216,20 @@ const Contact = () => {
                 <CheckCircle className="mb-6 h-12 w-12 text-primary" />
                 <h3 className="font-mono text-2xl font-bold tracking-tight">Conversation started</h3>
                 <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
-                  Thanks for reaching out. Damien will review your message and get back to you within one business day.
+                  Thanks for reaching out. Damien has your note and will reply personally within one business day. From there, the next step is usually a short conversation or a recommendation on where to begin.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-3 border-b border-border pb-6">
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    Your note goes straight to Damien. You do not need a polished brief. A few sentences or bullet points is enough.
+                  </p>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    If there is a fit, the next step is usually a short conversation or a clear recommendation on where to begin.
+                  </p>
+                </div>
+
                 <div>
                   <label htmlFor="name" className="mb-2 block font-mono text-xs uppercase tracking-[0.3em] text-foreground">
                     Name
@@ -289,7 +298,7 @@ const Contact = () => {
                   disabled={loading}
                   className="inline-flex w-full items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50"
                 >
-                  {loading ? "Sending..." : "Send your note"}
+                  {loading ? "Sending your note..." : "Send your note"}
                   {!loading && <ArrowRight className="h-3.5 w-3.5" />}
                 </button>
               </form>
@@ -305,9 +314,9 @@ const Contact = () => {
           </span>
           <div className="mt-8 grid gap-px bg-border md:grid-cols-3">
             {[
-              { step: "01", title: "Send a note", description: "Describe what you are building and where things feel unclear. Even a few sentences is enough to start." },
-              { step: "02", title: "30-minute conversation", description: "Damien will follow up to understand the situation, talk through what might help, and see if the fit is right." },
-              { step: "03", title: "Recommended next step", description: "If there is a clear way to help, the next step might be an audit, an advisory track, a scoped proposal, or another shaped engagement." },
+              { step: "01", title: "Send a note", description: "Describe what you are building and where things feel unclear. A few sentences or bullet points is enough to start." },
+              { step: "02", title: "Short follow-up conversation", description: "If it looks like there is a fit, Damien will follow up to understand the situation and talk through what might help." },
+              { step: "03", title: "Recommended next step", description: "That next step might be an audit, an advisory track, a scoped proposal, or simply a clearer recommendation on where to begin." },
             ].map((item) => (
               <div key={item.step} className="bg-background p-8 md:p-10">
                 <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary">{item.step}</span>
