@@ -7,89 +7,58 @@ const services = [
     title: "Fractional CTO and technical strategy",
     description:
       "Senior technical leadership for teams that need clearer product direction, stronger architecture decisions, and better judgment around sequencing, delivery, and technical risk.",
-    features: [
-      "Technical strategy",
-      "Architecture direction",
-      "Roadmap clarity",
-      "Decision support",
-    ],
+    features: ["Technical strategy", "Architecture direction", "Roadmap clarity", "Decision support"],
   },
   {
     title: "Prototype-to-production architecture",
     description:
       "Turn early product ideas, mockups, and brittle prototypes into working architecture, versioned specifications, and delivery plans a team can actually build against.",
-    features: [
-      "Technical roadmaps",
-      "System design",
-      "Specification work",
-      "Production planning",
-    ],
+    features: ["Technical roadmaps", "System design", "Specification work", "Production planning"],
   },
   {
     title: "Agentic workflows and AI governance",
     description:
       "Design reviewable AI workflows, retrieval-backed context, and explicit action paths so models can support meaningful work without drifting into guesswork or hidden risk.",
-    features: [
-      "Workflow design",
-      "Context control",
-      "Review paths",
-      "Human oversight",
-    ],
+    features: ["Workflow design", "Context control", "Review paths", "Human oversight"],
   },
   {
     title: "AI-enabled content operations",
     description:
       "Apply AI to content audits, accessibility support, metadata, editorial workflows, and large content environments where manual review alone does not scale.",
-    features: [
-      "Content audits",
-      "Accessibility support",
-      "Metadata workflows",
-      "Editorial operations",
-    ],
+    features: ["Content audits", "Accessibility support", "Metadata workflows", "Editorial operations"],
   },
   {
     title: "Platform modernization, DevEx, and delivery systems",
     description:
-      "Improve environments, workflows, documentation, and platform foundations so teams can release software with less friction, lower rework, and more confidence over time.",
-    features: [
-      "Modernization",
-      "CI/CD systems",
-      "Developer experience",
-      "Release confidence",
-    ],
+      "Improve environments, release workflows, documentation, and platform foundations so teams can ship with less friction, lower rework, and more confidence over time.",
+    features: ["Modernization", "CI/CD systems", "Developer experience", "Release confidence"],
   },
 ];
 
 const proofPoints = [
   {
     metric: "40% to 60% better answer accuracy",
-    detail:
-      "Retrieval-backed context and explicit review paths help AI produce more useful, more grounded answers.",
+    detail: "Retrieval-backed context and explicit review paths help AI produce more useful, more grounded answers.",
   },
   {
     metric: "50% fewer no-result dead ends",
-    detail:
-      "Better search, retrieval, and structured knowledge systems create a clearer path from question to answer.",
+    detail: "Better search, retrieval, and structured knowledge systems create a clearer path from question to answer.",
   },
   {
     metric: "6,000+ content items reviewed",
-    detail:
-      "AI-assisted content operations can expand audit coverage far beyond small manual samples.",
+    detail: "AI-assisted content operations can expand audit coverage far beyond small manual samples.",
   },
   {
     metric: "80% to 90% faster alt-text generation",
-    detail:
-      "Accessibility support moves faster when repetitive tasks are automated and review stays human.",
+    detail: "Accessibility support moves faster when repetitive tasks are automated and review stays human.",
   },
   {
     metric: "20% lower PR review time",
-    detail:
-      "AI-assisted review and summary workflows reduce friction without giving up engineering discipline.",
+    detail: "AI-assisted review and summary workflows reduce friction without giving up engineering discipline.",
   },
   {
     metric: "5 to 10 hours of manual QA saved per team each week",
-    detail:
-      "Delivery systems, testing workflows, and better DevEx reduce repetitive checking and avoidable rework.",
+    detail: "Delivery systems, testing workflows, and better DevEx reduce repetitive checking and avoidable rework.",
   },
 ];
 
@@ -158,7 +127,7 @@ const Services = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            From strategy through delivery — this is what we cover
+            From strategy through delivery, this is what we cover
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -166,9 +135,8 @@ const Services = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            109.studio helps founders, technical teams, and agency partners make better
-            technical decisions, build stronger systems, and move delivery forward with less
-            friction.
+            109.studio helps founders, technical teams, and agency partners make better technical decisions, build
+            stronger systems, and move delivery forward with less friction.
           </motion.p>
         </div>
       </section>
@@ -183,29 +151,21 @@ const Services = () => {
               Five areas that describe the practice most clearly
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              Most engagements span more than one of these areas. The point is not to force the work into a neat category. It is to make the role 109.studio plays easier to understand before a project gets underway.
+              Most engagements span more than one of these areas. The point is not to force the work into a neat
+              category. It is to make the role 109.studio plays easier to understand before a project gets underway.
             </p>
           </div>
           <div className="grid gap-px bg-border md:grid-cols-2">
             {services.map((service, index) => (
               <div
                 key={service.title}
-                className={`bg-background p-8 md:p-10 ${
-                  index === services.length - 1 ? "md:col-span-2" : ""
-                }`}
+                className={`bg-background p-8 md:p-10 ${index === services.length - 1 ? "md:col-span-2" : ""}`}
               >
-                <h2 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">
-                  {service.title}
-                </h2>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {service.description}
-                </p>
+                <h2 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">{service.title}</h2>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">{service.description}</p>
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
                   {service.features.map((feature) => (
-                    <div
-                      key={feature}
-                      className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim"
-                    >
+                    <div key={feature} className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
                       {feature}
                     </div>
                   ))}
@@ -219,9 +179,7 @@ const Services = () => {
       <section className="border-b border-border py-20 md:py-24">
         <div className="container">
           <div className="mb-16 max-w-3xl">
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Selected proof
-            </span>
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Selected proof</span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
               A few concrete signals of how this work creates leverage
             </h2>
@@ -229,12 +187,8 @@ const Services = () => {
           <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
             {proofPoints.map((item) => (
               <div key={item.metric} className="bg-background p-8">
-                <div className="font-mono text-xl font-semibold tracking-tight md:text-2xl">
-                  {item.metric}
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-                  {item.detail}
-                </p>
+                <div className="font-mono text-xl font-semibold tracking-tight md:text-2xl">{item.metric}</div>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">{item.detail}</p>
               </div>
             ))}
           </div>
@@ -251,22 +205,23 @@ const Services = () => {
               Services explains the practice. Offerings explains the clearest ways to begin.
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              If you already know the work needs a shaped starting point, the offerings page is the best place to match the problem in front of you to an audit, sprint, advisory track, or modernization reset.
+              If you already know the work needs a shaped starting point, the offerings page is the best place to match
+              the problem in front of you to an audit, sprint, advisory track, or modernization reset.
             </p>
           </div>
           <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-center">
             <Link
-              to="/contact"
+              to="/offerings"
               className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
             >
-              Start a conversation
+              See starting points
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
             <Link
-              to="/offerings"
+              to="/contact"
               className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
             >
-              See starting points
+              Start a conversation
             </Link>
           </div>
         </div>
@@ -275,9 +230,7 @@ const Services = () => {
       <section className="border-b border-border py-20 md:py-24">
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Where to start
-            </span>
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Where to start</span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
               Choose the starting point that matches the decision in front of you
             </h2>
@@ -285,12 +238,8 @@ const Services = () => {
           <div className="space-y-6">
             {guideItems.map((item) => (
               <div key={item.problem} className="border-b border-border pb-6 last:border-b-0 last:pb-0">
-                <div className="font-mono text-sm uppercase tracking-[0.2em] text-text-dim">
-                  {item.problem}
-                </div>
-                <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {item.recommendation}
-                </p>
+                <div className="font-mono text-sm uppercase tracking-[0.2em] text-text-dim">{item.problem}</div>
+                <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">{item.recommendation}</p>
               </div>
             ))}
           </div>
@@ -313,9 +262,7 @@ const Services = () => {
                 <div className="font-mono text-sm text-text-dim">0{index + 1}</div>
                 <div>
                   <h3 className="font-mono text-xl font-semibold">{step.title}</h3>
-                  <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
-                    {step.description}
-                  </p>
+                  <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">{step.description}</p>
                 </div>
               </div>
             ))}
@@ -327,14 +274,13 @@ const Services = () => {
         <div className="container border border-border bg-surface p-8 md:p-10">
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
             <div>
-              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                Next step
-              </span>
+              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
               <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
                 Need help deciding where to start?
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                Start with a short note about what you are building or where things feel stuck. Or see the shaped starting points if you want a clearer entry path first.
+                Start with a short note about what you are building or where things feel stuck. Or see the shaped
+                starting points if you want a clearer entry path first.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
