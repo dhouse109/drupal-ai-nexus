@@ -49,13 +49,11 @@ const proofItems = [
   },
   {
     metric: "50% fewer no-result dead ends",
-    detail:
-      "Search gets more useful when semantic retrieval and AI-assisted querying are designed together.",
+    detail: "Search gets more useful when semantic retrieval and AI-assisted querying are designed together.",
   },
   {
     metric: "6,000+ content items reviewed",
-    detail:
-      "AI-assisted content operations can expand audit coverage from small samples to full-estate visibility.",
+    detail: "AI-assisted content operations can expand audit coverage from small samples to full-estate visibility.",
   },
   {
     metric: "80% to 90% faster alt-text generation",
@@ -129,7 +127,7 @@ const AppliedAI = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            Applied AI that stays practical and under control
+            For teams that want practical gains without losing control of the system
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -137,8 +135,8 @@ const AppliedAI = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            109.studio helps teams apply AI to real product, search, and content problems in
-            ways that stay grounded, reviewable, and maintainable.
+            109.studio helps teams apply AI where it improves a real product, workflow, or operational problem. The work
+            stays grounded in structured content, reviewable delivery, and systems teams can actually maintain.
           </motion.p>
         </div>
       </section>
@@ -155,10 +153,12 @@ const AppliedAI = () => {
           </div>
           <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
             <p>
-              Some teams need help improving an internal workflow. Some need better content operations. Others need stronger search or retrieval on top of a large knowledge base.
+              Some teams need help improving an internal workflow. Some need better content operations. Others need
+              stronger search or retrieval on top of a large knowledge base.
             </p>
             <p>
-              The common thread is simple: the AI work needs to be tied to a real operating problem and implemented in a way the team can understand, review, and keep running over time.
+              The common thread is simple: the AI work needs to be tied to a real operating problem and implemented in a
+              way the team can understand, review, and keep running over time.
             </p>
           </div>
         </div>
@@ -170,16 +170,10 @@ const AppliedAI = () => {
             {focusAreas.map((area) => (
               <div key={area.title} className="bg-background p-8 md:p-10">
                 <area.icon className="mb-6 h-6 w-6 text-primary" />
-                <h2 className="font-mono text-2xl font-bold tracking-tight">
-                  {area.title}
-                </h2>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {area.description}
-                </p>
+                <h2 className="font-mono text-2xl font-bold tracking-tight">{area.title}</h2>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">{area.description}</p>
                 <div className="mt-8">
-                  <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                    Good fit when
-                  </div>
+                  <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">Good fit when</div>
                   <div className="space-y-3">
                     {area.fit.map((item) => (
                       <div key={item} className="text-sm leading-relaxed text-muted-foreground">
@@ -189,9 +183,7 @@ const AppliedAI = () => {
                   </div>
                 </div>
                 <div className="mt-8">
-                  <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                    Typical outcomes
-                  </div>
+                  <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">Typical outcomes</div>
                   <div className="space-y-3">
                     {area.outcomes.map((item) => (
                       <div key={item} className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
@@ -209,9 +201,7 @@ const AppliedAI = () => {
       <section className="border-b border-border py-20 md:py-24">
         <div className="container">
           <div className="mb-16 max-w-3xl">
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Selected proof
-            </span>
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Selected proof</span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
               A few concrete signals of what this work can improve
             </h2>
@@ -219,12 +209,8 @@ const AppliedAI = () => {
           <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-4">
             {proofItems.map((item) => (
               <div key={item.metric} className="bg-background p-8">
-                <div className="font-mono text-xl font-semibold tracking-tight md:text-2xl">
-                  {item.metric}
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-                  {item.detail}
-                </p>
+                <div className="font-mono text-xl font-semibold tracking-tight md:text-2xl">{item.metric}</div>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">{item.detail}</p>
               </div>
             ))}
           </div>
@@ -234,9 +220,7 @@ const AppliedAI = () => {
       <section className="border-b border-border py-20 md:py-24">
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Where to start
-            </span>
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Where to start</span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
               Pick the starting point that matches the problem in front of you
             </h2>
@@ -244,12 +228,8 @@ const AppliedAI = () => {
           <div className="space-y-6">
             {startingPoints.map((item) => (
               <div key={item.problem} className="border-b border-border pb-6 last:border-b-0 last:pb-0">
-                <div className="font-mono text-sm uppercase tracking-[0.2em] text-text-dim">
-                  {item.problem}
-                </div>
-                <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {item.recommendation}
-                </p>
+                <div className="font-mono text-sm uppercase tracking-[0.2em] text-text-dim">{item.problem}</div>
+                <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">{item.recommendation}</p>
               </div>
             ))}
           </div>
@@ -291,7 +271,10 @@ const AppliedAI = () => {
           </div>
           <div className="space-y-4">
             {nonGoals.map((item) => (
-              <div key={item} className="border-b border-border pb-4 text-base leading-relaxed text-muted-foreground md:text-lg last:border-b-0 last:pb-0">
+              <div
+                key={item}
+                className="border-b border-border pb-4 text-base leading-relaxed text-muted-foreground md:text-lg last:border-b-0 last:pb-0"
+              >
                 {item}
               </div>
             ))}
@@ -303,14 +286,13 @@ const AppliedAI = () => {
         <div className="container border border-border bg-surface p-8 md:p-10">
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
             <div>
-              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                Next step
-              </span>
+              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
               <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
                 If you are exploring an applied AI direction, start with the problem you want to improve
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                You can start a conversation if it would help to talk through the situation, or see practical examples first.
+                You can start a conversation if it would help to talk through the situation, or see practical examples
+                first.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
