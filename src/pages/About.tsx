@@ -63,7 +63,7 @@ const About = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            109.studio is a principal-led practice for product engineering, platform architecture, and applied AI work
+            A principal-led practice for product, platform, and AI work
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -71,8 +71,9 @@ const About = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            The practice helps founders, agencies, and technical teams move from concept to production with clearer
-            architecture, stronger delivery systems, and technical decisions that hold up over time.
+            109.studio helps founders, agencies, and technical teams move from concept to
+            production with clearer architecture, stronger delivery systems, and senior technical
+            judgment that stays close to the work.
           </motion.p>
         </div>
       </section>

@@ -26,7 +26,7 @@ const HeroSection = () => {
           >
             Senior technical direction
             <br />
-            for <span className="text-primary text-glow">complex products, platforms, and modernization work</span>
+            for <span className="text-primary text-glow">complex products and platforms</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -34,10 +34,9 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mb-6 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            109.studio helps founders, agencies, and technical teams turn complex ideas into
-            working platforms, clearer technical decisions, and delivery plans they can trust.
-            Drupal and AI are part of the work, but the focus is broader: building systems that
-            hold up in the real world.
+            109.studio helps founders, agencies, and technical teams shape architecture,
+            modernize platforms, and move complex ideas into systems that hold up in the real
+            world.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
