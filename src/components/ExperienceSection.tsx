@@ -39,7 +39,7 @@ const ExperienceSection = () => {
           </h2>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
             The work spans public-sector modernization, product architecture, AI-enabled delivery,
-            and the internal systems teams need to ship reliably over time.
+            and the internal systems teams need to release software reliably over time.
           </p>
         </motion.div>
 
