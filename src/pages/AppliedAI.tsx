@@ -266,7 +266,7 @@ const AppliedAI = () => {
               What this is not
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              A few things 109.studio is not interested in shipping
+              A few things 109.studio is not interested in releasing
             </h2>
           </div>
           <div className="space-y-4">
