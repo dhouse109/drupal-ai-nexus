@@ -52,7 +52,7 @@ const workStories = [
     role:
       "The work here is about tightening the path from local development to production, improving the delivery workflow, documenting the system, and making the platform easier for the team to use and maintain.",
     result:
-      "When that foundation improves, teams tend to ship with more confidence, onboard faster, and spend less time recovering from preventable delivery problems.",
+      "When that foundation improves, teams tend to release software with more confidence, onboard faster, and spend less time recovering from preventable delivery problems.",
   },
   {
     title: "Exploring applied AI without losing the thread of delivery",

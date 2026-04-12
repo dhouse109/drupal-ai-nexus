@@ -95,7 +95,7 @@ const About = () => {
             </p>
             <p>
               109.studio was built to close that gap. The work spans product direction, platform modernization, applied
-              AI, content operations, and the delivery systems teams need to keep shipping reliably.
+              AI, content operations, and the delivery systems teams need to keep releasing software reliably.
             </p>
             <p>
               The model is principal-led throughout. Clients get senior judgment, hands-on technical depth, and an

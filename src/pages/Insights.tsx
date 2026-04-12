@@ -36,7 +36,7 @@ const articles = [
     category: "Delivery",
     title: "The technical path matters: reducing friction in day-to-day delivery",
     description:
-      "A practical note on environments, deployments, documentation, and the infrastructure decisions that shape how confidently teams can ship.",
+      "A practical note on environments, deployments, documentation, and the infrastructure decisions that shape how confidently teams can release software.",
     readTime: "4 min read",
   },
   {
