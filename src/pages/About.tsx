@@ -63,7 +63,7 @@ const About = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            Expert-led. Hands-on. Built for work that outlasts the engagement.
+            Expert-led. Hands-on. Designed to outlast the engagement.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
