@@ -115,7 +115,7 @@ const AIInPractice = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            What applied AI looks like when it is tied to real product and platform work
+            What practical AI looks like
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -123,7 +123,8 @@ const AIInPractice = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            This page shows applied AI used in ways that help teams publish, find information, reduce delivery friction, and improve the platform without giving up clarity or control.
+            These examples show how AI becomes useful when it is tied to real workflows,
+            content operations, search, and delivery systems.
           </motion.p>
         </div>
       </section>

@@ -129,7 +129,7 @@ const AppliedAI = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            Applied AI work for teams that want practical gains without losing control of the system
+            Applied AI that stays practical and under control
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -137,7 +137,8 @@ const AppliedAI = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            109.studio helps teams apply AI where it improves a real product, workflow, or operational problem. The work stays grounded in structured content, reviewable delivery, and systems teams can actually maintain.
+            109.studio helps teams apply AI to real product, search, and content problems in
+            ways that stay grounded, reviewable, and maintainable.
           </motion.p>
         </div>
       </section>
