@@ -201,7 +201,7 @@ const Offerings = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            Clear starting points for product, platform, and applied AI work
+            Clear ways to begin
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -209,7 +209,8 @@ const Offerings = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            These offers are meant to help you choose a sensible way to begin. You do not need the full scope figured out yet. The first step is simply matching the work in front of you to the right kind of engagement.
+            These offers are designed to help you choose the right way to begin, whether the
+            work in front of you is product, platform, modernization, or applied AI.
           </motion.p>
         </div>
       </section>
