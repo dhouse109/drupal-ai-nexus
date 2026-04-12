@@ -211,17 +211,17 @@ const Services = () => {
           </div>
           <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-center">
             <Link
-              to="/offerings"
+              to="/contact"
               className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
             >
-              See starting points
+              Start a conversation
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
             <Link
-              to="/contact"
+              to="/offerings"
               className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
             >
-              Start a conversation
+              See starting points
             </Link>
           </div>
         </div>
