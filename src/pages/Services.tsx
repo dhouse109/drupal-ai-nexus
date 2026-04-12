@@ -50,7 +50,7 @@ const services = [
   {
     title: "Platform modernization, DevEx, and delivery systems",
     description:
-      "Improve environments, release workflows, documentation, and platform foundations so teams can release software with less friction, lower rework, and more confidence over time.",
+      "Improve environments, workflows, documentation, and platform foundations so teams can release software with less friction, lower rework, and more confidence over time.",
     features: [
       "Modernization",
       "CI/CD systems",
