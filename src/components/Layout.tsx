@@ -6,13 +6,12 @@ const navItems = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
   { label: "How We Help", to: "/services" },
+  { label: "Offerings", to: "/offerings" },
   { label: "Applied AI", to: "/applied-ai" },
   { label: "Contact", to: "/contact" },
 ];
 
-const footerExplore = [
-  { label: "How We Help", to: "/services" },
-  { label: "Offerings", to: "/offerings" },
+const footerProofIdeas = [
   { label: "AI in Practice", to: "/ai-in-practice" },
   { label: "Insights", to: "/insights" },
 ];
@@ -141,9 +140,9 @@ const Layout = () => {
           </div>
 
           <div>
-            <h3 className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-foreground">Explore</h3>
+            <h3 className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-foreground">Proof & Ideas</h3>
             <div className="flex flex-col gap-3">
-              {footerExplore.map((item) => (
+              {footerProofIdeas.map((item) => (
                 <NavLink key={item.to} to={item.to} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                   {item.label}
                 </NavLink>
