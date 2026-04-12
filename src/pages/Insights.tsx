@@ -76,7 +76,7 @@ const Insights = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            Notes, essays, and working ideas pulled from real platform and product work
+            Notes from real product and platform work
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -84,9 +84,8 @@ const Insights = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            This section is where 109.studio shares the thinking behind the work: platform
-            modernization, applied AI, delivery systems, search, open source, and the practical
-            decisions that shape how teams build and operate software.
+            109.studio shares the thinking behind modernization, applied AI, search, delivery
+            systems, and the technical decisions that shape how teams build and operate software.
           </motion.p>
         </div>
       </section>
