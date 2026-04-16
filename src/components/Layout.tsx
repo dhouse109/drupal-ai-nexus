@@ -30,8 +30,8 @@ const Layout = () => {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
-        <div className="container flex h-16 items-center justify-between">
-          <NavLink to="/" className="font-mono text-lg font-bold tracking-tight">
+        <div className="container flex h-16 items-center justify-between gap-8">
+          <NavLink to="/" className="shrink-0 font-mono text-lg font-bold tracking-tight">
             <span className="text-primary">109</span>
             <span className="text-foreground">.studio</span>
           </NavLink>
