@@ -275,6 +275,15 @@ const Offerings = () => {
                   <p className="text-sm leading-relaxed text-muted-foreground">
                     {offering.nextStep}
                   </p>
+                  {offering.title === "2-Week architecture audit" && (
+                    <Link
+                      to="/architecture-audit"
+                      className="mt-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-primary transition-colors hover:text-primary/80"
+                    >
+                      Learn more
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}
