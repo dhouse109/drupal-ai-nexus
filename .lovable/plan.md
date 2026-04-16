@@ -1,57 +1,51 @@
 
 
-## New Page: 2-Week Architecture Audit
+## Reusable Insights Article Template
 
-A productized landing page for the front-door offer. Aligned with the existing Offerings/Services design system (border-divided grid sections, mono uppercase eyebrows, grid-bg hero, `bg-surface` CTA card).
+Goal: a single component-driven layout for publishing essays under `/insights/:slug`, so research notes become publishable quickly while staying on-brand.
 
-### Route & file
-- New route: `/architecture-audit`
-- New file: `src/pages/ArchitectureAudit.tsx`
-- Register in `src/App.tsx` alongside existing routes.
+### Architecture
 
-### Page sections (matches your structure)
+- **Data**: `src/data/insights.ts` exporting an `articles` array typed by an `InsightArticle` interface. Each article has: `slug`, `title`, `category`, `readTime`, `publishedDate`, `keyTakeaway`, `intro`, and `body` (an array of typed blocks).
+- **Block types** (discriminated union for the body):
+  - `{ type: "paragraph", text }`
+  - `{ type: "heading", text }`
+  - `{ type: "callout", variant: "guidance" | "warning" | "insight", title, text }` — bordered block with mono eyebrow, used for practical guidance
+  - `{ type: "list", items }`
+  - `{ type: "quote", text, attribution? }`
+- **Route**: `/insights/:slug` registered in `src/App.tsx`.
+- **New page**: `src/pages/InsightArticle.tsx` that:
+  - Looks up article by slug, 404s via `<Navigate to="/insights" />` if missing
+  - Renders the template
 
-1. **Hero** — eyebrow `Front-door engagement`, H1 *"A 2-Week Architecture Audit for teams that need clarity before the next big technical decision"*, supporting paragraph, two CTAs (`Start a conversation` primary → `/contact`, `See other starting points` secondary → `/offerings`). Uses the same `grid-bg` + Framer Motion entrance pattern as Offerings/Services hero.
+### Template sections (visual system aligned)
 
-2. **What this is** — two-column intro: short principal-led definition on the left, a small "At a glance" panel on the right (Duration: 2 weeks · Format: remote, principal-led · Output: written findings + executive debrief).
+1. **Title area** — `grid-bg` hero with mono eyebrow (category), large H1, meta row (read time · published date), Framer Motion entrance. Matches Insights/Offerings hero pattern.
+2. **Key takeaway** — bordered `bg-surface` card directly below hero with mono eyebrow `Key takeaway` and a single strong sentence/paragraph. Sets the thesis up front.
+3. **Article body** — single-column max-w-3xl prose rendered from the body blocks:
+   - Paragraphs in `text-muted-foreground` reading size
+   - Section headings in mono
+   - **Callout blocks**: bordered, `bg-surface`, mono eyebrow (`Practical guidance` / `Watch out for` / `Key insight` based on variant), title in mono, body text. No hover effects (per interactivity rule).
+   - Lists and quotes styled to match existing typographic system
+4. **CTA at the end** — reuses the existing `bg-surface` CTA card pattern from `Insights.tsx`: primary `Start a conversation` → `/contact`, secondary `See starting points` → `/offerings`. Per CTA guidelines.
 
-3. **Who it is for** — four "fit" cards in a 2-col bordered grid (founders preparing a build decision, CTOs inheriting a platform, agencies needing a senior outside read, teams weighing AI-readiness investment).
+### Integration with existing Insights page
 
-4. **What Damien reviews** — 2-col bordered grid of review areas, each with a short description:
-   - Platform architecture & system boundaries
-   - Technical debt & change-cost
-   - Delivery risk & release confidence
-   - Data, integration, and content surfaces
-   - AI readiness (where relevant)
-   - Team capacity & decision-making structure
+- Update `src/pages/Insights.tsx` so the featured article and recent articles list render as `<Link>`s to `/insights/:slug` instead of static cards.
+- Move the existing hardcoded article list into `src/data/insights.ts` and write **one full sample article** ("Applied AI starts with the workflow, not the model") using all block types, so the template is immediately usable as a reference for future entries.
+- Other listed articles remain in the data file as metadata-only stubs (no body) and render as "coming soon" — or we can author them later. For this task: only the featured one gets a full body, the others link to a simple "Notes in progress" placeholder rendered by the same template when `body` is empty.
 
-5. **What the client receives** — bordered grid of deliverables: prioritized findings document, architecture map, risk register, recommended next steps, executive debrief session, optional roadmap outline.
+### Voice & rules followed
 
-6. **What happens over the 2 weeks** — numbered timeline (matches the `processSteps` pattern used on Offerings/Services). Days 1–2 intake & access, Days 3–7 review, Days 8–10 synthesis, Days 11–14 debrief & recommendation.
-
-7. **Why this is a strong first step** — three short reasoned cards (low-risk shape, principal-led judgment, decision-ready output) using the same bordered grid card pattern.
-
-8. **CTA** — final `bg-surface` card matching the existing footer-style CTA, primary `Start a conversation` → `/contact` and secondary `See other starting points` → `/offerings`. Per CTA guidelines.
-
-### Cross-linking (no top-nav change)
-
-Top nav already feels full (Home, About, How We Help, Offerings, Applied AI, Contact + the conversation button). Adding another item would crowd the collision we just fixed. So instead:
-
-- **Offerings page**: Update the existing first card ("2-Week architecture audit") title/heading to link to `/architecture-audit` via a small `Learn more →` link below `nextStep` (non-disruptive — keeps the card structure intact).
-- **Contact page**: Add a brief inline mention near the form intro pointing visitors who want a productized first step toward `/architecture-audit`.
-- **Services page**: Update the `guideItems` recommendation row "Start with the 2-Week architecture audit." so the phrase becomes a link to the new page.
-
-### Voice & copy rules followed
-- Principal-led, plainspoken, outcome-focused.
-- "109" for studio identity in CTAs; "Damien" reserved for the bio/review-author context (used in section 4 framing as "What Damien reviews", consistent with current usage on the homepage CTA card).
-- No "ship/shipping" — use "release software" / "release confidence".
-- CTAs follow `docs/cta-copy-guidelines.md`: primary `Start a conversation` first, secondary `See other starting points` (variant of `See starting points` because we're already in offer-selection territory; will use exact `See starting points` to stay on the approved list).
-- No hover highlights on informational cards.
+- No "ship/shipping"
+- "109" for studio, "Damien" only in author/bio context
+- Mono eyebrows, border-divided sections, no hover highlights on informational cards
+- CTAs follow `docs/cta-copy-guidelines.md` (proof-led page → `Start a conversation` + `See starting points`)
 
 ### Files touched
-- `src/pages/ArchitectureAudit.tsx` (new)
-- `src/App.tsx` (route)
-- `src/pages/Offerings.tsx` (link first card to detail page)
-- `src/pages/Services.tsx` (link the recommendation phrase)
-- `src/pages/Contact.tsx` (small inline mention)
+
+- `src/data/insights.ts` (new — data + types + sample article)
+- `src/pages/InsightArticle.tsx` (new — template renderer)
+- `src/App.tsx` (add `/insights/:slug` route)
+- `src/pages/Insights.tsx` (link cards to detail pages, source from data file)
 
