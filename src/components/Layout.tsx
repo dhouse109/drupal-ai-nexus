@@ -98,7 +98,7 @@ const Layout = () => {
               <div>
                 <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
                 <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                  Need a clearer path for a product, platform, or modernization effort?
+                  Have a system, a platform, or a decision you want a senior read on?
                 </h2>
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
                   Start with a short note about what you are building or where things feel stuck. Damien will review it personally and suggest the clearest next step.
