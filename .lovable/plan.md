@@ -1,51 +1,32 @@
 
 
-## Reusable Insights Article Template
+## Fix odd-count grid on /insights "Recent entries"
 
-Goal: a single component-driven layout for publishing essays under `/insights/:slug`, so research notes become publishable quickly while staying on-brand.
+The grid in `src/pages/Insights.tsx` (around line ~119) is:
+```
+md:grid-cols-2 xl:grid-cols-3
+```
 
-### Architecture
+Apply the same last-item-spans-remaining pattern used on `IndustriesSection.tsx` and `Services.tsx`. Because Insights has two breakpoints, the rule needs to cover both:
 
-- **Data**: `src/data/insights.ts` exporting an `articles` array typed by an `InsightArticle` interface. Each article has: `slug`, `title`, `category`, `readTime`, `publishedDate`, `keyTakeaway`, `intro`, and `body` (an array of typed blocks).
-- **Block types** (discriminated union for the body):
-  - `{ type: "paragraph", text }`
-  - `{ type: "heading", text }`
-  - `{ type: "callout", variant: "guidance" | "warning" | "insight", title, text }` — bordered block with mono eyebrow, used for practical guidance
-  - `{ type: "list", items }`
-  - `{ type: "quote", text, attribution? }`
-- **Route**: `/insights/:slug` registered in `src/App.tsx`.
-- **New page**: `src/pages/InsightArticle.tsx` that:
-  - Looks up article by slug, 404s via `<Navigate to="/insights" />` if missing
-  - Renders the template
+- At `md` (2 cols): if `articles.length` is odd, last card spans 2.
+- At `xl` (3 cols): if `articles.length % 3 === 1`, last card spans 3; if `% 3 === 2`, last card spans 2.
 
-### Template sections (visual system aligned)
+### Change
 
-1. **Title area** — `grid-bg` hero with mono eyebrow (category), large H1, meta row (read time · published date), Framer Motion entrance. Matches Insights/Offerings hero pattern.
-2. **Key takeaway** — bordered `bg-surface` card directly below hero with mono eyebrow `Key takeaway` and a single strong sentence/paragraph. Sets the thesis up front.
-3. **Article body** — single-column max-w-3xl prose rendered from the body blocks:
-   - Paragraphs in `text-muted-foreground` reading size
-   - Section headings in mono
-   - **Callout blocks**: bordered, `bg-surface`, mono eyebrow (`Practical guidance` / `Watch out for` / `Key insight` based on variant), title in mono, body text. No hover effects (per interactivity rule).
-   - Lists and quotes styled to match existing typographic system
-4. **CTA at the end** — reuses the existing `bg-surface` CTA card pattern from `Insights.tsx`: primary `Start a conversation` → `/contact`, secondary `See starting points` → `/offerings`. Per CTA guidelines.
+In `src/pages/Insights.tsx`, in the `articles.map(...)` Link, conditionally append span classes to the existing `className`:
 
-### Integration with existing Insights page
+```ts
+const isLast = index === articles.length - 1;
+const mdSpan = articles.length % 2 === 1 ? "md:col-span-2" : "";
+const xlRemainder = articles.length % 3;
+const xlSpan =
+  xlRemainder === 1 ? "xl:col-span-3" :
+  xlRemainder === 2 ? "xl:col-span-2" : "";
+const spanClass = isLast ? `${mdSpan} ${xlSpan}` : "";
+```
 
-- Update `src/pages/Insights.tsx` so the featured article and recent articles list render as `<Link>`s to `/insights/:slug` instead of static cards.
-- Move the existing hardcoded article list into `src/data/insights.ts` and write **one full sample article** ("Applied AI starts with the workflow, not the model") using all block types, so the template is immediately usable as a reference for future entries.
-- Other listed articles remain in the data file as metadata-only stubs (no body) and render as "coming soon" — or we can author them later. For this task: only the featured one gets a full body, the others link to a simple "Notes in progress" placeholder rendered by the same template when `body` is empty.
+Then add `spanClass` to the Link's className. Add `index` to the map callback signature.
 
-### Voice & rules followed
-
-- No "ship/shipping"
-- "109" for studio, "Damien" only in author/bio context
-- Mono eyebrows, border-divided sections, no hover highlights on informational cards
-- CTAs follow `docs/cta-copy-guidelines.md` (proof-led page → `Start a conversation` + `See starting points`)
-
-### Files touched
-
-- `src/data/insights.ts` (new — data + types + sample article)
-- `src/pages/InsightArticle.tsx` (new — template renderer)
-- `src/App.tsx` (add `/insights/:slug` route)
-- `src/pages/Insights.tsx` (link cards to detail pages, source from data file)
+No other files touched. Visual system, voice, and CTA rules unchanged.
 
