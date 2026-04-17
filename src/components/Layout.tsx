@@ -27,6 +27,14 @@ const Layout = () => {
   const location = useLocation();
   const isContactPage = location.pathname === "/contact";
 
+  const secondaryCtaMap: Record<string, { label: string; to: string }> = {
+    "/services": { label: "See starting points", to: "/offerings" },
+    "/architecture-audit": { label: "See starting points", to: "/offerings" },
+    "/applied-ai": { label: "Read insights", to: "/insights" },
+  };
+  const secondaryCta =
+    secondaryCtaMap[location.pathname] ?? { label: "See how 109 helps", to: "/services" };
+
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
