@@ -116,3 +116,19 @@ When adding a new section with CTAs, start by choosing:
 - which destination the secondary CTA should name directly
 
 If the copy starts to sound like a form, a brochure, or a process diagram, simplify it.
+
+## Route-aware CTAs
+Page-local CTAs are written intentionally for the page they live on — the label and destination are part of that page's editorial intent. They do not need route-awareness; if a page is restructured, the author is already in the file and will update the CTA.
+
+Route-awareness is only needed when a CTA's destination is **dynamic or shared across routes** — the global footer card in `src/components/Layout.tsx` is the canonical example. For those cases, use the helper:
+
+```ts
+import { useSafeCtaTarget } from "@/lib/cta";
+
+const cta = useSafeCtaTarget("/services", "See how 109 helps", {
+  label: "See starting points",
+  to: "/offerings",
+});
+```
+
+If the current pathname matches the target, the helper returns the fallback instead. Do not adopt this for in-body page CTAs — it adds indirection without solving a real problem there.
