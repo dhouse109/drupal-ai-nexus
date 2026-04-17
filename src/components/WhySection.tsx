@@ -16,7 +16,7 @@ const WhySection = () => {
             Why 109.studio
           </span>
           <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-            Senior technical leadership with the ability to stay close to the work
+            Senior technical leadership that can move from architecture to implementation
           </h2>
         </motion.div>
 
@@ -28,7 +28,7 @@ const WhySection = () => {
             transition={{ delay: 0.05 }}
           >
             <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-              Product decisions get better when strategy, research, and implementation stay connected. That makes it easier to test ideas earlier, reduce delivery risk, and build systems teams can sustain.
+              Product decisions get better when strategy, research, and implementation stay connected. That makes it easier to test ideas earlier, reduce delivery risk, and build systems teams can keep improving.
             </p>
           </motion.div>
 
@@ -39,7 +39,7 @@ const WhySection = () => {
             transition={{ delay: 0.12 }}
           >
             <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-              The work draws on platform experience, hands-on prototyping, and a habit of writing decisions down. The result is better-scoped projects, stronger technical foundations, and delivery systems that can keep up as products evolve.
+              The work draws on platform experience, hands-on prototyping, and a habit of writing decisions down. The result is better-scoped projects, stronger technical foundations, and delivery systems that can keep pace as products evolve.
             </p>
             <Link
               to="/about"
