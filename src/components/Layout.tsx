@@ -27,6 +27,14 @@ const Layout = () => {
   const location = useLocation();
   const isContactPage = location.pathname === "/contact";
 
+  const secondaryCtaMap: Record<string, { label: string; to: string }> = {
+    "/services": { label: "See starting points", to: "/offerings" },
+    "/architecture-audit": { label: "See starting points", to: "/offerings" },
+    "/applied-ai": { label: "Read insights", to: "/insights" },
+  };
+  const secondaryCta =
+    secondaryCtaMap[location.pathname] ?? { label: "See how 109 helps", to: "/services" };
+
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
@@ -42,13 +50,15 @@ const Layout = () => {
                 {item.label}
               </NavLink>
             ))}
-            <NavLink
-              to="/contact"
-              className="inline-flex items-center gap-2 bg-primary px-4 py-2 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
-            >
-              Start a conversation
-              <ArrowRight className="h-3.5 w-3.5" />
-            </NavLink>
+            {!isContactPage && (
+              <NavLink
+                to="/contact"
+                className="inline-flex items-center gap-2 bg-primary px-4 py-2 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
+              >
+                Start a conversation
+                <ArrowRight className="h-3.5 w-3.5" />
+              </NavLink>
+            )}
           </nav>
 
           <button
@@ -74,14 +84,16 @@ const Layout = () => {
                   {item.label}
                 </NavLink>
               ))}
-              <NavLink
-                to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-primary px-4 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
-                onClick={() => setOpen(false)}
-              >
-                Start a conversation
-                <ArrowRight className="h-3.5 w-3.5" />
-              </NavLink>
+              {!isContactPage && (
+                <NavLink
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-2 bg-primary px-4 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
+                  onClick={() => setOpen(false)}
+                >
+                  Start a conversation
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </NavLink>
+              )}
             </div>
           </div>
         )}
@@ -109,8 +121,8 @@ const Layout = () => {
                   Start a conversation
                   <ArrowRight className="h-3.5 w-3.5" />
                 </NavLink>
-                <NavLink to="/services" className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
-                  See how 109 helps
+                <NavLink to={secondaryCta.to} className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
+                  {secondaryCta.label}
                 </NavLink>
               </div>
             </div>
