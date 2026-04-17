@@ -288,11 +288,10 @@ const AppliedAI = () => {
             <div>
               <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
               <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                If you are exploring an applied AI direction, start with the problem you want to improve
+                Not sure where AI fits? Start with the workflow or content problem in front of you.
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                You can start a conversation if it would help to talk through the situation, or see practical examples
-                first.
+                You can start a conversation if it would help to talk through the situation, or see practical examples first.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">

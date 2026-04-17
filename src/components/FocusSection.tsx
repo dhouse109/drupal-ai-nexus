@@ -13,7 +13,7 @@ const services = [
     icon: Blocks,
     title: "Platform and product engineering",
     description:
-      "Design and build content-rich platforms, delivery systems, and intelligent features with maintainability and long-term change in mind.",
+      "Design and build content-rich platforms, delivery systems, and search or workflow features with maintainability and long-term change in mind.",
     tags: ["Platforms", "Workflows", "Integrations"],
   },
   {
