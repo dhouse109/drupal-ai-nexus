@@ -127,7 +127,7 @@ const Services = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            From strategy through delivery, this is what we cover
+            What 109 actually does inside an engagement
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -202,7 +202,7 @@ const Services = () => {
               Starting offers
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Services explains the practice. Offerings explains the clearest ways to begin.
+              If you already know the work needs a shaped starting point
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
               If you already know the work needs a shaped starting point, the offerings page is the best place to match
