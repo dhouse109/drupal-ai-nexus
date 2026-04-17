@@ -4,7 +4,7 @@ const audienceGroups = [
   {
     title: "For founders and business leaders",
     description:
-      "You have a product direction, a platform problem, or a technical initiative that matters, but you need better judgment around how to shape it, scope it, and build it without creating unnecessary risk.",
+      "You have a product direction, a platform problem, or a technical initiative that matters, but need senior help shaping it, scoping it, and reducing avoidable risk.",
     bullets: [
       "Reduce technical risk early",
       "Clarify the roadmap and architecture",
@@ -14,7 +14,7 @@ const audienceGroups = [
   {
     title: "For technical teams and agencies",
     description:
-      "You have real delivery work underway, but need senior depth around architecture, platform decisions, modernization, or AI-related implementation that your current team does not have time to absorb on its own.",
+      "You have delivery work underway, but need senior depth around architecture, modernization, or AI implementation that the current team cannot absorb without slowing down.",
     bullets: [
       "Senior help on complex platform work",
       "Architecture and implementation depth",
@@ -37,7 +37,7 @@ const AudienceSection = () => {
             Who this work is for
           </span>
           <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-            Two kinds of teams tend to get the most value from 109
+            Two kinds of teams tend to get the most from 109
           </h2>
         </motion.div>
         <div className="grid gap-px bg-border md:grid-cols-2">
