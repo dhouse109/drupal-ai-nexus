@@ -48,13 +48,12 @@ const IndustriesSection = () => {
             Where this work tends to fit
           </span>
           <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-            Best suited to environments where content, workflows, and operational complexity all matter
+            Best suited to teams dealing with content, process, and technical complexity at the same time
           </h2>
           <p className="mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
             109.studio is strongest in settings where the platform is doing real work for the
-            organization, not just presenting information. That usually means structure, search,
-            publishing operations, user experience, and long-term maintainability all matter at the
-            same time.
+            organization. That usually means content structure, search, publishing operations,
+            user experience, and maintainability all matter at once.
           </p>
         </motion.div>
         <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-5">
