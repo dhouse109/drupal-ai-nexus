@@ -20,6 +20,7 @@ export interface InsightArticle {
   keyTakeaway: string;
   intro: string;
   featured?: boolean;
+  status: "published" | "draft";
   body: InsightBlock[];
 }
 
@@ -33,6 +34,7 @@ export const articles: InsightArticle[] = [
     readTime: "6 min read",
     publishedDate: "April 2026",
     featured: true,
+    status: "published",
     keyTakeaway:
       "Teams that get real value from AI start by naming the workflow they want to improve. The model selection comes later, and it usually matters less than the surrounding system.",
     intro:
@@ -118,6 +120,7 @@ export const articles: InsightArticle[] = [
       "Why platform modernization work goes better when migration planning, technical foundations, and delivery systems are treated as part of the same problem.",
     readTime: "5 min read",
     publishedDate: "April 2026",
+    status: "draft",
     keyTakeaway:
       "Modernization slows down when architecture decisions and delivery decisions are owned by different conversations. Keeping them connected is what makes the work feel finishable.",
     intro:
@@ -132,6 +135,7 @@ export const articles: InsightArticle[] = [
       "A short essay on keeping AI output visible, editable, and grounded in the workflows people are already responsible for operating.",
     readTime: "4 min read",
     publishedDate: "April 2026",
+    status: "draft",
     keyTakeaway:
       "AI output that cannot be reviewed by the people who own the workflow tends to stall. Reviewability is a design decision, not a feature.",
     intro:
@@ -146,6 +150,7 @@ export const articles: InsightArticle[] = [
       "How structured content, retrieval, and AI-assisted querying can reinforce each other on content-rich platforms without turning search into a black box.",
     readTime: "5 min read",
     publishedDate: "April 2026",
+    status: "draft",
     keyTakeaway:
       "The fastest way to improve search on a content platform is usually to give the content more structure, not to add another retrieval layer.",
     intro:
@@ -160,6 +165,7 @@ export const articles: InsightArticle[] = [
       "A practical note on environments, deployments, documentation, and the infrastructure decisions that shape how confidently teams can release software.",
     readTime: "4 min read",
     publishedDate: "April 2026",
+    status: "draft",
     keyTakeaway:
       "Release confidence is mostly a function of small, accumulated decisions about environments, documentation, and feedback loops.",
     intro:
@@ -174,6 +180,7 @@ export const articles: InsightArticle[] = [
       "An explanation of how internal experiments, delivery lessons, and open-source habits can become better starting points for future work.",
     readTime: "3 min read",
     publishedDate: "April 2026",
+    status: "draft",
     keyTakeaway:
       "Patterns become more valuable when they are written down and shared, even when the original context is narrow.",
     intro:
@@ -186,7 +193,13 @@ export const getArticleBySlug = (slug: string): InsightArticle | undefined =>
   articles.find((article) => article.slug === slug);
 
 export const getFeaturedArticle = (): InsightArticle | undefined =>
-  articles.find((article) => article.featured);
+  articles.find((article) => article.featured && article.status === "published");
+
+export const getPublishedArticles = (): InsightArticle[] =>
+  articles.filter((article) => article.status === "published");
+
+export const getDraftArticles = (): InsightArticle[] =>
+  articles.filter((article) => article.status === "draft");
 
 export const getNonFeaturedArticles = (): InsightArticle[] =>
-  articles.filter((article) => !article.featured);
+  articles.filter((article) => !article.featured && article.status === "published");
