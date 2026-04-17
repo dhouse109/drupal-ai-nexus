@@ -28,9 +28,7 @@ const WhySection = () => {
             transition={{ delay: 0.05 }}
           >
             <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-              109.studio is built around a simple idea: product decisions get better when
-              strategy, research, and implementation stay connected. That makes it easier to test
-              ideas earlier, reduce delivery risk, and build systems teams can actually sustain.
+              Product decisions get better when strategy, research, and implementation stay connected. That makes it easier to test ideas earlier, reduce delivery risk, and build systems teams can sustain.
             </p>
           </motion.div>
 
@@ -41,9 +39,7 @@ const WhySection = () => {
             transition={{ delay: 0.12 }}
           >
             <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-              The work is shaped by platform thinking, practical experimentation, and a strong bias
-              toward clarity. The result is better-scoped projects, stronger technical foundations,
-              and delivery systems that can keep up as products evolve.
+              The work draws on platform experience, hands-on prototyping, and a habit of writing decisions down. The result is better-scoped projects, stronger technical foundations, and delivery systems that can keep up as products evolve.
             </p>
             <Link
               to="/about"
