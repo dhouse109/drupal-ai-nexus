@@ -1,52 +1,10 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
-const featuredArticle = {
-  category: "Featured",
-  title: "Applied AI starts with the workflow, not the model",
-  description:
-    "A practical look at how teams get more value from AI when they start with the publishing, search, or delivery problem they actually need to improve.",
-  readTime: "6 min read",
-};
-
-const articles = [
-  {
-    category: "Platform work",
-    title: "Modernization is easier when architecture and delivery stay connected",
-    description:
-      "Why platform modernization work goes better when migration planning, technical foundations, and delivery systems are treated as part of the same problem.",
-    readTime: "5 min read",
-  },
-  {
-    category: "Applied AI",
-    title: "What reviewable AI work looks like on a real team",
-    description:
-      "A short essay on keeping AI output visible, editable, and grounded in the workflows people are already responsible for operating.",
-    readTime: "4 min read",
-  },
-  {
-    category: "Search and retrieval",
-    title: "Search gets better when content structure does more of the work",
-    description:
-      "How structured content, retrieval, and AI-assisted querying can reinforce each other on content-rich platforms without turning search into a black box.",
-    readTime: "5 min read",
-  },
-  {
-    category: "Delivery",
-    title: "The technical path matters: reducing friction in day-to-day delivery",
-    description:
-      "A practical note on environments, deployments, documentation, and the infrastructure decisions that shape how confidently teams can release software.",
-    readTime: "4 min read",
-  },
-  {
-    category: "Open source and practice",
-    title: "Research, reuse, and why some patterns are worth publishing",
-    description:
-      "An explanation of how internal experiments, delivery lessons, and open-source habits can become better starting points for future work.",
-    readTime: "3 min read",
-  },
-];
+import {
+  getFeaturedArticle,
+  getNonFeaturedArticles,
+} from "@/data/insights";
 
 const topics = [
   "Platform modernization",
@@ -57,6 +15,9 @@ const topics = [
 ];
 
 const Insights = () => {
+  const featuredArticle = getFeaturedArticle();
+  const articles = getNonFeaturedArticles();
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <section className="relative overflow-hidden border-b border-border py-24 md:py-32">
@@ -113,30 +74,41 @@ const Insights = () => {
         </div>
       </section>
 
-      <section className="border-b border-border py-20 md:py-24">
-        <div className="container">
-          <div className="mb-12 max-w-3xl">
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Featured note
-            </span>
-          </div>
+      {featuredArticle && (
+        <section className="border-b border-border py-20 md:py-24">
+          <div className="container">
+            <div className="mb-12 max-w-3xl">
+              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                Featured note
+              </span>
+            </div>
 
-          <div className="border border-border bg-surface p-8 md:p-10">
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              {featuredArticle.category}
-            </div>
-            <h2 className="mt-4 max-w-3xl font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              {featuredArticle.title}
-            </h2>
-            <p className="mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              {featuredArticle.description}
-            </p>
-            <div className="mt-6 font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
-              {featuredArticle.readTime}
-            </div>
+            <Link
+              to={`/insights/${featuredArticle.slug}`}
+              className="group block border border-border bg-surface p-8 transition-colors hover:border-primary md:p-10"
+            >
+              <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                {featuredArticle.category}
+              </div>
+              <h2 className="mt-4 max-w-3xl font-mono text-3xl font-bold tracking-tight md:text-5xl">
+                {featuredArticle.title}
+              </h2>
+              <p className="mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                {featuredArticle.description}
+              </p>
+              <div className="mt-6 flex items-center justify-between gap-4">
+                <div className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
+                  {featuredArticle.readTime}
+                </div>
+                <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary">
+                  Read note
+                  <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                </span>
+              </div>
+            </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="border-b border-border py-20 md:py-24">
         <div className="container">
@@ -151,7 +123,11 @@ const Insights = () => {
 
           <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
             {articles.map((article) => (
-              <div key={article.title} className="bg-background p-8 md:p-10">
+              <Link
+                key={article.slug}
+                to={`/insights/${article.slug}`}
+                className="group block bg-background p-8 transition-colors hover:bg-surface md:p-10"
+              >
                 <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
                   {article.category}
                 </div>
@@ -161,10 +137,16 @@ const Insights = () => {
                 <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
                   {article.description}
                 </p>
-                <div className="mt-6 font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
-                  {article.readTime}
+                <div className="mt-6 flex items-center justify-between gap-4">
+                  <div className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
+                    {article.readTime}
+                  </div>
+                  <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary">
+                    Read
+                    <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
