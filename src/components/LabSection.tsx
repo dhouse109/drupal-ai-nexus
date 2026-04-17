@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Github, Network, Workflow, Code2 } from "lucide-react";
+import { ArrowRight, Network, Workflow, Code2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const areas = [
@@ -13,7 +13,7 @@ const areas = [
     icon: Network,
     title: "Search and retrieval",
     description:
-      "Practical approaches to discovery, structured content, and AI-assisted querying that build on Drupal’s strengths.",
+      "Practical approaches to discovery, structured content, and AI-assisted querying that build on Drupal's strengths.",
   },
   {
     icon: Code2,
@@ -38,20 +38,19 @@ const LabSection = () => {
               Labs and open source
             </span>
             <h2 className="mb-6 font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Research and open source are part of how the practice works
+              Research and open source keep the work sharper
             </h2>
             <p className="mb-8 max-w-md leading-relaxed text-muted-foreground">
               109.studio turns experiments, delivery lessons, and internal patterns into reusable
               assets. Some of that becomes tooling. Some becomes documentation. Some becomes a
-              better starting point for future work. The goal is to keep the practice sharp and
+              better starting point for future work. The point is to keep learning in public and
               make the work more durable over time.
             </p>
             <Link
               to="/drupal-ai"
               className="inline-flex items-center gap-3 font-mono text-sm uppercase tracking-widest text-primary"
             >
-              <Github className="h-4 w-4" />
-              <span>Explore applied AI work</span>
+              <span>See Drupal AI work</span>
               <ArrowRight className="h-4 w-4" />
             </Link>
           </motion.div>
