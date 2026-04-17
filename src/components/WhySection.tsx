@@ -28,7 +28,7 @@ const WhySection = () => {
             transition={{ delay: 0.05 }}
           >
             <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-              Product decisions get better when strategy, research, and implementation stay connected. That makes it easier to test ideas earlier, reduce delivery risk, and build systems teams can sustain.
+              Product decisions get better when strategy, research, and implementation stay connected. That makes it easier to test ideas earlier, reduce delivery risk, and build systems a team can sustain.
             </p>
           </motion.div>
 
@@ -39,7 +39,7 @@ const WhySection = () => {
             transition={{ delay: 0.12 }}
           >
             <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-              The work draws on platform experience, hands-on prototyping, and a habit of writing decisions down. The result is better-scoped projects, stronger technical foundations, and delivery systems that can keep up as products evolve.
+              The work draws on platform experience, hands-on prototyping, and writing the important decisions down early. That usually leads to better scope, stronger technical foundations, and delivery systems teams can keep using as the product changes.
             </p>
             <Link
               to="/about"
