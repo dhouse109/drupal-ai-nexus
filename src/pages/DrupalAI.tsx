@@ -5,35 +5,35 @@ import { motion } from "framer-motion";
 const supportAreas = [
   {
     icon: Bot,
-    title: "AI-enabled content and workflow systems",
+    title: "Editorial support inside Drupal workflows",
     description:
-      "Patterns for generation, summarization, classification, and editorial support that fit real publishing and governance environments.",
+      "Summaries, metadata suggestions, and drafting support that live inside moderation and publishing flows instead of outside the CMS.",
   },
   {
     icon: Network,
-    title: "Search and retrieval",
+    title: "Retrieval over structured Drupal content",
     description:
-      "Discovery experiences that combine structured content, retrieval, and AI-assisted querying in ways teams can maintain.",
+      "Search and answer experiences built on content models, taxonomy, Search API, and retrieval patterns that actually use Drupal's structure.",
   },
   {
     icon: Workflow,
-    title: "AI-assisted platform delivery",
+    title: "Delivery support in a Drupal team's CI",
     description:
-      "Developer workflows, implementation experiments, and delivery patterns that help teams move faster while keeping the work reviewable and maintainable.",
+      "PR summaries, release notes, regression checks, and support tooling around deploys, tickets, and handoffs.",
   },
   {
     icon: Code2,
-    title: "Reusable assets and starter systems",
+    title: "Reusable Drupal starter patterns",
     description:
-      "Starter systems, documentation, and tooling that support stronger reuse across client work, internal R&D, and partner collaboration.",
+      "Reference implementations, starter assets, and documentation a team can adapt instead of rebuilding the same pattern from scratch.",
   },
 ];
 
 const outputs = [
-  "Workflow concepts",
-  "Prototype implementations",
-  "Reusable delivery patterns",
-  "Shared tooling and documentation",
+  "Editorial workflow prototypes",
+  "Retrieval and Search API experiments",
+  "Delivery support tooling",
+  "Reference implementations and docs",
 ];
 
 const DrupalAI = () => {
@@ -48,7 +48,7 @@ const DrupalAI = () => {
             transition={{ duration: 0.6 }}
             className="mb-6 block font-mono text-xs uppercase tracking-[0.3em] text-primary"
           >
-            Applied AI
+            Drupal AI
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -56,7 +56,7 @@ const DrupalAI = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            Practical AI work for Drupal teams, content platforms, and modern delivery environments
+            Where AI fits inside a Drupal platform
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -64,8 +64,7 @@ const DrupalAI = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            109.studio explores how AI can improve content systems, delivery workflows, search,
-            and platform strategy in ways that are useful to real teams working with Drupal.
+            109.studio looks at AI in the places Drupal teams actually operate: editorial workflows, structured content and search, and delivery support around releases.
           </motion.p>
         </div>
       </section>
@@ -74,21 +73,18 @@ const DrupalAI = () => {
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Primary focus
+              Drupal-specific patterns
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Applied AI for teams working in complex content and platform environments
+              Start with the content model, editorial workflow, and release process
             </h2>
           </div>
           <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
             <p>
-              The focus here is not AI for its own sake. It is how AI can support real platform
-              work: better publishing workflows, stronger search, more useful internal tooling,
-              and delivery systems that help teams move with more confidence.
+              This page is the Drupal-specific layer. The useful work usually starts with the structure already in the system: content types, taxonomy, moderation states, search setup, and the team&apos;s actual publishing process.
             </p>
             <p>
-              This work looks at how structured content, publishing operations, retrieval, and
-              intelligent features can reinforce each other inside active Drupal environments.
+              The same goes for delivery. A Drupal team already has a release path, review process, and CI shape. AI should support those operating conditions instead of pretending they do not exist.
             </p>
           </div>
         </div>
@@ -101,7 +97,7 @@ const DrupalAI = () => {
               Current areas of work
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Where 109.studio is actively building, testing, and refining patterns
+              Four ways this work tends to show up in Drupal
             </h2>
           </div>
           <div className="grid gap-px bg-border md:grid-cols-2">
@@ -127,11 +123,10 @@ const DrupalAI = () => {
               How the work is approached
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Built for live delivery environments, not just isolated demos
+              Built around real Drupal operating conditions
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              The goal is to help teams adopt AI where it improves the product, the workflow, or
-              the speed of execution without making the platform harder to trust or operate.
+              The useful work usually depends on the shape of the content model, the moderation flow, the search configuration, and the deploy process already in place. That is what makes it different from a generic demo.
             </p>
           </div>
           <div className="border border-border bg-surface p-8 md:p-10">
@@ -157,14 +152,13 @@ const DrupalAI = () => {
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
             <div>
               <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                Want to see where this becomes concrete?
+                Broader patterns
               </span>
               <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                See the practical patterns behind the applied AI work
+                See the general workflow patterns behind this work
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                The AI in Practice page shows the kinds of workflow, search, and delivery problems
-                this work is meant to improve.
+                AI in Practice shows the broader workflow patterns this Drupal-specific work belongs to.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
@@ -193,12 +187,10 @@ const DrupalAI = () => {
               Collaboration
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Interested in working together in the Drupal AI space?
+              Exploring Drupal-specific AI work?
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              109.studio is interested in working with agencies, technical teams, and
-              community-aligned partners exploring how AI can improve platform delivery, content
-              systems, and Drupal development workflows.
+              109.studio is interested in working with agencies, technical teams, and community-aligned partners exploring editorial workflows, structured content retrieval, and delivery support patterns inside Drupal.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Link
