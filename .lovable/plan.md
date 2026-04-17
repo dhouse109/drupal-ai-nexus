@@ -1,49 +1,90 @@
 
 
-## Self-referential CTA audit
+## Make in-body CTAs route-aware
 
-### Findings
+### Audit results — actual self-references found today
 
-I checked every `<Link to="...">` and `<NavLink to="...">` across all pages and shared components. Page-specific in-body CTAs (in `About`, `Services`, `Offerings`, `ArchitectureAudit`, `AppliedAI`, `AIInPractice`, `Insights`, `InsightArticle`, `Contact`) all point to *other* pages — none are self-referential.
+After scanning every `<Link to="...">` across all pages and shared sections (HeroSection, PartnerSection, WhySection, plus all pages), there are **two real self-references** in in-body CTAs that exist right now:
 
-The redundancy lives in two **global** components that render on every page:
+1. **`/services` page, mid-page "Starting offers" section** (`Services.tsx` line 220–225)
+   - Secondary CTA: `See starting points` → `/offerings` ✅ ok
+   - Wait — re-reading: the primary heading on this section invites the reader to *Offerings*, and the secondary CTA points to `/offerings`. Not self-referential. **Clean.**
 
-**1. Footer "Next step" CTA card in `src/components/Layout.tsx` (lines 94–118)**
+2. **`/services` page, bottom "Next step" CTA card** (`Services.tsx` line 312–316)
+   - `See starting points` → `/offerings`. **Clean.**
 
-This card is shown on every page except `/contact`. It always renders:
-- Primary: `Start a conversation` → `/contact`
-- Secondary: `See how 109 helps` → `/services`
+3. **`/offerings` page, "2-Week architecture audit" card** (`Offerings.tsx` line 278–286)
+   - `Learn more` → `/architecture-audit`. **Clean.**
 
-So on `/services` the secondary button points back to the page you're already on. This is the example you flagged.
+4. **`/offerings` page, bottom CTA card** (`Offerings.tsx` line 391–396)
+   - `See AI in practice` → `/ai-in-practice`. **Clean.**
 
-**2. Header "Start a conversation" button in `src/components/Layout.tsx` (lines 45–51 desktop, 77–84 mobile)**
+5. **`/architecture-audit` page, hero CTA** (`ArchitectureAudit.tsx` line 177–182)
+   - `See starting points` → `/offerings`. **Clean.**
 
-This button shows on every page including `/contact`, so on `/contact` it points to `/contact`. (The footer CTA card already correctly hides itself on `/contact` — the header button is the remaining inconsistency.)
+6. **`/architecture-audit` page, bottom CTA card** (`ArchitectureAudit.tsx` line 362–367)
+   - `See starting points` → `/offerings`. **Clean.**
 
-### Recommended improvements
+7. **`/applied-ai` bottom CTA** → `/ai-in-practice`. **Clean.**
+8. **`/ai-in-practice` bottom CTA** → `/offerings`. **Clean.**
+9. **`/about` bottom CTA** → `/offerings`. **Clean.**
+10. **`/insights/:slug` bottom CTA** → `/offerings`. **Clean.**
+11. **`/contact` inline link** → `/architecture-audit`. **Clean.**
+12. **`HeroSection` (homepage)** → `/services`. **Clean** (homepage isn't `/services`).
+13. **`PartnerSection` (homepage)** → `/services`. **Clean**.
+14. **`WhySection` (homepage)** → `/about`. **Clean**.
+15. **`DrupalAI` bottom CTA** → `/ai-in-practice`. **Clean**.
 
-A clean, low-risk pattern: when a CTA's target matches the current route, **swap it for a different relevant destination** rather than hide it (preserves the visual rhythm of the two-button pair).
+**Conclusion: no in-body CTAs are self-referential today.** The Layout footer fix from the previous round already covered the only real risk surface (a globally rendered card that didn't know what page it was on).
 
-**Footer CTA card (`Layout.tsx`)** — make the secondary button route-aware:
+### Why making in-body CTAs route-aware now would be over-engineering
 
-| Current page | Secondary CTA |
-|---|---|
-| `/services` | `See starting points` → `/offerings` |
-| `/offerings` | `See how 109 helps` → `/services` |
-| `/architecture-audit` | `See starting points` → `/offerings` |
-| `/about` | `See how 109 helps` → `/services` |
-| `/applied-ai` | `Read insights` → `/insights` |
-| `/ai-in-practice` | `See how 109 helps` → `/services` |
-| `/insights` and `/insights/:slug` | `See how 109 helps` → `/services` |
-| `/` (homepage) | `See how 109 helps` → `/services` (current default — fine) |
+In-body CTAs live on a specific page and are written for that page's context — both label *and* destination are intentional. Unlike the global footer, they cannot drift into a self-reference unless the page itself is restructured, in which case the author is already editing the file.
 
-Implementation: derive `secondaryCta` from `location.pathname` with a small lookup, defaulting to the current `{ label: "See how 109 helps", to: "/services" }`.
+Adding `useLocation()` plumbing and a fallback target to every page-local CTA would:
+- add code paths that will essentially never trigger
+- make CTA copy harder to reason about (the visible label and destination diverge from what the file says)
+- duplicate the route-awareness logic the global footer card already centralizes
 
-**Header "Start a conversation" button (`Layout.tsx`)** — hide the button when already on `/contact` (mirrors the footer-card pattern that's already in place via `isContactPage`). Apply to both desktop (line 45) and mobile (line 77).
+### Lightweight safeguard instead — a small helper
+
+Rather than rewrite every page, add one tiny utility that any CTA *could* opt into when the destination is genuinely ambiguous (e.g., a CTA built from data, or a CTA shared across multiple routes).
+
+**New file**: `src/lib/cta.ts`
+
+```ts
+import { useLocation } from "react-router-dom";
+
+/**
+ * Returns the given CTA target, or a fallback if it would point to the current page.
+ * Use only when a CTA's destination is dynamic / shared across routes.
+ * Page-local CTAs should keep their explicit destinations.
+ */
+export const useSafeCtaTarget = (
+  to: string,
+  fallback: { label: string; to: string },
+  currentLabel: string,
+): { label: string; to: string } => {
+  const { pathname } = useLocation();
+  return pathname === to ? fallback : { label: currentLabel, to };
+};
+```
+
+Plus a short note at the top of `docs/cta-copy-guidelines.md` explaining: page-local CTAs are written intentionally and don't need this; only use `useSafeCtaTarget` for CTAs whose destination is data-driven or shared (like the Layout footer card, which can be migrated to use it for consistency).
+
+### Optional: migrate the Layout footer card to the helper
+
+`src/components/Layout.tsx` already does the same logic inline via `secondaryCtaMap`. We can refactor it to use `useSafeCtaTarget` so there's one canonical place for the rule. Purely a tidy-up — behavior unchanged.
 
 ### Files touched
 
-- `src/components/Layout.tsx` — add route-aware secondary CTA in the footer card; conditionally hide the header `Start a conversation` button on `/contact`.
+- `src/lib/cta.ts` (new — small helper + JSDoc)
+- `docs/cta-copy-guidelines.md` (append a short "Route-aware CTAs" section)
+- `src/components/Layout.tsx` (optional refactor to use the helper)
 
-No other files need changes. Voice, visual system, and CTA two-button pattern preserved (per `mem://style/ui-components/cta` and `docs/cta-copy-guidelines.md`).
+### What this is *not* doing
+
+- Not modifying any page-level CTAs. They are correct today and changing them would add risk without benefit.
+- Not introducing a new visual pattern.
+- Not changing voice or copy.
 
