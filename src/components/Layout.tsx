@@ -27,6 +27,8 @@ const Layout = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const isContactPage = location.pathname === "/contact";
+  // Note: header "Start a conversation" CTA stays visible on /contact for visual consistency.
+  // Only the footer card is hidden on /contact (handled below via isContactPage).
 
   const servicesCta = useSafeCtaTarget("/services", "See how 109 helps", {
     label: "See starting points",
@@ -53,15 +55,13 @@ const Layout = () => {
                 {item.label}
               </NavLink>
             ))}
-            {!isContactPage && (
-              <NavLink
-                to="/contact"
-                className="inline-flex items-center gap-2 bg-primary px-4 py-2 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
-              >
-                Start a conversation
-                <ArrowRight className="h-3.5 w-3.5" />
-              </NavLink>
-            )}
+            <NavLink
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-primary px-4 py-2 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
+            >
+              Start a conversation
+              <ArrowRight className="h-3.5 w-3.5" />
+            </NavLink>
           </nav>
 
           <button
@@ -87,16 +87,14 @@ const Layout = () => {
                   {item.label}
                 </NavLink>
               ))}
-              {!isContactPage && (
-                <NavLink
-                  to="/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-primary px-4 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
-                  onClick={() => setOpen(false)}
-                >
-                  Start a conversation
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </NavLink>
-              )}
+              <NavLink
+                to="/contact"
+                className="inline-flex items-center justify-center gap-2 bg-primary px-4 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
+                onClick={() => setOpen(false)}
+              >
+                Start a conversation
+                <ArrowRight className="h-3.5 w-3.5" />
+              </NavLink>
             </div>
           </div>
         )}
