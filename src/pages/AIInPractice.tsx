@@ -26,11 +26,11 @@ const examples = [
   {
     title: "Internal workflows that reduce delivery friction",
     description:
-      "Some of the best AI work happens behind the scenes: helping teams summarize information, support handoffs, generate first-pass documentation, or reduce repetitive technical work.",
+      "Some of the most useful AI work is internal: drafting release notes from merged PRs, turning meeting transcripts into action items, or generating first-pass documentation that someone on the team edits before it lands.",
     outcomes: [
-      "Faster execution on repeatable tasks",
-      "Stronger delivery support systems",
-      "More time for higher-value judgment",
+      "PR review summaries",
+      "Drafted release notes",
+      "First-pass documentation",
     ],
   },
 ];
@@ -115,7 +115,7 @@ const AIInPractice = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            What practical AI looks like
+            Where applied AI tends to be worth doing
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -123,8 +123,7 @@ const AIInPractice = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            These examples show how AI becomes useful when it is tied to real workflows,
-            content operations, search, and delivery systems.
+            Three patterns Damien returns to most often: AI tied to a content operation, AI tied to search and retrieval, and AI tied to internal delivery work. Each one starts with a workflow that already exists.
           </motion.p>
         </div>
       </section>
@@ -133,18 +132,18 @@ const AIInPractice = () => {
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Why this matters
+              How to read this page
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Applied AI becomes most useful when it improves a real workflow
+              Three workflow patterns, each with a concrete starting point
             </h2>
           </div>
           <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
             <p>
-              Some teams need help with content operations. Some need better search. Some need stronger internal tooling or cleaner delivery systems. In each case, the value comes from solving an actual point of friction.
+              Each example below names a workflow first and the AI second. That order matters. The model is the easy part of the conversation; the surrounding system is where the value either holds up or evaporates.
             </p>
             <p>
-              That is the standard 109.studio works from: use AI where it makes the system more useful, the workflow more efficient, or the delivery path easier to sustain.
+              If one of these patterns matches something your team is already doing, that is usually the right place to start a small, reviewable trial.
             </p>
           </div>
         </div>
@@ -279,7 +278,7 @@ const AIInPractice = () => {
                 Next step
               </span>
               <h2 className="font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                Interested in a practical next step?
+                Have a workflow you'd like to test this against?
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
                 If you are trying to make a workflow, search experience, or content system more useful, Damien can help you think through a grounded next move.
