@@ -1,32 +1,49 @@
 
 
-## Fix odd-count grid on /insights "Recent entries"
+## Self-referential CTA audit
 
-The grid in `src/pages/Insights.tsx` (around line ~119) is:
-```
-md:grid-cols-2 xl:grid-cols-3
-```
+### Findings
 
-Apply the same last-item-spans-remaining pattern used on `IndustriesSection.tsx` and `Services.tsx`. Because Insights has two breakpoints, the rule needs to cover both:
+I checked every `<Link to="...">` and `<NavLink to="...">` across all pages and shared components. Page-specific in-body CTAs (in `About`, `Services`, `Offerings`, `ArchitectureAudit`, `AppliedAI`, `AIInPractice`, `Insights`, `InsightArticle`, `Contact`) all point to *other* pages — none are self-referential.
 
-- At `md` (2 cols): if `articles.length` is odd, last card spans 2.
-- At `xl` (3 cols): if `articles.length % 3 === 1`, last card spans 3; if `% 3 === 2`, last card spans 2.
+The redundancy lives in two **global** components that render on every page:
 
-### Change
+**1. Footer "Next step" CTA card in `src/components/Layout.tsx` (lines 94–118)**
 
-In `src/pages/Insights.tsx`, in the `articles.map(...)` Link, conditionally append span classes to the existing `className`:
+This card is shown on every page except `/contact`. It always renders:
+- Primary: `Start a conversation` → `/contact`
+- Secondary: `See how 109 helps` → `/services`
 
-```ts
-const isLast = index === articles.length - 1;
-const mdSpan = articles.length % 2 === 1 ? "md:col-span-2" : "";
-const xlRemainder = articles.length % 3;
-const xlSpan =
-  xlRemainder === 1 ? "xl:col-span-3" :
-  xlRemainder === 2 ? "xl:col-span-2" : "";
-const spanClass = isLast ? `${mdSpan} ${xlSpan}` : "";
-```
+So on `/services` the secondary button points back to the page you're already on. This is the example you flagged.
 
-Then add `spanClass` to the Link's className. Add `index` to the map callback signature.
+**2. Header "Start a conversation" button in `src/components/Layout.tsx` (lines 45–51 desktop, 77–84 mobile)**
 
-No other files touched. Visual system, voice, and CTA rules unchanged.
+This button shows on every page including `/contact`, so on `/contact` it points to `/contact`. (The footer CTA card already correctly hides itself on `/contact` — the header button is the remaining inconsistency.)
+
+### Recommended improvements
+
+A clean, low-risk pattern: when a CTA's target matches the current route, **swap it for a different relevant destination** rather than hide it (preserves the visual rhythm of the two-button pair).
+
+**Footer CTA card (`Layout.tsx`)** — make the secondary button route-aware:
+
+| Current page | Secondary CTA |
+|---|---|
+| `/services` | `See starting points` → `/offerings` |
+| `/offerings` | `See how 109 helps` → `/services` |
+| `/architecture-audit` | `See starting points` → `/offerings` |
+| `/about` | `See how 109 helps` → `/services` |
+| `/applied-ai` | `Read insights` → `/insights` |
+| `/ai-in-practice` | `See how 109 helps` → `/services` |
+| `/insights` and `/insights/:slug` | `See how 109 helps` → `/services` |
+| `/` (homepage) | `See how 109 helps` → `/services` (current default — fine) |
+
+Implementation: derive `secondaryCta` from `location.pathname` with a small lookup, defaulting to the current `{ label: "See how 109 helps", to: "/services" }`.
+
+**Header "Start a conversation" button (`Layout.tsx`)** — hide the button when already on `/contact` (mirrors the footer-card pattern that's already in place via `isContactPage`). Apply to both desktop (line 45) and mobile (line 77).
+
+### Files touched
+
+- `src/components/Layout.tsx` — add route-aware secondary CTA in the footer card; conditionally hide the header `Start a conversation` button on `/contact`.
+
+No other files need changes. Voice, visual system, and CTA two-button pattern preserved (per `mem://style/ui-components/cta` and `docs/cta-copy-guidelines.md`).
 
