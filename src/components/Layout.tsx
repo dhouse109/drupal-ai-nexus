@@ -28,16 +28,15 @@ const Layout = () => {
   const location = useLocation();
   const isContactPage = location.pathname === "/contact";
 
+  const servicesCta = useSafeCtaTarget("/services", "See how 109 helps", {
+    label: "See starting points",
+    to: "/offerings",
+  });
   const secondaryCtaOverrides: Record<string, { label: string; to: string }> = {
     "/architecture-audit": { label: "See starting points", to: "/offerings" },
     "/applied-ai": { label: "Read insights", to: "/insights" },
   };
-  const secondaryCta =
-    secondaryCtaOverrides[location.pathname] ??
-    useSafeCtaTarget("/services", "See how 109 helps", {
-      label: "See starting points",
-      to: "/offerings",
-    });
+  const secondaryCta = secondaryCtaOverrides[location.pathname] ?? servicesCta;
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
