@@ -14,6 +14,7 @@ import AppliedAI from "./pages/AppliedAI";
 import AIInPractice from "./pages/AIInPractice";
 import Contact from "./pages/Contact";
 import Insights from "./pages/Insights";
+import InsightArticle from "./pages/InsightArticle";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/ai-in-practice" element={<AIInPractice />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/insights" element={<Insights />} />
+            <Route path="/insights/:slug" element={<InsightArticle />} />
             {/* Redirect from old route */}
             <Route path="/drupal-ai" element={<Navigate to="/applied-ai" replace />} />
           </Route>
