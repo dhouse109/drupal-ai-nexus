@@ -155,7 +155,8 @@ const Insights = () => {
                   </span>
                 </div>
               </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
