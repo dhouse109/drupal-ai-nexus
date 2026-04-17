@@ -1,66 +1,58 @@
 
 
-## Clickable card hover effects — audit
+## Replacing "Contact" with "Insights" in the top nav — recommendation
 
-I scanned every `<Link>`/`<NavLink>`-wrapped card across pages and shared sections. There are **4 distinct clickable card patterns** in use, and they are **not consistent**.
+### My take: yes, do it
 
-### The Contact page reference (the "smooth" one you set)
+The current nav has a redundancy problem and a discoverability problem, both of which this swap solves cleanly.
 
-`src/pages/Contact.tsx` line 162 — "Before you reach out" cards:
+**Why "Contact" is redundant in the nav today:**
+- The primary "Start a conversation" pill button (right side of header) already routes to `/contact` and is visually dominant.
+- Having `Contact` as a plain text link *next to* the same-destination pill button gives the user two ways to do the same thing within ~80px of screen space. The pill wins every time — the text link is dead weight.
+- We just hardened the pattern so that pill stays visible on `/contact` itself, reinforcing it as the canonical contact entry point.
+
+**Why "Insights" deserves the slot:**
+- Insights is currently only reachable from the footer ("Proof & Ideas") and from a contextual CTA on `/applied-ai`. It's the main proof-of-thinking surface and it's three layers deep.
+- Per `mem://navigation/structure`, Insights is part of the proof/ideas axis — promoting it to the top nav matches how a principal-led practice typically wants prospects to browse: read the work first, then decide to reach out.
+- It also gives the nav a healthier rhythm: *who we are → what we do → what we've thought about → (CTA to talk)* instead of *who we are → what we do → contact → (CTA to contact)*.
+
+### Proposed changes
+
+**`src/components/Layout.tsx`** — `navItems` array (line 6–13):
+
+From:
+```ts
+{ label: "Contact", to: "/contact" },
 ```
-border border-transparent bg-background p-8
-transition-all duration-300 ease-out
-hover:border-border hover:bg-muted/20
-md:p-10
+To:
+```ts
+{ label: "Insights", to: "/insights" },
 ```
-Key traits: `transition-all`, **`duration-300`**, **`ease-out`**, hover swaps a transparent border → visible border + subtle bg tint.
 
-### The four clickable card variants found
+That's the only line change needed. The pill CTA, mobile menu, and footer all continue to work — the pill already handles contact, and the footer's "Proof & Ideas" group can drop the now-duplicate Insights entry (optional tidy-up below).
 
-| # | File | Lines | Hover classes | Matches Contact? |
-|---|---|---|---|---|
-| A | `src/pages/Contact.tsx` | 160–162 | `transition-all duration-300 ease-out hover:border-border hover:bg-muted/20` | ✅ reference |
-| B | `src/components/ExplorePathsSection.tsx` | 62–64 | `transition-colors duration-300 hover:bg-muted/20` | ⚠️ partial (300ms but `transition-colors`, no border swap) |
-| C | `src/pages/Insights.tsx` featured article | 86–88 | `transition-colors hover:border-primary` (no duration → 150ms default) | ❌ |
-| D | `src/pages/Insights.tsx` recent entries | 134–137 | `transition-colors hover:bg-surface` (no duration → 150ms default) | ❌ |
+### Optional follow-ups (not required, ask if you want them)
 
-That's it for *clickable cards*. Everything else flagged in my search (buttons, nav links, footer links) are pill/button CTAs and outside the scope of this question.
+1. **Footer tidy** — `footerProofIdeas` (line 15–18) currently lists `Insights` and `AI in Practice`. With Insights promoted, the footer group becomes lopsided. Two options:
+   - Leave as-is (footer mirrors site map, repetition is fine)
+   - Drop `Insights` from the footer group and rename it to something like a single `AI in Practice` link, or fold it into Navigation
+   - I'd recommend **leaving it** — footer is a sitemap, redundancy there is expected and helps SEO/scanning.
 
-### Inconsistencies vs. the Contact reference
+2. **Mobile menu** — uses the same `navItems` array, so it updates automatically. No extra work.
 
-1. **Duration mismatch**: Contact uses `duration-300`. Insights featured + recent both omit duration entirely, falling back to Tailwind's 150ms default — this is the "sudden" feel you fixed before.
-2. **Easing mismatch**: Contact uses `ease-out`. None of the others specify easing.
-3. **Transition scope**: Contact uses `transition-all` (so border + bg both animate). Others use `transition-colors`. For the Insights featured card (which animates `border-color`) this is fine, but for consistency `transition-all` keeps the rule simple.
-4. **Hover effect itself**: Contact uses border + subtle bg tint together. The two Insights cards each use only one of the two — featured swaps border color to primary, recent shifts background. Neither matches the gentle dual effect of Contact.
-
-### Proposed fix
-
-Standardize all clickable informational cards on the Contact pattern. Concretely:
-
-**ExplorePathsSection (`src/components/ExplorePathsSection.tsx` line 64)** — already 300ms but missing border + ease:
-- From: `group flex h-full flex-col justify-between bg-background p-8 transition-colors duration-300 hover:bg-muted/20 md:p-10`
-- To: `group flex h-full flex-col justify-between border border-transparent bg-background p-8 transition-all duration-300 ease-out hover:border-border hover:bg-muted/20 md:p-10`
-
-**Insights featured (`src/pages/Insights.tsx` line 88)** — already has a visible border, so just match timing/easing:
-- From: `group block border border-border bg-surface p-8 transition-colors hover:border-primary md:p-10`
-- To: `group block border border-border bg-surface p-8 transition-all duration-300 ease-out hover:border-primary md:p-10`
-- (Keep `hover:border-primary` since this is a *featured* card and the stronger highlight is intentional. Only the smoothness changes.)
-
-**Insights recent entries (`src/pages/Insights.tsx` line 137)** — currently no border at all, snaps bg:
-- From: `` `group block bg-background p-8 transition-colors hover:bg-surface md:p-10 ${spanClass}` ``
-- To: `` `group block border border-transparent bg-background p-8 transition-all duration-300 ease-out hover:border-border hover:bg-muted/20 md:p-10 ${spanClass}` ``
-- Brings these in line with the Contact "browse a little more first" cards, which they functionally resemble.
-
-After this, every clickable card on the site uses the same `transition-all duration-300 ease-out` timing, with the same `hover:border-border hover:bg-muted/20` effect (or `hover:border-primary` only for the deliberately stronger featured-article card).
+3. **Active state on `/contact`** — with `Contact` removed from `navItems`, no nav link will highlight when the user is on `/contact`. The pill button stays visible (per the recent fix) so the page still feels grounded. This is the same pattern used by most practice sites.
 
 ### Files touched
 
-- `src/components/ExplorePathsSection.tsx` (1 className)
-- `src/pages/Insights.tsx` (2 classNames — featured + recent)
+- `src/components/Layout.tsx` (one line: swap `Contact` → `Insights` in `navItems`)
 
-`Contact.tsx` is unchanged — it's the reference.
+### What this is *not* doing
+
+- Not removing the `/contact` route or any contact functionality — the pill CTA is the canonical entry point.
+- Not changing voice, visual system, or CTA pattern.
+- Not touching any page-level content.
 
 ### Memory update
 
-After approval, I'll add a short note to `mem://style/ui-components/cta` (or a new `mem://style/clickable-cards` entry) recording the canonical clickable-card hover recipe so future cards stay consistent.
+After approval, I'll update `mem://navigation/structure` to record: *Top nav promotes Insights as a primary proof surface; `/contact` is reached exclusively via the persistent pill CTA in the header.*
 
