@@ -85,6 +85,13 @@ const deliverables = [
   },
 ];
 
+const inputs = [
+  "Repository or codebase access",
+  "A short system overview",
+  "Any relevant architecture or product documentation",
+  "Access to the people who hold key context, if needed",
+];
+
 const timeline = [
   {
     range: "Days 1–2",
@@ -263,6 +270,29 @@ const ArchitectureAudit = () => {
               <div key={area.title} className="bg-background p-8 md:p-10">
                 <h3 className="font-mono text-xl font-bold tracking-tight md:text-2xl">{area.title}</h3>
                 <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">{area.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border py-20 md:py-24">
+        <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <div>
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              What Damien needs to get started
+            </span>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              A small set of inputs is usually enough
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+              The audit works best when the team can give Damien a direct view of the system and a short explanation of what feels uncertain, fragile, or expensive right now.
+            </p>
+          </div>
+          <div className="grid gap-px bg-border sm:grid-cols-2">
+            {inputs.map((item) => (
+              <div key={item} className="bg-background p-8">
+                <div className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim">{item}</div>
               </div>
             ))}
           </div>

@@ -6,7 +6,7 @@ const offerings = [
   {
     title: "2-Week architecture audit",
     summary:
-      "A short diagnostic for teams that need a clear read on platform risk, delivery friction, and the technical decisions that should happen next.",
+      "A short, principal-led diagnostic for teams that need a clear read on platform risk, delivery friction, and the technical decisions that should happen next.",
     fit: [
       "The platform feels harder to change than it should",
       "You need senior technical judgment before committing to a larger build",
@@ -14,12 +14,16 @@ const offerings = [
     ],
     deliverables: [
       "Architecture review",
-      "Delivery workflow review",
+      "Risk register",
       "Prioritized findings",
-      "Executive readout",
+      "Executive debrief",
     ],
     nextStep:
       "This often leads to a clearer roadmap, a modernization plan, or an ongoing advisory engagement.",
+    cta: {
+      label: "Learn more",
+      to: "/architecture-audit",
+    },
   },
   {
     title: "Prototype-to-production sprint",
@@ -275,12 +279,12 @@ const Offerings = () => {
                   <p className="text-sm leading-relaxed text-muted-foreground">
                     {offering.nextStep}
                   </p>
-                  {offering.title === "2-Week architecture audit" && (
+                  {offering.cta && (
                     <Link
-                      to="/architecture-audit"
+                      to={offering.cta.to}
                       className="mt-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-primary transition-colors hover:text-primary/80"
                     >
-                      Learn more
+                      {offering.cta.label}
                       <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                   )}
