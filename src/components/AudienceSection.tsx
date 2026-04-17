@@ -18,7 +18,7 @@ const audienceGroups = [
     bullets: [
       "Senior help on complex platform work",
       "Architecture and implementation depth",
-      "Better workflows and stronger delivery practices",
+      "Better workflows and delivery practices",
     ],
   },
 ];
@@ -37,7 +37,7 @@ const AudienceSection = () => {
             Who this work is for
           </span>
           <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-            Two kinds of teams tend to get the most value from 109
+            Two kinds of teams usually get the most value from 109.studio
           </h2>
         </motion.div>
         <div className="grid gap-px bg-border md:grid-cols-2">
