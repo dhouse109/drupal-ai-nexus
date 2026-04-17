@@ -85,7 +85,7 @@ const Insights = () => {
 
             <Link
               to={`/insights/${featuredArticle.slug}`}
-              className="group block border border-border bg-surface p-8 transition-colors hover:border-primary md:p-10"
+              className="group block border border-border bg-surface p-8 transition-all duration-300 ease-out hover:border-primary md:p-10"
             >
               <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
                 {featuredArticle.category}
@@ -134,7 +134,7 @@ const Insights = () => {
               <Link
                 key={article.slug}
                 to={`/insights/${article.slug}`}
-                className={`group block bg-background p-8 transition-colors hover:bg-surface md:p-10 ${spanClass}`}
+                className={`group block border border-transparent bg-background p-8 transition-all duration-300 ease-out hover:border-border hover:bg-muted/20 md:p-10 ${spanClass}`}
               >
                 <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
                   {article.category}
