@@ -9,7 +9,7 @@ const navItems = [
   { label: "How We Help", to: "/services" },
   { label: "Offerings", to: "/offerings" },
   { label: "Applied AI", to: "/applied-ai" },
-  { label: "Contact", to: "/contact" },
+  { label: "Insights", to: "/insights" },
 ];
 
 const footerProofIdeas = [
