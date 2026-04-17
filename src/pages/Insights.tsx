@@ -122,11 +122,19 @@ const Insights = () => {
           </div>
 
           <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
-            {articles.map((article) => (
+            {articles.map((article, index) => {
+              const isLast = index === articles.length - 1;
+              const mdSpan = articles.length % 2 === 1 ? "md:col-span-2" : "";
+              const xlRemainder = articles.length % 3;
+              const xlSpan =
+                xlRemainder === 1 ? "xl:col-span-3" :
+                xlRemainder === 2 ? "xl:col-span-2" : "";
+              const spanClass = isLast ? `${mdSpan} ${xlSpan}` : "";
+              return (
               <Link
                 key={article.slug}
                 to={`/insights/${article.slug}`}
-                className="group block bg-background p-8 transition-colors hover:bg-surface md:p-10"
+                className={`group block bg-background p-8 transition-colors hover:bg-surface md:p-10 ${spanClass}`}
               >
                 <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
                   {article.category}
@@ -147,7 +155,8 @@ const Insights = () => {
                   </span>
                 </div>
               </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
