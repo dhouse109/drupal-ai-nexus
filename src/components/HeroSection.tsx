@@ -35,8 +35,8 @@ const HeroSection = () => {
             className="mb-6 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
             109.studio helps founders, agencies, and technical teams shape architecture,
-            modernize platforms, and move complex ideas into systems that hold up in the real
-            world.
+            modernize platforms, and turn complex ideas into working systems teams can run,
+            change, and improve.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
