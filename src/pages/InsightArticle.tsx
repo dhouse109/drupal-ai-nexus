@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, PencilLine } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { getArticleBySlug, type InsightBlock } from "@/data/insights";
@@ -93,6 +93,7 @@ const InsightArticle = () => {
   }
 
   const hasBody = article.body.length > 0;
+  const isDraft = article.status === "draft";
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -113,14 +114,22 @@ const InsightArticle = () => {
               All insights
             </Link>
           </motion.div>
-          <motion.span
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
-            className="mb-6 block font-mono text-xs uppercase tracking-[0.3em] text-primary"
+            className="mb-6 flex flex-wrap items-center gap-3"
           >
-            {article.category}
-          </motion.span>
+            <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              {article.category}
+            </span>
+            {isDraft && (
+              <span className="inline-flex items-center gap-2 border border-border bg-surface px-3 py-1 font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
+                <PencilLine className="h-3 w-3" />
+                Draft note
+              </span>
+            )}
+          </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -168,11 +177,17 @@ const InsightArticle = () => {
               </div>
             ) : (
               <div className="mt-10 border border-border bg-surface p-8 md:p-10">
-                <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                  Notes in progress
+                <div className="flex flex-wrap items-center gap-3">
+                  <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                    Notes in progress
+                  </div>
+                  <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
+                    <PencilLine className="h-3 w-3" />
+                    Draft
+                  </div>
                 </div>
                 <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  This entry is being drafted. The full essay will be published here shortly. In the meantime, the key takeaway above captures the thesis, and the contact form is open if you want to talk through a similar situation now.
+                  This entry is being drafted. The key takeaway above captures the thesis, but the full note is still in progress. If the topic is close to a decision in front of you, the contact form is open now.
                 </p>
               </div>
             )}
