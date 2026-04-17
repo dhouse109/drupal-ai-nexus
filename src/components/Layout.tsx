@@ -121,8 +121,8 @@ const Layout = () => {
                   Start a conversation
                   <ArrowRight className="h-3.5 w-3.5" />
                 </NavLink>
-                <NavLink to="/services" className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
-                  See how 109 helps
+                <NavLink to={secondaryCta.to} className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
+                  {secondaryCta.label}
                 </NavLink>
               </div>
             </div>
