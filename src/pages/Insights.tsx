@@ -145,7 +145,7 @@ const Insights = () => {
               Recent entries
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              A first set of practical essays to anchor the thought-leadership layer
+              More notes from the work
             </h2>
           </div>
 
