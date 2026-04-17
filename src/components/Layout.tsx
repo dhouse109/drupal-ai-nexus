@@ -84,14 +84,16 @@ const Layout = () => {
                   {item.label}
                 </NavLink>
               ))}
-              <NavLink
-                to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-primary px-4 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
-                onClick={() => setOpen(false)}
-              >
-                Start a conversation
-                <ArrowRight className="h-3.5 w-3.5" />
-              </NavLink>
+              {!isContactPage && (
+                <NavLink
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-2 bg-primary px-4 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
+                  onClick={() => setOpen(false)}
+                >
+                  Start a conversation
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </NavLink>
+              )}
             </div>
           </div>
         )}
