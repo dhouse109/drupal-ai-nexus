@@ -1,6 +1,7 @@
 import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X, ArrowRight, Github, Mail } from "lucide-react";
+import { useSafeCtaTarget } from "@/lib/cta";
 
 const navItems = [
   { label: "Home", to: "/" },
@@ -27,13 +28,16 @@ const Layout = () => {
   const location = useLocation();
   const isContactPage = location.pathname === "/contact";
 
-  const secondaryCtaMap: Record<string, { label: string; to: string }> = {
-    "/services": { label: "See starting points", to: "/offerings" },
+  const secondaryCtaOverrides: Record<string, { label: string; to: string }> = {
     "/architecture-audit": { label: "See starting points", to: "/offerings" },
     "/applied-ai": { label: "Read insights", to: "/insights" },
   };
   const secondaryCta =
-    secondaryCtaMap[location.pathname] ?? { label: "See how 109 helps", to: "/services" };
+    secondaryCtaOverrides[location.pathname] ??
+    useSafeCtaTarget("/services", "See how 109 helps", {
+      label: "See starting points",
+      to: "/offerings",
+    });
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
