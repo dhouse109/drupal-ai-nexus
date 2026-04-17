@@ -1,7 +1,8 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, PencilLine } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
+  getDraftArticles,
   getFeaturedArticle,
   getNonFeaturedArticles,
 } from "@/data/insights";
@@ -16,7 +17,8 @@ const topics = [
 
 const Insights = () => {
   const featuredArticle = getFeaturedArticle();
-  const articles = getNonFeaturedArticles();
+  const publishedArticles = getNonFeaturedArticles();
+  const draftArticles = getDraftArticles();
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -45,8 +47,7 @@ const Insights = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            109.studio shares the thinking behind modernization, applied AI, search, delivery
-            systems, and the technical decisions that shape how teams build and operate software.
+            109.studio shares working notes on modernization, applied AI, search, delivery systems, and the technical decisions that shape how teams build and operate software.
           </motion.p>
         </div>
       </section>
@@ -87,8 +88,13 @@ const Insights = () => {
               to={`/insights/${featuredArticle.slug}`}
               className="group block border border-border bg-surface p-8 transition-all duration-300 ease-out hover:border-primary md:p-10"
             >
-              <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                {featuredArticle.category}
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                  {featuredArticle.category}
+                </div>
+                <div className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
+                  {featuredArticle.publishedDate}
+                </div>
               </div>
               <h2 className="mt-4 max-w-3xl font-mono text-3xl font-bold tracking-tight md:text-5xl">
                 {featuredArticle.title}
@@ -110,56 +116,118 @@ const Insights = () => {
         </section>
       )}
 
-      <section className="border-b border-border py-20 md:py-24">
-        <div className="container">
-          <div className="mb-16 max-w-3xl">
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Recent entries
-            </span>
-            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              More notes from the work
-            </h2>
-          </div>
+      {publishedArticles.length > 0 && (
+        <section className="border-b border-border py-20 md:py-24">
+          <div className="container">
+            <div className="mb-16 max-w-3xl">
+              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                Published notes
+              </span>
+              <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+                More finished notes from the work
+              </h2>
+            </div>
 
-          <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
-            {articles.map((article, index) => {
-              const isLast = index === articles.length - 1;
-              const mdSpan = articles.length % 2 === 1 ? "md:col-span-2" : "";
-              const xlRemainder = articles.length % 3;
-              const xlSpan =
-                xlRemainder === 1 ? "xl:col-span-3" :
-                xlRemainder === 2 ? "xl:col-span-2" : "";
-              const spanClass = isLast ? `${mdSpan} ${xlSpan}` : "";
-              return (
-              <Link
-                key={article.slug}
-                to={`/insights/${article.slug}`}
-                className={`group block border border-transparent bg-background p-8 transition-all duration-300 ease-out hover:border-border hover:bg-muted/20 md:p-10 ${spanClass}`}
-              >
-                <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                  {article.category}
-                </div>
-                <h3 className="mt-4 font-mono text-2xl font-bold tracking-tight">
-                  {article.title}
-                </h3>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {article.description}
-                </p>
-                <div className="mt-6 flex items-center justify-between gap-4">
-                  <div className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
-                    {article.readTime}
-                  </div>
-                  <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary">
-                    Read
-                    <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </Link>
-              );
-            })}
+            <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
+              {publishedArticles.map((article, index) => {
+                const isLast = index === publishedArticles.length - 1;
+                const mdSpan = publishedArticles.length % 2 === 1 ? "md:col-span-2" : "";
+                const xlRemainder = publishedArticles.length % 3;
+                const xlSpan =
+                  xlRemainder === 1 ? "xl:col-span-3" :
+                  xlRemainder === 2 ? "xl:col-span-2" : "";
+                const spanClass = isLast ? `${mdSpan} ${xlSpan}` : "";
+                return (
+                  <Link
+                    key={article.slug}
+                    to={`/insights/${article.slug}`}
+                    className={`group block border border-transparent bg-background p-8 transition-all duration-300 ease-out hover:border-border hover:bg-muted/20 md:p-10 ${spanClass}`}
+                  >
+                    <div className="flex flex-wrap items-center gap-3">
+                      <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                        {article.category}
+                      </div>
+                      <div className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
+                        {article.publishedDate}
+                      </div>
+                    </div>
+                    <h3 className="mt-4 font-mono text-2xl font-bold tracking-tight">
+                      {article.title}
+                    </h3>
+                    <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+                      {article.description}
+                    </p>
+                    <div className="mt-6 flex items-center justify-between gap-4">
+                      <div className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
+                        {article.readTime}
+                      </div>
+                      <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary">
+                        Read
+                        <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {draftArticles.length > 0 && (
+        <section className="border-b border-border py-20 md:py-24">
+          <div className="container">
+            <div className="mb-16 max-w-3xl">
+              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                Notes in progress
+              </span>
+              <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+                A few draft ideas that are being written up now
+              </h2>
+              <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+                These are not linked yet on purpose. Each one has a clear thesis, but the full note is still being drafted.
+              </p>
+            </div>
+
+            <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
+              {draftArticles.map((article, index) => {
+                const isLast = index === draftArticles.length - 1;
+                const mdSpan = draftArticles.length % 2 === 1 ? "md:col-span-2" : "";
+                const xlRemainder = draftArticles.length % 3;
+                const xlSpan =
+                  xlRemainder === 1 ? "xl:col-span-3" :
+                  xlRemainder === 2 ? "xl:col-span-2" : "";
+                const spanClass = isLast ? `${mdSpan} ${xlSpan}` : "";
+                return (
+                  <div
+                    key={article.slug}
+                    className={`bg-background p-8 md:p-10 ${spanClass}`}
+                  >
+                    <div className="flex flex-wrap items-center gap-3">
+                      <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                        {article.category}
+                      </div>
+                      <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
+                        <PencilLine className="h-3 w-3" />
+                        Draft
+                      </div>
+                      <div className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
+                        {article.publishedDate}
+                      </div>
+                    </div>
+                    <h3 className="mt-4 font-mono text-2xl font-bold tracking-tight">
+                      {article.title}
+                    </h3>
+                    <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+                      {article.keyTakeaway}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="py-20 md:py-24">
         <div className="container border border-border bg-surface p-8 md:p-10">
