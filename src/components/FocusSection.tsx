@@ -6,21 +6,21 @@ const services = [
     icon: Workflow,
     title: "Fractional CTO and technical advisory",
     description:
-      "Senior guidance for teams that need clearer architecture, stronger technical judgment, and a better plan before delivery gets more expensive.",
+      "Senior guidance for teams that need clearer architecture, steadier technical judgment, and a better plan before delivery gets more expensive.",
     tags: ["Strategy", "Architecture", "Roadmaps"],
   },
   {
     icon: Blocks,
     title: "Platform and product engineering",
     description:
-      "Design and build content-rich platforms, delivery systems, and search or workflow features with maintainability and long-term change in mind.",
+      "Design and build content-rich platforms, delivery systems, and search or workflow features that teams can maintain as the work changes.",
     tags: ["Platforms", "Workflows", "Integrations"],
   },
   {
     icon: GitFork,
     title: "Research and prototype sprints",
     description:
-      "Explore new product ideas, internal tools, and technical directions in a focused way before committing to a larger build.",
+      "Explore new product ideas, internal tools, and technical directions in a focused sprint before committing to a larger build.",
     tags: ["Prototypes", "Feasibility", "Experiments"],
   },
 ];
