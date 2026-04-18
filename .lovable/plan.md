@@ -1,30 +1,26 @@
 
-## Issue
+The previous fix added `pt-1 md:pt-1.5` but the numbers still sit too high. Looking at the screenshot, the numbers (01, 02, 03) are clearly above the title baseline. The title is `text-xl font-semibold` (~20px) while the number is `text-sm` (~14px), so a larger nudge is needed.
 
-In both `src/pages/Services.tsx` (line 216) and `src/pages/Offerings.tsx` (line 332), the numbered list renders as:
+Note: the user is on `/about`, but the same numbered list pattern appears on About too. Let me check.
 
-```tsx
-<div className="grid gap-4 md:grid-cols-[60px_1fr]">
-  <div className="font-mono text-sm text-text-dim">0{index + 1}</div>
-  <div>
-    <h3 className="font-mono text-xl font-semibold">{step.title}</h3>
-    ...
-```
-
-The number column is `text-sm` while the title is `text-xl font-semibold`. Both sit at the top of their grid cell, so the smaller number appears to float above the title's optical baseline (visible in the screenshot — "01" sits noticeably higher than "Start with the problem").
+Actually the screenshot shows "HOW DAMIEN WORKS" — that's the About page. Let me verify by checking About.tsx for the same pattern, then increase the padding across all pages using this pattern.
 
 ## Fix
 
-Nudge the number down with a small top padding so its baseline aligns with the title's first line. This matches the same fix already applied to `InsightArticle.tsx`.
+Increase the top padding on the number column to better align with the larger title baseline. Change `pt-1 md:pt-1.5` → `pt-2 md:pt-2.5`.
 
-**Change in `src/pages/Services.tsx` (line 216):**
+**Files to update** (same pattern in each):
+- `src/pages/Services.tsx` (line 216)
+- `src/pages/Offerings.tsx` (line 332)
+- `src/pages/About.tsx` (if same pattern present — will verify and update)
+
+Replace:
 ```tsx
 <div className="pt-1 font-mono text-sm text-text-dim md:pt-1.5">0{index + 1}</div>
 ```
-
-**Change in `src/pages/Offerings.tsx` (line 332):**
+With:
 ```tsx
-<div className="pt-1 font-mono text-sm text-text-dim md:pt-1.5">0{index + 1}</div>
+<div className="pt-2 font-mono text-sm text-text-dim md:pt-2.5">0{index + 1}</div>
 ```
 
-Two-line, copy-only change. No layout or design system changes.
+Copy-only change, no layout impact.
