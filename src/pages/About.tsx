@@ -172,7 +172,7 @@ const About = () => {
           <div className="space-y-8">
             {workingStyle.map((item, index) => (
               <div key={item.title} className="grid gap-4 md:grid-cols-[60px_1fr]">
-                <div className="font-mono text-sm text-text-dim">0{index + 1}</div>
+                <div className="pt-2 font-mono text-sm text-text-dim md:pt-2.5">0{index + 1}</div>
                 <div>
                   <h3 className="font-mono text-xl font-semibold">{item.title}</h3>
                   <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">{item.description}</p>
