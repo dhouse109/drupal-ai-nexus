@@ -127,7 +127,7 @@ const AppliedAI = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            A decision framework for applied AI work
+            A decision framework for applied AI
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -135,7 +135,8 @@ const AppliedAI = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            Start with the workflow, content system, or search problem in front of you. Then decide whether AI improves speed, coverage, or answer quality without creating more operating risk than value.
+            Start with the workflow, content system, or search problem in front of you. Then decide whether AI improves
+            speed, coverage, or answer quality without creating more operating risk than value.
           </motion.p>
         </div>
       </section>
@@ -152,10 +153,12 @@ const AppliedAI = () => {
           </div>
           <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
             <p>
-              This page is the decision layer. It is about where AI tends to earn its keep: inside product workflows, content operations, and retrieval-backed search.
+              This page is the decision layer. It is about where AI tends to earn its keep: inside product workflows,
+              content operations, and retrieval-backed search.
             </p>
             <p>
-              The standard is practical. Can the team review it, operate it, measure it, and keep it useful after the novelty wears off? If not, it is probably not the right first move.
+              The standard is practical. Can the team review it, operate it, measure it, and keep it useful after the
+              novelty wears off? If not, it is probably not the right first move.
             </p>
           </div>
         </div>
@@ -284,7 +287,8 @@ const AppliedAI = () => {
               What needs to be true before anything goes live
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              109.studio produces applied AI that a team can understand, review, operate, and extend. If it cannot meet that bar, it is not ready for release.
+              109.studio produces applied AI that a team can understand, review, operate, and extend. If it cannot meet
+              that bar, it is not ready for release.
             </p>
           </div>
           <div className="space-y-4">
@@ -309,7 +313,8 @@ const AppliedAI = () => {
                 Need a senior read on whether AI fits here?
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                Start with the workflow or content problem in front of you, or look at the concrete patterns on the AI in Practice page first.
+                Start with the workflow or content problem in front of you, or look at the concrete patterns on the AI
+                in Practice page first.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
