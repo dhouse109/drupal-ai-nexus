@@ -329,7 +329,7 @@ const Offerings = () => {
           <div className="space-y-8">
             {processSteps.map((step, index) => (
               <div key={step.title} className="grid gap-4 md:grid-cols-[60px_1fr]">
-                <div className="pt-2 font-mono text-sm text-text-dim md:pt-2.5">0{index + 1}</div>
+                <div className="pt-1.5 font-mono text-sm text-text-dim md:pt-2">0{index + 1}</div>
                 <div>
                   <h3 className="font-mono text-xl font-semibold">{step.title}</h3>
                   <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
