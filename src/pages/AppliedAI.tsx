@@ -223,12 +223,30 @@ const AppliedAI = () => {
             </h2>
           </div>
           <div className="space-y-6">
-            {startingPoints.map((item) => (
-              <div key={item.problem} className="border-b border-border pb-6 last:border-b-0 last:pb-0">
-                <div className="font-mono text-sm uppercase tracking-[0.2em] text-text-dim">{item.problem}</div>
-                <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">{item.recommendation}</p>
-              </div>
-            ))}
+            {startingPoints.map((item) => {
+              const isAuditRow = item.recommendation.includes("2-Week architecture audit");
+              return (
+                <div key={item.problem} className="border-b border-border pb-6 last:border-b-0 last:pb-0">
+                  <div className="font-mono text-sm uppercase tracking-[0.2em] text-text-dim">{item.problem}</div>
+                  <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
+                    {isAuditRow ? (
+                      <>
+                        Start with the{" "}
+                        <Link
+                          to="/architecture-audit"
+                          className="text-primary underline-offset-4 transition-colors hover:underline"
+                        >
+                          2-Week Architecture Audit
+                        </Link>
+                        .
+                      </>
+                    ) : (
+                      item.recommendation
+                    )}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

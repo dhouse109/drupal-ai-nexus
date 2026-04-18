@@ -62,33 +62,6 @@ const proofPoints = [
   },
 ];
 
-const guideItems = [
-  {
-    problem: "You need clarity before approving a larger technical effort",
-    recommendation: "Start with the 2-Week architecture audit.",
-  },
-  {
-    problem: "You have a concept, mockup, or brittle prototype that needs real structure",
-    recommendation: "Start with the prototype-to-production sprint.",
-  },
-  {
-    problem: "You want AI to support a real workflow without making the system harder to trust",
-    recommendation: "Start with the agentic workflow design sprint.",
-  },
-  {
-    problem: "Content operations, accessibility, or metadata work are absorbing too much time",
-    recommendation: "Start with the content operations audit and automation plan.",
-  },
-  {
-    problem: "You need ongoing senior technical direction across roadmap and delivery",
-    recommendation: "Start with fractional CTO advisory.",
-  },
-  {
-    problem: "Modernization and delivery systems need a reset before the next phase of work",
-    recommendation: "Start with the platform modernization and delivery reset.",
-  },
-];
-
 const processSteps = [
   {
     title: "Start with the problem",
@@ -223,43 +196,6 @@ const Services = () => {
             >
               See starting points
             </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border py-20 md:py-24">
-        <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <div>
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Where to start</span>
-            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Choose the starting point that matches the decision in front of you
-            </h2>
-          </div>
-          <div className="space-y-6">
-            {guideItems.map((item) => {
-              const isAuditRow = item.recommendation.includes("2-Week architecture audit");
-              return (
-                <div key={item.problem} className="border-b border-border pb-6 last:border-b-0 last:pb-0">
-                  <div className="font-mono text-sm uppercase tracking-[0.2em] text-text-dim">{item.problem}</div>
-                  <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
-                    {isAuditRow ? (
-                      <>
-                        Start with the{" "}
-                        <Link
-                          to="/architecture-audit"
-                          className="text-primary underline-offset-4 transition-colors hover:underline"
-                        >
-                          2-Week Architecture Audit
-                        </Link>
-                        .
-                      </>
-                    ) : (
-                      item.recommendation
-                    )}
-                  </p>
-                </div>
-              );
-            })}
           </div>
         </div>
       </section>
