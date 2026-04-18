@@ -281,10 +281,10 @@ const AppliedAI = () => {
               Release standards
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              What has to be true before this work is released
+              What needs to be true before anything goes live
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              109.studio is interested in releasing AI work that a team can understand, review, operate, and extend. If it cannot meet that bar, it is not ready for release.
+              109.studio produces applied AI that a team can understand, review, operate, and extend. If it cannot meet that bar, it is not ready for release.
             </p>
           </div>
           <div className="space-y-4">
