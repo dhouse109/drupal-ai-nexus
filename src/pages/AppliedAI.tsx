@@ -144,7 +144,7 @@ const AppliedAI = () => {
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              How Damien decides where AI fits
+              How 109 decides where AI fits
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
               Use AI where the workflow gets better, not where the demo looks impressive
