@@ -53,7 +53,7 @@ const ExperienceSection = () => {
               transition={{ delay: index * 0.08 }}
               className="grid gap-6 border-b border-border py-10 md:grid-cols-[80px_minmax(0,320px)_1fr] md:gap-8 md:py-12"
             >
-              <div className="font-mono text-sm text-text-dim">{area.number}</div>
+              <div className="font-mono text-sm leading-9 text-text-dim">{area.number}</div>
               <h3 className="font-mono text-2xl font-semibold tracking-tight">{area.title}</h3>
               <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
                 {area.description}
