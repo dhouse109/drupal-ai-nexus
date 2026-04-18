@@ -57,7 +57,7 @@ const renderBlock = (block: InsightBlock, index: number) => {
               key={i}
               className="flex gap-4 border-l border-border pl-4 text-base leading-relaxed text-muted-foreground md:text-lg"
             >
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
+              <span className="shrink-0 pt-1 font-mono text-xs uppercase tracking-[0.2em] text-primary md:pt-1.5">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span>{item}</span>
