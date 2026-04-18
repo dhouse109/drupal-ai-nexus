@@ -117,29 +117,6 @@ const offerings = [
   },
 ];
 
-const evidenceItems = [
-  {
-    metric: "3-to-4 week delivery paths",
-    detail:
-      "Prototype-to-production and modernization work can move much faster when the effort is shaped around architecture, decisions, and disciplined execution from the start.",
-  },
-  {
-    metric: "40% to 60% better answer accuracy",
-    detail:
-      "Applied AI work becomes more useful when context, retrieval, and review paths are designed into the system.",
-  },
-  {
-    metric: "6,000+ content items with full audit coverage",
-    detail:
-      "Content operations engagements can expand far beyond sample-based review without scaling manual effort linearly.",
-  },
-  {
-    metric: "20% lower PR review time",
-    detail:
-      "Delivery-system and DevEx improvements create measurable gains even before a broader modernization effort is complete.",
-  },
-];
-
 const guideItems = [
   {
     problem: "You need clarity before approving a larger technical effort",
@@ -296,31 +273,6 @@ const Offerings = () => {
       </section>
 
       <section className="border-b border-border py-20 md:py-24">
-        <div className="container">
-          <div className="mb-16 max-w-3xl">
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Selected proof
-            </span>
-            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              A few recent signals of the kind of leverage these offers are built to create
-            </h2>
-          </div>
-          <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-4">
-            {evidenceItems.map((item) => (
-              <div key={item.metric} className="bg-background p-8">
-                <div className="font-mono text-xl font-semibold tracking-tight md:text-2xl">
-                  {item.metric}
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-                  {item.detail}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border py-20 md:py-24">
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
@@ -329,6 +281,9 @@ const Offerings = () => {
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
               Choose the one that matches the decision in front of you
             </h2>
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+              If you are comparing offers, this is the shortest path through the page. The goal is to help you match the decision in front of you to the right first engagement.
+            </p>
           </div>
           <div className="space-y-6">
             {guideItems.map((item) => {
