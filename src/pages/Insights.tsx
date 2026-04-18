@@ -231,29 +231,29 @@ const Insights = () => {
 
       <section className="py-20 md:py-24">
         <div className="container border border-border bg-surface p-8 md:p-10">
-          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
             <div>
               <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
                 Next step
               </span>
-              <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
                 Working through something similar?
               </h2>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
                 Start with your situation. If one of these ideas sounds close to the problem in front of you, Damien can help you sort the technical decision, delivery risk, or AI question that comes next.
               </p>
             </div>
-            <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
+            <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-primary px-8 py-4 font-mono text-sm uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90"
+                className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
               >
                 Talk through a similar challenge
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-3.5 w-3.5" />
               </Link>
               <Link
                 to="/offerings"
-                className="inline-flex items-center justify-center border border-border px-8 py-4 font-mono text-sm uppercase tracking-widest transition-colors hover:border-primary hover:text-primary"
+                className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
               >
                 See starting points
               </Link>
