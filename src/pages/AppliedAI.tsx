@@ -145,20 +145,20 @@ const AppliedAI = () => {
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              HOW WE DECIDE WHERE AI FITS
+              HOW TO DECIDE WHERE AI FITS
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Use AI where the workflow gets better, not where the demo looks impressive
+              The best place to begin is where the work already has structure
             </h2>
           </div>
           <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
             <p>
-              This page is the decision layer. It is about where AI tends to earn its keep: inside product workflows,
-              content operations, and retrieval-backed search.
+              This page is about the kinds of environments where applied AI tends to hold up: workflows with clear owners, 
+              content operations with review paths, and search systems grounded in structured information.
             </p>
             <p>
-              The standard is practical. Can the team review it, operate it, measure it, and keep it useful after the
-              novelty wears off? If not, it is probably not the right first move.
+              That is usually the right starting point because the team can evaluate the output, 
+              measure the result, and keep improving the system after release.
             </p>
           </div>
         </div>
