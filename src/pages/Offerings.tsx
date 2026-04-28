@@ -20,6 +20,26 @@ const offerings = [
     ],
     nextStep:
       "This often leads to a clearer roadmap, a modernization plan, or an ongoing advisory engagement.",
+    cta: { label: "See the audit", to: "/architecture-audit" },
+  },
+  {
+    title: "Drupal AI readiness review",
+    summary:
+      "A Drupal-specific starting point for teams evaluating AI in content operations, search, editorial workflows, delivery systems, or Drupal AI Initiative-aligned work.",
+    fit: [
+      "You already use Drupal and need to decide where AI should fit",
+      "The team wants practical AI support without losing governance or maintainability",
+      "Search, content operations, accessibility, or workflows are the likely pressure points",
+    ],
+    deliverables: [
+      "Drupal AI opportunity map",
+      "Content and workflow review",
+      "Search and retrieval direction",
+      "Recommended next step",
+    ],
+    nextStep:
+      "This often leads to a scoped Drupal AI sprint, RAG/search retrofit, content operations accelerator, or modernization roadmap.",
+    cta: { label: "Explore Drupal AI", to: "/drupal-ai" },
   },
   {
     title: "Prototype-to-production sprint",
@@ -142,6 +162,10 @@ const guideItems = [
     recommendation: "Start with the 2-Week architecture audit.",
   },
   {
+    problem: "You already use Drupal and want to apply AI without turning the platform into an experiment",
+    recommendation: "Start with the Drupal AI readiness review.",
+  },
+  {
     problem: "You have a concept, mockup, or brittle prototype that needs real structure",
     recommendation: "Start with the prototype-to-production sprint.",
   },
@@ -210,7 +234,7 @@ const Offerings = () => {
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
             These offers are designed to help you choose the right way to begin, whether the
-            work in front of you is product, platform, modernization, or applied AI.
+            work in front of you is product, platform, modernization, Drupal, or applied AI.
           </motion.p>
         </div>
       </section>
@@ -222,7 +246,7 @@ const Offerings = () => {
               Starting offers
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Six practical ways to begin
+              Seven practical ways to begin
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
               Some teams need a short diagnostic. Some need a focused sprint. Some need ongoing senior direction. What matters is choosing the starting point that gives the work better structure.
@@ -275,6 +299,15 @@ const Offerings = () => {
                   <p className="text-sm leading-relaxed text-muted-foreground">
                     {offering.nextStep}
                   </p>
+                  {offering.cta && (
+                    <Link
+                      to={offering.cta.to}
+                      className="mt-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-primary transition-colors hover:text-primary/80"
+                    >
+                      {offering.cta.label}
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}
@@ -364,11 +397,10 @@ const Offerings = () => {
             <div>
               <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
               <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                If you are exploring an applied AI direction, start with the problem you want to improve
+                Not sure which path fits? Start by describing the situation.
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                You can start a conversation if it would help to talk through the situation, or see practical examples
-                first.
+                You can start a conversation if it would help to talk through the situation, or explore the Drupal AI page if your platform is already Drupal-based.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
@@ -380,10 +412,10 @@ const Offerings = () => {
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
               <Link
-                to="/ai-in-practice"
+                to="/drupal-ai"
                 className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
               >
-                See AI in practice
+                Explore Drupal AI
               </Link>
             </div>
           </div>
