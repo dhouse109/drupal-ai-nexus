@@ -7,11 +7,13 @@ const navItems = [
   { label: "About", to: "/about" },
   { label: "How We Help", to: "/services" },
   { label: "Offerings", to: "/offerings" },
-  { label: "Applied AI", to: "/applied-ai" },
+  { label: "Drupal AI", to: "/drupal-ai" },
   { label: "Contact", to: "/contact" },
 ];
 
 const footerProofIdeas = [
+  { label: "Drupal AI", to: "/drupal-ai" },
+  { label: "Applied AI", to: "/applied-ai" },
   { label: "AI in Practice", to: "/ai-in-practice" },
   { label: "Insights", to: "/insights" },
 ];
@@ -109,8 +111,8 @@ const Layout = () => {
                   Start a conversation
                   <ArrowRight className="h-3.5 w-3.5" />
                 </NavLink>
-                <NavLink to="/services" className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
-                  See how 109 helps
+                <NavLink to="/drupal-ai" className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
+                  Explore Drupal AI
                 </NavLink>
               </div>
             </div>
