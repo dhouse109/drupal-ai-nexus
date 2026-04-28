@@ -9,11 +9,13 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Offerings from "./pages/Offerings";
+import ArchitectureAudit from "./pages/ArchitectureAudit";
 import AppliedAI from "./pages/AppliedAI";
 import DrupalAI from "./pages/DrupalAI";
 import AIInPractice from "./pages/AIInPractice";
 import Contact from "./pages/Contact";
 import Insights from "./pages/Insights";
+import InsightArticle from "./pages/InsightArticle";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +33,7 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/offerings" element={<Offerings />} />
+            <Route path="/architecture-audit" element={<ArchitectureAudit />} />
             <Route path="/applied-ai" element={<AppliedAI />} />
             <Route path="/drupal-ai" element={<DrupalAI />} />
             <Route path="/ai-in-practice" element={<AIInPractice />} />

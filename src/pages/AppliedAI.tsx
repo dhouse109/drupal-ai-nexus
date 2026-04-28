@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const focusAreas = [
   {
     icon: Bot,
-    title: "AI in products and workflows",
+    title: "Workflow support inside products and teams",
     description:
       "Use AI where it can support a real product feature, operational workflow, or internal process without making the system harder to trust or maintain.",
     fit: [
@@ -17,7 +17,7 @@ const focusAreas = [
   },
   {
     icon: FileSearch,
-    title: "Content operations and accessibility",
+    title: "Content operations with human review",
     description:
       "Apply AI to content audits, metadata, accessibility support, and editorial workflows where the work is repetitive, coverage matters, and human review still belongs in the loop.",
     fit: [
@@ -29,7 +29,7 @@ const focusAreas = [
   },
   {
     icon: Network,
-    title: "Search, retrieval, and knowledge systems",
+    title: "Retrieval and answer quality",
     description:
       "Design search and retrieval systems that combine structured content, semantic lookup, and AI-assisted querying so users and teams can get to the right answer faster.",
     fit: [
@@ -100,11 +100,11 @@ const principles = [
   },
 ];
 
-const nonGoals = [
-  "Black-box systems making consequential decisions without review",
-  "AI features that are harder to govern than the work they replace",
-  "Proof-of-concept demos that collapse the moment they meet real delivery constraints",
-  "Automation that creates more confusion for editors, developers, or operators",
+const releaseStandards = [
+  "Human review stays in the loop for consequential decisions",
+  "Governance burden should go down, not up",
+  "The pattern has to hold up under real delivery conditions",
+  "The system should reduce confusion for editors, developers, and operators",
 ];
 
 const AppliedAI = () => {
@@ -127,7 +127,7 @@ const AppliedAI = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            Applied AI that stays practical and under control
+            A decision framework for applied AI
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -135,8 +135,8 @@ const AppliedAI = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            109.studio helps teams apply AI to real product, search, and content problems in
-            ways that stay grounded, reviewable, and maintainable.
+            Start with the workflow, content system, or search problem in front of you. Then decide whether AI improves
+            speed, coverage, or answer quality without creating more operating risk than value.
           </motion.p>
         </div>
       </section>
@@ -145,20 +145,20 @@ const AppliedAI = () => {
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Where this work tends to fit
+              HOW TO DECIDE WHERE AI FITS
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Three areas where applied AI usually becomes commercially useful
+              The best place to begin is where the work already has structure
             </h2>
           </div>
           <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
             <p>
-              Some teams need help improving an internal workflow. Some need better content operations. Others need
-              stronger search or retrieval on top of a large knowledge base.
+              This page is about the kinds of environments where applied AI tends to hold up: workflows with clear owners, 
+              content operations with review paths, and search systems grounded in structured information.
             </p>
             <p>
-              The common thread is simple: the AI work needs to be tied to a real operating problem and implemented in a
-              way the team can understand, review, and keep running over time.
+              That is usually the right starting point because the team can evaluate the output, 
+              measure the result, and keep improving the system after release.
             </p>
           </div>
         </div>
@@ -226,12 +226,30 @@ const AppliedAI = () => {
             </h2>
           </div>
           <div className="space-y-6">
-            {startingPoints.map((item) => (
-              <div key={item.problem} className="border-b border-border pb-6 last:border-b-0 last:pb-0">
-                <div className="font-mono text-sm uppercase tracking-[0.2em] text-text-dim">{item.problem}</div>
-                <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">{item.recommendation}</p>
-              </div>
-            ))}
+            {startingPoints.map((item) => {
+              const isAuditRow = item.recommendation.includes("2-Week architecture audit");
+              return (
+                <div key={item.problem} className="border-b border-border pb-6 last:border-b-0 last:pb-0">
+                  <div className="font-mono text-sm uppercase tracking-[0.2em] text-text-dim">{item.problem}</div>
+                  <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
+                    {isAuditRow ? (
+                      <>
+                        Start with the{" "}
+                        <Link
+                          to="/architecture-audit"
+                          className="text-primary underline-offset-4 transition-colors hover:underline"
+                        >
+                          2-Week Architecture Audit
+                        </Link>
+                        .
+                      </>
+                    ) : (
+                      item.recommendation
+                    )}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -263,14 +281,18 @@ const AppliedAI = () => {
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              What this is not
+              Release standards
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              A few things 109.studio is not interested in releasing
+              What needs to be true before anything goes live
             </h2>
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+              109.studio produces applied AI that a team can understand, review, operate, and extend. If it cannot meet
+              that bar, it is not ready for release.
+            </p>
           </div>
           <div className="space-y-4">
-            {nonGoals.map((item) => (
+            {releaseStandards.map((item) => (
               <div
                 key={item}
                 className="border-b border-border pb-4 text-base leading-relaxed text-muted-foreground md:text-lg last:border-b-0 last:pb-0"
@@ -288,11 +310,11 @@ const AppliedAI = () => {
             <div>
               <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
               <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                If you are exploring an applied AI direction, start with the problem you want to improve
+                Need a senior read on whether AI fits here?
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                You can start a conversation if it would help to talk through the situation, or see practical examples
-                first.
+                Start with the workflow or content problem in front of you, or look at the concrete patterns on the AI
+                in Practice page first.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">

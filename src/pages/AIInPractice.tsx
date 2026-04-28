@@ -4,64 +4,52 @@ import { motion } from "framer-motion";
 
 const examples = [
   {
-    title: "Content operations that stay reviewable",
+    title: "Editorial support inside a publishing workflow",
     description:
-      "Applied AI can help editors with summarization, classification, metadata, and content support, but the work still needs to stay visible, editable, and under control.",
-    outcomes: [
-      "Less repetitive editorial work",
-      "Better content support at scale",
-      "Human review where it matters",
-    ],
+      "Applied AI can help with summaries, metadata suggestions, classification, and first-pass drafting, but the work still needs to stay visible, editable, and under control.",
+    outcomes: ["Draft summaries", "Metadata suggestions", "Human review in the loop"],
   },
   {
-    title: "Search and retrieval that understand intent",
+    title: "Retrieval-backed answers on structured content",
     description:
       "Search becomes much more useful when structured content, retrieval, and AI are designed together to help people find the right thing faster across complex content sets.",
-    outcomes: [
-      "More useful discovery",
-      "Better support for complex content sets",
-      "A clearer path from question to answer",
-    ],
+    outcomes: ["Grounded answers", "Better discovery", "Fewer dead ends"],
   },
   {
-    title: "Internal workflows that reduce delivery friction",
+    title: "Release and documentation support for delivery teams",
     description:
-      "Some of the best AI work happens behind the scenes: helping teams summarize information, support handoffs, generate first-pass documentation, or reduce repetitive technical work.",
-    outcomes: [
-      "Faster execution on repeatable tasks",
-      "Stronger delivery support systems",
-      "More time for higher-value judgment",
-    ],
+      "Some of the most useful AI work is internal: drafting release notes from merged PRs, turning meeting transcripts into action items, or generating first-pass documentation that someone on the team edits before it lands.",
+    outcomes: ["PR review summaries", "Drafted release notes", "First-pass documentation"],
   },
 ];
 
 const workStories = [
   {
-    title: "Modernizing high-stakes platforms",
+    title: "Editorial support inside a live content operation",
     context:
-      "Large public-facing platforms often carry years of infrastructure complexity, content sprawl, and delivery risk. In those environments, the work usually starts with architecture, migration planning, and the release systems needed to change the platform safely.",
+      "A publishing team is spending too much time on repetitive support work: drafting short summaries, normalizing metadata, checking categorization, or creating accessible first passes for content that still needs an editor's judgment.",
     role:
-      "That kind of work means staying close to both strategy and implementation: helping shape the migration path, improving the technical foundation, and making sure the delivery process can support change without creating avoidable instability.",
+      "The AI layer helps with the first pass, but the workflow stays visible and reviewable. Editors can accept, revise, or ignore the suggestion instead of working around a black box that sits outside the actual process.",
     result:
-      "The result is usually a platform that is easier to operate, safer to evolve, and better prepared for the next round of product or service work.",
+      "The result is lower editorial drag, better coverage across a larger content estate, and a workflow that still makes it obvious where human review belongs.",
   },
   {
-    title: "Reducing friction on content-rich systems",
+    title: "Retrieval-backed answers on a content-rich platform",
     context:
-      "Some teams do not need a rebuild. They need the platform and delivery workflow to stop fighting them. The real issue is often inconsistent environments, fragile deployments, or too much technical drag around everyday work.",
+      "A platform has strong content, but the search experience still leaves people in dead ends. The issue is not the absence of information. It is the gap between a user's question and the structure of the content they need.",
     role:
-      "The work here is about tightening the path from local development to production, improving the delivery workflow, documenting the system, and making the platform easier for the team to use and maintain.",
+      "The work combines retrieval, structured content, and answer generation so the AI layer is grounded in actual content instead of improvising from a prompt alone.",
     result:
-      "When that foundation improves, teams tend to release software with more confidence, onboard faster, and spend less time recovering from preventable delivery problems.",
+      "That usually leads to better answer quality, fewer no-result searches, and a clearer path from question to useful next step.",
   },
   {
-    title: "Exploring applied AI without losing the thread of delivery",
+    title: "Internal delivery support around PRs, releases, and handoffs",
     context:
-      "AI becomes useful when it is tied to a real workflow, product need, or operating problem. Small teams especially need a practical way to test ideas before they commit too much complexity to them.",
+      "Teams lose time in the gaps around delivery: turning merged work into release notes, summarizing review context, writing first-pass docs, or carrying meeting decisions into the next round of implementation.",
     role:
-      "This usually means focused prototype and workflow design work: exploring where AI can help with content operations, retrieval, internal tooling, or delivery support while keeping the output reviewable and grounded in real operating conditions.",
+      "AI helps with the repetitive synthesis work while keeping the final output in the hands of the people already responsible for release quality, delivery judgment, and technical accuracy.",
     result:
-      "That leads to better next-step decisions, more reusable patterns, and less time wasted on ideas that sounded interesting but were never going to hold up in practice.",
+      "The payoff is less friction around handoffs, cleaner delivery support, and more team time spent on the work that actually needs senior technical judgment.",
   },
 ];
 
@@ -115,7 +103,7 @@ const AIInPractice = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            What practical AI looks like
+            Three workflow patterns that make applied AI useful
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -123,8 +111,7 @@ const AIInPractice = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            These examples show how AI becomes useful when it is tied to real workflows,
-            content operations, search, and delivery systems.
+            This page is the examples layer: AI tied to a content operation, AI tied to search and retrieval, and AI tied to internal delivery work. Each one starts with a workflow that already exists.
           </motion.p>
         </div>
       </section>
@@ -133,18 +120,18 @@ const AIInPractice = () => {
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Why this matters
+              How this page is different
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Applied AI becomes most useful when it improves a real workflow
+              These are example patterns, not a theory of AI
             </h2>
           </div>
           <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
             <p>
-              Some teams need help with content operations. Some need better search. Some need stronger internal tooling or cleaner delivery systems. In each case, the value comes from solving an actual point of friction.
+              Each pattern starts with work a team already owns: editorial support, retrieval-backed answers, or delivery support around PRs, releases, and documentation.
             </p>
             <p>
-              That is the standard 109.studio works from: use AI where it makes the system more useful, the workflow more efficient, or the delivery path easier to sustain.
+              The point is to show what the work looks like when it is scoped tightly enough to review, improve, and keep running after the first experiment.
             </p>
           </div>
         </div>
@@ -157,7 +144,7 @@ const AIInPractice = () => {
               Representative applications
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              A few examples of where this work tends to become useful
+              Three patterns in plain terms
             </h2>
           </div>
           <div className="grid gap-px bg-border md:grid-cols-3">
@@ -187,7 +174,7 @@ const AIInPractice = () => {
               Work patterns
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              A few short narratives that show how this work tends to create value
+              What these patterns look like when scoped as real work
             </h2>
           </div>
           <div className="space-y-px bg-border">
@@ -279,10 +266,10 @@ const AIInPractice = () => {
                 Next step
               </span>
               <h2 className="font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                Interested in a practical next step?
+                Want to test one of these patterns on your own workflow?
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                If you are trying to make a workflow, search experience, or content system more useful, Damien can help you think through a grounded next move.
+                Start a conversation if you want help scoping one of these patterns, or step back to the Applied AI page if you want the broader decision framework first.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
@@ -294,10 +281,10 @@ const AIInPractice = () => {
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
               <Link
-                to="/offerings"
+                to="/applied-ai"
                 className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
               >
-                See starting points
+                See the decision framework
               </Link>
             </div>
           </div>

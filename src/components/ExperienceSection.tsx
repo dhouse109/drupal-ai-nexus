@@ -5,13 +5,13 @@ const experienceAreas = [
     number: "01",
     title: "Platform modernization",
     description:
-      "Modernizing high-stakes platforms through cloud migration, architecture work, delivery improvements, and systems designed to stay useful as requirements change.",
+      "Modernizing high-stakes platforms through cloud migration, architecture work, delivery improvements, and systems that remain workable as requirements change.",
   },
   {
     number: "02",
     title: "Applied AI in product and delivery work",
     description:
-      "Using AI where it improves the product, the workflow, or the speed of execution, while keeping the work observable, reviewable, and grounded in real operating conditions.",
+      "Using AI where it improves the product, the workflow, or the speed of execution, while keeping outputs visible, grounded, and under human judgment.",
   },
   {
     number: "03",
@@ -35,11 +35,11 @@ const ExperienceSection = () => {
             Selected experience
           </span>
           <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-            Experience shaped by platform modernization, applied AI work, and technical leadership
+            Experience shaped by modernization, applied AI, and technical leadership
           </h2>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            The work spans public-sector modernization, product architecture, AI-enabled delivery,
-            and the internal systems teams need to release software reliably over time.
+            The work spans public-sector modernization, product architecture, delivery systems,
+            and applied AI work tied to products and teams.
           </p>
         </motion.div>
 
@@ -53,7 +53,7 @@ const ExperienceSection = () => {
               transition={{ delay: index * 0.08 }}
               className="grid gap-6 border-b border-border py-10 md:grid-cols-[80px_minmax(0,320px)_1fr] md:gap-8 md:py-12"
             >
-              <div className="font-mono text-sm text-text-dim">{area.number}</div>
+              <div className="font-mono text-sm leading-9 text-text-dim">{area.number}</div>
               <h3 className="font-mono text-2xl font-semibold tracking-tight">{area.title}</h3>
               <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
                 {area.description}
