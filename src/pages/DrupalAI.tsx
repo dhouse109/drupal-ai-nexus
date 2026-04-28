@@ -1,39 +1,99 @@
-import { ArrowRight, Bot, Code2, Github, Network, Workflow } from "lucide-react";
+import { ArrowRight, Bot, FileSearch, Network, ShieldCheck, Workflow } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const supportAreas = [
+const usefulAreas = [
   {
-    icon: Bot,
-    title: "Editorial support inside Drupal workflows",
+    icon: FileSearch,
+    title: "Content operations",
     description:
-      "Summaries, metadata suggestions, and drafting support that live inside moderation and publishing flows instead of outside the CMS.",
+      "Use AI to support summaries, metadata, alt text, classification, content audits, and editorial QA while keeping review inside the publishing workflow.",
+    outcomes: ["Metadata support", "Accessibility assistance", "Reviewable editorial workflows"],
   },
   {
     icon: Network,
     title: "Retrieval over structured Drupal content",
     description:
-      "Search and answer experiences built on content models, taxonomy, Search API, and retrieval patterns that actually use Drupal's structure.",
+      "Design RAG and semantic search patterns that work from structured Drupal content, cite useful sources, and reduce the gap between a user's question and the answer they need.",
+    outcomes: ["Grounded answers", "Better discovery", "Fewer dead ends"],
   },
   {
     icon: Workflow,
-    title: "Delivery support in a Drupal team's CI",
+    title: "Workflow and agentic support",
     description:
-      "PR summaries, release notes, regression checks, and support tooling around deploys, tickets, and handoffs.",
+      "Scope AI agents around real Drupal workflows, explicit permissions, and human handoffs so automation helps the team without quietly bypassing governance.",
+    outcomes: ["Scoped actions", "Human review paths", "Safer workflow support"],
   },
   {
-    icon: Code2,
-    title: "Reusable Drupal starter patterns",
+    icon: Bot,
+    title: "Delivery and modernization",
     description:
-      "Reference implementations, starter assets, and documentation a team can adapt instead of rebuilding the same pattern from scratch.",
+      "Use AI-assisted planning, code review, documentation, and migration support to improve delivery without treating the platform as an experiment.",
+    outcomes: ["Clearer implementation plans", "Better documentation", "Lower delivery friction"],
   },
 ];
 
-const outputs = [
-  "Editorial workflow prototypes",
-  "Retrieval and Search API experiments",
-  "Delivery support tooling",
-  "Reference implementations and docs",
+const startingPoints = [
+  {
+    title: "Drupal AI Readiness Review",
+    description:
+      "A focused read on whether the current content model, workflows, search layer, hosting, and governance practices can support practical AI work.",
+    fit: "Best when your team knows AI may help, but needs a safer way to decide where to begin.",
+  },
+  {
+    title: "RAG Search and Observability Retrofit",
+    description:
+      "A targeted improvement for content-rich Drupal sites where users need better answers and teams need visibility into AI behavior, cost, and quality.",
+    fit: "Best when search quality, discovery, or support load is the pressure point.",
+  },
+  {
+    title: "AI Content Operations Accelerator",
+    description:
+      "A practical engagement for editorial teams dealing with metadata, alt text, classification, content debt, accessibility support, or review backlog.",
+    fit: "Best when manual content operations are absorbing too much time.",
+  },
+  {
+    title: "Agentic Drupal Workflow Sprint",
+    description:
+      "A scoped sprint for testing an AI-assisted workflow inside Drupal, with defined action boundaries, review paths, and release criteria.",
+    fit: "Best when you want to test one workflow before scaling automation further.",
+  },
+  {
+    title: "AI-Ready Drupal Migration",
+    description:
+      "A modernization path that treats a Drupal upgrade or rebuild as the moment to improve structure, delivery, governance, and AI readiness together.",
+    fit: "Best when migration work is already on the table and AI capability should not be bolted on later.",
+  },
+];
+
+const initiativeCommitments = [
+  "Build and document Drupal AI patterns in public where possible",
+  "Explore RAG, AI observability, guardrails, MCP, and human-in-the-loop workflows",
+  "Contribute issues, documentation, examples, or implementation notes as the practice matures",
+  "Help clients adopt community-maintained Drupal capabilities instead of fragile one-off wrappers",
+];
+
+const proofItems = [
+  {
+    title: "Deep Drupal platform experience",
+    description:
+      "More than 20 years of platform engineering work, including Drupal modernization, custom modules, structured content, search, accessibility, and delivery systems.",
+  },
+  {
+    title: "Principal-led architecture judgment",
+    description:
+      "The work is led directly by Damien, connecting strategy, implementation, governance, and delivery decisions in one engagement.",
+  },
+  {
+    title: "Applied AI tied to real workflows",
+    description:
+      "AI is treated as part of content operations, discovery, delivery, and workflow support rather than a detached feature sitting outside the platform.",
+  },
+  {
+    title: "Open-source and R&D mindset",
+    description:
+      "The practice is shaped around learning in public, reusable patterns, and contribution paths that make the work more durable over time.",
+  },
 ];
 
 const DrupalAI = () => {
@@ -56,7 +116,7 @@ const DrupalAI = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            Where AI fits inside a Drupal platform
+            Practical AI work for Drupal platforms, content teams, and agencies
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -64,8 +124,29 @@ const DrupalAI = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            109.studio looks at AI in the places Drupal teams actually operate: editorial workflows, structured content and search, and delivery support around releases.
+            109.studio helps Drupal teams apply AI where it can improve content operations, search, editorial workflows,
+            platform delivery, and user guidance without making the system harder to trust or maintain.
           </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-10 flex flex-col gap-4 sm:flex-row"
+          >
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
+            >
+              Start a Drupal AI conversation
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+            <Link
+              to="/architecture-audit"
+              className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
+            >
+              See the 2-Week Audit
+            </Link>
+          </motion.div>
         </div>
       </section>
 
@@ -73,18 +154,22 @@ const DrupalAI = () => {
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Drupal-specific patterns
+              Why Drupal matters
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Start with the content model, editorial workflow, and release process
+              Drupal already has many of the control surfaces AI needs
             </h2>
           </div>
           <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
             <p>
-              This page is the Drupal-specific layer. The useful work usually starts with the structure already in the system: content types, taxonomy, moderation states, search setup, and the team&apos;s actual publishing process.
+              Drupal is useful for AI because it is already built around structured content, roles, permissions,
+              revisions, workflows, taxonomies, and editorial governance. Those are the same surfaces teams need when AI
+              has to support real work instead of sitting outside the platform.
             </p>
             <p>
-              The same goes for delivery. A Drupal team already has a release path, review process, and CI shape. AI should support those operating conditions instead of pretending they do not exist.
+              The goal is to use that foundation carefully: connect AI to the parts of the system that already have
+              ownership, review paths, and operating rules. That makes the work easier to inspect, improve, and maintain
+              after the first experiment.
             </p>
           </div>
         </div>
@@ -94,22 +179,29 @@ const DrupalAI = () => {
         <div className="container">
           <div className="mb-16 max-w-3xl">
             <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Current areas of work
+              Where AI becomes useful
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Four ways this work tends to show up in Drupal
+              Start with the Drupal work your team already owns
             </h2>
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+              The strongest opportunities usually sit inside existing content, search, workflow, and delivery problems.
+              That is where AI can be evaluated against real output instead of abstract promise.
+            </p>
           </div>
-          <div className="grid gap-px bg-border md:grid-cols-2">
-            {supportAreas.map((area) => (
+          <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-4">
+            {usefulAreas.map((area) => (
               <div key={area.title} className="bg-background p-8 md:p-10">
                 <area.icon className="mb-6 h-6 w-6 text-primary" />
-                <h3 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">
-                  {area.title}
-                </h3>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {area.description}
-                </p>
+                <h3 className="font-mono text-xl font-bold tracking-tight md:text-2xl">{area.title}</h3>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">{area.description}</p>
+                <div className="mt-6 space-y-3">
+                  {area.outcomes.map((item) => (
+                    <div key={item} className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
+                      {item}
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -117,28 +209,26 @@ const DrupalAI = () => {
       </section>
 
       <section className="border-b border-border py-20 md:py-24">
-        <div className="container grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:gap-20">
+        <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              How the work is approached
+              Drupal AI Initiative alignment
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Built around real Drupal operating conditions
+              109.studio is building toward the same practical direction: open, inspectable, and useful AI
             </h2>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              The useful work usually depends on the shape of the content model, the moderation flow, the search configuration, and the deploy process already in place. That is what makes it different from a generic demo.
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+              The Drupal AI Initiative is important because it treats AI as part of the platform, not a disconnected
+              overlay. 109.studio is aligning its Drupal AI work with that direction while building contribution paths
+              through documentation, examples, and client work that can become reusable learning.
             </p>
           </div>
           <div className="border border-border bg-surface p-8 md:p-10">
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Likely outputs
-            </span>
-            <div className="space-y-3">
-              {outputs.map((item) => (
-                <div
-                  key={item}
-                  className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim"
-                >
+            <ShieldCheck className="mb-6 h-6 w-6 text-primary" />
+            <h3 className="font-mono text-2xl font-bold tracking-tight">Commitments that guide the work</h3>
+            <div className="mt-8 space-y-4">
+              {initiativeCommitments.map((item) => (
+                <div key={item} className="border-b border-border pb-4 text-base leading-relaxed text-muted-foreground last:border-b-0 last:pb-0 md:text-lg">
                   {item}
                 </div>
               ))}
@@ -148,17 +238,61 @@ const DrupalAI = () => {
       </section>
 
       <section className="border-b border-border py-20 md:py-24">
+        <div className="container">
+          <div className="mb-16 max-w-3xl">
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              Starting points
+            </span>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              Five ways to begin Drupal AI work without overcommitting too early
+            </h2>
+          </div>
+          <div className="space-y-px bg-border">
+            {startingPoints.map((item) => (
+              <div key={item.title} className="grid gap-6 bg-background p-8 md:p-10 lg:grid-cols-[0.8fr_1fr]">
+                <div>
+                  <h3 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">{item.title}</h3>
+                  <p className="mt-4 font-mono text-xs uppercase tracking-[0.2em] text-text-dim">{item.fit}</p>
+                </div>
+                <p className="text-base leading-relaxed text-muted-foreground md:text-lg">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border py-20 md:py-24">
+        <div className="container">
+          <div className="mb-16 max-w-3xl">
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+              Why 109.studio fits this work
+            </span>
+            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
+              Drupal depth, applied AI judgment, and hands-on architecture in one place
+            </h2>
+          </div>
+          <div className="grid gap-px bg-border md:grid-cols-2">
+            {proofItems.map((item) => (
+              <div key={item.title} className="bg-background p-8 md:p-10">
+                <h3 className="font-mono text-xl font-bold tracking-tight md:text-2xl">{item.title}</h3>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-24">
         <div className="container border border-border bg-surface p-8 md:p-10">
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
             <div>
-              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                Broader patterns
-              </span>
+              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
               <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                See the general workflow patterns behind this work
+                Have a Drupal platform where AI might help, but you are not sure where to start?
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                AI in Practice shows the broader workflow patterns this Drupal-specific work belongs to.
+                Send a short note about the site, the workflow, or the decision in front of you. Damien will review it
+                personally and suggest the clearest next step.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
@@ -166,49 +300,15 @@ const DrupalAI = () => {
                 to="/contact"
                 className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
               >
-                Start a conversation
+                Start a Drupal AI conversation
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
               <Link
-                to="/ai-in-practice"
+                to="/offerings"
                 className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
               >
-                See AI in practice
+                Compare starting points
               </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-24">
-        <div className="container">
-          <div className="max-w-4xl">
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Collaboration
-            </span>
-            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              Exploring Drupal-specific AI work?
-            </h2>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              109.studio is interested in working with agencies, technical teams, and community-aligned partners exploring editorial workflows, structured content retrieval, and delivery support patterns inside Drupal.
-            </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-primary px-8 py-4 font-mono text-sm uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90"
-              >
-                Discuss a collaboration
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <a
-                href="https://github.com/dhouse109/drupal-ai-nexus"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 border border-border px-8 py-4 font-mono text-sm uppercase tracking-widest transition-colors hover:border-primary hover:text-primary"
-              >
-                View the repo
-                <Github className="h-4 w-4" />
-              </a>
             </div>
           </div>
         </div>

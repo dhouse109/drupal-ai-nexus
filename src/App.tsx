@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,6 +11,7 @@ import Services from "./pages/Services";
 import Offerings from "./pages/Offerings";
 import ArchitectureAudit from "./pages/ArchitectureAudit";
 import AppliedAI from "./pages/AppliedAI";
+import DrupalAI from "./pages/DrupalAI";
 import AIInPractice from "./pages/AIInPractice";
 import Contact from "./pages/Contact";
 import Insights from "./pages/Insights";
@@ -34,12 +35,10 @@ const App = () => (
             <Route path="/offerings" element={<Offerings />} />
             <Route path="/architecture-audit" element={<ArchitectureAudit />} />
             <Route path="/applied-ai" element={<AppliedAI />} />
+            <Route path="/drupal-ai" element={<DrupalAI />} />
             <Route path="/ai-in-practice" element={<AIInPractice />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/insights" element={<Insights />} />
-            <Route path="/insights/:slug" element={<InsightArticle />} />
-            {/* Redirect from old route */}
-            <Route path="/drupal-ai" element={<Navigate to="/applied-ai" replace />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
