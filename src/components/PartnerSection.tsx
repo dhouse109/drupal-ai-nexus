@@ -35,12 +35,12 @@ const PartnerSection = () => {
           </span>
           <Handshake className="mb-6 h-10 w-10 text-primary" />
           <h2 className="mb-6 font-mono text-3xl font-bold tracking-tight md:text-5xl">
-            A good fit for delivery teams that want senior technical depth without adding another layer
+            A good fit for teams that need senior technical depth inside active delivery work
           </h2>
           <p className="max-w-2xl leading-relaxed text-muted-foreground">
-            109.studio works best with agencies, product groups, and technical teams that need
-            help with architecture, focused implementation, or applied R&D on work that is already
-            moving.
+            109.studio works best with agencies, product groups, and technical teams that already
+            have work underway and need sharper architecture, focused implementation, or applied R&D
+            to move it forward.
           </p>
         </motion.div>
 
@@ -74,7 +74,7 @@ const PartnerSection = () => {
             to="/services"
             className="inline-flex items-center justify-center border border-border px-8 py-4 font-mono text-sm uppercase tracking-widest transition-colors hover:border-primary hover:text-primary"
           >
-            Review how 109.studio works
+            Review how 109 works
           </Link>
         </div>
       </div>

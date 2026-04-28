@@ -63,7 +63,7 @@ const About = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            Expert-led. Hands-on. Designed to outlast the engagement.
+            Senior technical leadership that stays close to the build
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -71,9 +71,8 @@ const About = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            109.studio helps founders, agencies, and technical teams move from concept to
-            production with clearer architecture, stronger delivery systems, and senior technical
-            judgment that stays close to the work.
+            109.studio helps founders, agencies, and technical teams move from concept to production with clearer
+            architecture, stronger delivery systems, and senior technical judgment that stays close to the work.
           </motion.p>
         </div>
       </section>
@@ -172,7 +171,7 @@ const About = () => {
           <div className="space-y-8">
             {workingStyle.map((item, index) => (
               <div key={item.title} className="grid gap-4 md:grid-cols-[60px_1fr]">
-                <div className="font-mono text-sm text-text-dim">0{index + 1}</div>
+                <div className="font-mono text-sm leading-7 text-text-dim">0{index + 1}</div>
                 <div>
                   <h3 className="font-mono text-xl font-semibold">{item.title}</h3>
                   <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">{item.description}</p>
@@ -192,7 +191,8 @@ const About = () => {
                 Have a platform, product, or technical initiative that needs senior judgment?
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                Start with your situation. A short note is enough. Damien can help you figure out whether the right next step is an audit, a sprint, or ongoing advisory support.
+                Start with your situation. A short note is enough. Damien can help you figure out whether the right next
+                step is an audit, a sprint, or ongoing advisory support.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">

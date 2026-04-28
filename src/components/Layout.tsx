@@ -1,6 +1,7 @@
 import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X, ArrowRight, Github, Mail } from "lucide-react";
+import { useSafeCtaTarget } from "@/lib/cta";
 
 const navItems = [
   { label: "Home", to: "/" },
@@ -28,12 +29,24 @@ const Layout = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const isContactPage = location.pathname === "/contact";
+  // Note: header "Start a conversation" CTA stays visible on /contact for visual consistency.
+  // Only the footer card is hidden on /contact (handled below via isContactPage).
+
+  const servicesCta = useSafeCtaTarget("/services", "See how 109 helps", {
+    label: "See starting points",
+    to: "/offerings",
+  });
+  const secondaryCtaOverrides: Record<string, { label: string; to: string }> = {
+    "/architecture-audit": { label: "See starting points", to: "/offerings" },
+    "/applied-ai": { label: "Read insights", to: "/insights" },
+  };
+  const secondaryCta = secondaryCtaOverrides[location.pathname] ?? servicesCta;
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
-        <div className="container flex h-16 items-center justify-between">
-          <NavLink to="/" className="font-mono text-lg font-bold tracking-tight">
+        <div className="container flex h-16 items-center justify-between gap-8">
+          <NavLink to="/" className="shrink-0 font-mono text-lg font-bold tracking-tight">
             <span className="text-primary">109</span>
             <span className="text-foreground">.studio</span>
           </NavLink>
@@ -100,7 +113,7 @@ const Layout = () => {
               <div>
                 <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
                 <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                  Need a clearer path for a product, platform, or modernization effort?
+                  Have a system, a platform, or a decision you want a senior read on?
                 </h2>
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
                   Start with a short note about what you are building or where things feel stuck. Damien will review it personally and suggest the clearest next step.
@@ -126,7 +139,7 @@ const Layout = () => {
               <span className="text-foreground">.studio</span>
             </div>
             <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-              109.studio is a principal-led practice for platform architecture, product engineering, and applied AI work.
+              109.studio is a principal-led practice for platform architecture, product engineering, and applied AI.
             </p>
           </div>
 

@@ -6,7 +6,7 @@ const offerings = [
   {
     title: "2-Week architecture audit",
     summary:
-      "A short diagnostic for teams that need a clear read on platform risk, delivery friction, and the technical decisions that should happen next.",
+      "A short, principal-led diagnostic for teams that need a clear read on platform risk, delivery friction, and the technical decisions that should happen next.",
     fit: [
       "The platform feels harder to change than it should",
       "You need senior technical judgment before committing to a larger build",
@@ -14,9 +14,9 @@ const offerings = [
     ],
     deliverables: [
       "Architecture review",
-      "Delivery workflow review",
+      "Risk register",
       "Prioritized findings",
-      "Executive readout",
+      "Executive debrief",
     ],
     nextStep:
       "This often leads to a clearer roadmap, a modernization plan, or an ongoing advisory engagement.",
@@ -130,29 +130,6 @@ const offerings = [
     ],
     nextStep:
       "This often leads to a modernization roadmap, a delivery-systems overhaul, or follow-on engineering support.",
-  },
-];
-
-const evidenceItems = [
-  {
-    metric: "3-to-4 week delivery paths",
-    detail:
-      "Prototype-to-production and modernization work can move much faster when the effort is shaped around architecture, decisions, and disciplined execution from the start.",
-  },
-  {
-    metric: "40% to 60% better answer accuracy",
-    detail:
-      "Applied AI work becomes more useful when context, retrieval, and review paths are designed into the system.",
-  },
-  {
-    metric: "6,000+ content items with full audit coverage",
-    detail:
-      "Content operations engagements can expand far beyond sample-based review without scaling manual effort linearly.",
-  },
-  {
-    metric: "20% lower PR review time",
-    detail:
-      "Delivery-system and DevEx improvements create measurable gains even before a broader modernization effort is complete.",
   },
 ];
 
@@ -316,31 +293,6 @@ const Offerings = () => {
       </section>
 
       <section className="border-b border-border py-20 md:py-24">
-        <div className="container">
-          <div className="mb-16 max-w-3xl">
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Selected proof
-            </span>
-            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              A few recent signals of the kind of leverage these offers are built to create
-            </h2>
-          </div>
-          <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-4">
-            {evidenceItems.map((item) => (
-              <div key={item.metric} className="bg-background p-8">
-                <div className="font-mono text-xl font-semibold tracking-tight md:text-2xl">
-                  {item.metric}
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-                  {item.detail}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border py-20 md:py-24">
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
@@ -349,18 +301,37 @@ const Offerings = () => {
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
               Choose the one that matches the decision in front of you
             </h2>
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+              If you are comparing offers, this is the shortest path through the page. The goal is to help you match the decision in front of you to the right first engagement.
+            </p>
           </div>
           <div className="space-y-6">
-            {guideItems.map((item) => (
-              <div key={item.problem} className="border-b border-border pb-6 last:border-b-0 last:pb-0">
-                <div className="font-mono text-sm uppercase tracking-[0.2em] text-text-dim">
-                  {item.problem}
+            {guideItems.map((item) => {
+              const isAuditRow = item.recommendation.includes("2-Week architecture audit");
+              return (
+                <div key={item.problem} className="border-b border-border pb-6 last:border-b-0 last:pb-0">
+                  <div className="font-mono text-sm uppercase tracking-[0.2em] text-text-dim">
+                    {item.problem}
+                  </div>
+                  <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
+                    {isAuditRow ? (
+                      <>
+                        Start with the{" "}
+                        <Link
+                          to="/architecture-audit"
+                          className="text-primary underline-offset-4 transition-colors hover:underline"
+                        >
+                          2-Week Architecture Audit
+                        </Link>
+                        .
+                      </>
+                    ) : (
+                      item.recommendation
+                    )}
+                  </p>
                 </div>
-                <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {item.recommendation}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -378,7 +349,7 @@ const Offerings = () => {
           <div className="space-y-8">
             {processSteps.map((step, index) => (
               <div key={step.title} className="grid gap-4 md:grid-cols-[60px_1fr]">
-                <div className="font-mono text-sm text-text-dim">0{index + 1}</div>
+                <div className="font-mono text-sm leading-7 text-text-dim">0{index + 1}</div>
                 <div>
                   <h3 className="font-mono text-xl font-semibold">{step.title}</h3>
                   <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
