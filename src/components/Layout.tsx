@@ -8,7 +8,7 @@ const navItems = [
   { label: "About", to: "/about" },
   { label: "How We Help", to: "/services" },
   { label: "Offerings", to: "/offerings" },
-  { label: "Drupal AI", to: "/drupal-ai" },
+  { label: "Applied AI", to: "/applied-ai" },
   { label: "Contact", to: "/contact" },
 ];
 
@@ -38,7 +38,8 @@ const Layout = () => {
   });
   const secondaryCtaOverrides: Record<string, { label: string; to: string }> = {
     "/architecture-audit": { label: "See starting points", to: "/offerings" },
-    "/applied-ai": { label: "Read insights", to: "/insights" },
+    "/applied-ai": { label: "Explore Drupal AI", to: "/drupal-ai" },
+    "/drupal-ai": { label: "Explore applied AI", to: "/applied-ai" },
   };
   const secondaryCta = secondaryCtaOverrides[location.pathname] ?? servicesCta;
 
@@ -124,8 +125,8 @@ const Layout = () => {
                   Start a conversation
                   <ArrowRight className="h-3.5 w-3.5" />
                 </NavLink>
-                <NavLink to="/drupal-ai" className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
-                  Explore Drupal AI
+                <NavLink to={secondaryCta.to} className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
+                  {secondaryCta.label}
                 </NavLink>
               </div>
             </div>
