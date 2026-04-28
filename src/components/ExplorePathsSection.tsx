@@ -16,16 +16,16 @@ const paths = [
     to: "/offerings",
   },
   {
-    title: "Explore applied AI",
+    title: "Explore Drupal AI",
     description:
-      "A closer look at how 109 approaches AI in products, workflows, search, and content operations.",
-    to: "/applied-ai",
+      "A Drupal-specific path for content platforms, search, editorial workflows, and AI Initiative-aligned work.",
+    to: "/drupal-ai",
   },
   {
-    title: "See AI in practice",
+    title: "Explore applied AI",
     description:
-      "Examples of how applied AI becomes useful when it is tied to real workflows and delivery conditions.",
-    to: "/ai-in-practice",
+      "A broader decision framework for AI in products, workflows, search, and content operations.",
+    to: "/applied-ai",
   },
 ];
 
@@ -46,7 +46,7 @@ const ExplorePathsSection = () => {
             Choose the path that fits where you are
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-            You can start with a broader view of the practice, compare shaped starting points, or go deeper into the applied AI work and examples.
+            You can start with a broader view of the practice, compare shaped starting points, or go deeper into Drupal-specific and applied AI work.
           </p>
         </motion.div>
 
