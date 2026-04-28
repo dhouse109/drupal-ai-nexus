@@ -12,7 +12,7 @@ const usefulAreas = [
   },
   {
     icon: Network,
-    title: "Search and retrieval",
+    title: "Retrieval over structured Drupal content",
     description:
       "Design RAG and semantic search patterns that work from structured Drupal content, cite useful sources, and reduce the gap between a user's question and the answer they need.",
     outcomes: ["Grounded answers", "Better discovery", "Fewer dead ends"],

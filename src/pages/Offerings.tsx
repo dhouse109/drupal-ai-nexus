@@ -6,7 +6,7 @@ const offerings = [
   {
     title: "2-Week architecture audit",
     summary:
-      "A short diagnostic for teams that need a clear read on platform risk, delivery friction, and the technical decisions that should happen next.",
+      "A short, principal-led diagnostic for teams that need a clear read on platform risk, delivery friction, and the technical decisions that should happen next.",
     fit: [
       "The platform feels harder to change than it should",
       "You need senior technical judgment before committing to a larger build",
@@ -14,12 +14,16 @@ const offerings = [
     ],
     deliverables: [
       "Architecture review",
-      "Delivery workflow review",
+      "Risk register",
       "Prioritized findings",
-      "Executive readout",
+      "Executive debrief",
     ],
     nextStep:
       "This often leads to a clearer roadmap, a modernization plan, or an ongoing advisory engagement.",
+    cta: {
+      label: "Learn more",
+      to: "/architecture-audit",
+    },
   },
   {
     title: "Prototype-to-production sprint",
@@ -110,29 +114,6 @@ const offerings = [
     ],
     nextStep:
       "This often leads to a modernization roadmap, a delivery-systems overhaul, or follow-on engineering support.",
-  },
-];
-
-const evidenceItems = [
-  {
-    metric: "3-to-4 week delivery paths",
-    detail:
-      "Prototype-to-production and modernization work can move much faster when the effort is shaped around architecture, decisions, and disciplined execution from the start.",
-  },
-  {
-    metric: "40% to 60% better answer accuracy",
-    detail:
-      "Applied AI work becomes more useful when context, retrieval, and review paths are designed into the system.",
-  },
-  {
-    metric: "6,000+ content items with full audit coverage",
-    detail:
-      "Content operations engagements can expand far beyond sample-based review without scaling manual effort linearly.",
-  },
-  {
-    metric: "20% lower PR review time",
-    detail:
-      "Delivery-system and DevEx improvements create measurable gains even before a broader modernization effort is complete.",
   },
 ];
 
@@ -275,32 +256,16 @@ const Offerings = () => {
                   <p className="text-sm leading-relaxed text-muted-foreground">
                     {offering.nextStep}
                   </p>
+                  {offering.cta && (
+                    <Link
+                      to={offering.cta.to}
+                      className="mt-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-primary transition-colors hover:text-primary/80"
+                    >
+                      {offering.cta.label}
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  )}
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border py-20 md:py-24">
-        <div className="container">
-          <div className="mb-16 max-w-3xl">
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Selected proof
-            </span>
-            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              A few recent signals of the kind of leverage these offers are built to create
-            </h2>
-          </div>
-          <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-4">
-            {evidenceItems.map((item) => (
-              <div key={item.metric} className="bg-background p-8">
-                <div className="font-mono text-xl font-semibold tracking-tight md:text-2xl">
-                  {item.metric}
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-                  {item.detail}
-                </p>
               </div>
             ))}
           </div>
@@ -316,18 +281,37 @@ const Offerings = () => {
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
               Choose the one that matches the decision in front of you
             </h2>
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+              If you are comparing offers, this is the shortest path through the page. The goal is to help you match the decision in front of you to the right first engagement.
+            </p>
           </div>
           <div className="space-y-6">
-            {guideItems.map((item) => (
-              <div key={item.problem} className="border-b border-border pb-6 last:border-b-0 last:pb-0">
-                <div className="font-mono text-sm uppercase tracking-[0.2em] text-text-dim">
-                  {item.problem}
+            {guideItems.map((item) => {
+              const isAuditRow = item.recommendation.includes("2-Week architecture audit");
+              return (
+                <div key={item.problem} className="border-b border-border pb-6 last:border-b-0 last:pb-0">
+                  <div className="font-mono text-sm uppercase tracking-[0.2em] text-text-dim">
+                    {item.problem}
+                  </div>
+                  <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
+                    {isAuditRow ? (
+                      <>
+                        Start with the{" "}
+                        <Link
+                          to="/architecture-audit"
+                          className="text-primary underline-offset-4 transition-colors hover:underline"
+                        >
+                          2-Week Architecture Audit
+                        </Link>
+                        .
+                      </>
+                    ) : (
+                      item.recommendation
+                    )}
+                  </p>
                 </div>
-                <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {item.recommendation}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -345,7 +329,7 @@ const Offerings = () => {
           <div className="space-y-8">
             {processSteps.map((step, index) => (
               <div key={step.title} className="grid gap-4 md:grid-cols-[60px_1fr]">
-                <div className="font-mono text-sm text-text-dim">0{index + 1}</div>
+                <div className="font-mono text-sm leading-7 text-text-dim">0{index + 1}</div>
                 <div>
                   <h3 className="font-mono text-xl font-semibold">{step.title}</h3>
                   <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -364,11 +348,10 @@ const Offerings = () => {
             <div>
               <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
               <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                If you are exploring an applied AI direction, start with the problem you want to improve
+                Not sure which one fits? Start by describing the situation.
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                You can start a conversation if it would help to talk through the situation, or see practical examples
-                first.
+                You can start a conversation if it would help to talk through the situation, or see how 109 helps first.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
@@ -380,10 +363,10 @@ const Offerings = () => {
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
               <Link
-                to="/ai-in-practice"
+                to="/services"
                 className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
               >
-                See AI in practice
+                See how 109 helps
               </Link>
             </div>
           </div>

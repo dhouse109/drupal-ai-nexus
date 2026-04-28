@@ -186,6 +186,16 @@ const Contact = () => {
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               Damien reviews each inquiry personally and typically replies within one business day.
             </p>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              If you want a productized first step,{" "}
+              <Link
+                to="/architecture-audit"
+                className="text-primary underline-offset-4 transition-colors hover:underline"
+              >
+                the 2-Week Architecture Audit
+              </Link>{" "}
+              is a low-risk way to begin.
+            </p>
 
             <div className="mt-8 border border-border bg-surface p-6">
               <div className="inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
