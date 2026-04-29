@@ -16,6 +16,7 @@ const footerProofIdeas = [
   { label: "Drupal AI", to: "/drupal-ai" },
   { label: "Applied AI", to: "/applied-ai" },
   { label: "AI in Practice", to: "/ai-in-practice" },
+  { label: "Drupal AI", to: "/drupal-ai" },
   { label: "Insights", to: "/insights" },
 ];
 
@@ -117,15 +118,22 @@ const Layout = () => {
                   Have a system, a platform, or a decision you want a senior read on?
                 </h2>
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                  Start with a short note about what you are building or where things feel stuck. Damien will review it personally and suggest the clearest next step.
+                  Start with a short note about what you are building or where things feel stuck. Damien will review it
+                  personally and suggest the clearest next step.
                 </p>
               </div>
               <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
-                <NavLink to="/contact" className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90">
+                <NavLink
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
+                >
                   Start a conversation
                   <ArrowRight className="h-3.5 w-3.5" />
                 </NavLink>
-                <NavLink to={secondaryCta.to} className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary">
+                <NavLink
+                  to={secondaryCta.to}
+                  className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
+                >
                   {secondaryCta.label}
                 </NavLink>
               </div>
@@ -148,7 +156,12 @@ const Layout = () => {
             <h3 className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-foreground">Navigation</h3>
             <div className="flex flex-col gap-3">
               {navItems.map((item) => (
-                <NavLink key={item.to} to={item.to} className="text-sm text-muted-foreground transition-colors hover:text-foreground" end={item.to === "/"}>
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  end={item.to === "/"}
+                >
                   {item.label}
                 </NavLink>
               ))}
@@ -159,7 +172,11 @@ const Layout = () => {
             <h3 className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-foreground">Proof & Ideas</h3>
             <div className="flex flex-col gap-3">
               {footerProofIdeas.map((item) => (
-                <NavLink key={item.to} to={item.to} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
                   {item.label}
                 </NavLink>
               ))}
@@ -169,7 +186,10 @@ const Layout = () => {
           <div>
             <h3 className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-foreground">Connect</h3>
             <div className="flex flex-col gap-3 text-sm text-muted-foreground">
-              <a href="mailto:hello@109.studio" className="inline-flex items-center gap-2 transition-colors hover:text-foreground">
+              <a
+                href="mailto:hello@109.studio"
+                className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
+              >
                 <Mail className="h-4 w-4" />
                 hello@109.studio
               </a>
