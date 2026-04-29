@@ -124,8 +124,9 @@ const Services = () => {
               Five areas that describe the practice most clearly
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              Most engagements span more than one of these areas. The point is not to force the work into a neat
-              category. It is to make the role 109.studio plays easier to understand before a project gets underway.
+              Most projects touch more than one area. These categories are here to make the conversation easier:
+              where the work starts, where 109.studio can add the most value, and what kind of support will make the
+              engagement useful.
             </p>
           </div>
           <div className="grid gap-px bg-border md:grid-cols-2">
