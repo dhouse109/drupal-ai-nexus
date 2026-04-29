@@ -13,8 +13,6 @@ const navItems = [
 ];
 
 const footerProofIdeas = [
-  { label: "Drupal AI", to: "/drupal-ai" },
-  { label: "Applied AI", to: "/applied-ai" },
   { label: "AI in Practice", to: "/ai-in-practice" },
   { label: "Drupal AI", to: "/drupal-ai" },
   { label: "Insights", to: "/insights" },
