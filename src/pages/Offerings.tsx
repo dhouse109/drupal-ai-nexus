@@ -231,63 +231,70 @@ const Offerings = () => {
           </div>
 
           <div className="grid gap-px bg-border md:grid-cols-2">
-            {offerings.map((offering) => (
-              <div key={offering.title} className="bg-background p-8 md:p-10">
-                <h2 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">
-                  {offering.title}
-                </h2>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {offering.summary}
-                </p>
+            {offerings.map((offering, index) => {
+              const isLastOddCard = offerings.length % 2 === 1 && index === offerings.length - 1;
 
-                <div className="mt-8">
-                  <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                    Good fit when
-                  </div>
-                  <div className="space-y-3">
-                    {offering.fit.map((item) => (
-                      <div key={item} className="text-sm leading-relaxed text-muted-foreground">
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-8">
-                  <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                    What you get
-                  </div>
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {offering.deliverables.map((item) => (
-                      <div
-                        key={item}
-                        className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim"
-                      >
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-8 border-t border-border pt-6">
-                  <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                    What this can lead to
-                  </div>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {offering.nextStep}
+              return (
+                <div
+                  key={offering.title}
+                  className={`bg-background p-8 md:p-10 ${isLastOddCard ? "md:col-span-2" : ""}`}
+                >
+                  <h2 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">
+                    {offering.title}
+                  </h2>
+                  <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+                    {offering.summary}
                   </p>
-                  {offering.cta && (
-                    <Link
-                      to={offering.cta.to}
-                      className="mt-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-primary transition-colors hover:text-primary/80"
-                    >
-                      {offering.cta.label}
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </Link>
-                  )}
+
+                  <div className="mt-8">
+                    <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                      Good fit when
+                    </div>
+                    <div className="space-y-3">
+                      {offering.fit.map((item) => (
+                        <div key={item} className="text-sm leading-relaxed text-muted-foreground">
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-8">
+                    <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                      What you get
+                    </div>
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      {offering.deliverables.map((item) => (
+                        <div
+                          key={item}
+                          className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim"
+                        >
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-8 border-t border-border pt-6">
+                    <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                      What this can lead to
+                    </div>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      {offering.nextStep}
+                    </p>
+                    {offering.cta && (
+                      <Link
+                        to={offering.cta.to}
+                        className="mt-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-primary transition-colors hover:text-primary/80"
+                      >
+                        {offering.cta.label}
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
