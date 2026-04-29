@@ -50,7 +50,7 @@ const LabSection = () => {
               to="/drupal-ai"
               className="inline-flex items-center gap-3 font-mono text-sm uppercase tracking-widest text-primary"
             >
-              <span>See Drupal AI work</span>
+              <span>Explore Drupal AI</span>
               <ArrowRight className="h-4 w-4" />
             </Link>
           </motion.div>
