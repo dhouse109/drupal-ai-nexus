@@ -100,8 +100,8 @@ const DrupalAI = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <section className="relative overflow-hidden border-b border-border py-24 md:py-32">
-        <div className="absolute inset-0 grid-bg opacity-40" />
-        <div className="container">
+        <div className="pointer-events-none absolute inset-0 grid-bg opacity-40" />
+        <div className="container relative z-10">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
