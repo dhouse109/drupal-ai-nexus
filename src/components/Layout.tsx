@@ -1,6 +1,6 @@
 import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { Menu, X, ArrowRight, Github, Mail, Youtube } from "lucide-react";
+import { Menu, X, ArrowRight, Github, Linkedin, Mail, Youtube } from "lucide-react";
 import { useSafeCtaTarget } from "@/lib/cta";
 
 const headerNavItems = [
@@ -208,6 +208,15 @@ const Layout = () => {
               >
                 <Github className="h-4 w-4" />
                 GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/company/109studio"
+                className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Linkedin className="h-4 w-4" />
+                LinkedIn
               </a>
               <a
                 href="https://www.youtube.com/@109studiotube"
