@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
@@ -53,9 +54,10 @@ const HeroSection = () => {
           >
             <Link
               to="/contact"
-              className="bg-primary px-8 py-4 text-center font-mono text-sm uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90"
+              className="inline-flex items-center justify-center gap-2 bg-primary px-8 py-4 text-center font-mono text-sm uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90"
             >
               Start a conversation
+              <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               to="/services"
