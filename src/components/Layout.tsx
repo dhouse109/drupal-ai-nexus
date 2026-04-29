@@ -210,7 +210,7 @@ const Layout = () => {
                 GitHub
               </a>
               <a
-                href="https://www.youtube.com/@109studio-tube"
+                href="https://www.youtube.com/@109studiotube"
                 className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
                 target="_blank"
                 rel="noreferrer"
