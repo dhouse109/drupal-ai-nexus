@@ -116,8 +116,7 @@ const Layout = () => {
                   Have a system, a platform, or a decision you want a senior read on?
                 </h2>
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                  Start with a short note about what you are building or where things feel stuck. Damien will review it
-                  personally and suggest the clearest next step.
+                  A short note is enough. Damien reviews each inquiry personally and will suggest the clearest next step.
                 </p>
               </div>
               <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
