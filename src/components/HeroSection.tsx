@@ -54,14 +54,14 @@ const HeroSection = () => {
           >
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-primary px-8 py-4 text-center font-mono text-sm uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90"
+              className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 text-center font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
             >
               Start a conversation
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
             <Link
               to="/services"
-              className="border border-border px-8 py-4 text-center font-mono text-sm uppercase tracking-widest transition-colors hover:border-primary hover:text-primary"
+              className="inline-flex items-center justify-center border border-border px-5 py-3 text-center font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
             >
               See how 109 helps
             </Link>
