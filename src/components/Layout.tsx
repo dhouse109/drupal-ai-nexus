@@ -3,7 +3,16 @@ import { useState } from "react";
 import { Menu, X, ArrowRight, Github, Mail } from "lucide-react";
 import { useSafeCtaTarget } from "@/lib/cta";
 
-const navItems = [
+const headerNavItems = [
+  { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
+  { label: "How We Help", to: "/services" },
+  { label: "Offerings", to: "/offerings" },
+  { label: "Applied AI", to: "/applied-ai" },
+  { label: "Portfolio", to: "/portfolio" },
+];
+
+const footerNavItems = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
   { label: "How We Help", to: "/services" },
@@ -15,6 +24,7 @@ const navItems = [
 const footerProofIdeas = [
   { label: "AI in Practice", to: "/ai-in-practice" },
   { label: "Drupal AI", to: "/drupal-ai" },
+  { label: "Portfolio", to: "/portfolio" },
   { label: "Insights", to: "/insights" },
 ];
 
@@ -52,7 +62,7 @@ const Layout = () => {
           </NavLink>
 
           <nav className="hidden items-center gap-8 md:flex">
-            {navItems.map((item) => (
+            {headerNavItems.map((item) => (
               <NavLink key={item.to} to={item.to} className={linkClass} end={item.to === "/"}>
                 {item.label}
               </NavLink>
@@ -78,7 +88,7 @@ const Layout = () => {
         {open && (
           <div className="border-t border-border bg-background md:hidden">
             <div className="container flex flex-col gap-5 py-6">
-              {navItems.map((item) => (
+              {headerNavItems.map((item) => (
                 <NavLink
                   key={item.to}
                   to={item.to}
@@ -152,7 +162,7 @@ const Layout = () => {
           <div>
             <h3 className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-foreground">Navigation</h3>
             <div className="flex flex-col gap-3">
-              {navItems.map((item) => (
+              {footerNavItems.map((item) => (
                 <NavLink
                   key={item.to}
                   to={item.to}
