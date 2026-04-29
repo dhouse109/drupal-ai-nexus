@@ -201,15 +201,6 @@ const Layout = () => {
                 hello@109.studio
               </a>
               <a
-                href="https://github.com/109studio"
-                className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Github className="h-4 w-4" />
-                GitHub
-              </a>
-              <a
                 href="https://www.linkedin.com/company/109studio"
                 className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
                 target="_blank"
@@ -217,6 +208,15 @@ const Layout = () => {
               >
                 <Linkedin className="h-4 w-4" />
                 LinkedIn
+              </a>
+              <a
+                href="https://github.com/109studio"
+                className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Github className="h-4 w-4" />
+                GitHub
               </a>
               <a
                 href="https://www.youtube.com/@109studiotube"
