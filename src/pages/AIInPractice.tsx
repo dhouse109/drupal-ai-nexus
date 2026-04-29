@@ -284,7 +284,7 @@ const AIInPractice = () => {
                 to="/applied-ai"
                 className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
               >
-                See the decision framework
+                Explore applied AI
               </Link>
             </div>
           </div>
