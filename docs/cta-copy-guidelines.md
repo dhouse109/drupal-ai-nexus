@@ -37,6 +37,10 @@ Use this after proof or background when the visitor likely needs help deciding w
 
 Use this after essays, insights, or thought leadership when the visitor may recognize their own situation in the material.
 
+`Talk through a Drupal AI starting point`
+
+Use this after Drupal-specific AI context when the visitor has likely seen enough detail to discuss a concrete Drupal platform, workflow, search, content operations, or AI Initiative-aligned question.
+
 ## Secondary CTA pattern
 The secondary CTA should usually name the destination rather than describe a browsing action.
 
@@ -53,9 +57,72 @@ Use this when the destination is the offerings page or when the visitor needs he
 
 Use this when the destination is the applied AI overview page.
 
+`Explore Drupal AI`
+
+Use this when the destination is the Drupal AI page and the visitor is already reading about applied AI, offerings, Drupal, content operations, search, editorial workflows, modernization, or AI Initiative-aligned work.
+
 `See AI in practice`
 
 Use this when the destination is the examples, narratives, or applied AI proof page.
+
+## Contextual bridge CTAs
+Some CTAs are not direct conversion prompts. They are bridge CTAs: links to a related page that helps the visitor understand the work before starting a conversation.
+
+Use a bridge CTA when the visitor has shown interest in a specific context, such as applied AI, Drupal AI, AI in practice, search, content operations, workflow automation, modernization, or a shaped starting offer.
+
+Bridge CTAs are useful because they let the site build trust before asking for contact. They are especially appropriate when the destination explains how 109.studio thinks about a specific problem area or shows proof of the practice.
+
+### Approved bridge CTA labels
+`Explore Drupal AI`
+
+Use when the visitor is already reading about applied AI, offerings, Drupal, content operations, search, editorial workflows, modernization, or AI Initiative-aligned work.
+
+`Explore applied AI`
+
+Use when the visitor is on a Drupal-specific or proof-led AI page and may need the broader decision framework.
+
+`See AI in practice`
+
+Use when the visitor has read strategic or conceptual AI content and may need concrete examples.
+
+`Compare starting points`
+
+Use when the visitor is choosing between offers, audits, sprints, advisory, modernization, or Drupal-specific AI work.
+
+`See the 2-Week Architecture Audit`
+
+Use when the destination is specifically the architecture audit page. Do not shorten to `See the audit` unless the surrounding copy already names the audit clearly.
+
+`See the decision framework`
+
+Use sparingly when the surrounding copy has already named Applied AI as a decision framework. Prefer `Explore applied AI` when the destination itself needs to be clearer.
+
+### Bridge CTA rules
+- Keep `Start a conversation` as the default primary conversion CTA.
+- Use bridge CTAs mostly as secondary, tertiary, or card-level CTAs.
+- Do not use a bridge CTA as a generic site-wide replacement for contact.
+- Use route-aware logic only when the CTA is shared across multiple routes.
+- Avoid pointing a shared CTA to the page the visitor is already on.
+- When possible, pair a bridge CTA with copy that explains why that path is useful.
+
+### Drupal AI as a bridge page
+Drupal AI is a specialized bridge page, not a primary navigation destination.
+
+The main navigation should continue to use `Applied AI` as the broad AI entry point. Drupal AI should stay reachable through contextual paths such as:
+- Applied AI sections that mention Drupal-specific work
+- Offerings cards or decision guides for Drupal AI readiness
+- AI in Practice or Insights content where Drupal-specific implementation context is useful
+- footer proof or idea links
+- route-aware shared CTAs where the visitor is already in an AI-related path
+
+This keeps the top-level navigation simple while still giving Drupal prospects, Drupal agencies, and Drupal AI Initiative-aligned visitors a clear path into the more specific material.
+
+Recommended Drupal AI flow:
+- `Applied AI` explains the broader decision framework.
+- `Drupal AI` explains how that framework applies to Drupal platforms, workflows, content operations, search, modernization, and initiative-aligned work.
+- `AI in Practice` provides concrete examples and proof patterns.
+- `Offerings` helps the visitor choose a shaped starting point.
+- `Contact` remains the primary conversion path.
 
 ## CTA usage by page type
 ### Early trust pages
@@ -77,6 +144,8 @@ Preferred pattern:
 - primary: `Start a conversation` or `Start with your situation`
 - secondary: `See starting points`
 
+Use `Explore Drupal AI` as a bridge CTA when an offer or decision guide specifically addresses Drupal AI readiness, Drupal workflows, or Drupal-specific AI implementation.
+
 ### Proof-led pages
 Examples:
 - About
@@ -86,6 +155,19 @@ Examples:
 Preferred pattern:
 - primary can be more specific to the proof just shown
 - secondary should usually remain `See starting points`
+
+Use `Explore applied AI`, `Explore Drupal AI`, or `See AI in practice` when the proof just shown creates a more useful intermediate step than going directly to the offerings page.
+
+### Applied AI and Drupal AI pages
+Examples:
+- Applied AI
+- Drupal AI
+- AI in Practice
+
+Preferred pattern:
+- Applied AI should point Drupal-specific visitors toward `Explore Drupal AI`.
+- Drupal AI should point broader AI visitors toward `Explore applied AI` or offer-selection visitors toward `Compare starting points`.
+- AI in Practice should point conceptual readers toward `Explore applied AI` and action-ready readers toward contact.
 
 ## Supporting copy guidance
 The sentence under a CTA should usually do one of these jobs:
@@ -98,6 +180,8 @@ Strong examples:
 - `Damien reviews each inquiry personally.`
 - `The next step is usually a short conversation or a clear recommendation on where to begin.`
 - `You do not need the full scope figured out yet.`
+- `Use this path if your platform is already Drupal-based and you want to understand where AI fits safely.`
+- `Start here if you need the broader applied AI framework before choosing a specific offer.`
 
 ## Phrases to avoid unless there is a strong reason
 Avoid these by default:
@@ -111,9 +195,10 @@ These phrases are not wrong in every context, but they tend to feel more procedu
 
 ## Maintenance note
 When adding a new section with CTAs, start by choosing:
-- whether the page is early-trust, offer-selection, or proof-led
+- whether the page is early-trust, offer-selection, proof-led, or a contextual bridge
 - which approved primary CTA best matches that trust level
 - which destination the secondary CTA should name directly
+- whether the CTA should move the visitor toward contact, toward a broader framework, or toward a more specific proof/explanation page
 
 If the copy starts to sound like a form, a brochure, or a process diagram, simplify it.
 
@@ -132,3 +217,13 @@ const cta = useSafeCtaTarget("/services", "See how 109 helps", {
 ```
 
 If the current pathname matches the target, the helper returns the fallback instead. Do not adopt this for in-body page CTAs — it adds indirection without solving a real problem there.
+
+### Route-aware bridge CTA examples
+Shared CTA blocks may use route-aware bridge logic when the default destination could point to the current page.
+
+Examples:
+- On `/applied-ai`, a shared AI-related secondary CTA may point to `/drupal-ai` with `Explore Drupal AI`.
+- On `/drupal-ai`, that same shared CTA should fall back to `/applied-ai` with `Explore applied AI`.
+- On `/architecture-audit`, a shared offer-selection CTA should fall back to `/offerings` with `See starting points`.
+
+Keep this behavior limited to shared layout or data-driven CTAs. Page-local CTAs should stay explicit so the page author can preserve the intended editorial path.
