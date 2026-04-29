@@ -201,7 +201,7 @@ const Layout = () => {
                 hello@109.studio
               </a>
               <a
-                href="https://github.com/dhouse109/drupal-ai-nexus"
+                href="https://github.com/109studio"
                 className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
                 target="_blank"
                 rel="noreferrer"

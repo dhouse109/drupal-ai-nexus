@@ -209,7 +209,7 @@ const Contact = () => {
                 hello@109.studio
               </a>
               <a
-                href="https://github.com/dhouse109/drupal-ai-nexus"
+                href="https://github.com/109studio"
                 target="_blank"
                 rel="noreferrer"
                 className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
