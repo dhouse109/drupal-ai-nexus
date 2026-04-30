@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Landmark, GraduationCap, Workflow, Layers3, Building2 } from "lucide-react";
+import { Landmark, BookOpenText, Workflow, Layers3, Handshake } from "lucide-react";
 
 const contexts = [
   {
@@ -9,7 +9,7 @@ const contexts = [
       "Accessible, service-oriented systems where content clarity, governance, and reliability need to work together.",
   },
   {
-    icon: GraduationCap,
+    icon: BookOpenText,
     title: "Editorial and publishing systems",
     description:
       "Content-rich platforms that need better structure, stronger workflows, and more useful discovery as they grow.",
@@ -27,7 +27,7 @@ const contexts = [
       "Platforms where content, coordination, user experience, and ongoing operations all need to stay aligned.",
   },
   {
-    icon: Building2,
+    icon: Handshake,
     title: "Agency and team augmentation",
     description:
       "Delivery environments where senior technical depth can help an existing team move faster and make better decisions.",
