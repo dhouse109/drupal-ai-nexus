@@ -25,6 +25,37 @@ const proofItems = [
   },
 ];
 
+const credentialLinks = [
+  {
+    title: "One-page capability statement",
+    description: "A concise overview of advisory, architecture, applied AI, and delivery leadership.",
+    href: "/resources/damien-house-capability-statement-one-page.pdf",
+  },
+  {
+    title: "Detailed capability statement",
+    description: "A deeper view of services, methods, differentiators, and representative project types.",
+    href: "/resources/damien-house-capability-statement-detailed.pdf",
+  },
+  {
+    title: "Resume",
+    description: "Chronological work history, technical background, and delivery experience.",
+    href: "/resources/damien-house-resume.pdf",
+  },
+];
+
+const connectLinks = [
+  {
+    title: "Professional website",
+    description: "Broader background, writing, and professional context.",
+    href: "https://damien.house",
+  },
+  {
+    title: "LinkedIn",
+    description: "Current profile, network, and public professional activity.",
+    href: "https://www.linkedin.com/in/dhouse109/",
+  },
+];
+
 const workingStyle = [
   {
     title: "Start with the real problem",
@@ -107,13 +138,73 @@ const About = () => {
 
       <section className="border-b border-border py-20 md:py-24">
         <div className="container grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="border border-border bg-surface p-8 md:p-10">
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Founder</span>
-            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-4xl">Damien House</h2>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-              Fractional CTO, senior engineering advisor, and hands-on principal architect focused on moving complex
-              products and platforms from concept to production.
-            </p>
+          <div className="space-y-8">
+            <div className="border border-border bg-surface p-8 md:p-10">
+              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Founder</span>
+              <h2 className="font-mono text-3xl font-bold tracking-tight md:text-4xl">Damien House</h2>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+                Fractional CTO, senior engineering advisor, and hands-on principal architect focused on moving complex
+                products and platforms from concept to production.
+              </p>
+            </div>
+
+            <div className="border border-border bg-background p-8 md:p-10">
+              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                Background and credentials
+              </span>
+              <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                A few ways to understand the experience behind 109.studio, from quick professional context to deeper
+                capability materials.
+              </p>
+
+              <div className="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                <div>
+                  <h3 className="font-mono text-sm uppercase tracking-[0.25em] text-text-dim">Connect</h3>
+                  <div className="mt-4 space-y-4">
+                    {connectLinks.map((item) => (
+                      <a
+                        key={item.title}
+                        href={item.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group block border-b border-border pb-4 last:border-b-0 last:pb-0"
+                      >
+                        <span className="flex items-center justify-between gap-4 font-mono text-sm font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary">
+                          {item.title}
+                          <ArrowRight className="h-3.5 w-3.5 shrink-0" />
+                        </span>
+                        <span className="mt-2 block text-sm leading-relaxed text-muted-foreground">
+                          {item.description}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="font-mono text-sm uppercase tracking-[0.25em] text-text-dim">Credentials</h3>
+                  <div className="mt-4 space-y-4">
+                    {credentialLinks.map((item) => (
+                      <a
+                        key={item.title}
+                        href={item.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group block border-b border-border pb-4 last:border-b-0 last:pb-0"
+                      >
+                        <span className="flex items-center justify-between gap-4 font-mono text-sm font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary">
+                          {item.title}
+                          <ArrowRight className="h-3.5 w-3.5 shrink-0" />
+                        </span>
+                        <span className="mt-2 block text-sm leading-relaxed text-muted-foreground">
+                          {item.description}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
