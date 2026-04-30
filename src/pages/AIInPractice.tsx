@@ -76,11 +76,11 @@ const principles = [
   },
 ];
 
-const nonGoals = [
-  "Black-box systems making consequential decisions without review",
-  "AI features that are harder to govern than the work they replace",
-  "Proof-of-concept demos that collapse the moment they meet real delivery constraints",
-  "Automation that creates more confusion for editors, developers, or operators",
+const releaseStandards = [
+  "Human review stays in the loop for consequential decisions",
+  "Governance burden should go down, not up",
+  "The pattern has to hold up under real delivery conditions",
+  "The system should reduce confusion for editors, developers, and operators",
 ];
 
 const AIInPractice = () => {
