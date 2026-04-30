@@ -375,10 +375,10 @@ const Offerings = () => {
             <div>
               <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Choose a starting point</span>
               <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                Not sure which path fits? Start by describing the situation.
+                Not sure which offer fits? Start with the decision in front of you.
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                You can start a conversation if it would help to talk through the situation, or explore the Drupal AI page if your platform is already Drupal-based.
+                Share the product, platform, workflow, or AI question you are sorting through. Damien can help identify whether the right first move is an audit, sprint, advisory track, modernization reset, or applied AI review.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
@@ -390,10 +390,10 @@ const Offerings = () => {
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
               <Link
-                to="/drupal-ai"
+                to="/applied-ai"
                 className="inline-flex items-center justify-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] transition-colors hover:border-primary hover:text-primary"
               >
-                Explore Drupal AI
+                Explore applied AI
               </Link>
             </div>
           </div>
