@@ -286,14 +286,16 @@ const DrupalAI = () => {
         <div className="container border border-border bg-surface p-8 md:p-10">
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
             <div>
-              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
+              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                Drupal AI starting point
+              </span>
               <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
-                Have a Drupal platform where AI might help, but you are not sure where to start?
+                Find the safest place to test AI inside your Drupal platform.
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                A short note is enough. Damien reviews each inquiry personally and will suggest whether the right next
-                step is a readiness review, search and retrieval work, content operations support, workflow automation,
-                or migration planning.
+                Share the platform, workflow, or content problem in front of you. Damien will help identify whether the
+                strongest first move is readiness review, retrieval and search work, content operations support, workflow
+                automation, or migration planning.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
