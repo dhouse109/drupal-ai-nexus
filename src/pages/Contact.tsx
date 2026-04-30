@@ -34,8 +34,7 @@ const inquiryTypes = [
 const startingOptions = [
   {
     title: "See starting points",
-    description:
-      "A good place to start if you want to compare the clearest entry options first.",
+    description: "A good place to start if you want to compare the clearest entry options first.",
     to: "/offerings",
   },
   {
@@ -93,7 +92,11 @@ const Contact = () => {
 
     setLoading(false);
     if (error) {
-      toast({ title: "Something went wrong", description: "Please try again or email hello@109.studio directly.", variant: "destructive" });
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or email hello@109.studio directly.",
+        variant: "destructive",
+      });
       return;
     }
     setSubmitted(true);
@@ -126,7 +129,8 @@ const Contact = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            Whether you are shaping a new product, improving an existing platform, or sorting through a complex technical decision, this is a good place to begin.
+            Whether you are shaping a new product, improving an existing platform, or sorting through a complex
+            technical decision, this is a good place to begin.
           </motion.p>
         </div>
       </section>
@@ -136,9 +140,7 @@ const Contact = () => {
           {inquiryTypes.map((type) => (
             <div key={type.title} className="bg-background p-8 md:p-10">
               <h2 className="font-mono text-2xl font-bold tracking-tight">{type.title}</h2>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                {type.description}
-              </p>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">{type.description}</p>
             </div>
           ))}
         </div>
@@ -162,9 +164,7 @@ const Contact = () => {
                 className="border border-transparent bg-background p-8 transition-all duration-300 ease-out hover:border-border hover:bg-muted/20 md:p-10"
               >
                 <h3 className="font-mono text-2xl font-bold tracking-tight">{item.title}</h3>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                  {item.description}
-                </p>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground">{item.description}</p>
               </Link>
             ))}
           </div>
@@ -174,14 +174,13 @@ const Contact = () => {
       <section className="py-20 md:py-24">
         <div className="container grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div>
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Get in touch
-            </span>
+            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Get in touch</span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
               Share a little about what you are working on
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              A few sentences is enough. You can share what you are building, where things feel unclear, or what kind of support you may need.
+              A few sentences is enough. You can share what you are building, where things feel unclear, or what kind of
+              support you may need.
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               Damien reviews each inquiry personally and typically replies within one business day.
@@ -208,15 +207,6 @@ const Contact = () => {
               >
                 hello@109.studio
               </a>
-              <a
-                href="https://github.com/109studio"
-                target="_blank"
-                rel="noreferrer"
-                className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-              >
-                <Github className="h-4 w-4" />
-                View project repo
-              </a>
             </div>
           </div>
 
@@ -226,22 +216,28 @@ const Contact = () => {
                 <CheckCircle className="mb-6 h-12 w-12 text-primary" />
                 <h3 className="font-mono text-2xl font-bold tracking-tight">Conversation started</h3>
                 <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
-                  Thanks for reaching out. Damien has your note and will reply personally within one business day. From there, the next step is usually a short conversation or a recommendation on where to begin.
+                  Thanks for reaching out. Damien has your note and will reply personally within one business day. From
+                  there, the next step is usually a short conversation or a recommendation on where to begin.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-3 border-b border-border pb-6">
                   <p className="text-sm leading-relaxed text-muted-foreground">
-                    Your note goes straight to Damien. You do not need a polished brief. A few sentences or bullet points is enough.
+                    Your note goes straight to Damien. You do not need a polished brief. A few sentences or bullet
+                    points is enough.
                   </p>
                   <p className="text-sm leading-relaxed text-muted-foreground">
-                    If there is a fit, the next step is usually a short conversation or a clear recommendation on where to begin.
+                    If there is a fit, the next step is usually a short conversation or a clear recommendation on where
+                    to begin.
                   </p>
                 </div>
 
                 <div>
-                  <label htmlFor="name" className="mb-2 block font-mono text-xs uppercase tracking-[0.3em] text-foreground">
+                  <label
+                    htmlFor="name"
+                    className="mb-2 block font-mono text-xs uppercase tracking-[0.3em] text-foreground"
+                  >
                     Name
                   </label>
                   <input
@@ -257,7 +253,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="mb-2 block font-mono text-xs uppercase tracking-[0.3em] text-foreground">
+                  <label
+                    htmlFor="email"
+                    className="mb-2 block font-mono text-xs uppercase tracking-[0.3em] text-foreground"
+                  >
                     Email
                   </label>
                   <input
@@ -273,7 +272,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="organization" className="mb-2 block font-mono text-xs uppercase tracking-[0.3em] text-foreground">
+                  <label
+                    htmlFor="organization"
+                    className="mb-2 block font-mono text-xs uppercase tracking-[0.3em] text-foreground"
+                  >
                     Organization <span className="normal-case tracking-normal text-muted-foreground">(optional)</span>
                   </label>
                   <input
@@ -288,7 +290,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="mb-2 block font-mono text-xs uppercase tracking-[0.3em] text-foreground">
+                  <label
+                    htmlFor="message"
+                    className="mb-2 block font-mono text-xs uppercase tracking-[0.3em] text-foreground"
+                  >
                     What are you working on?
                   </label>
                   <textarea
@@ -324,9 +329,24 @@ const Contact = () => {
           </span>
           <div className="mt-8 grid gap-px bg-border md:grid-cols-3">
             {[
-              { step: "01", title: "Send a note", description: "Describe what you are building and where things feel unclear. A few sentences or bullet points is enough to start." },
-              { step: "02", title: "Short follow-up conversation", description: "If it looks like there is a fit, Damien will follow up to understand the situation and talk through what might help." },
-              { step: "03", title: "Recommended next step", description: "That next step might be an audit, an advisory track, a scoped proposal, or simply a clearer recommendation on where to begin." },
+              {
+                step: "01",
+                title: "Send a note",
+                description:
+                  "Describe what you are building and where things feel unclear. A few sentences or bullet points is enough to start.",
+              },
+              {
+                step: "02",
+                title: "Short follow-up conversation",
+                description:
+                  "If it looks like there is a fit, Damien will follow up to understand the situation and talk through what might help.",
+              },
+              {
+                step: "03",
+                title: "Recommended next step",
+                description:
+                  "That next step might be an audit, an advisory track, a scoped proposal, or simply a clearer recommendation on where to begin.",
+              },
             ].map((item) => (
               <div key={item.step} className="bg-background p-8 md:p-10">
                 <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary">{item.step}</span>
