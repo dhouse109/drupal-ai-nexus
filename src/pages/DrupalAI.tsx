@@ -1,4 +1,4 @@
-import { ArrowRight, Bot, FileSearch, Network, ShieldCheck, Workflow } from "lucide-react";
+import { ArrowRight, FileSearch, GitPullRequest, Network, ShieldCheck, Workflow } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -25,7 +25,7 @@ const usefulAreas = [
     outcomes: ["Scoped actions", "Human review paths", "Safer workflow support"],
   },
   {
-    icon: Bot,
+    icon: GitPullRequest,
     title: "Delivery and modernization",
     description:
       "Use AI-assisted planning, code review, documentation, and migration support to improve delivery without treating the platform as an experiment.",
