@@ -342,7 +342,7 @@ const AppliedAI = () => {
         <div className="container border border-border bg-surface p-8 md:p-10">
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
             <div>
-              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Next step</span>
+              <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">Applied AI starting point</span>
               <h2 className="max-w-2xl font-mono text-2xl font-bold tracking-tight md:text-4xl">
                 Need a senior read on whether AI fits here?
               </h2>
