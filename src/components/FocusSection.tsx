@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { Workflow, Blocks, GitFork } from "lucide-react";
+import { Compass, Blocks, FlaskConical } from "lucide-react";
 
 const services = [
   {
-    icon: Workflow,
+    icon: Compass,
     title: "Fractional CTO and technical advisory",
     description:
       "Senior guidance for teams that need clearer architecture, stronger technical judgment, and a better plan before delivery gets more expensive.",
@@ -17,7 +17,7 @@ const services = [
     tags: ["Platforms", "Workflows", "Integrations"],
   },
   {
-    icon: GitFork,
+    icon: FlaskConical,
     title: "Research and prototype sprints",
     description:
       "Explore new product ideas, internal tools, and technical directions in a focused way before committing to a larger build.",
