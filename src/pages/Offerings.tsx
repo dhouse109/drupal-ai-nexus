@@ -315,6 +315,7 @@ const Offerings = () => {
           <div className="space-y-6">
             {guideItems.map((item) => {
               const isAuditRow = item.recommendation.includes("2-Week architecture audit");
+              const isDrupalRow = item.recommendation.includes("Drupal AI readiness review");
               return (
                 <div key={item.problem} className="border-b border-border pb-6 last:border-b-0 last:pb-0">
                   <div className="font-mono text-sm uppercase tracking-[0.2em] text-text-dim">
@@ -329,6 +330,17 @@ const Offerings = () => {
                           className="text-primary underline-offset-4 transition-colors hover:underline"
                         >
                           2-Week Architecture Audit
+                        </Link>
+                        .
+                      </>
+                    ) : isDrupalRow ? (
+                      <>
+                        Start with the{" "}
+                        <Link
+                          to="/drupal-ai"
+                          className="text-primary underline-offset-4 transition-colors hover:underline"
+                        >
+                          Drupal AI readiness review
                         </Link>
                         .
                       </>
