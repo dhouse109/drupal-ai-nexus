@@ -291,8 +291,9 @@ const DrupalAI = () => {
                 Have a Drupal platform where AI might help, but you are not sure where to start?
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                Send a short note about the site, the workflow, or the decision in front of you. Damien will review it
-                personally and suggest the clearest next step.
+                A short note is enough. Damien reviews each inquiry personally and will suggest whether the right next
+                step is a readiness review, search and retrieval work, content operations support, workflow automation,
+                or migration planning.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-end">
@@ -300,7 +301,7 @@ const DrupalAI = () => {
                 to="/contact"
                 className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-primary-foreground transition-colors hover:bg-primary/90"
               >
-                Talk through a Drupal AI starting point
+                Start a conversation
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
               <Link
