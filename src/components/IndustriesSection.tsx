@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Landmark, BookOpenText, Workflow, Layers3, Handshake } from "lucide-react";
+import { Landmark, BookOpenText, Settings2, Layers3, Handshake } from "lucide-react";
 
 const contexts = [
   {
@@ -15,7 +15,7 @@ const contexts = [
       "Content-rich platforms that need better structure, stronger workflows, and more useful discovery as they grow.",
   },
   {
-    icon: Workflow,
+    icon: Settings2,
     title: "Operational and internal tools",
     description:
       "Process-heavy systems where better architecture and practical automation reduce friction for teams.",

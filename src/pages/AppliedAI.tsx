@@ -1,10 +1,10 @@
-import { ArrowRight, Bot, FileSearch, Network } from "lucide-react";
+import { ArrowRight, FileSearch, Network, Workflow } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const focusAreas = [
   {
-    icon: Bot,
+    icon: Workflow,
     title: "Workflow support inside products and teams",
     description:
       "Use AI where it can support a real product feature, operational workflow, or internal process without making the system harder to trust or maintain.",
