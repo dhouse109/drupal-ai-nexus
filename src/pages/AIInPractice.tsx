@@ -76,11 +76,11 @@ const principles = [
   },
 ];
 
-const nonGoals = [
-  "Black-box systems making consequential decisions without review",
-  "AI features that are harder to govern than the work they replace",
-  "Proof-of-concept demos that collapse the moment they meet real delivery constraints",
-  "Automation that creates more confusion for editors, developers, or operators",
+const releaseStandards = [
+  "Human review stays in the loop for consequential decisions",
+  "Governance burden should go down, not up",
+  "The pattern has to hold up under real delivery conditions",
+  "The system should reduce confusion for editors, developers, and operators",
 ];
 
 const AIInPractice = () => {
@@ -242,14 +242,18 @@ const AIInPractice = () => {
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              What this is not
+              Release standards
             </span>
             <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              A few things 109.studio is not interested in releasing
+              What needs to be true before anything goes live
             </h2>
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+              109.studio produces applied AI that a team can understand, review, operate, and extend. If it cannot meet
+              that bar, it is not ready for release.
+            </p>
           </div>
           <div className="space-y-4">
-            {nonGoals.map((item) => (
+            {releaseStandards.map((item) => (
               <div key={item} className="border-b border-border pb-4 text-base leading-relaxed text-muted-foreground md:text-lg last:border-b-0 last:pb-0">
                 {item}
               </div>
