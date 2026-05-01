@@ -29,17 +29,17 @@ const credentialLinks = [
   {
     title: "One-page capability statement",
     description: "A concise overview of advisory, architecture, applied AI, and delivery leadership.",
-    href: "/resources/damien-house-capability-statement-one-page.pdf",
+    href: "/resources/capability-statement-one-page.dhouse.v14.04.2026.pdf",
   },
   {
     title: "Detailed capability statement",
     description: "A deeper view of services, methods, differentiators, and representative project types.",
-    href: "/resources/damien-house-capability-statement-detailed.pdf",
+    href: "/resources/capability-statement-detailed.dhouse.v14.04.2026.pdf",
   },
   {
     title: "Resume",
     description: "Chronological work history, technical background, and delivery experience.",
-    href: "/resources/damien-house-resume.pdf",
+    href: "/resources/resume.dhouse.v14.04.2026.pdf,
   },
 ];
 
