@@ -39,7 +39,7 @@ const credentialLinks = [
   {
     title: "Resume",
     description: "Chronological work history, technical background, and delivery experience.",
-    href: "/resources/resume.dhouse.v14.04.2026.pdf,
+    href: "/resources/resume.dhouse.v14.04.2026.pdf",
   },
 ];
 
