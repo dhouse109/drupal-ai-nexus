@@ -220,9 +220,9 @@ const About = () => {
               teams use new capabilities without losing control of architecture, process, or long-term maintainability.
             </p>
             <p>
-              Clients usually value the ability to move between high-level technical judgment and hands-on execution
-              without losing the thread. That might mean shaping a roadmap, reviewing platform risk, designing a
-              workflow, or getting directly into architecture and implementation details as the work takes shape.
+              Clients value the ability to move between high-level technical judgment and hands-on execution without
+              losing the thread. That usually means shaping a roadmap, reviewing platform risk, designing a workflow, or
+              getting directly into architecture and implementation details as the work takes shape.
             </p>
           </div>
         </div>
