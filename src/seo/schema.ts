@@ -2,6 +2,8 @@ import { audienceSegments, coreOfferings, practiceAreas, siteIdentity } from "./
 
 export type JsonLd = Record<string, unknown>;
 
+export type WebPageSchemaType = "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage";
+
 export const siteUrl = siteIdentity.url;
 export const siteName = siteIdentity.name;
 
@@ -80,13 +82,15 @@ export const createWebPageSchema = ({
   path,
   name,
   description,
+  pageType = "WebPage",
 }: {
   path: string;
   name: string;
   description: string;
+  pageType?: WebPageSchemaType;
 }): JsonLd => ({
   "@context": "https://schema.org",
-  "@type": "WebPage",
+  "@type": pageType,
   "@id": `${siteUrl}${path}#webpage`,
   url: `${siteUrl}${path}`,
   name,
