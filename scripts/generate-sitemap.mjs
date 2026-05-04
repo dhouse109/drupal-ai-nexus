@@ -23,10 +23,16 @@ const sitemapOptions = {
   "/insights": { changefreq: "weekly", priority: "0.7" },
 };
 
-const getSitemapOptions = (path) => ({
-  ...defaultSitemapOptions,
-  ...sitemapOptions[path],
-});
+const getSitemapOptions = (path) => {
+  if (path.startsWith("/insights/")) {
+    return { changefreq: "monthly", priority: "0.6" };
+  }
+
+  return {
+    ...defaultSitemapOptions,
+    ...sitemapOptions[path],
+  };
+};
 
 const escapeXml = (value) =>
   String(value)
