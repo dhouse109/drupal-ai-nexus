@@ -63,6 +63,8 @@ Use this checklist when a change affects route metadata, Open Graph assets, sche
 - [ ] Collection-style pages use `CollectionPage` when appropriate.
 - [ ] Service and offering pages include `Service` schema when appropriate.
 - [ ] Site identity pages include or reference the shared `Organization` and `Person` objects where appropriate.
+- [ ] Shared identity schema avoids unsupported properties on top-level business objects such as `ProfessionalService`.
+- [ ] Service-specific details live on nested `Service` objects where possible, not directly on the top-level studio identity object.
 - [ ] JSON-LD uses stable `@id` references.
 - [ ] JSON-LD does not include unsupported claims, fake reviews, fake ratings, or unavailable pricing.
 
@@ -112,6 +114,7 @@ After deployment:
 - [ ] Submit or refresh the sitemap in Google Search Console and Bing Webmaster Tools when appropriate.
 - [ ] Test priority pages in social preview/debugger tools.
 - [ ] Validate JSON-LD for at least the home page and one service page.
+- [ ] Confirm schema validation reports no errors and no avoidable warnings for shared identity schema.
 - [ ] Confirm Google Analytics is still loading.
 - [ ] Confirm Google Search Console and Bing verification tags remain in `index.html`.
 
@@ -124,4 +127,4 @@ After deployment:
 
 ## Review principle
 
-Metadata and sitemap generation are part of the page experience. They should help the right visitor, crawler, or preview tool understand why the page exists, what decision it supports, and why 109.studio is credible enough to continue the conversation.
+Metadata, schema, and sitemap generation are part of the page experience. They should help the right visitor, crawler, or preview tool understand why the page exists, what decision it supports, and why 109.studio is credible enough to continue the conversation.
