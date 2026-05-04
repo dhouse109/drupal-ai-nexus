@@ -10,10 +10,10 @@ import {
   websiteSchema,
 } from "./schema.shared.js";
 
-const defaultOgImage = "/og/og-image.svg";
-const appliedAiOgImage = "/og/og-applied-ai.svg";
-const drupalAiOgImage = "/og/og-drupal-ai.svg";
-const architectureAuditOgImage = "/og/og-architecture-audit.svg";
+const defaultOgImage = "/og/og-image.png";
+const appliedAiOgImage = "/og/og-applied-ai.png";
+const drupalAiOgImage = "/og/og-drupal-ai.png";
+const architectureAuditOgImage = "/og/og-architecture-audit.png";
 
 const page = ({
   title,
