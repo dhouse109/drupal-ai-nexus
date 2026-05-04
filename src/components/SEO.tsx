@@ -109,9 +109,25 @@ export const SEO = ({ metadata }: { metadata: RouteMetadata }) => {
         property: "og:image",
         content: imageUrl,
       });
+      upsertMeta("meta[property='og:image:width']", {
+        property: "og:image:width",
+        content: String(metadata.ogImageWidth ?? 1200),
+      });
+      upsertMeta("meta[property='og:image:height']", {
+        property: "og:image:height",
+        content: String(metadata.ogImageHeight ?? 630),
+      });
+      upsertMeta("meta[property='og:image:alt']", {
+        property: "og:image:alt",
+        content: metadata.ogImageAlt ?? ogTitle,
+      });
       upsertMeta("meta[name='twitter:image']", {
         name: "twitter:image",
         content: imageUrl,
+      });
+      upsertMeta("meta[name='twitter:image:alt']", {
+        name: "twitter:image:alt",
+        content: metadata.ogImageAlt ?? ogTitle,
       });
     }
 
