@@ -45,7 +45,7 @@ const credentialLinks = [
 
 const connectLinks = [
   {
-    title: "Professional website",
+    title: "Software Studies",
     description: "Broader background, writing, and professional context.",
     href: "https://damien.house",
   },
