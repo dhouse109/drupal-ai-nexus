@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/prerender-seo.mjs && node scripts/generate-sitemap.mjs",
+    "build": "node scripts/generate-og-pngs.mjs && vite build && node scripts/prerender-seo.mjs && node scripts/generate-sitemap.mjs",
     "build:client": "vite build",
     "build:dev": "vite build --mode development",
+    "og:png": "node scripts/generate-og-pngs.mjs",
     "prerender:seo": "node scripts/prerender-seo.mjs",
     "sitemap": "node scripts/generate-sitemap.mjs",
     "lint": "eslint .",
