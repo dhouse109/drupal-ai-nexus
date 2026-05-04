@@ -100,7 +100,7 @@ const Services = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-5xl font-mono text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
-            What 109 actually does inside an engagement
+            What 109 does inside an engagement
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -124,8 +124,8 @@ const Services = () => {
               Five areas that describe the practice most clearly
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              Most projects touch more than one area. These categories are here to make the conversation easier:
-              where the work starts, where 109.studio can add the most value, and what kind of support will make the
+              Most projects touch more than one area. These categories are here to make the conversation easier: where
+              the work starts, where 109.studio can add the most value, and what kind of support will make the
               engagement useful.
             </p>
           </div>
