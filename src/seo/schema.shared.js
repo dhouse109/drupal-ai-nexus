@@ -1,4 +1,4 @@
-import { audienceSegments, coreOfferings, practiceAreas, siteIdentity } from "./siteIdentity.shared.js";
+import { coreOfferings, practiceAreas, siteIdentity } from "./siteIdentity.shared.js";
 
 export const siteUrl = siteIdentity.url;
 export const siteName = siteIdentity.name;
@@ -51,14 +51,8 @@ export const professionalServiceSchema = {
   url: siteIdentity.url,
   description: siteIdentity.businessDescription,
   email: siteIdentity.email,
-  provider: reference(siteIdentity.schemaIds.organization),
   founder: reference(siteIdentity.schemaIds.person),
   areaServed: "United States",
-  audience: audienceSegments.map((audienceType) => ({
-    "@type": "Audience",
-    audienceType,
-  })),
-  serviceType: [...practiceAreas],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "109.studio Services",
@@ -68,6 +62,7 @@ export const professionalServiceSchema = {
         "@type": "Service",
         name: offering.name,
         description: offering.description,
+        serviceType: offering.name,
         provider: reference(siteIdentity.schemaIds.organization),
       },
     })),
