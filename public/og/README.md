@@ -1,14 +1,41 @@
 # Open Graph assets
 
-These 1200×630 SVG assets are used by route-level metadata for social and link previews.
+These 1200×630 assets are used by route-level metadata for social and link previews.
 
-Current assets:
+## Social preview format
 
-- `og-image.svg` — default site preview
-- `og-drupal-ai.svg` — Drupal AI page preview
-- `og-applied-ai.svg` — Applied AI and AI in Practice preview
-- `og-architecture-audit.svg` — 2-Week Architecture Audit preview
+PNG is the default format referenced by `src/seo/metadata.shared.js` because LinkedIn and other social preview tools are more consistent with PNG or JPG assets than SVG assets.
 
-The assets use the 109.studio symbol as the visual anchor and should be replaced with final designed exports if the brand system changes.
+Current generated PNG assets:
 
-Some social preview tools prefer PNG or JPG over SVG. If validation shows inconsistent rendering, export PNG versions from these SVG sources and update `src/seo/metadata.shared.js` to reference the PNG files.
+- `og-image.png` — default site preview
+- `og-drupal-ai.png` — Drupal AI page preview
+- `og-applied-ai.png` — Applied AI, AI in Practice, and Insight article preview
+- `og-architecture-audit.png` — 2-Week Architecture Audit preview
+
+The production build generates these files before Vite builds the site:
+
+```sh
+npm run og:png
+```
+
+The normal build runs this automatically:
+
+```sh
+npm run build
+```
+
+## Source assets
+
+The SVG files remain in this directory as editable source/reference assets:
+
+- `og-image.svg`
+- `og-drupal-ai.svg`
+- `og-applied-ai.svg`
+- `og-architecture-audit.svg`
+
+If the brand system changes, update the SVG source assets and then update `scripts/generate-og-pngs.mjs` so the generated PNG previews stay aligned.
+
+## Validation
+
+After deployment, use LinkedIn Post Inspector and other social preview tools to refresh cached previews and confirm the PNG image is detected.
