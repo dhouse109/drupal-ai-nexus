@@ -23,6 +23,11 @@ export type RouteMetadata = {
   schema?: JsonLd[];
 };
 
+const defaultOgImage = "/og/og-image.svg";
+const appliedAiOgImage = "/og/og-applied-ai.svg";
+const drupalAiOgImage = "/og/og-drupal-ai.svg";
+const architectureAuditOgImage = "/og/og-architecture-audit.svg";
+
 const page = ({
   title,
   description,
@@ -30,7 +35,7 @@ const page = ({
   ogTitle,
   ogDescription,
   ogType = "website",
-  ogImage,
+  ogImage = defaultOgImage,
   pageType = "WebPage",
   schema = [],
 }: RouteMetadata): RouteMetadata => ({
@@ -127,6 +132,7 @@ export const routeMetadata: Record<string, RouteMetadata> = {
     ogTitle: "2-Week Architecture Audit | 109.studio",
     ogDescription:
       "A focused outside read on the system, the risks, and the technical decisions in front of you, with written findings and an executive debrief.",
+    ogImage: architectureAuditOgImage,
     schema: [
       createServiceSchema({
         path: "/architecture-audit",
@@ -145,6 +151,7 @@ export const routeMetadata: Record<string, RouteMetadata> = {
     ogTitle: "Applied AI Strategy and Workflow Engineering | 109.studio",
     ogDescription:
       "Start with the workflow, content system, or search problem in front of you, then decide where AI can safely improve speed, coverage, or answer quality.",
+    ogImage: appliedAiOgImage,
     schema: [
       createServiceSchema({
         path: "/applied-ai",
@@ -163,6 +170,7 @@ export const routeMetadata: Record<string, RouteMetadata> = {
     ogTitle: "Drupal AI Strategy, Architecture, and Implementation | 109.studio",
     ogDescription:
       "109.studio helps Drupal teams apply AI where it can improve content operations, search, editorial workflows, platform delivery, and user guidance.",
+    ogImage: drupalAiOgImage,
     schema: [
       createServiceSchema({
         path: "/drupal-ai",
@@ -181,6 +189,7 @@ export const routeMetadata: Record<string, RouteMetadata> = {
     ogTitle: "AI in Practice | Three Workflow Patterns from 109.studio",
     ogDescription:
       "Examples of applied AI tied to content operations, search and retrieval, and internal delivery support, each scoped around work a team already owns.",
+    ogImage: appliedAiOgImage,
     pageType: "CollectionPage",
   }),
   "/portfolio": page({
