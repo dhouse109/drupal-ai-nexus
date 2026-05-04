@@ -1,6 +1,6 @@
 # SEO release checklist
 
-Use this checklist when a change affects route metadata, Open Graph assets, schema.org data, prerendering, or priority landing-page copy.
+Use this checklist when a change affects route metadata, Open Graph assets, schema.org data, prerendering, sitemap generation, or priority landing-page copy.
 
 ## 1. Route coverage
 
@@ -24,7 +24,17 @@ Use this checklist when a change affects route metadata, Open Graph assets, sche
 - [ ] Canonical URLs match the public route path.
 - [ ] No route points to a Lovable preview, temporary domain, or local development URL.
 
-## 4. Open Graph and Twitter Card fallback
+## 4. Sitemap
+
+- [ ] `npm run build` generates `dist/sitemap.xml`.
+- [ ] The sitemap uses absolute `https://109.studio` URLs.
+- [ ] The sitemap includes every current public route from `src/seo/metadata.shared.js`.
+- [ ] The sitemap excludes `/404`, wildcard routes, and routes that do not exist as public pages.
+- [ ] Priority landing pages have intentional `priority` and `changefreq` values in `scripts/generate-sitemap.mjs`.
+- [ ] Future Insight article and Portfolio project detail URLs are only added after those pages and content sources exist.
+- [ ] `lastmod` is omitted unless meaningful published or updated dates are available.
+
+## 5. Open Graph and Twitter Card fallback
 
 - [ ] Each route has `og:title`.
 - [ ] Each route has `og:description`.
@@ -36,7 +46,7 @@ Use this checklist when a change affects route metadata, Open Graph assets, sche
 - [ ] Each route has `twitter:image`.
 - [ ] No `twitter:site` value is reintroduced unless 109.studio adopts an official X/Twitter presence.
 
-## 5. Open Graph image assets
+## 6. Open Graph image assets
 
 - [ ] Image references point to files under `public/og/`.
 - [ ] Priority routes use the most relevant branded image.
@@ -45,7 +55,7 @@ Use this checklist when a change affects route metadata, Open Graph assets, sche
 - [ ] Images use a 1200×630 composition.
 - [ ] If social preview tools reject SVG, PNG replacements are exported and metadata is updated.
 
-## 6. Schema.org JSON-LD
+## 7. Schema.org JSON-LD
 
 - [ ] Every indexed route includes a `WebPage`-family schema object.
 - [ ] About uses `AboutPage`.
@@ -56,16 +66,17 @@ Use this checklist when a change affects route metadata, Open Graph assets, sche
 - [ ] JSON-LD uses stable `@id` references.
 - [ ] JSON-LD does not include unsupported claims, fake reviews, fake ratings, or unavailable pricing.
 
-## 7. Build and prerendering
+## 8. Build and prerendering
 
 - [ ] `npm run build` completes successfully.
 - [ ] The prerender step logs the expected number of generated routes.
+- [ ] The sitemap step logs the expected number of generated routes.
 - [ ] `dist/index.html` includes the home-page metadata.
 - [ ] At least one priority route, such as `dist/drupal-ai/index.html`, includes route-specific metadata.
 - [ ] Generated HTML includes JSON-LD before React runs.
 - [ ] No stale duplicated SEO tags appear in generated HTML.
 
-## 8. Manual inspection
+## 9. Manual inspection
 
 Inspect at least these generated files after a metadata change:
 
@@ -74,8 +85,9 @@ Inspect at least these generated files after a metadata change:
 - [ ] `dist/applied-ai/index.html`
 - [ ] `dist/architecture-audit/index.html`
 - [ ] `dist/contact/index.html`
+- [ ] `dist/sitemap.xml`
 
-For each inspected file, check:
+For each inspected HTML file, check:
 
 - [ ] `<title>` is correct.
 - [ ] `meta name="description"` is correct.
@@ -83,24 +95,33 @@ For each inspected file, check:
 - [ ] `og:image` points to the expected asset.
 - [ ] JSON-LD is present and valid JSON.
 
-## 9. Post-deploy validation
+For `dist/sitemap.xml`, check:
+
+- [ ] The XML is valid.
+- [ ] The home page appears as `https://109.studio/`.
+- [ ] Priority routes such as `/services`, `/offerings`, `/drupal-ai`, `/applied-ai`, `/architecture-audit`, and `/insights` are present.
+- [ ] Removed, fallback, or future placeholder routes are not present.
+
+## 10. Post-deploy validation
 
 After deployment:
 
 - [ ] View source for the live home page and one priority route.
 - [ ] Confirm route-specific metadata appears in initial HTML.
+- [ ] Confirm `https://109.studio/sitemap.xml` loads.
+- [ ] Submit or refresh the sitemap in Google Search Console and Bing Webmaster Tools when appropriate.
 - [ ] Test priority pages in social preview/debugger tools.
 - [ ] Validate JSON-LD for at least the home page and one service page.
 - [ ] Confirm Google Analytics is still loading.
 - [ ] Confirm Google Search Console and Bing verification tags remain in `index.html`.
 
-## 10. Documentation updates
+## 11. Documentation updates
 
 - [ ] If metadata source files change, update `docs/seo-metadata-workflow.md`.
-- [ ] If the prerender strategy changes, update `docs/seo-prerendering.md`.
+- [ ] If the prerender or sitemap build strategy changes, update `docs/seo-prerendering.md`.
 - [ ] If Open Graph asset conventions change, update `public/og/README.md`.
 - [ ] If release review steps change, update this checklist.
 
 ## Review principle
 
-Metadata is part of the page experience. It should help the right visitor understand why the page exists, what decision it supports, and why 109.studio is credible enough to continue the conversation.
+Metadata and sitemap generation are part of the page experience. They should help the right visitor, crawler, or preview tool understand why the page exists, what decision it supports, and why 109.studio is credible enough to continue the conversation.
