@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">109.studio</title>
+  <desc id="desc">Senior technical direction for complex products, platforms, and applied AI.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0e0f0f"/>
+      <stop offset="1" stop-color="#1b1712"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="74%" cy="45%" r="45%">
+      <stop offset="0" stop-color="#c06f2a" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#c06f2a" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#2c2b28" stroke-width="1" opacity="0.5"/>
+    </pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.55"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g transform="translate(700 105) scale(.42)" filter="url(#shadow)" fill="none" stroke="#eee8dc" stroke-width="28" stroke-linecap="square" stroke-linejoin="miter">
+    <circle cx="410" cy="410" r="215"/>
+    <circle cx="410" cy="410" r="54"/>
+    <path d="M140 680 680 140"/>
+    <circle cx="110" cy="710" r="55" fill="#ff6b00" stroke="#f0d26d" stroke-width="10"/>
+    <circle cx="710" cy="110" r="55" fill="#ff6b00" stroke="#f0d26d" stroke-width="10"/>
+    <circle cx="75" cy="410" r="45"/>
+    <circle cx="745" cy="410" r="45"/>
+    <path d="M410 245v80M410 495v80M245 410h80M495 410h80"/>
+    <path d="M65 265V70h190l92 92"/>
+    <path d="M195 245V160l100 100"/>
+    <path d="M755 555v195H565l-92-92"/>
+    <path d="M625 575v85l-100-100"/>
+    <circle cx="410" cy="410" r="36" stroke="#ff6b00" stroke-width="12"/>
+  </g>
+  <g font-family="Source Code Pro, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <text x="82" y="116" fill="#c06f2a" font-size="22" letter-spacing="6">109.studio</text>
+    <text x="82" y="215" fill="#eee8dc" font-size="62" font-weight="700">109.studio</text>
+    <text x="82" y="292" fill="#bfb7aa" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="31">Senior technical direction for</text>
+    <text x="82" y="336" fill="#bfb7aa" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="31">complex products, platforms,</text>
+    <text x="82" y="380" fill="#bfb7aa" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="31">and applied AI.</text>
+    <path d="M82 500h348" stroke="#c06f2a" stroke-width="3"/>
+  </g>
+</svg>
