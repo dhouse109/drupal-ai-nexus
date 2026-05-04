@@ -7,8 +7,26 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(__dirname, "..");
 const sitemapPath = join(repoRoot, "dist", "sitemap.xml");
 
-const defaultChangefreq = "monthly";
-const defaultPriority = "0.6";
+const defaultSitemapOptions = {
+  changefreq: "monthly",
+  priority: "0.6",
+};
+
+const sitemapOptions = {
+  "/": { changefreq: "weekly", priority: "1.0" },
+  "/services": { changefreq: "monthly", priority: "0.9" },
+  "/offerings": { changefreq: "monthly", priority: "0.9" },
+  "/drupal-ai": { changefreq: "monthly", priority: "0.9" },
+  "/applied-ai": { changefreq: "monthly", priority: "0.8" },
+  "/architecture-audit": { changefreq: "monthly", priority: "0.8" },
+  "/ai-in-practice": { changefreq: "monthly", priority: "0.7" },
+  "/insights": { changefreq: "weekly", priority: "0.7" },
+};
+
+const getSitemapOptions = (path) => ({
+  ...defaultSitemapOptions,
+  ...sitemapOptions[path],
+});
 
 const escapeXml = (value) =>
   String(value)
@@ -32,12 +50,13 @@ const publicRoutes = Object.values(routeMetadata)
 const urls = publicRoutes
   .map((path) => {
     const loc = absoluteUrl(path);
+    const { changefreq, priority } = getSitemapOptions(path);
 
     return [
       "  <url>",
       `    <loc>${escapeXml(loc)}</loc>`,
-      `    <changefreq>${defaultChangefreq}</changefreq>`,
-      `    <priority>${defaultPriority}</priority>`,
+      `    <changefreq>${changefreq}</changefreq>`,
+      `    <priority>${priority}</priority>`,
       "  </url>",
     ].join("\n");
   })
