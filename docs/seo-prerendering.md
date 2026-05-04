@@ -48,3 +48,8 @@ When route metadata changes, update `src/seo/metadata.shared.js`. The change wil
 When identity-level details change, update `src/seo/siteIdentity.shared.js`.
 
 When schema construction changes, update `src/seo/schema.shared.js`.
+
+## Related documentation
+
+- `docs/seo-metadata-workflow.md` explains how to add and maintain route metadata, Open Graph assets, and schema.org objects.
+- `docs/seo-release-checklist.md` provides the review checklist to use before merging metadata or prerendering changes.
