@@ -1,3 +1,4 @@
+import { getPublishedArticles } from "../data/insights.shared.js";
 import {
   createServiceSchema,
   createWebPageSchema,
@@ -35,6 +36,40 @@ const page = ({
   pageType,
   schema: [createWebPageSchema({ path, name: title, description, pageType }), ...schema],
 });
+
+const createArticleSchema = (article) => ({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": `${siteUrl}/insights/${article.slug}#article`,
+  url: `${siteUrl}/insights/${article.slug}`,
+  headline: article.title,
+  description: article.description,
+  author: { "@id": `${siteUrl}/#person` },
+  publisher: { "@id": `${siteUrl}/#organization` },
+  mainEntityOfPage: { "@id": `${siteUrl}/insights/${article.slug}#webpage` },
+  articleSection: article.category,
+  inLanguage: "en-US",
+});
+
+const insightArticleMetadata = Object.fromEntries(
+  getPublishedArticles().map((article) => {
+    const path = `/insights/${article.slug}`;
+
+    return [
+      path,
+      page({
+        title: `${article.title} | 109.studio`,
+        description: article.description,
+        path,
+        ogTitle: article.title,
+        ogDescription: article.description,
+        ogType: "article",
+        ogImage: appliedAiOgImage,
+        schema: [createArticleSchema(article)],
+      }),
+    ];
+  }),
+);
 
 export const defaultMetadata = page({
   title: "109.studio | Senior Technical Direction for Complex Products and Platforms",
@@ -208,6 +243,7 @@ export const routeMetadata = {
       "109.studio shares working notes on modernization, applied AI, search, delivery systems, and the technical decisions that shape software teams.",
     pageType: "CollectionPage",
   }),
+  ...insightArticleMetadata,
 };
 
 export const notFoundMetadata = page({
