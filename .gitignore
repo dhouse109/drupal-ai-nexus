@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Generated social preview assets
+public/og/*.png
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
