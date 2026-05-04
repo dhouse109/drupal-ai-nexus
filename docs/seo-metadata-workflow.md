@@ -1,6 +1,6 @@
 # SEO metadata workflow
 
-This guide explains how route-level metadata, Open Graph tags, and schema.org JSON-LD are maintained for 109.studio.
+This guide explains how route-level metadata, Open Graph tags, schema.org JSON-LD, prerendered route HTML, and sitemap generation are maintained for 109.studio.
 
 The goal is simple: every important public page should have clear metadata that reflects the page's job in the business, not just its route name.
 
@@ -10,7 +10,7 @@ SEO metadata is maintained in shared dependency-free JavaScript modules under `s
 
 | File | Purpose |
 | --- | --- |
-| `src/seo/metadata.shared.js` | Route-level titles, descriptions, Open Graph copy, Open Graph images, page schema type, and page-specific schema attachments. |
+| `src/seo/metadata.shared.js` | Route-level titles, descriptions, Open Graph copy, Open Graph images, page schema type, page-specific schema attachments, and the public route list used by prerendering and sitemap generation. |
 | `src/seo/schema.shared.js` | Shared schema.org constructors and core identity objects such as Organization, Person, WebSite, ProfessionalService, WebPage, and Service. |
 | `src/seo/siteIdentity.shared.js` | Durable 109.studio identity data such as site name, URL, founder, social profiles, practice areas, audience segments, and core offerings. |
 
@@ -24,10 +24,11 @@ The TypeScript files in the same directory are compatibility wrappers for the Re
 
 ## Runtime and build-time usage
 
-The same metadata is used in two places.
+The same metadata is used in three places.
 
 1. **Client-side navigation** uses the React SEO layer so metadata updates when a visitor moves between routes in the single-page app.
 2. **Build-time prerendering** uses `scripts/prerender-seo.mjs` so static route HTML includes titles, descriptions, canonical URLs, Open Graph tags, Twitter Card fallback tags, and JSON-LD before React runs.
+3. **Sitemap generation** uses `scripts/generate-sitemap.mjs` so `dist/sitemap.xml` stays aligned with the public route metadata.
 
 This gives the site both a good browser experience and more reliable initial HTML for crawlers and social preview tools.
 
@@ -43,7 +44,8 @@ When adding a public route, update the metadata at the same time as the page.
 6. Choose an Open Graph image.
 7. Choose the most accurate page schema type.
 8. Add page-specific schema when the page represents a service, collection, contact page, or identity page.
-9. Run the build so the prerender step generates the route HTML.
+9. If the route needs a sitemap priority or change frequency different from the defaults, update `scripts/generate-sitemap.mjs`.
+10. Run the build so the prerender and sitemap steps generate the route HTML and `dist/sitemap.xml`.
 
 Example route entry pattern:
 
@@ -65,6 +67,26 @@ Example route entry pattern:
   ],
 }),
 ```
+
+## Sitemap generation
+
+The sitemap is generated, not manually edited.
+
+The production build writes the sitemap to:
+
+```txt
+dist/sitemap.xml
+```
+
+The generator reads the public routes from `src/seo/metadata.shared.js`, excludes fallback routes such as `/404`, and writes canonical URLs using the shared `https://109.studio` site identity.
+
+Route-level sitemap tuning lives in `scripts/generate-sitemap.mjs`.
+
+Use explicit sitemap options for priority landing pages, service pages, or pages expected to change more frequently. Routes without explicit options use safe defaults.
+
+When future Insight articles and Portfolio project detail pages are created, extend the sitemap generator to read from their content source and include the generated detail routes. Do not add placeholder article or project URLs before the pages exist.
+
+Avoid `lastmod` until pages have meaningful published or updated dates. A build-time timestamp can look precise while not accurately describing when page content changed.
 
 ## Choosing page titles
 
@@ -144,15 +166,17 @@ Common structured data objects:
 
 Identity-level schema should usually be edited in `src/seo/siteIdentity.shared.js` or `src/seo/schema.shared.js`, not directly inside a route.
 
-## Prerendering
+## Prerendering and sitemap output
 
 The production build runs:
 
 ```sh
-vite build && node scripts/prerender-seo.mjs
+vite build && node scripts/prerender-seo.mjs && node scripts/generate-sitemap.mjs
 ```
 
 The prerender script reads the built `dist/index.html`, strips old route-level SEO tags, injects metadata from `src/seo/metadata.shared.js`, and writes route-specific `index.html` files.
+
+The sitemap script then writes `dist/sitemap.xml` from the same route metadata source.
 
 After metadata changes, inspect generated HTML for at least one updated route. Confirm the initial HTML includes:
 
@@ -168,18 +192,23 @@ After metadata changes, inspect generated HTML for at least one updated route. C
 - `twitter:image`
 - `script type="application/ld+json"`
 
+Also confirm `dist/sitemap.xml` includes the expected route URL and excludes removed or non-public routes.
+
 ## Validation workflow
 
 Before merging metadata changes:
 
 1. Run the normal build.
 2. Confirm prerendering completes without errors.
-3. Inspect `dist/<route>/index.html` for at least one changed route.
-4. Confirm route titles are unique.
-5. Confirm canonical URLs are absolute and point to `https://109.studio`.
-6. Confirm Open Graph image URLs resolve to real files in `public/og/`.
-7. Validate JSON-LD with a structured data testing tool after deployment.
-8. Validate link previews after deployment for priority pages.
+3. Confirm sitemap generation completes without errors.
+4. Inspect `dist/<route>/index.html` for at least one changed route.
+5. Inspect `dist/sitemap.xml` when routes are added, removed, or reprioritized.
+6. Confirm route titles are unique.
+7. Confirm canonical URLs are absolute and point to `https://109.studio`.
+8. Confirm sitemap URLs are absolute and point to `https://109.studio`.
+9. Confirm Open Graph image URLs resolve to real files in `public/og/`.
+10. Validate JSON-LD with a structured data testing tool after deployment.
+11. Validate link previews after deployment for priority pages.
 
 ## When to update metadata
 
@@ -193,4 +222,11 @@ Update metadata when:
 - 109.studio identity details change.
 - A service or offering is renamed.
 
-Do not treat metadata as a final polish step. It is part of the page strategy.
+Update sitemap options when:
+
+- A route becomes a higher-priority landing page.
+- A route's expected update frequency changes.
+- Future Insight article or Portfolio project detail routes are added through a content source.
+- A public route is removed and should no longer be discoverable.
+
+Do not treat metadata or sitemap generation as a final polish step. They are part of the page strategy.
