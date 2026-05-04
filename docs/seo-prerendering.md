@@ -31,15 +31,20 @@ The prerender script reads `dist/index.html`, injects route-specific SEO metadat
 
 This is intentionally lighter than adopting a full SSR framework. It keeps the existing React app and routing model intact while improving the HTML that crawlers, validators, and social preview tools see first.
 
+## Shared metadata source
+
+Route metadata, Open Graph image paths, and schema definitions live in shared dependency-free JavaScript modules under `src/seo/`:
+
+- `src/seo/metadata.shared.js`
+- `src/seo/schema.shared.js`
+- `src/seo/siteIdentity.shared.js`
+
+The React app imports these through TypeScript compatibility wrappers such as `src/seo/siteMetadata.ts`. The prerender script imports the shared JavaScript modules directly. This keeps client-side navigation metadata and build-time static HTML generation aligned from the same source of truth.
+
 ## Maintenance note
 
-Route metadata currently lives in two places:
+When route metadata changes, update `src/seo/metadata.shared.js`. The change will be used by both the React app and the prerender script.
 
-1. `src/seo/siteMetadata.ts` for client-side navigation.
-2. `scripts/prerender-seo.mjs` for build-time static HTML generation.
+When identity-level details change, update `src/seo/siteIdentity.shared.js`.
 
-When route metadata changes, update both places until the metadata source is moved into a shared dependency-free module.
-
-## Future improvement
-
-A later pass can move the shared metadata and schema definitions into a framework-neutral JavaScript module imported by both the React app and the prerender script. That would remove duplication while keeping the post-build prerender strategy intact.
+When schema construction changes, update `src/seo/schema.shared.js`.
