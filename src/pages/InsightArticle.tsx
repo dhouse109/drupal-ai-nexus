@@ -197,6 +197,11 @@ const InsightArticle = () => {
         </div>
       </section>
 
+      <RelatedProjects
+        projectSlugs={article.relatedProjectSlugs}
+        insightSlug={article.slug}
+      />
+
       <ContentCTA
         eyebrow="Related next move"
         headline="Recognize your own situation in this?"
