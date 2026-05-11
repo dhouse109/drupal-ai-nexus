@@ -1,6 +1,7 @@
 import { ArrowRight, FileSearch, GitPullRequest, Network, ShieldCheck, Workflow } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import RelatedWorkBlock from "@/components/content/RelatedWorkBlock";
 
 const usefulAreas = [
   {
