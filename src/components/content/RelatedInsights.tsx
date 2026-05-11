@@ -1,5 +1,6 @@
 import InsightCard from "@/components/insights/InsightCard";
 import { articles } from "@/data/insights";
+import { getLastGridItemSpanClass } from "@/lib/grid";
 
 interface RelatedInsightsProps {
   intro?: string;
@@ -46,8 +47,17 @@ const RelatedInsights = ({ intro, insightSlugs, unmatchedIds }: RelatedInsightsP
           </div>
         )}
         <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
-          {resolved.map((article) => (
-            <InsightCard key={article.slug} article={article} />
+          {resolved.map((article, index) => (
+            <InsightCard
+              key={article.slug}
+              article={article}
+              className={getLastGridItemSpanClass({
+                index,
+                itemCount: resolved.length,
+                mdColumns: 2,
+                xlColumns: 3,
+              })}
+            />
           ))}
         </div>
       </div>
