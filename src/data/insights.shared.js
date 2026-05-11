@@ -167,7 +167,6 @@ export const articles = [
       "Notes in progress. This essay will explore how internal patterns become reusable when they are documented and published.",
     body: [],
   },
-,
   {
     slug: "managing-the-alien-coworker-ai-permissions-review-control",
     category: "Applied AI",
