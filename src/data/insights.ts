@@ -1,11 +1,7 @@
 import {
   articles as sharedArticles,
-  getArticleBySlug as getSharedArticleBySlug,
-  getDraftArticles as getSharedDraftArticles,
-  getFeaturedArticle as getSharedFeaturedArticle,
-  getNonFeaturedArticles as getSharedNonFeaturedArticles,
-  getPublishedArticles as getSharedPublishedArticles,
 } from "./insights.shared.js";
+import { applyInsightQaOverrides } from "./insights.qa-overrides.js";
 
 export type InsightBlock =
   | { type: "paragraph"; text: string }
@@ -38,19 +34,19 @@ export interface InsightArticle {
   relatedProjectIds?: string[];
 }
 
-export const articles = sharedArticles as InsightArticle[];
+export const articles = sharedArticles.map(applyInsightQaOverrides) as InsightArticle[];
 
 export const getArticleBySlug = (slug: string): InsightArticle | undefined =>
-  getSharedArticleBySlug(slug) as InsightArticle | undefined;
+  articles.find((article) => article.slug === slug && article.status === "published");
 
 export const getFeaturedArticle = (): InsightArticle | undefined =>
-  getSharedFeaturedArticle() as InsightArticle | undefined;
+  articles.find((article) => article.featured && article.status === "published");
 
 export const getPublishedArticles = (): InsightArticle[] =>
-  getSharedPublishedArticles() as InsightArticle[];
+  articles.filter((article) => article.status === "published");
 
 export const getDraftArticles = (): InsightArticle[] =>
-  getSharedDraftArticles() as InsightArticle[];
+  articles.filter((article) => article.status === "draft");
 
 export const getNonFeaturedArticles = (): InsightArticle[] =>
-  getSharedNonFeaturedArticles() as InsightArticle[];
+  articles.filter((article) => article.status === "published" && !article.featured);
