@@ -22,6 +22,7 @@ export type InsightBlock =
 export interface InsightArticle {
   slug: string;
   category: string;
+  categoryId?: string;
   title: string;
   description: string;
   readTime: string;
@@ -31,6 +32,10 @@ export interface InsightArticle {
   featured?: boolean;
   status: "published" | "draft";
   body: InsightBlock[];
+  themes?: string[];
+  publicationChannels?: ("109.studio" | "damien.house")[];
+  relatedProjectSlugs?: string[];
+  relatedProjectIds?: string[];
 }
 
 export const articles = sharedArticles as InsightArticle[];
