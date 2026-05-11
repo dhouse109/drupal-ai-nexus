@@ -2,6 +2,7 @@ import { ArrowLeft, PencilLine } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import ContentCTA from "@/components/content/ContentCTA";
+import RelatedProjects from "@/components/content/RelatedProjects";
 import { getArticleBySlug, type InsightBlock } from "@/data/insights";
 
 const calloutEyebrow: Record<
