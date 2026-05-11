@@ -149,6 +149,8 @@ const Insights = () => {
           </div>
         </section>
       )}
+
+      {draftArticles.length > 0 && (
         <section className="border-b border-border py-20 md:py-24">
           <div className="container">
             <div className="mb-16 max-w-3xl">
