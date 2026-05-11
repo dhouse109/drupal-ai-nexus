@@ -12,6 +12,7 @@ const headerNavItems = [
   { label: "Offerings", to: "/offerings" },
   { label: "Applied AI", to: "/applied-ai" },
   { label: "Portfolio", to: "/portfolio" },
+  { label: "Insights", to: "/insights" },
 ];
 
 const footerNavItems = [
@@ -20,6 +21,8 @@ const footerNavItems = [
   { label: "How We Help", to: "/services" },
   { label: "Offerings", to: "/offerings" },
   { label: "Applied AI", to: "/applied-ai" },
+  { label: "Portfolio", to: "/portfolio" },
+  { label: "Insights", to: "/insights" },
   { label: "Contact", to: "/contact" },
 ];
 
@@ -48,12 +51,19 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? "text-primary" : "text-muted-foreground hover:text-foreground",
   ].join(" ");
 
+const contentRoutesWithOwnCta = ["/portfolio", "/insights"];
+const hasPageLevelContentCta = (pathname: string) =>
+  contentRoutesWithOwnCta.includes(pathname) ||
+  pathname.startsWith("/portfolio/") ||
+  pathname.startsWith("/insights/");
+
 const Layout = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const isContactPage = location.pathname === "/contact";
+  const shouldShowFooterCta = !isContactPage && !hasPageLevelContentCta(location.pathname);
   // Note: header "Start a conversation" CTA stays visible on /contact for visual consistency.
-  // Only the footer card is hidden on /contact (handled below via isContactPage).
+  // The footer card is hidden on /contact and content routes with their own contextual CTA.
 
   const servicesCta = useSafeCtaTarget("/services", "See how 109 helps", {
     label: "See starting points",
@@ -75,7 +85,7 @@ const Layout = () => {
             <span className="text-foreground">.studio</span>
           </NavLink>
 
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden items-center gap-6 md:flex">
             {headerNavItems.map((item) => (
               <NavLink key={item.to} to={item.to} className={linkClass} end={item.to === "/"}>
                 {item.label}
@@ -94,13 +104,15 @@ const Layout = () => {
             className="text-foreground md:hidden"
             onClick={() => setOpen((value) => !value)}
             aria-label="Toggle menu"
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 
         {open && (
-          <div className="border-t border-border bg-background md:hidden">
+          <div id="mobile-navigation" className="border-t border-border bg-background md:hidden">
             <div className="container flex flex-col gap-5 py-6">
               {headerNavItems.map((item) => (
                 <NavLink
@@ -131,7 +143,7 @@ const Layout = () => {
       </main>
 
       <footer className="border-t border-border py-14">
-        {!isContactPage && (
+        {shouldShowFooterCta && (
           <div className="container mb-12 border border-border bg-surface p-8 md:p-10">
             <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
               <div>
