@@ -1,147 +1,117 @@
-# Projects & Insights — Phases 0–2 Implementation Plan
+# Phase 5 — Content Completion & Deferred Items
 
-Source dataset: `109studio-content-treatments-2.json` (10 Projects, 10 Insights).
-Scope: Phases 0–2 from the approved plan. Pause for review before Phase 3+.
+Picks up from the Phases 3–4 summary. Goal: turn the 10 draft insights into publishable articles, run a deliberate copy review pass on the 10 projects, and close out the two deferred items (home portfolio teaser, editorial-guardrail lint).
 
-After implementation, a summary file (`/mnt/documents/projects-insights-implementation-summary.md`) will list files changed, routes added, components added, data structures added, assumptions, and items to review manually.
-
----
-
-## Scope this pass
-
-In:
-- Refactor: extract `InsightCard` and shared `ContentCTA` (no visible change).
-- Taxonomy module (categories, statuses, channels, label maps).
-- Projects data layer (10 projects from dataset).
-- Projects index `/portfolio` (rebuild stub) with 4-category `CategoryFilter` (URL query-param driven).
-- Project detail `/portfolio/:slug` with hero, Problem/Approach/Value, Proof Artifact, Related Insights, CTA.
-- Sitemap + per-slug SEO metadata + prerender enumeration for project pages.
-- Navbar surfaces "Portfolio" link.
-
-Out (deferred to Phase 3+):
-- Insight category filters.
-- `RelatedProjects` on insight detail pages.
-- Backfilling `relatedProjectIds` / themes on existing insights.
-- Footer Work/Writing columns.
-- Service-page cross-links and home Portfolio teaser.
-- Editorial-guardrail lint script.
+Pause point preserved: no schema changes, no taxonomy changes, no new routes.
 
 ---
 
-## Key dataset alignment
+## 1. Insight bodies (the big one)
 
-The dataset's insight slugs do not match the existing `src/data/insights.shared.js` slugs. Therefore:
-- Project → `relatedInsightIds` will be **resolved through the dataset's insight slugs**, but we will only render an insight card if a matching slug exists in the current `insights.shared.js`. Missing matches are silently filtered (logged in dev).
-- A note will be added to the summary listing unmatched IDs so insight backfill in Phase 3 has a clear todo list.
+The 10 new insights from `109studio-content-treatments-2.json` currently live in `src/data/insights.shared.js` as drafts with `intro` only and an empty `body: []`. They cannot be promoted to `published` until each has a real body.
 
----
+Approach:
 
-## Phase 0 — Refactor prep (no visible change)
+1. **Source of truth for body content** — confirm before writing. Three options:
+   - (A) Draft each body from the dataset's `intro`, `keyTakeaway`, themes, and category alone. Fast, but content is essentially expanded from one paragraph.
+   - (B) You provide a short brief (3–6 bullet points) per insight, I expand into the `InsightBlock[]` structure. Highest quality.
+   - (C) You paste a rough draft per insight, I structure and edit it into blocks. Closest to your voice.
+   
+   Default if unspecified: **(B)**, asked one insight at a time so you can steer voice early.
 
-1. `src/components/insights/InsightCard.tsx` — extract from `src/pages/Insights.tsx`. Use existing markup verbatim. Update `Insights.tsx` to import it.
-2. `src/components/content/ContentCTA.tsx` — extract the "Related next move" block from `InsightArticle.tsx` (lines ~178–207). Props: `eyebrow`, `headline`, `body`, `primary {label, to}`, `secondary {label, to}`. Update `InsightArticle.tsx` to use it.
-3. `src/data/taxonomy.shared.js` + `src/data/taxonomy.ts` — exports:
-   - `PROJECT_CATEGORIES` (4 entries: id, label, shortLabel)
-   - `PROJECT_STATUSES` (id, label, tone) — `tone` ∈ `neutral | accent | muted` to drive `StatusBadge`
-   - `PUBLICATION_CHANNELS` (`109.studio`, `damien.house`)
+2. **Structure per article** — reuse the existing `InsightBlock` union (`paragraph`, `heading`, `callout`, `list`, `quote`). Target shape:
+   - 1 intro paragraph (already present)
+   - 2–4 `heading` + `paragraph` sections
+   - 1 `callout` (guidance/insight) tied to `keyTakeaway`
+   - Optional `list` where the topic is enumerable
+   - 1 closing paragraph that bridges to the project or service the insight supports
 
-## Phase 1 — Projects data + index
+3. **Promote to published** — only after body is written and you approve. Flip `status: "draft"` → `"published"` per insight, in batches as they're approved (not all at once).
 
-4. `src/data/projects.shared.js` — 10 projects, transformed from the dataset to a flat shape:
-   ```
-   { id, slug, title, status, statusLabel, primaryCategory, secondaryCategories,
-     themes, publicationChannels, relatedOffer, relatedInsightSlugs[],
-     detail: { headline, subheadline, cardSummary, problem, approach,
-               resultValue, proofArtifact, relatedInsightsIntro,
-               cta: { text, primaryHref, secondaryHref } },
-     editorialGuardrail, confidence, overclaimingRisk, featured }
-   ```
-   - `relatedInsightSlugs`: derived by mapping each `INS-xxx` to the dataset's slug (NOT an existing site slug). The component layer reconciles to existing slugs.
-   - `cta.primaryHref` / `secondaryHref`: parsed from `ctaDestinationRecommendation` heuristically; default to `/contact` + `/services` if parsing is ambiguous.
-   - `featured`: PROJ-001 only (highest-confidence flagship per dataset framing).
-5. `src/data/projects.ts` — `Project` type, plus `getAllProjects`, `getProjectBySlug`, `getProjectsByCategory`, `getFeaturedProject`, `getProjectsLinkingToInsightSlug(slug)`.
-6. Components:
-   - `src/components/content/StatusBadge.tsx` — small mono pill, border-only, no fill.
-   - `src/components/content/ChannelBadge.tsx` — same shape, distinct accent. **No external link rendered** even when channel includes `damien.house` (per gate decision).
-   - `src/components/content/ThemeChips.tsx` — border-only chips, max N visible with `+X more`.
-   - `src/components/content/CategoryFilter.tsx` — horizontal mono pill row, active state = `text-primary` + bottom border. Uses `useSearchParams` so deep links work.
-   - `src/components/projects/ProjectCard.tsx` — title, status badge, primary category eyebrow, summary, themes (max 3). Interactive: border color shift on hover only.
-   - `src/components/projects/ProjectGrid.tsx` — responsive grid + empty state.
-7. `src/pages/Portfolio.tsx` — replace stub:
-   - Hero (existing pattern with `grid-bg`, motion entrance).
-   - Optional featured project card (large variant of `ProjectCard`).
-   - `CategoryFilter`.
-   - `ProjectGrid`.
-   - `ContentCTA` at the bottom (primary `/contact`, secondary `/services`).
-8. `src/components/Layout.tsx` — add "Portfolio" link in primary nav (already in nav order per plan).
-9. `scripts/generate-sitemap.mjs` — `/portfolio` already implicit if added to `routeMetadata`; ensure it's included with sensible changefreq/priority.
+4. **Backfill `relatedProjectSlugs`** — for each newly published insight, set the explicit forward link to any project whose `relatedInsightSlugs` already includes it. The reverse-lookup in `RelatedProjects` covers this functionally, but the explicit field makes the relationship visible in the data file and lets us order related projects deliberately.
 
-## Phase 2 — Project detail
+5. **Editorial guardrails enforced while writing**:
+   - Never use "ship" / "shipping" — use "release software".
+   - Use "109" for studio identity, never "Damien" outside bio context.
+   - No claims that abstracted/sample/lab work was delivered to a client.
+   - Match the existing 6 published articles' tone (plainspoken, technical, direct).
 
-10. `src/App.tsx` — register `/portfolio/:slug` inside the `<Layout />` block, before `*`.
-11. Components:
-    - `src/components/projects/ProjectDetailHero.tsx` — eyebrow (primary category) + `StatusBadge` + headline + subheadline + meta row (themes + channel badge). Reuses motion pattern from `InsightArticle`.
-    - `src/components/projects/PAVBlock.tsx` — three sections (Problem, Approach, Value), each with mono section label + body in a `bg-surface` card.
-    - `src/components/projects/ProofArtifactBlock.tsx` — single `bg-surface` callout with eyebrow "Proof artifact".
-    - `src/components/content/RelatedInsights.tsx` — grid of `InsightCard`. Resolves project's `relatedInsightSlugs` against current `insights.shared.js`, silently drops misses. Lead copy = `relatedInsightsIntro`.
-12. `src/pages/ProjectDetail.tsx` — assembles hero → PAV → proof → related insights → `ContentCTA`. 404 fallback = `<Navigate to="/portfolio" replace />` like `InsightArticle.tsx`. Optional small footer note when `publicationChannels` includes `damien.house` (badge only, no link).
-13. SEO:
-    - `src/seo/metadata.shared.js`: add a per-slug resolver branch for `/portfolio/:slug` that synthesizes title + description from `detail.headline` + `cardSummary`.
-    - `src/seo/schema.shared.js`: add `createProjectSchema` (`CreativeWork` JSON-LD).
-14. `scripts/prerender-seo.mjs`: enumerate project slugs from `projects.shared.js` and render each `/portfolio/:slug`.
-15. `scripts/generate-sitemap.mjs`: enumerate project slugs and include them with `changefreq: monthly, priority: 0.7`.
+## 2. Per-project copy review
 
----
+The 10 projects in `src/data/projects.shared.js` were generated from the dataset with minimal editorial intervention. This pass is a deliberate review, not a rewrite.
 
-## Routing additions
+Per project, check and adjust:
 
-| Route | Source | Notes |
-|---|---|---|
-| `/portfolio` | replaces stub | Filter via `?category=...` |
-| `/portfolio/:slug` | new | 10 slugs from dataset |
+1. **`detail.headline` and `subheadline`** — read aloud. Cut filler. Confirm headline is a claim, not a label.
+2. **`detail.cardSummary`** — under ~160 chars, ends with a period, no marketing adjectives.
+3. **`detail.problem` / `approach` / `resultValue`** — confirm:
+   - `problem` describes a real constraint, not a generic pain point.
+   - `approach` describes what 109 actually did or would do, not a methodology lecture.
+   - `resultValue` is specific. For `abstracted-past-work` and `planned-service-proof`, confirm phrasing matches the status (no implied client delivery for planned items).
+4. **`detail.proofArtifact`** — confirm the artifact named actually exists or is realistic to produce. Flag anything aspirational.
+5. **`detail.cta`** — confirm `primaryHref` and `secondaryHref` point to the right destinations. The current values were parsed heuristically from `ctaDestinationRecommendation`; PROJ-005 specifically was flagged for review against `/applied-ai`.
+6. **`statusLabel` and `statusTone`** — confirm "Planned Service Proof" and "Lab" should keep the `accent` tone, or step them down to `neutral`/`muted`.
+7. **`editorialGuardrail`** — read the stored string for each project. If any project's actual rendered copy violates its own guardrail, fix the copy (not the guardrail).
 
-## Components added (final list)
+Output of this pass: a single markdown review file at `/mnt/documents/projects-copy-review.md` with one section per project, listing what was changed and what was left. Edits applied directly to `projects.shared.js`.
 
-`InsightCard`, `ContentCTA`, `StatusBadge`, `ChannelBadge`, `ThemeChips`, `CategoryFilter`, `ProjectCard`, `ProjectGrid`, `ProjectDetailHero`, `PAVBlock`, `ProofArtifactBlock`, `RelatedInsights`.
+## 3. Deferred items
 
-## Data files added
+### 3a. Home page portfolio teaser
+- Add a new section to `src/pages/Index.tsx` between the existing services/lab sections (exact placement TBD after viewing the current order).
+- Renders the `featured` project (PROJ-001) as a single large card + a "View all work" link to `/portfolio`.
+- Reuses `ProjectCard` with a `variant="featured"` prop (small additive change to `ProjectCard`, no new component file).
+- Respects existing home-page rhythm: section uses `grid-bg`, mono eyebrow, motion entrance pattern from neighboring sections.
 
-`src/data/projects.shared.js`, `src/data/projects.ts`, `src/data/taxonomy.shared.js`, `src/data/taxonomy.ts`.
+### 3b. Editorial-guardrail lint script
+- New file: `scripts/lint-editorial.mjs`.
+- Reads `src/data/projects.shared.js` and `src/data/insights.shared.js`.
+- Fails (exit 1) on:
+  - Any occurrence of "ship", "shipping", "shipped" outside an explicit allowlist.
+  - Any occurrence of "Damien" inside project/insight body or detail copy (allowed only in `src/pages/About.tsx`, which the script does not scan).
+  - Any project whose `status` is `planned-service-proof`, `sample-only`, or `lab` whose `detail.resultValue` contains delivery-implying verbs (`delivered`, `shipped`, `launched for`, `rolled out to`).
+- Wired as a manual `node scripts/lint-editorial.mjs` step. Not added to the build pipeline this pass — surfaced in the summary so you can decide whether to gate CI on it later.
+- Output is a list of violations with file + field path, no autofix.
 
----
+## 4. SEO / build hygiene
 
-## Design rules (enforced)
+- After insights are promoted to `published`, re-run `scripts/generate-sitemap.mjs` and `scripts/prerender-seo.mjs` to confirm the 10 new insight slugs are enumerated.
+- Confirm per-insight metadata in `src/seo/metadata.shared.js` has entries for the newly published slugs. Add any missing ones using the existing pattern.
 
-- Semantic tokens only (`bg-surface`, `border-border`, `text-primary`, `text-text-dim`).
-- Source Code Pro mono uppercase eyebrows, `tracking-[0.3em]`.
-- `grid-bg` overlay on every detail hero.
-- No hover background shift on informational cards. Interactive cards animate border color only.
-- Framer Motion entrance pattern reused from `InsightArticle.tsx`.
-- Voice: never use "ship/shipping" — "release software" instead. Use "109" for studio identity.
+## 5. Sequence
 
-## Editorial labeling rules (enforced in UI)
+```text
+1. Confirm content sourcing for insight bodies (A/B/C above).
+2. Project copy review pass — applied to projects.shared.js, review file written.
+3. Insight bodies — drafted in batches of 2–3, promoted to published as approved.
+4. Backfill relatedProjectSlugs on each newly published insight.
+5. Home portfolio teaser.
+6. Editorial-guardrail lint script.
+7. Re-run sitemap + prerender. Confirm route count grows from 22 by however many insights were promoted.
+8. Write /mnt/documents/projects-insights-phase-5-summary.md.
+```
 
-- Every project card and project hero shows `StatusBadge` with `statusLabelRecommendation`.
-- Planned / sample / lab / abstracted projects are never displayed without their badge.
-- The literal `editorialGuardrail` string is stored in data and surfaced as an HTML comment in the prerendered detail page (so it shows up in source review without affecting visible UI). This is a low-cost CI hook for later.
+## 6. Pause / review gates
 
-## Risks and mitigations
+- **Gate A (before step 3):** you approve the project copy review file.
+- **Gate B (after each insight batch):** you approve the bodies before they flip to `published`.
+- **Gate C (before step 5):** you confirm the home page should get the teaser at all (some sites prefer to keep the home page lean).
 
-- **Insight slug mismatch** — dataset INS-* slugs differ from existing site insight slugs. Mitigation: `RelatedInsights` filters silently against current data; mismatches logged in summary file for backfill in Phase 3.
-- **CTA destination parsing** — `ctaDestinationRecommendation` is free text ("Primary: /contact. Secondary: /services."). Mitigation: simple regex; fall back to `/contact` + `/services` defaults.
-- **Prerender + sitemap drift** — both scripts must enumerate the new slugs. Mitigation: both import from the same `projects.shared.js`.
-- **Layout nav density** — adding "Portfolio" pushes nav toward 7 items. Acceptable per plan; no further nav changes this pass.
+## 7. Out of scope this pass
 
-## Pause point
+- Any new routes, new categories, new statuses, or new components beyond `RelatedWorkBlock` reuse and the optional `ProjectCard` `variant="featured"`.
+- Adding the lint script to CI.
+- Visual redesign of any existing page.
+- Touching `damien.house` external links (policy unchanged: hardcoded absolute, `target="_blank"`, `rel="noopener"`, only when destination exists).
 
-After Phase 2, stop. Do not start Phase 3 (insight filters, RelatedProjects on insights, footer columns, backfill) until you review the live `/portfolio` and `/portfolio/:slug` pages and the summary file.
+## 8. Deliverables
 
-## Deliverable
+- Edits to `src/data/insights.shared.js`, `src/data/projects.shared.js`, `src/pages/Index.tsx`.
+- New file: `scripts/lint-editorial.mjs`.
+- Possibly small additive edit to `src/components/projects/ProjectCard.tsx` for the featured variant.
+- `/mnt/documents/projects-copy-review.md`
+- `/mnt/documents/projects-insights-phase-5-summary.md`
 
-`/mnt/documents/projects-insights-implementation-summary.md` listing:
-- files changed / added
-- routes added
-- components added
-- data structures added
-- assumptions made (CTA parsing, featured selection, channel-link policy, slug mismatch handling)
-- items to review manually (insight slug backfill list, copy approval per project, status-label tone choices)
+## 9. One question to answer before I start
+
+Which content-sourcing mode do you want for the insight bodies — A (I draft from the dataset alone), B (you give me 3–6 bullets per insight, I expand), or C (you paste rough drafts, I structure and edit)?
