@@ -1,6 +1,7 @@
 import { ArrowRight, PencilLine } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import InsightCard from "@/components/insights/InsightCard";
 import {
   getDraftArticles,
   getFeaturedArticle,
