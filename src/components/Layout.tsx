@@ -51,9 +51,20 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? "text-primary" : "text-muted-foreground hover:text-foreground",
   ].join(" ");
 
-const contentRoutesWithOwnCta = ["/portfolio", "/insights"];
+const routesWithPageLevelCta = [
+  "/about",
+  "/services",
+  "/offerings",
+  "/architecture-audit",
+  "/applied-ai",
+  "/drupal-ai",
+  "/ai-in-practice",
+  "/portfolio",
+  "/insights",
+];
+
 const hasPageLevelContentCta = (pathname: string) =>
-  contentRoutesWithOwnCta.includes(pathname) ||
+  routesWithPageLevelCta.includes(pathname) ||
   pathname.startsWith("/portfolio/") ||
   pathname.startsWith("/insights/");
 
@@ -63,7 +74,7 @@ const Layout = () => {
   const isContactPage = location.pathname === "/contact";
   const shouldShowFooterCta = !isContactPage && !hasPageLevelContentCta(location.pathname);
   // Note: header "Start a conversation" CTA stays visible on /contact for visual consistency.
-  // The footer card is hidden on /contact and content routes with their own contextual CTA.
+  // The footer card is hidden on /contact and routes with their own contextual bottom CTA.
 
   const servicesCta = useSafeCtaTarget("/services", "See how 109 helps", {
     label: "See starting points",
