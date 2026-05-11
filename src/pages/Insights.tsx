@@ -96,7 +96,18 @@ const Insights = () => {
         </div>
       </section>
 
-      {featuredArticle && (
+      <section className="border-b border-border py-12 md:py-16">
+        <div className="container">
+          <CategoryFilter
+            options={PROJECT_CATEGORIES.map(({ id, shortLabel }) => ({
+              id,
+              label: shortLabel,
+            }))}
+          />
+        </div>
+      </section>
+
+      {showFeatured && featuredArticle && (
         <section className="border-b border-border py-20 md:py-24">
           <div className="container">
             <div className="mb-12 max-w-3xl">
