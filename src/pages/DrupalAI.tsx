@@ -1,6 +1,7 @@
 import { ArrowRight, FileSearch, GitPullRequest, Network, ShieldCheck, Workflow } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import RelatedWorkBlock from "@/components/content/RelatedWorkBlock";
 
 const usefulAreas = [
   {
@@ -281,6 +282,8 @@ const DrupalAI = () => {
           </div>
         </div>
       </section>
+
+      <RelatedWorkBlock categoryId="product-platform-architecture" />
 
       <section className="py-20 md:py-24">
         <div className="container border border-border bg-surface p-8 md:p-10">

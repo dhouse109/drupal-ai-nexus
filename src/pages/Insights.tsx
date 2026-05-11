@@ -1,12 +1,15 @@
 import { ArrowRight, PencilLine } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useMemo } from "react";
+import CategoryFilter from "@/components/content/CategoryFilter";
 import InsightCard from "@/components/insights/InsightCard";
 import {
   getDraftArticles,
   getFeaturedArticle,
   getNonFeaturedArticles,
 } from "@/data/insights";
+import { PROJECT_CATEGORIES } from "@/data/taxonomy";
 
 const topics = [
   "Platform modernization",
@@ -17,9 +20,26 @@ const topics = [
 ];
 
 const Insights = () => {
+  const [searchParams] = useSearchParams();
+  const activeCategory = searchParams.get("category") ?? "all";
+
   const featuredArticle = getFeaturedArticle();
-  const publishedArticles = getNonFeaturedArticles();
-  const draftArticles = getDraftArticles();
+  const allPublished = getNonFeaturedArticles();
+  const allDrafts = getDraftArticles();
+
+  const matches = (a: { categoryId?: string }) =>
+    activeCategory === "all" || a.categoryId === activeCategory;
+
+  const publishedArticles = useMemo(
+    () => allPublished.filter(matches),
+    [allPublished, activeCategory],
+  );
+  const draftArticles = useMemo(
+    () => allDrafts.filter(matches),
+    [allDrafts, activeCategory],
+  );
+  const showFeatured =
+    featuredArticle && (activeCategory === "all" || featuredArticle.categoryId === activeCategory);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -76,7 +96,18 @@ const Insights = () => {
         </div>
       </section>
 
-      {featuredArticle && (
+      <section className="border-b border-border py-12 md:py-16">
+        <div className="container">
+          <CategoryFilter
+            options={PROJECT_CATEGORIES.map(({ id, shortLabel }) => ({
+              id,
+              label: shortLabel,
+            }))}
+          />
+        </div>
+      </section>
+
+      {showFeatured && featuredArticle && (
         <section className="border-b border-border py-20 md:py-24">
           <div className="container">
             <div className="mb-12 max-w-3xl">

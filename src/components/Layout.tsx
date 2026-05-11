@@ -2,6 +2,8 @@ import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X, ArrowRight, Github, Linkedin, Mail, Youtube } from "lucide-react";
 import { useSafeCtaTarget } from "@/lib/cta";
+import { getAllProjects, getFeaturedProject } from "@/data/projects";
+import { getNonFeaturedArticles } from "@/data/insights";
 
 const headerNavItems = [
   { label: "Home", to: "/" },
@@ -21,12 +23,24 @@ const footerNavItems = [
   { label: "Contact", to: "/contact" },
 ];
 
-const footerProofIdeas = [
-  { label: "AI in Practice", to: "/ai-in-practice" },
-  { label: "Drupal AI", to: "/drupal-ai" },
-  { label: "Portfolio", to: "/portfolio" },
-  { label: "Insights", to: "/insights" },
-];
+const buildFooterWorkLinks = () => {
+  const featured = getFeaturedProject();
+  const others = getAllProjects()
+    .filter((p) => p.slug !== featured?.slug)
+    .slice(0, 2);
+  const projectLinks = [featured, ...others]
+    .filter((p): p is NonNullable<typeof p> => Boolean(p))
+    .map((p) => ({ label: p.detail.cardTitle, to: `/portfolio/${p.slug}` }));
+  return [{ label: "All projects", to: "/portfolio" }, ...projectLinks];
+};
+
+const buildFooterWritingLinks = () => {
+  const articles = getNonFeaturedArticles().slice(0, 2);
+  return [
+    { label: "All insights", to: "/insights" },
+    ...articles.map((a) => ({ label: a.title, to: `/insights/${a.slug}` })),
+  ];
+};
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
   [
@@ -148,7 +162,7 @@ const Layout = () => {
           </div>
         )}
 
-        <div className="container grid gap-10 md:grid-cols-[1.2fr_0.9fr_0.9fr_0.9fr]">
+        <div className="container grid gap-10 md:grid-cols-2 lg:grid-cols-[1.1fr_0.8fr_1fr_1fr_0.9fr]">
           <div>
             <div className="mb-4 font-mono text-lg font-bold tracking-tight">
               <span className="text-primary">109</span>
@@ -176,9 +190,24 @@ const Layout = () => {
           </div>
 
           <div>
-            <h3 className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-foreground">Proof & Ideas</h3>
+            <h3 className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-foreground">Work</h3>
             <div className="flex flex-col gap-3">
-              {footerProofIdeas.map((item) => (
+              {buildFooterWorkLinks().map((item) => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-foreground">Writing</h3>
+            <div className="flex flex-col gap-3">
+              {buildFooterWritingLinks().map((item) => (
                 <NavLink
                   key={item.to}
                   to={item.to}

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import RelatedWorkBlock from "@/components/content/RelatedWorkBlock";
 
 const fitItems = [
   {
@@ -367,6 +368,8 @@ const ArchitectureAudit = () => {
           </div>
         </div>
       </section>
+
+      <RelatedWorkBlock categoryId="developer-tooling-delivery-systems" />
 
       <section className="py-20 md:py-24">
         <div className="container border border-border bg-surface p-8 md:p-10">
