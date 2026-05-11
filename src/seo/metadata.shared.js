@@ -72,6 +72,43 @@ const insightArticleMetadata = Object.fromEntries(
   }),
 );
 
+const createProjectSchema = (project) => ({
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "@id": `${siteUrl}/portfolio/${project.slug}#project`,
+  url: `${siteUrl}/portfolio/${project.slug}`,
+  name: project.title,
+  headline: project.detail.headline,
+  description: project.detail.cardSummary,
+  about: project.themes,
+  creator: { "@id": `${siteUrl}/#person` },
+  publisher: { "@id": `${siteUrl}/#organization` },
+  mainEntityOfPage: { "@id": `${siteUrl}/portfolio/${project.slug}#webpage` },
+  inLanguage: "en-US",
+  keywords: project.themes.join(", "),
+  creativeWorkStatus: project.statusLabel,
+});
+
+const projectMetadata = Object.fromEntries(
+  getAllProjects().map((project) => {
+    const path = `/portfolio/${project.slug}`;
+    const description = project.detail.cardSummary;
+
+    return [
+      path,
+      page({
+        title: `${project.title} | 109.studio Portfolio`,
+        description,
+        path,
+        ogTitle: project.detail.headline || project.title,
+        ogDescription: description,
+        ogType: "article",
+        schema: [createProjectSchema(project)],
+      }),
+    ];
+  }),
+);
+
 export const defaultMetadata = page({
   title: "109.studio | Senior Technical Direction for Complex Products and Platforms",
   description:
