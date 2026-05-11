@@ -28,6 +28,10 @@ const getSitemapOptions = (path) => {
     return { changefreq: "monthly", priority: "0.6" };
   }
 
+  if (path.startsWith("/portfolio/")) {
+    return { changefreq: "monthly", priority: "0.7" };
+  }
+
   return {
     ...defaultSitemapOptions,
     ...sitemapOptions[path],
