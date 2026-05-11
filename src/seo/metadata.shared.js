@@ -282,6 +282,7 @@ export const routeMetadata = {
     pageType: "CollectionPage",
   }),
   ...insightArticleMetadata,
+  ...projectMetadata,
 };
 
 export const notFoundMetadata = page({
