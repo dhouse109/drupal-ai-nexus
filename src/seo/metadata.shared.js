@@ -1,4 +1,5 @@
 import { getPublishedArticles } from "../data/insights.shared.js";
+import { getAllProjects } from "../data/projects.shared.js";
 import {
   createServiceSchema,
   createWebPageSchema,
