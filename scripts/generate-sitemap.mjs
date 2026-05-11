@@ -20,6 +20,7 @@ const sitemapOptions = {
   "/applied-ai": { changefreq: "monthly", priority: "0.8" },
   "/architecture-audit": { changefreq: "monthly", priority: "0.8" },
   "/ai-in-practice": { changefreq: "monthly", priority: "0.7" },
+  "/portfolio": { changefreq: "weekly", priority: "0.8" },
   "/insights": { changefreq: "weekly", priority: "0.7" },
 };
 
