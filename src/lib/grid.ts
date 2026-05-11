@@ -12,11 +12,6 @@ const mdSpanClassByColumns: Record<SupportedGridColumns, string> = {
   3: "md:col-span-3",
 };
 
-const xlSpanClassByColumns: Record<SupportedGridColumns, string> = {
-  2: "xl:col-span-2",
-  3: "xl:col-span-3",
-};
-
 const xlRemainderSpanClassByColumns: Record<SupportedGridColumns, Record<number, string>> = {
   2: {
     1: "xl:col-span-2",
@@ -40,17 +35,20 @@ export const getLastGridItemSpanClass = ({
   }
 
   const classes: string[] = [];
+  const mdRemainder = mdColumns ? itemCount % mdColumns : 0;
+  const xlRemainder = xlColumns ? itemCount % xlColumns : 0;
 
-  if (mdColumns && itemCount % mdColumns === 1) {
+  if (mdColumns && mdRemainder === 1) {
     classes.push(mdSpanClassByColumns[mdColumns]);
   }
 
   if (xlColumns) {
-    const remainder = itemCount % xlColumns;
-    const spanClass = xlRemainderSpanClassByColumns[xlColumns][remainder];
+    const spanClass = xlRemainderSpanClassByColumns[xlColumns][xlRemainder];
 
     if (spanClass) {
       classes.push(spanClass);
+    } else if (mdColumns && mdRemainder === 1) {
+      classes.push("xl:col-span-1");
     }
   }
 
