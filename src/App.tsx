@@ -15,6 +15,7 @@ import AppliedAI from "./pages/AppliedAI";
 import DrupalAI from "./pages/DrupalAI";
 import AIInPractice from "./pages/AIInPractice";
 import Portfolio from "./pages/Portfolio";
+import ProjectDetail from "./pages/ProjectDetail";
 import Contact from "./pages/Contact";
 import Insights from "./pages/Insights";
 import InsightArticle from "./pages/InsightArticle";
@@ -48,6 +49,7 @@ const App = () => (
             <Route path="/drupal-ai" element={<DrupalAI />} />
             <Route path="/ai-in-practice" element={<AIInPractice />} />
             <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/portfolio/:slug" element={<ProjectDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/insights" element={<Insights />} />
             <Route path="/insights/:slug" element={<InsightArticle />} />

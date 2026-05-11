@@ -1,4 +1,5 @@
 import { getPublishedArticles } from "../data/insights.shared.js";
+import { getAllProjects } from "../data/projects.shared.js";
 import {
   createServiceSchema,
   createWebPageSchema,
@@ -66,6 +67,43 @@ const insightArticleMetadata = Object.fromEntries(
         ogType: "article",
         ogImage: appliedAiOgImage,
         schema: [createArticleSchema(article)],
+      }),
+    ];
+  }),
+);
+
+const createProjectSchema = (project) => ({
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "@id": `${siteUrl}/portfolio/${project.slug}#project`,
+  url: `${siteUrl}/portfolio/${project.slug}`,
+  name: project.title,
+  headline: project.detail.headline,
+  description: project.detail.cardSummary,
+  about: project.themes,
+  creator: { "@id": `${siteUrl}/#person` },
+  publisher: { "@id": `${siteUrl}/#organization` },
+  mainEntityOfPage: { "@id": `${siteUrl}/portfolio/${project.slug}#webpage` },
+  inLanguage: "en-US",
+  keywords: project.themes.join(", "),
+  creativeWorkStatus: project.statusLabel,
+});
+
+const projectMetadata = Object.fromEntries(
+  getAllProjects().map((project) => {
+    const path = `/portfolio/${project.slug}`;
+    const description = project.detail.cardSummary;
+
+    return [
+      path,
+      page({
+        title: `${project.title} | 109.studio Portfolio`,
+        description,
+        path,
+        ogTitle: project.detail.headline || project.title,
+        ogDescription: description,
+        ogType: "article",
+        schema: [createProjectSchema(project)],
       }),
     ];
   }),
@@ -244,6 +282,7 @@ export const routeMetadata = {
     pageType: "CollectionPage",
   }),
   ...insightArticleMetadata,
+  ...projectMetadata,
 };
 
 export const notFoundMetadata = page({

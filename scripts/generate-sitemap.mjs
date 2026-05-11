@@ -20,12 +20,17 @@ const sitemapOptions = {
   "/applied-ai": { changefreq: "monthly", priority: "0.8" },
   "/architecture-audit": { changefreq: "monthly", priority: "0.8" },
   "/ai-in-practice": { changefreq: "monthly", priority: "0.7" },
+  "/portfolio": { changefreq: "weekly", priority: "0.8" },
   "/insights": { changefreq: "weekly", priority: "0.7" },
 };
 
 const getSitemapOptions = (path) => {
   if (path.startsWith("/insights/")) {
     return { changefreq: "monthly", priority: "0.6" };
+  }
+
+  if (path.startsWith("/portfolio/")) {
+    return { changefreq: "monthly", priority: "0.7" };
   }
 
   return {
