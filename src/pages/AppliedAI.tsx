@@ -339,6 +339,8 @@ const AppliedAI = () => {
         </div>
       </section>
 
+      <RelatedWorkBlock categoryId="applied-ai-workflow-systems" />
+
       <section className="py-20 md:py-24">
         <div className="container border border-border bg-surface p-8 md:p-10">
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
