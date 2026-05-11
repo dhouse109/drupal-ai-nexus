@@ -10,6 +10,7 @@ import {
   getNonFeaturedArticles,
 } from "@/data/insights";
 import { PROJECT_CATEGORIES } from "@/data/taxonomy";
+import { getLastGridItemSpanClass } from "@/lib/grid";
 
 const topics = [
   "Platform modernization",
@@ -161,22 +162,18 @@ const Insights = () => {
             </div>
 
             <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
-              {publishedArticles.map((article, index) => {
-                const isLast = index === publishedArticles.length - 1;
-                const mdSpan = publishedArticles.length % 2 === 1 ? "md:col-span-2" : "";
-                const xlRemainder = publishedArticles.length % 3;
-                const xlSpan =
-                  xlRemainder === 1 ? "xl:col-span-3" :
-                  xlRemainder === 2 ? "xl:col-span-2" : "";
-                const spanClass = isLast ? `${mdSpan} ${xlSpan}` : "";
-                return (
-                  <InsightCard
-                    key={article.slug}
-                    article={article}
-                    className={spanClass}
-                  />
-                );
-              })}
+              {publishedArticles.map((article, index) => (
+                <InsightCard
+                  key={article.slug}
+                  article={article}
+                  className={getLastGridItemSpanClass({
+                    index,
+                    itemCount: publishedArticles.length,
+                    mdColumns: 2,
+                    xlColumns: 3,
+                  })}
+                />
+              ))}
             </div>
           </div>
         </section>
@@ -198,40 +195,36 @@ const Insights = () => {
             </div>
 
             <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
-              {draftArticles.map((article, index) => {
-                const isLast = index === draftArticles.length - 1;
-                const mdSpan = draftArticles.length % 2 === 1 ? "md:col-span-2" : "";
-                const xlRemainder = draftArticles.length % 3;
-                const xlSpan =
-                  xlRemainder === 1 ? "xl:col-span-3" :
-                  xlRemainder === 2 ? "xl:col-span-2" : "";
-                const spanClass = isLast ? `${mdSpan} ${xlSpan}` : "";
-                return (
-                  <div
-                    key={article.slug}
-                    className={`bg-background p-8 md:p-10 ${spanClass}`}
-                  >
-                    <div className="flex flex-wrap items-center gap-3">
-                      <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                        {article.category}
-                      </div>
-                      <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
-                        <PencilLine className="h-3 w-3" />
-                        Draft
-                      </div>
-                      <div className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
-                        {article.publishedDate}
-                      </div>
+              {draftArticles.map((article, index) => (
+                <div
+                  key={article.slug}
+                  className={`bg-background p-8 md:p-10 ${getLastGridItemSpanClass({
+                    index,
+                    itemCount: draftArticles.length,
+                    mdColumns: 2,
+                    xlColumns: 3,
+                  })}`}
+                >
+                  <div className="flex flex-wrap items-center gap-3">
+                    <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                      {article.category}
                     </div>
-                    <h3 className="mt-4 font-mono text-2xl font-bold tracking-tight">
-                      {article.title}
-                    </h3>
-                    <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-                      {article.keyTakeaway}
-                    </p>
+                    <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
+                      <PencilLine className="h-3 w-3" />
+                      Draft
+                    </div>
+                    <div className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim">
+                      {article.publishedDate}
+                    </div>
                   </div>
-                );
-              })}
+                  <h3 className="mt-4 font-mono text-2xl font-bold tracking-tight">
+                    {article.title}
+                  </h3>
+                  <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+                    {article.keyTakeaway}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

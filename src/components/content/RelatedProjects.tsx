@@ -1,5 +1,6 @@
 import ProjectCard from "@/components/projects/ProjectCard";
 import { getProjectBySlug, getProjectsLinkingToInsightSlug } from "@/data/projects";
+import { getLastGridItemSpanClass } from "@/lib/grid";
 
 interface RelatedProjectsProps {
   intro?: string;
@@ -39,8 +40,17 @@ const RelatedProjects = ({ intro, projectSlugs, insightSlug }: RelatedProjectsPr
           )}
         </div>
         <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
-          {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={project.slug}
+              project={project}
+              className={getLastGridItemSpanClass({
+                index,
+                itemCount: projects.length,
+                mdColumns: 2,
+                xlColumns: 3,
+              })}
+            />
           ))}
         </div>
       </div>

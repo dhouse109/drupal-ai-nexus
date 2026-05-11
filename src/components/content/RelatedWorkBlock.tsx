@@ -3,6 +3,7 @@ import InsightCard from "@/components/insights/InsightCard";
 import { getProjectsByCategory } from "@/data/projects";
 import { getNonFeaturedArticles } from "@/data/insights";
 import type { ProjectCategoryId } from "@/data/taxonomy";
+import { getLastGridItemSpanClass } from "@/lib/grid";
 
 interface RelatedWorkBlockProps {
   categoryId: ProjectCategoryId;
@@ -44,8 +45,17 @@ const RelatedWorkBlock = ({
 
         {projects.length > 0 && (
           <div className="mb-px grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
-            {projects.map((p) => (
-              <ProjectCard key={p.slug} project={p} />
+            {projects.map((p, index) => (
+              <ProjectCard
+                key={p.slug}
+                project={p}
+                className={getLastGridItemSpanClass({
+                  index,
+                  itemCount: projects.length,
+                  mdColumns: 2,
+                  xlColumns: 3,
+                })}
+              />
             ))}
           </div>
         )}
@@ -56,8 +66,17 @@ const RelatedWorkBlock = ({
               Related insights
             </span>
             <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
-              {insights.map((a) => (
-                <InsightCard key={a.slug} article={a} />
+              {insights.map((a, index) => (
+                <InsightCard
+                  key={a.slug}
+                  article={a}
+                  className={getLastGridItemSpanClass({
+                    index,
+                    itemCount: insights.length,
+                    mdColumns: 2,
+                    xlColumns: 3,
+                  })}
+                />
               ))}
             </div>
           </div>

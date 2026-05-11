@@ -7,9 +7,10 @@ import type { Project } from "@/data/projects";
 interface ProjectCardProps {
   project: Project;
   variant?: "default" | "featured";
+  className?: string;
 }
 
-const ProjectCard = ({ project, variant = "default" }: ProjectCardProps) => {
+const ProjectCard = ({ project, variant = "default", className }: ProjectCardProps) => {
   const isFeatured = variant === "featured";
 
   return (
@@ -17,7 +18,7 @@ const ProjectCard = ({ project, variant = "default" }: ProjectCardProps) => {
       to={`/portfolio/${project.slug}`}
       className={`group block border border-border bg-background transition-colors duration-300 ease-out hover:border-primary ${
         isFeatured ? "bg-surface p-8 md:p-10" : "p-8 md:p-10"
-      }`}
+      } ${className ?? ""}`}
     >
       <div className="flex flex-wrap items-center gap-3">
         <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
