@@ -12,14 +12,6 @@ import {
 import { PROJECT_CATEGORIES } from "@/data/taxonomy";
 import { getLastGridItemSpanClass } from "@/lib/grid";
 
-const topics = [
-  "Platform modernization",
-  "Applied AI",
-  "Search and retrieval",
-  "Delivery systems",
-  "Drupal and open source",
-];
-
 const Insights = () => {
   const [searchParams] = useSearchParams();
   const activeCategory = searchParams.get("category") ?? "all";
@@ -71,29 +63,6 @@ const Insights = () => {
           >
             109.studio shares working notes on modernization, applied AI, search, delivery systems, and the technical decisions that shape how teams build and operate software.
           </motion.p>
-        </div>
-      </section>
-
-      <section className="border-b border-border py-20 md:py-24">
-        <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <div>
-            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary">
-              Topics
-            </span>
-            <h2 className="font-mono text-3xl font-bold tracking-tight md:text-5xl">
-              The themes that show up most often in the work
-            </h2>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {topics.map((topic) => (
-              <div
-                key={topic}
-                className="border border-border px-4 py-4 font-mono text-xs uppercase tracking-[0.2em] text-text-dim"
-              >
-                {topic}
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
