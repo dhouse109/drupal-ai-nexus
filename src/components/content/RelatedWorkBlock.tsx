@@ -44,19 +44,28 @@ const RelatedWorkBlock = ({
         </div>
 
         {projects.length > 0 && (
-          <div className="mb-px grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
-            {projects.map((p, index) => (
-              <ProjectCard
-                key={p.slug}
-                project={p}
-                className={getLastGridItemSpanClass({
-                  index,
-                  itemCount: projects.length,
-                  mdColumns: 2,
-                  xlColumns: 3,
-                })}
-              />
-            ))}
+          <div className="grid md:grid-cols-2 xl:grid-cols-3">
+            {projects.map((p, index) => {
+              const span = getLastGridItemSpanClass({
+                index,
+                itemCount: projects.length,
+                mdColumns: 2,
+                xlColumns: 3,
+              });
+              const border = getCardGridBorderClass({
+                index,
+                itemCount: projects.length,
+                mdColumns: 2,
+                xlColumns: 3,
+              });
+              return (
+                <ProjectCard
+                  key={p.slug}
+                  project={p}
+                  className={`${border} ${span}`.trim()}
+                />
+              );
+            })}
           </div>
         )}
 
@@ -65,19 +74,28 @@ const RelatedWorkBlock = ({
             <span className="mb-6 block font-mono text-xs uppercase tracking-[0.3em] text-text-dim">
               Related insights
             </span>
-            <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
-              {insights.map((a, index) => (
-                <InsightCard
-                  key={a.slug}
-                  article={a}
-                  className={getLastGridItemSpanClass({
-                    index,
-                    itemCount: insights.length,
-                    mdColumns: 2,
-                    xlColumns: 3,
-                  })}
-                />
-              ))}
+            <div className="grid md:grid-cols-2 xl:grid-cols-3">
+              {insights.map((a, index) => {
+                const span = getLastGridItemSpanClass({
+                  index,
+                  itemCount: insights.length,
+                  mdColumns: 2,
+                  xlColumns: 3,
+                });
+                const border = getCardGridBorderClass({
+                  index,
+                  itemCount: insights.length,
+                  mdColumns: 2,
+                  xlColumns: 3,
+                });
+                return (
+                  <InsightCard
+                    key={a.slug}
+                    article={a}
+                    className={`${border} ${span}`.trim()}
+                  />
+                );
+              })}
             </div>
           </div>
         )}
