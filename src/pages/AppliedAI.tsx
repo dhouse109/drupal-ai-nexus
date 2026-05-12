@@ -313,9 +313,17 @@ const AppliedAI = () => {
               The work should stay understandable, reviewable, and under control
             </h2>
           </div>
-          <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-4">
-            {principles.map((principle) => (
-              <div key={principle.title} className="bg-background p-8">
+          <div className="grid md:grid-cols-2 xl:grid-cols-4">
+            {principles.map((principle, index) => (
+              <div
+                key={principle.title}
+                className={`bg-background p-8 ${getCardGridBorderClass({
+                  index,
+                  itemCount: principles.length,
+                  mdColumns: 2,
+                  xlColumns: 4,
+                })}`}
+              >
                 <h3 className="font-mono text-xl font-semibold">{principle.title}</h3>
                 <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
                   {principle.description}
