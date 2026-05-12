@@ -158,13 +158,31 @@ const Services = () => {
               A few concrete signals of how this work creates leverage
             </h2>
           </div>
-          <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
-            {proofPoints.map((item) => (
-              <div key={item.metric} className="bg-background p-8">
-                <div className="font-mono text-xl font-semibold tracking-tight md:text-2xl">{item.metric}</div>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">{item.detail}</p>
-              </div>
-            ))}
+          <div className="grid md:grid-cols-2 xl:grid-cols-3">
+            {proofPoints.map((item, i) => {
+              const total = proofPoints.length;
+              const mdRows = Math.ceil(total / 2);
+              const xlRows = Math.ceil(total / 3);
+              const mdLastRow = Math.floor(i / 2) === mdRows - 1;
+              const mdLastCol = i % 2 === 1;
+              const xlLastRow = Math.floor(i / 3) === xlRows - 1;
+              const xlLastCol = i % 3 === 2;
+              const cls = [
+                i < total - 1 ? "border-b border-border/50" : "",
+                mdLastRow ? "md:border-b-0" : "md:border-b md:border-border/50",
+                !mdLastCol ? "md:border-r md:border-border/50" : "",
+                xlLastRow ? "xl:border-b-0" : "xl:border-b xl:border-border/50",
+                xlLastCol ? "xl:border-r-0" : "xl:border-r xl:border-border/50",
+              ]
+                .filter(Boolean)
+                .join(" ");
+              return (
+                <div key={item.metric} className={`bg-background p-8 ${cls}`}>
+                  <div className="font-mono text-xl font-semibold tracking-tight md:text-2xl">{item.metric}</div>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">{item.detail}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
