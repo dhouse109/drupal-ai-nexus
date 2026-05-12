@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { getCardGridBorderClass } from "@/lib/grid";
 
 const paths = [
   {
@@ -50,8 +51,15 @@ const ExplorePathsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-4">
-          {paths.map((path, index) => (
+        <div className="grid md:grid-cols-2 xl:grid-cols-4">
+          {paths.map((path, index) => {
+            const border = getCardGridBorderClass({
+              index,
+              itemCount: paths.length,
+              mdColumns: 2,
+              xlColumns: 4,
+            });
+            return (
             <motion.div
               key={path.title}
               initial={{ opacity: 0, y: 24 }}
@@ -61,7 +69,7 @@ const ExplorePathsSection = () => {
             >
               <Link
                 to={path.to}
-                className="group flex h-full flex-col justify-between border border-transparent bg-background p-8 transition-all duration-300 ease-out hover:border-border hover:bg-muted/20 md:p-10"
+                className={`group flex h-full flex-col justify-between border border-transparent bg-background p-8 transition-all duration-300 ease-out hover:border-primary md:p-10 ${border}`}
               >
                 <div>
                   <h3 className="font-mono text-2xl font-bold tracking-tight">{path.title}</h3>
@@ -75,7 +83,8 @@ const ExplorePathsSection = () => {
                 </div>
               </Link>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-type SupportedGridColumns = 2 | 3 | 4;
+type SupportedGridColumns = 2 | 3 | 4 | 5;
 
 type LastGridItemSpanOptions = {
   index: number;
@@ -11,6 +11,7 @@ const mdSpanClassByColumns: Record<SupportedGridColumns, string> = {
   2: "md:col-span-2",
   3: "md:col-span-3",
   4: "md:col-span-4",
+  5: "md:col-span-5",
 };
 
 const xlRemainderSpanClassByColumns: Record<SupportedGridColumns, Record<number, string>> = {
@@ -25,6 +26,9 @@ const xlRemainderSpanClassByColumns: Record<SupportedGridColumns, Record<number,
     1: "xl:col-span-4",
     2: "xl:col-span-2",
     3: "xl:col-span-2",
+  },
+  5: {
+    1: "xl:col-span-5",
   },
 };
 
