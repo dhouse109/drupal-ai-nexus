@@ -69,7 +69,7 @@ const ExplorePathsSection = () => {
             >
               <Link
                 to={path.to}
-                className={`group flex h-full flex-col justify-between border border-transparent bg-background p-8 transition-all duration-300 ease-out hover:border-primary md:p-10 ${border}`}
+                className={`group flex h-full flex-col justify-between border border-transparent bg-background p-8 transition-all duration-300 ease-out hover:border-border hover:bg-muted/20 md:p-10 ${border}`}
               >
                 <div>
                   <h3 className="font-mono text-2xl font-bold tracking-tight">{path.title}</h3>
