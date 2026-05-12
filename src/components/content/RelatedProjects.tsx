@@ -1,6 +1,6 @@
 import ProjectCard from "@/components/projects/ProjectCard";
 import { getProjectBySlug, getProjectsLinkingToInsightSlug } from "@/data/projects";
-import { getLastGridItemSpanClass } from "@/lib/grid";
+import { getCardGridBorderClass, getLastGridItemSpanClass } from "@/lib/grid";
 
 interface RelatedProjectsProps {
   intro?: string;
