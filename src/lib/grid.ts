@@ -1,4 +1,4 @@
-type SupportedGridColumns = 2 | 3;
+type SupportedGridColumns = 2 | 3 | 4;
 
 type LastGridItemSpanOptions = {
   index: number;
