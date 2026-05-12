@@ -3,7 +3,7 @@ import InsightCard from "@/components/insights/InsightCard";
 import { getProjectsByCategory } from "@/data/projects";
 import { getNonFeaturedArticles } from "@/data/insights";
 import type { ProjectCategoryId } from "@/data/taxonomy";
-import { getLastGridItemSpanClass } from "@/lib/grid";
+import { cardGridDividerClass, getLastGridItemSpanClass } from "@/lib/grid";
 
 interface RelatedWorkBlockProps {
   categoryId: ProjectCategoryId;
@@ -44,7 +44,7 @@ const RelatedWorkBlock = ({
         </div>
 
         {projects.length > 0 && (
-          <div className="mb-px grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
+          <div className={`mb-px ${cardGridDividerClass}`}>
             {projects.map((p, index) => (
               <ProjectCard
                 key={p.slug}
@@ -65,7 +65,7 @@ const RelatedWorkBlock = ({
             <span className="mb-6 block font-mono text-xs uppercase tracking-[0.3em] text-text-dim">
               Related insights
             </span>
-            <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
+            <div className={cardGridDividerClass}>
               {insights.map((a, index) => (
                 <InsightCard
                   key={a.slug}
