@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-
+import { getCardGridBorderClass } from "@/lib/grid";
 const audienceGroups = [
   {
     title: "For founders and business leaders",
@@ -40,7 +40,7 @@ const AudienceSection = () => {
             Two kinds of teams usually get the most value from 109.studio
           </h2>
         </motion.div>
-        <div className="grid gap-px bg-border md:grid-cols-2">
+        <div className="grid md:grid-cols-2">
           {audienceGroups.map((group, index) => (
             <motion.div
               key={group.title}
@@ -48,7 +48,7 @@ const AudienceSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.08 }}
-              className="bg-background p-8 md:p-10"
+              className={`bg-background p-8 md:p-10 border border-transparent ${getCardGridBorderClass({ index, itemCount: audienceGroups.length, mdColumns: 2 })}`}
             >
               <h3 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">
                 {group.title}
