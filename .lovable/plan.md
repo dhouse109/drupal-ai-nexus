@@ -1,21 +1,23 @@
 ## Goal
-Remove the stray right-edge line on the homepage "How 109.studio helps" grid so it matches the clean internal-only dividers of "Choose the path that fits where you are" below it.
+Eliminate the right-edge vertical line on the homepage "How 109.studio helps" grid. The previous transparent-border fix did not solve it because the line is the grid container's `bg-border` showing past the rightmost cell, not a per-card border.
 
 ## Root cause
-Both sections use `grid gap-px bg-border` to render 1px internal dividers. In `ExplorePathsSection`, each cell wraps its content in a `<Link>` with `border border-transparent bg-background ...`, so every cell paints an opaque background plus a transparent 1px border that absorbs any sub-pixel bleed from the grid's `bg-border` layer.
+`FocusSection` uses `grid gap-px bg-border md:grid-cols-3` to draw dividers via the parent background showing through 1px gaps. With 3 equal columns the math should be exact, but at this container width the grid track sizing rounds such that 1px of `bg-border` remains visible on the right edge of the container, past the last card's background. The Explore Further grid happens to land on a sub-pixel boundary that hides this; Focus does not.
 
-In `FocusSection`, the cell is just `motion.div` with `bg-background p-8` — no transparent border. With 3 columns and 3 items the grid math is exact, but the `bg-border` layer still bleeds 1px on the right edge (visible in the screenshot as a vertical line past the third card). The Explore grid hides this by virtue of the per-cell `border border-transparent`.
+A per-cell transparent border cannot cover this because the bleed is outside the cell, on the grid container itself.
 
 ## Change (single file)
-`src/components/FocusSection.tsx` — on the `motion.div` inside the grid, add `border border-transparent` so each cell mirrors the Explore pattern:
+`src/components/FocusSection.tsx` — switch the divider technique for this single-row grid from "gap-px + bg-border" to Tailwind's `divide-x` utility, which only paints lines *between* children and never around the container.
 
-```
-className="group border border-transparent bg-background p-8 md:p-10"
-```
+- Grid class: change `grid gap-px bg-border md:grid-cols-3` to `grid md:grid-cols-3 md:divide-x md:divide-border`.
+- Cell class: revert the earlier `border border-transparent` addition; keep `group bg-background p-8 md:p-10`.
 
-No other changes. No copy, spacing, layout, animation, or structural edits. `ExplorePathsSection` is untouched.
+This produces identical internal vertical dividers between the three cards, with zero possibility of an outside border on any side.
+
+Revert note: also undo the transparent-border addition from the previous turn so we don't leave dead classes behind.
 
 ## Verification
-- Reload `/`, screenshot the "How 109.studio helps" section at desktop.
-- Confirm: no right-edge vertical line, no top/bottom/left outer borders, internal vertical dividers between the three cards remain.
-- Compare side-by-side with the "Explore further" grid — divider behavior should now be identical.
+- Reload `/`, screenshot the "How 109.studio helps" section at 1429px viewport.
+- Crop the right edge of the third card and confirm no vertical line.
+- Confirm two internal vertical dividers between the three cards remain.
+- Confirm no top, bottom, or left outer borders appear.

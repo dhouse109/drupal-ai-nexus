@@ -42,7 +42,7 @@ const FocusSection = () => {
             A few ways 109 typically plugs into the work
           </h2>
         </motion.div>
-        <div className="grid gap-px bg-border md:grid-cols-3">
+        <div className="grid md:grid-cols-3 md:divide-x md:divide-border">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
@@ -50,7 +50,7 @@ const FocusSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group border border-transparent bg-background p-8 md:p-10"
+              className="group bg-background p-8 md:p-10"
             >
               <service.icon className="mb-6 h-8 w-8 text-primary" />
               <h3 className="mb-4 font-mono text-xl font-semibold">{service.title}</h3>
