@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { getCardGridBorderClass, getLastGridItemSpanClass } from "@/lib/grid";
 
 const services = [
   {
@@ -129,11 +130,11 @@ const Services = () => {
               engagement useful.
             </p>
           </div>
-          <div className="grid gap-px bg-border md:grid-cols-2">
+          <div className="grid md:grid-cols-2">
             {services.map((service, index) => (
               <div
                 key={service.title}
-                className={`bg-background p-8 md:p-10 ${index === services.length - 1 ? "md:col-span-2" : ""}`}
+                className={`bg-background p-8 md:p-10 border border-transparent ${getCardGridBorderClass({ index, itemCount: services.length, mdColumns: 2 })} ${getLastGridItemSpanClass({ index, itemCount: services.length, mdColumns: 2 })}`}
               >
                 <h2 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">{service.title}</h2>
                 <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">{service.description}</p>
