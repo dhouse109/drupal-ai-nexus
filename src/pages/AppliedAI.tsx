@@ -247,9 +247,17 @@ const AppliedAI = () => {
               A few concrete signals of what this work can improve
             </h2>
           </div>
-          <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-4">
-            {proofItems.map((item) => (
-              <div key={item.metric} className="bg-background p-8">
+          <div className="grid md:grid-cols-2 xl:grid-cols-4">
+            {proofItems.map((item, index) => (
+              <div
+                key={item.metric}
+                className={`bg-background p-8 ${getCardGridBorderClass({
+                  index,
+                  itemCount: proofItems.length,
+                  mdColumns: 2,
+                  xlColumns: 4,
+                })}`}
+              >
                 <div className="font-mono text-xl font-semibold tracking-tight md:text-2xl">{item.metric}</div>
                 <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">{item.detail}</p>
               </div>
