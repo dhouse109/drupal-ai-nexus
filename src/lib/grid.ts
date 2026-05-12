@@ -58,6 +58,7 @@ export const getLastGridItemSpanClass = ({
 // Tailwind safelist (literal classes used below):
 // md:border-r md:border-r-border/20 md:border-b md:border-b-border/20
 // xl:border-r xl:border-r-border/20 xl:border-b xl:border-b-border/20
+// xl:border-r-0 xl:border-b-0
 export const getCardGridBorderClass = ({
   index,
   itemCount,
@@ -79,7 +80,9 @@ export const getCardGridBorderClass = ({
     const xlRow = Math.floor(index / xlColumns);
     const xlCol = index % xlColumns;
     if (xlRow < xlRows - 1) classes.push("xl:border-b xl:border-b-border/20");
+    else classes.push("xl:border-b-0");
     if (xlCol < xlColumns - 1) classes.push("xl:border-r xl:border-r-border/20");
+    else classes.push("xl:border-r-0");
   }
 
   return classes.join(" ");
