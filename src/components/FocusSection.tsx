@@ -51,7 +51,7 @@ const FocusSection = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               className={`group bg-background p-8 md:p-10 ${
-                i < services.length - 1 ? "md:border-r md:border-border" : ""
+                i < services.length - 1 ? "md:border-r md:border-border/50" : ""
               }`}
             >
               <service.icon className="mb-6 h-8 w-8 text-primary" />
