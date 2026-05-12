@@ -1,25 +1,21 @@
 ## Goal
-Make the Portfolio "All projects" grid render dividers identically to the Insights "Published notes" grid: internal-only dividers, no outer frame, no doubled lines.
+Remove the stray right-edge line on the homepage "How 109.studio helps" grid so it matches the clean internal-only dividers of "Choose the path that fits where you are" below it.
 
 ## Root cause
-Both grids use the same parent: `grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3`. This relies on each child having a solid background (which it does) and **no per-card border**, so the 1px gaps reveal `bg-border` as clean internal dividers.
+Both sections use `grid gap-px bg-border` to render 1px internal dividers. In `ExplorePathsSection`, each cell wraps its content in a `<Link>` with `border border-transparent bg-background ...`, so every cell paints an opaque background plus a transparent 1px border that absorbs any sub-pixel bleed from the grid's `bg-border` layer.
 
-- `InsightCard` correctly uses `border border-transparent ... hover:border-border` — border only appears on hover, never frames the grid.
-- `ProjectCard` uses `border border-border ... hover:border-primary` on every card. That paints a visible border around every cell, which:
-  - creates an outer frame around the whole grid,
-  - sits adjacent to the 1px gap dividers and reads as doubled/thicker internal lines.
+In `FocusSection`, the cell is just `motion.div` with `bg-background p-8` — no transparent border. With 3 columns and 3 items the grid math is exact, but the `bg-border` layer still bleeds 1px on the right edge (visible in the screenshot as a vertical line past the third card). The Explore grid hides this by virtue of the per-cell `border border-transparent`.
 
 ## Change (single file)
-`src/components/projects/ProjectCard.tsx` — split border classes by variant:
+`src/components/FocusSection.tsx` — on the `motion.div` inside the grid, add `border border-transparent` so each cell mirrors the Explore pattern:
 
-- `variant="featured"` (used standalone on Portfolio above the grid): keep `border border-border ... hover:border-primary`.
-- `variant="default"` (used inside `ProjectGrid`): switch to `border border-transparent ... hover:border-border`, mirroring `InsightCard`. Hover affordance is preserved (border appears on hover, just sourced from `border` token instead of `primary` to match the Insights grid behavior — or keep `hover:border-primary` if a stronger hover is preferred; both produce the same correct grid borders).
+```
+className="group border border-transparent bg-background p-8 md:p-10"
+```
 
-No other files touched. No changes to `ProjectGrid`, `src/lib/grid.ts`, copy, spacing, padding, or layout.
-
-## Open question
-Hover color on default cards: match Insights exactly (`hover:border-border`) or keep the Portfolio's existing stronger `hover:border-primary` accent? Default to keeping `hover:border-primary` since the request is only about the divider/frame behavior, not hover color.
+No other changes. No copy, spacing, layout, animation, or structural edits. `ExplorePathsSection` is untouched.
 
 ## Verification
-- Screenshot `/portfolio` at desktop and compare to `/insights` Published notes section.
-- Confirm: no outer frame, no top border on first row, no left border on first column, internal vertical and horizontal dividers present, last-item span behavior unchanged.
+- Reload `/`, screenshot the "How 109.studio helps" section at desktop.
+- Confirm: no right-edge vertical line, no top/bottom/left outer borders, internal vertical dividers between the three cards remain.
+- Compare side-by-side with the "Explore further" grid — divider behavior should now be identical.
