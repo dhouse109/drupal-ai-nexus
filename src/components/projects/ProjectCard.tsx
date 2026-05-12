@@ -12,13 +12,14 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project, variant = "default", className }: ProjectCardProps) => {
   const isFeatured = variant === "featured";
+  const frameClass = isFeatured
+    ? "border border-border bg-surface p-8 hover:border-primary md:p-10"
+    : "bg-background p-8 hover:bg-muted/20 hover:ring-1 hover:ring-inset hover:ring-border md:p-10";
 
   return (
     <Link
       to={`/portfolio/${project.slug}`}
-      className={`group block border border-border bg-background transition-colors duration-300 ease-out hover:border-primary ${
-        isFeatured ? "bg-surface p-8 md:p-10" : "p-8 md:p-10"
-      } ${className ?? ""}`}
+      className={`group block transition-colors duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${frameClass} ${className ?? ""}`}
     >
       <div className="flex flex-wrap items-center gap-3">
         <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
