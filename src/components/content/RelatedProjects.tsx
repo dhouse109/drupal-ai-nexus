@@ -39,19 +39,28 @@ const RelatedProjects = ({ intro, projectSlugs, insightSlug }: RelatedProjectsPr
             </p>
           )}
         </div>
-        <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.slug}
-              project={project}
-              className={getLastGridItemSpanClass({
-                index,
-                itemCount: projects.length,
-                mdColumns: 2,
-                xlColumns: 3,
-              })}
-            />
-          ))}
+        <div className="grid md:grid-cols-2 xl:grid-cols-3">
+          {projects.map((project, index) => {
+            const span = getLastGridItemSpanClass({
+              index,
+              itemCount: projects.length,
+              mdColumns: 2,
+              xlColumns: 3,
+            });
+            const border = getCardGridBorderClass({
+              index,
+              itemCount: projects.length,
+              mdColumns: 2,
+              xlColumns: 3,
+            });
+            return (
+              <ProjectCard
+                key={project.slug}
+                project={project}
+                className={`${border} ${span}`.trim()}
+              />
+            );
+          })}
         </div>
       </div>
     </section>
