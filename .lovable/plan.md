@@ -1,23 +1,19 @@
 ## Goal
-Eliminate the right-edge vertical line on the homepage "How 109.studio helps" grid. The previous transparent-border fix did not solve it because the line is the grid container's `bg-border` showing past the rightmost cell, not a per-card border.
+Match the FocusSection internal dividers to the lighter/thinner dividers used elsewhere on the site (e.g. ExplorePathsSection), while keeping the right-edge fix from the previous turn.
 
-## Root cause
-`FocusSection` uses `grid gap-px bg-border md:grid-cols-3` to draw dividers via the parent background showing through 1px gaps. With 3 equal columns the math should be exact, but at this container width the grid track sizing rounds such that 1px of `bg-border` remains visible on the right edge of the container, past the last card's background. The Explore Further grid happens to land on a sub-pixel boundary that hides this; Focus does not.
-
-A per-cell transparent border cannot cover this because the bleed is outside the cell, on the grid container itself.
+## Why the current dividers look heavier
+The previous fix swapped to `divide-x divide-border`, which paints a 1px CSS `border` on each child. Tailwind's divide utilities additionally apply `--tw-divide-opacity: 1`, and the rendered border sits inside the cell box rather than in a 1px gap between two backgrounds. Visually that reads slightly darker/thicker than the rest of the site, where dividers are produced by `gap-px bg-border` (a 1px slice of the parent's background showing between cells).
 
 ## Change (single file)
-`src/components/FocusSection.tsx` — switch the divider technique for this single-row grid from "gap-px + bg-border" to Tailwind's `divide-x` utility, which only paints lines *between* children and never around the container.
+Return `FocusSection` to the project's standard divider technique and prevent the right-edge bleed by clipping the container.
 
-- Grid class: change `grid gap-px bg-border md:grid-cols-3` to `grid md:grid-cols-3 md:divide-x md:divide-border`.
-- Cell class: revert the earlier `border border-transparent` addition; keep `group bg-background p-8 md:p-10`.
+`src/components/FocusSection.tsx`:
+- Grid class: change `grid md:grid-cols-3 md:divide-x md:divide-border` back to `grid gap-px overflow-hidden bg-border md:grid-cols-3`. The added `overflow-hidden` clips the 1px subpixel bleed on the right edge that caused the original outer line.
+- Cells unchanged: `group bg-background p-8 md:p-10`.
 
-This produces identical internal vertical dividers between the three cards, with zero possibility of an outside border on any side.
-
-Revert note: also undo the transparent-border addition from the previous turn so we don't leave dead classes behind.
+This restores divider weight and color to exactly match ExplorePathsSection and the rest of the site, with no outer border on any side.
 
 ## Verification
-- Reload `/`, screenshot the "How 109.studio helps" section at 1429px viewport.
-- Crop the right edge of the third card and confirm no vertical line.
-- Confirm two internal vertical dividers between the three cards remain.
-- Confirm no top, bottom, or left outer borders appear.
+- Reload `/`, screenshot the section at 1429px viewport.
+- Confirm the two internal dividers visually match the Explore Further dividers (same weight, same color).
+- Confirm no vertical line on the right of "Research and prototype sprints", and no top/bottom/left outer borders.
