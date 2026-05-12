@@ -1,6 +1,6 @@
 import ProjectCard from "./ProjectCard";
 import type { Project } from "@/data/projects";
-import { getLastGridItemSpanClass } from "@/lib/grid";
+import { cardGridDividerClass, getLastGridItemSpanClass } from "@/lib/grid";
 
 interface ProjectGridProps {
   projects: Project[];
@@ -17,7 +17,7 @@ const ProjectGrid = ({ projects, emptyMessage }: ProjectGridProps) => {
   }
 
   return (
-    <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
+    <div className={cardGridDividerClass}>
       {projects.map((project, index) => (
         <ProjectCard
           key={project.slug}
