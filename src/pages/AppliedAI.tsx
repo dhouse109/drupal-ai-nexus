@@ -2,7 +2,6 @@ import { ArrowRight, FileSearch, Network, Workflow } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import RelatedWorkBlock from "@/components/content/RelatedWorkBlock";
-import { getCardGridBorderClass } from "@/lib/grid";
 
 const focusAreas = [
   {
@@ -247,17 +246,9 @@ const AppliedAI = () => {
               A few concrete signals of what this work can improve
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 xl:grid-cols-4">
-            {proofItems.map((item, index) => (
-              <div
-                key={item.metric}
-                className={`bg-background p-8 ${getCardGridBorderClass({
-                  index,
-                  itemCount: proofItems.length,
-                  mdColumns: 2,
-                  xlColumns: 4,
-                })}`}
-              >
+          <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-4">
+            {proofItems.map((item) => (
+              <div key={item.metric} className="bg-background p-8">
                 <div className="font-mono text-xl font-semibold tracking-tight md:text-2xl">{item.metric}</div>
                 <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">{item.detail}</p>
               </div>
@@ -313,17 +304,9 @@ const AppliedAI = () => {
               The work should stay understandable, reviewable, and under control
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 xl:grid-cols-4">
-            {principles.map((principle, index) => (
-              <div
-                key={principle.title}
-                className={`bg-background p-8 ${getCardGridBorderClass({
-                  index,
-                  itemCount: principles.length,
-                  mdColumns: 2,
-                  xlColumns: 4,
-                })}`}
-              >
+          <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-4">
+            {principles.map((principle) => (
+              <div key={principle.title} className="bg-background p-8">
                 <h3 className="font-mono text-xl font-semibold">{principle.title}</h3>
                 <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
                   {principle.description}
