@@ -3,7 +3,7 @@ import InsightCard from "@/components/insights/InsightCard";
 import { getProjectsByCategory } from "@/data/projects";
 import { getNonFeaturedArticles } from "@/data/insights";
 import type { ProjectCategoryId } from "@/data/taxonomy";
-import { getLastGridItemSpanClass } from "@/lib/grid";
+import { getCardGridBorderClass, getLastGridItemSpanClass } from "@/lib/grid";
 
 interface RelatedWorkBlockProps {
   categoryId: ProjectCategoryId;
