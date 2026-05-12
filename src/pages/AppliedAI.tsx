@@ -2,6 +2,7 @@ import { ArrowRight, FileSearch, Network, Workflow } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import RelatedWorkBlock from "@/components/content/RelatedWorkBlock";
+import { getCardGridBorderClass } from "@/lib/grid";
 
 const focusAreas = [
   {
