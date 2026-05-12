@@ -57,17 +57,28 @@ const IndustriesSection = () => {
             user experience, and maintainability all matter at once.
           </p>
         </motion.div>
-        <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-5">
-          {contexts.map((context, i) => (
+        <div className="grid md:grid-cols-2 xl:grid-cols-5">
+          {contexts.map((context, i) => {
+            const border = getCardGridBorderClass({
+              index: i,
+              itemCount: contexts.length,
+              mdColumns: 2,
+              xlColumns: 5,
+            });
+            const span = getLastGridItemSpanClass({
+              index: i,
+              itemCount: contexts.length,
+              mdColumns: 2,
+              xlColumns: 5,
+            });
+            return (
             <motion.div
               key={context.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className={`bg-background p-6 ${
-                i === contexts.length - 1 ? "md:col-span-2 xl:col-span-1" : ""
-              }`}
+              className={`border border-transparent bg-background p-6 ${border} ${span}`}
             >
               <context.icon className="mb-4 h-6 w-6 text-primary" />
               <h3 className="font-mono text-lg font-semibold uppercase tracking-wide">
@@ -77,7 +88,8 @@ const IndustriesSection = () => {
                 {context.description}
               </p>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
