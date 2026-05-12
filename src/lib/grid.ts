@@ -22,6 +22,9 @@ const xlRemainderSpanClassByColumns: Record<SupportedGridColumns, Record<number,
   },
 };
 
+export const cardGridDividerClass =
+  "grid md:grid-cols-2 xl:grid-cols-3 [&>*]:border-border [&>*+*]:border-t md:[&>*]:border-t-0 md:[&>*:nth-child(even)]:border-l md:[&>*:nth-child(n+3)]:border-t xl:[&>*]:border-l-0 xl:[&>*]:border-t-0 xl:[&>*:nth-child(3n+2)]:border-l xl:[&>*:nth-child(3n+3)]:border-l xl:[&>*:nth-child(n+4)]:border-t";
+
 export const getLastGridItemSpanClass = ({
   index,
   itemCount,
