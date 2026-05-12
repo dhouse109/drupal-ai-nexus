@@ -1,6 +1,6 @@
 import ProjectCard from "./ProjectCard";
 import type { Project } from "@/data/projects";
-import { getLastGridItemSpanClass } from "@/lib/grid";
+import { getCardGridBorderClass, getLastGridItemSpanClass } from "@/lib/grid";
 
 interface ProjectGridProps {
   projects: Project[];
@@ -17,19 +17,28 @@ const ProjectGrid = ({ projects, emptyMessage }: ProjectGridProps) => {
   }
 
   return (
-    <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
-      {projects.map((project, index) => (
-        <ProjectCard
-          key={project.slug}
-          project={project}
-          className={getLastGridItemSpanClass({
-            index,
-            itemCount: projects.length,
-            mdColumns: 2,
-            xlColumns: 3,
-          })}
-        />
-      ))}
+    <div className="grid md:grid-cols-2 xl:grid-cols-3">
+      {projects.map((project, index) => {
+        const span = getLastGridItemSpanClass({
+          index,
+          itemCount: projects.length,
+          mdColumns: 2,
+          xlColumns: 3,
+        });
+        const border = getCardGridBorderClass({
+          index,
+          itemCount: projects.length,
+          mdColumns: 2,
+          xlColumns: 3,
+        });
+        return (
+          <ProjectCard
+            key={project.slug}
+            project={project}
+            className={`${border} ${span}`.trim()}
+          />
+        );
+      })}
     </div>
   );
 };
