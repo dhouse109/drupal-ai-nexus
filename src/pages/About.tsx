@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { getCardGridBorderClass } from "@/lib/grid";
 
 const proofItems = [
   {
@@ -238,9 +239,12 @@ const About = () => {
               A few signals of the background behind the work
             </h2>
           </div>
-          <div className="grid gap-px bg-border md:grid-cols-2">
-            {proofItems.map((item) => (
-              <div key={item.title} className="bg-background p-8 md:p-10">
+          <div className="grid md:grid-cols-2">
+            {proofItems.map((item, index) => (
+              <div
+                key={item.title}
+                className={`bg-background p-8 md:p-10 border border-transparent ${getCardGridBorderClass({ index, itemCount: proofItems.length, mdColumns: 2 })}`}
+              >
                 <h3 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">{item.title}</h3>
                 <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">{item.description}</p>
               </div>
