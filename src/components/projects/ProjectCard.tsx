@@ -16,10 +16,10 @@ const ProjectCard = ({ project, variant = "default", className }: ProjectCardPro
   return (
     <Link
       to={`/portfolio/${project.slug}`}
-      className={`group block border bg-background transition-colors duration-300 ease-out ${
+      className={`group block border bg-background transition-all duration-300 ease-out ${
         isFeatured
-          ? "border-border bg-surface p-8 md:p-10 hover:border-primary"
-          : "border-transparent p-8 md:p-10 hover:border-primary"
+          ? "border-border bg-surface p-8 md:p-10 hover:border-border hover:bg-surface-hover"
+          : "border-transparent p-8 md:p-10 hover:border-border hover:bg-muted/20"
       } ${className ?? ""}`}
     >
       <div className="flex flex-wrap items-center gap-3">

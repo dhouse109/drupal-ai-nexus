@@ -1,19 +1,51 @@
-## Plan
+## Goal
 
-1. **Replace the mixed divider approach**
-   - Stop using `gap-px bg-border` for the affected one-row card grids, because it creates divider lines via the parent background and can leak outer/right/bottom edges at breakpoint transitions.
-   - Use item-level border color logic consistently instead: each card keeps `border border-transparent`, and only interior right/bottom borders get a visible color.
+Make the hover-highlight effect consistent across all card surfaces — Portfolio Work and Insights, both in grid collections and featured blocks — matching the existing Insight grid card pattern (subtle border + subtle background tint).
 
-2. **Tighten the shared grid helper**
-   - Update `getCardGridBorderClass` so breakpoint-specific column counts fully override smaller breakpoint divider colors.
-   - Preserve transparent right/bottom borders on outer cells so hover states still draw a complete square.
-   - Account for short final rows and spanning last items without producing phantom dividers.
+## Current state
 
-3. **Apply the helper to the affected one-row grids**
-   - Home: `ExplorePathsSection` and `IndustriesSection`.
-   - Applied AI: `Selected proof` and `Working standards` grids.
-   - Also update matching AI card grids that use the same one-row pattern so the behavior stays consistent across related pages.
+| Surface | File | Hover today |
+|---|---|---|
+| Insight grid card | `src/components/insights/InsightCard.tsx` | `hover:border-border hover:bg-muted/20` (border + bg tint) |
+| Project grid card | `src/components/projects/ProjectCard.tsx` (default) | `hover:border-primary` only — no bg shift, different border color |
+| Featured project card | same file, `variant="featured"` | `hover:border-primary` only, starts with `bg-surface` |
+| Featured insight card | inline in `src/pages/Insights.tsx` (lines 89–116) | `hover:border-primary` only, starts with `bg-surface` |
 
-4. **Validate visually at the reported viewport**
-   - Check `/` and `/applied-ai` around the one-row grids at the user’s 1800px-wide viewport.
-   - Confirm there are interior dividers only, with no right/bottom outside borders and no missing divider between adjacent cells.
+So there are two inconsistencies:
+1. Project grid cards highlight border only, and with a different color than Insight grid cards.
+2. Both featured cards (project + insight) only highlight the border; no subtle background tint.
+
+## Proposed unified pattern
+
+One rule for every interactive content card:
+
+- Border transitions to `border-border` (soft, matches Insight grid card today).
+- Background gains a subtle tint:
+  - Cards starting on `bg-background` (transparent grid cards): `hover:bg-muted/20`.
+  - Cards starting on `bg-surface` (featured cards): `hover:bg-surface-hover` (token already defined in `index.css`).
+- Keep existing transition `transition-all duration-300 ease-out`.
+- Keep `group-hover:translate-x-1` on the arrow.
+
+This treats `hover:border-primary` (the louder accent) as the exception, not the default. None of the card surfaces in scope need the louder accent.
+
+## Changes
+
+1. **`src/components/projects/ProjectCard.tsx`**
+   - Default variant: replace `hover:border-primary` with `hover:border-border hover:bg-muted/20`. Add `transition-all duration-300 ease-out` (currently `transition-colors`) so the bg tint animates smoothly.
+   - Featured variant: replace `hover:border-primary` with `hover:border-border hover:bg-surface-hover`. Same transition update.
+
+2. **`src/pages/Insights.tsx`** (featured insight Link, ~line 91)
+   - Replace `hover:border-primary` with `hover:border-border hover:bg-surface-hover`. Transition class is already `transition-all duration-300 ease-out`.
+
+3. **`src/components/insights/InsightCard.tsx`**
+   - No change. This is the reference pattern.
+
+## Out of scope
+
+- Informational (non-interactive) cards — memory rule already forbids hover highlights on those.
+- CTA buttons, nav links, and other non-card interactive elements.
+- Grid divider behavior (recently fixed; untouched here).
+
+## Verification
+
+- Visit `/portfolio`, `/insights`, `/applied-ai` (Concrete Proof + Related Insights), and any service page using `RelatedWorkBlock`. Hover each card; confirm identical soft border + subtle background tint, and that featured cards behave the same way as grid cards.

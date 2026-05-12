@@ -88,7 +88,7 @@ const Insights = () => {
 
             <Link
               to={`/insights/${featuredArticle.slug}`}
-              className="group block border border-border bg-surface p-8 transition-all duration-300 ease-out hover:border-primary md:p-10"
+              className="group block border border-border bg-surface p-8 transition-all duration-300 ease-out hover:border-border hover:bg-surface-hover md:p-10"
             >
               <div className="flex flex-wrap items-center gap-3">
                 <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
