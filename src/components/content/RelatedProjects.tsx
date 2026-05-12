@@ -1,6 +1,6 @@
 import ProjectCard from "@/components/projects/ProjectCard";
 import { getProjectBySlug, getProjectsLinkingToInsightSlug } from "@/data/projects";
-import { getLastGridItemSpanClass } from "@/lib/grid";
+import { cardGridDividerClass, getLastGridItemSpanClass } from "@/lib/grid";
 
 interface RelatedProjectsProps {
   intro?: string;
@@ -39,7 +39,7 @@ const RelatedProjects = ({ intro, projectSlugs, insightSlug }: RelatedProjectsPr
             </p>
           )}
         </div>
-        <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
+        <div className={cardGridDividerClass}>
           {projects.map((project, index) => (
             <ProjectCard
               key={project.slug}
