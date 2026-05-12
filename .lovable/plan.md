@@ -1,19 +1,29 @@
 ## Goal
-Match the FocusSection internal dividers to the lighter/thinner dividers used elsewhere on the site (e.g. ExplorePathsSection), while keeping the right-edge fix from the previous turn.
+Eliminate the right-edge outer border on the FocusSection grid (and document the same fix to apply elsewhere later) by replacing the fragile `gap-px + bg-border` divider technique with explicit per-cell borders.
 
-## Why the current dividers look heavier
-The previous fix swapped to `divide-x divide-border`, which paints a 1px CSS `border` on each child. Tailwind's divide utilities additionally apply `--tw-divide-opacity: 1`, and the rendered border sits inside the cell box rather than in a 1px gap between two backgrounds. Visually that reads slightly darker/thicker than the rest of the site, where dividers are produced by `gap-px bg-border` (a 1px slice of the parent's background showing between cells).
+## Why the current technique is fragile
+`grid gap-px bg-border` draws dividers by letting the parent's `bg-border` show through 1px gaps between children. Browsers compute column tracks as fractional pixels, and any sub-pixel remainder at the right edge gets painted by the container — visible as a thin outer line. Whether it shows depends on column count vs container width, so the same pattern appears clean in some grids (ExplorePaths, 4 cols at 1429px) and shows a right edge in others (Focus, 3 cols at 1429px). Per-cell `border border-transparent` cannot mask it (the bleed is outside the cell), and `overflow-hidden` cannot clip it (the bleed is the container's own background, inside its bounds).
 
-## Change (single file)
-Return `FocusSection` to the project's standard divider technique and prevent the right-edge bleed by clipping the container.
+## Change (single file, this turn)
+`src/components/FocusSection.tsx` — switch to explicit per-cell right borders:
 
-`src/components/FocusSection.tsx`:
-- Grid class: change `grid md:grid-cols-3 md:divide-x md:divide-border` back to `grid gap-px overflow-hidden bg-border md:grid-cols-3`. The added `overflow-hidden` clips the 1px subpixel bleed on the right edge that caused the original outer line.
-- Cells unchanged: `group bg-background p-8 md:p-10`.
+- Grid: change `grid gap-px overflow-hidden bg-border md:grid-cols-3` to `grid md:grid-cols-3`.
+- Cells: append a conditional border class on each `motion.div`:
+  - `md:border-r md:border-border` for all cells except the last
+  - last cell gets no border
+- Implement by passing `i` from the existing `services.map((service, i) => ...)` and adding ``${i < services.length - 1 ? "md:border-r md:border-border" : ""}`` to the `motion.div` className.
 
-This restores divider weight and color to exactly match ExplorePathsSection and the rest of the site, with no outer border on any side.
+Result: exact 1px dividers between the three cards, identical color/weight to the rest of the site, and no possible outer border on any side at any viewport width.
 
-## Verification
-- Reload `/`, screenshot the section at 1429px viewport.
-- Confirm the two internal dividers visually match the Explore Further dividers (same weight, same color).
-- Confirm no vertical line on the right of "Research and prototype sprints", and no top/bottom/left outer borders.
+## Follow-up (separate turn, not this one)
+Apply the same per-cell-border pattern to the other grids that currently use `gap-px bg-border`:
+- `ExplorePathsSection` (4-col, single row)
+- `ProjectGrid` and the Insights `Published notes` grid (multi-row, need row/col-aware borders)
+- For the multi-row grids, extend `src/lib/grid.ts` with a helper that returns `md:border-r md:border-b md:border-border` minus the last-column right border and last-row bottom border, using the same column-count + index math already in `getLastGridItemSpanClass`.
+
+Doing FocusSection first proves the pattern; the helper rollout is a bigger, separate change.
+
+## Verification (this turn)
+- Reload `/`, screenshot the "How 109.studio helps" section at 1429px.
+- Confirm: two internal vertical dividers between the three cards, identical weight to ExplorePaths dividers, no right/left/top/bottom outer borders.
+- Resize the preview to a couple of widths and confirm the right edge stays clean.
