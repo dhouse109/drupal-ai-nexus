@@ -10,6 +10,7 @@ type LastGridItemSpanOptions = {
 const mdSpanClassByColumns: Record<SupportedGridColumns, string> = {
   2: "md:col-span-2",
   3: "md:col-span-3",
+  4: "md:col-span-4",
 };
 
 const xlRemainderSpanClassByColumns: Record<SupportedGridColumns, Record<number, string>> = {
@@ -19,6 +20,11 @@ const xlRemainderSpanClassByColumns: Record<SupportedGridColumns, Record<number,
   3: {
     1: "xl:col-span-3",
     2: "xl:col-span-2",
+  },
+  4: {
+    1: "xl:col-span-4",
+    2: "xl:col-span-2",
+    3: "xl:col-span-2",
   },
 };
 
