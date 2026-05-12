@@ -10,7 +10,7 @@ import {
   getNonFeaturedArticles,
 } from "@/data/insights";
 import { PROJECT_CATEGORIES } from "@/data/taxonomy";
-import { getLastGridItemSpanClass } from "@/lib/grid";
+import { cardGridDividerClass, getLastGridItemSpanClass } from "@/lib/grid";
 
 const Insights = () => {
   const [searchParams] = useSearchParams();
@@ -130,7 +130,7 @@ const Insights = () => {
               </h2>
             </div>
 
-            <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
+            <div className={cardGridDividerClass}>
               {publishedArticles.map((article, index) => (
                 <InsightCard
                   key={article.slug}
@@ -163,7 +163,7 @@ const Insights = () => {
               </p>
             </div>
 
-            <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
+            <div className={cardGridDividerClass}>
               {draftArticles.map((article, index) => (
                 <div
                   key={article.slug}
