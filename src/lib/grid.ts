@@ -76,7 +76,7 @@ const getDividerClassesForBreakpoint = ({
     classes.push(`${prefix}:border-t`);
   }
 
-  if (prefix === "xl") {
+  if (prefix === "xl" && !hasLeftDivider) {
     classes.push("xl:border-l-0");
   }
 
