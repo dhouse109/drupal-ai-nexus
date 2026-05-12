@@ -14,7 +14,7 @@ interface InsightCardProps {
 const InsightCard = ({ article, className }: InsightCardProps) => (
   <Link
     to={`/insights/${article.slug}`}
-    className={`group block bg-background p-8 transition-colors duration-300 ease-out hover:bg-muted/20 hover:ring-1 hover:ring-inset hover:ring-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background md:p-10 ${className ?? ""}`}
+    className={`group block border border-transparent bg-background p-8 transition-all duration-300 ease-out hover:border-border hover:bg-muted/20 md:p-10 ${className ?? ""}`}
   >
     <div className="flex flex-wrap items-center gap-3">
       <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
