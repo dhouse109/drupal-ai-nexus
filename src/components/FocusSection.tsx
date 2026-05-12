@@ -42,7 +42,7 @@ const FocusSection = () => {
             A few ways 109 typically plugs into the work
           </h2>
         </motion.div>
-        <div className="grid gap-px bg-border md:grid-cols-3">
+        <div className="grid md:grid-cols-3 md:divide-x md:divide-border">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
