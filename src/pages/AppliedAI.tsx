@@ -206,7 +206,7 @@ const AppliedAI = () => {
               <div
                 key={area.title}
                 className={`bg-background p-8 md:p-10 ${
-                  i < focusAreas.length - 1 ? "md:border-r md:border-border/30" : ""
+                  i < focusAreas.length - 1 ? "md:border-r md:border-border/20" : ""
                 }`}
               >
                 <area.icon className="mb-6 h-6 w-6 text-primary" />
