@@ -7,6 +7,8 @@ type LastGridItemSpanOptions = {
   xlColumns?: SupportedGridColumns;
 };
 
+type CardGridItemOptions = LastGridItemSpanOptions;
+
 const mdSpanClassByColumns: Record<SupportedGridColumns, string> = {
   2: "md:col-span-2",
   3: "md:col-span-3",
@@ -22,8 +24,68 @@ const xlRemainderSpanClassByColumns: Record<SupportedGridColumns, Record<number,
   },
 };
 
-export const cardGridDividerClass =
-  "grid md:grid-cols-2 xl:grid-cols-3 [&>*]:border-border [&>*+*]:border-t md:[&>*]:border-t-0 md:[&>*:nth-child(even)]:border-l md:[&>*:nth-child(n+3)]:border-t xl:[&>*]:border-l-0 xl:[&>*]:border-t-0 xl:[&>*:nth-child(3n+2)]:border-l xl:[&>*:nth-child(3n+3)]:border-l xl:[&>*:nth-child(n+4)]:border-t";
+export const cardGridClass = "grid md:grid-cols-2 xl:grid-cols-3";
+
+const getColumnStart = ({
+  index,
+  itemCount,
+  columns,
+  spanRemainder,
+}: {
+  index: number;
+  itemCount: number;
+  columns: SupportedGridColumns;
+  spanRemainder: number;
+}) => {
+  const isLast = index === itemCount - 1;
+
+  if (isLast && spanRemainder === 1) {
+    return 0;
+  }
+
+  if (isLast && columns === 3 && spanRemainder === 2) {
+    return 1;
+  }
+
+  return index % columns;
+};
+
+const getDividerClassesForBreakpoint = ({
+  index,
+  itemCount,
+  columns,
+  prefix,
+}: {
+  index: number;
+  itemCount: number;
+  columns: SupportedGridColumns;
+  prefix: "md" | "xl";
+}) => {
+  const classes: string[] = [];
+  const isFirstRow = index < columns;
+  const remainder = itemCount % columns;
+  const columnStart = getColumnStart({ index, itemCount, columns, spanRemainder: remainder });
+  const hasTopDivider = !isFirstRow;
+  const hasLeftDivider = columnStart > 0;
+
+  if (index > 0 && isFirstRow) {
+    classes.push(`${prefix}:border-t-0`);
+  }
+
+  if (hasTopDivider) {
+    classes.push(`${prefix}:border-t`);
+  }
+
+  if (prefix === "xl") {
+    classes.push("xl:border-l-0");
+  }
+
+  if (hasLeftDivider) {
+    classes.push(`${prefix}:border-l`);
+  }
+
+  return classes;
+};
 
 export const getLastGridItemSpanClass = ({
   index,
@@ -53,6 +115,49 @@ export const getLastGridItemSpanClass = ({
     } else if (mdColumns && mdRemainder === 1) {
       classes.push("xl:col-span-1");
     }
+  }
+
+  return classes.join(" ");
+};
+
+export const getCardGridItemClass = ({
+  index,
+  itemCount,
+  mdColumns,
+  xlColumns,
+}: CardGridItemOptions) => {
+  const classes = ["border-border"];
+
+  if (index > 0) {
+    classes.push("border-t");
+  }
+
+  if (mdColumns) {
+    classes.push(
+      ...getDividerClassesForBreakpoint({
+        index,
+        itemCount,
+        columns: mdColumns,
+        prefix: "md",
+      }),
+    );
+  }
+
+  if (xlColumns) {
+    classes.push(
+      ...getDividerClassesForBreakpoint({
+        index,
+        itemCount,
+        columns: xlColumns,
+        prefix: "xl",
+      }),
+    );
+  }
+
+  const spanClass = getLastGridItemSpanClass({ index, itemCount, mdColumns, xlColumns });
+
+  if (spanClass) {
+    classes.push(spanClass);
   }
 
   return classes.join(" ");
