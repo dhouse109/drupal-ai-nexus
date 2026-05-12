@@ -201,9 +201,14 @@ const AppliedAI = () => {
 
       <section className="border-b border-border py-20 md:py-24">
         <div className="container">
-          <div className="grid gap-px bg-border md:grid-cols-3">
-            {focusAreas.map((area) => (
-              <div key={area.title} className="bg-background p-8 md:p-10">
+          <div className="grid md:grid-cols-3">
+            {focusAreas.map((area, i) => (
+              <div
+                key={area.title}
+                className={`bg-background p-8 md:p-10 ${
+                  i < focusAreas.length - 1 ? "md:border-r md:border-border/50" : ""
+                }`}
+              >
                 <area.icon className="mb-6 h-6 w-6 text-primary" />
                 <h2 className="font-mono text-2xl font-bold tracking-tight">{area.title}</h2>
                 <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">{area.description}</p>
