@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { getCardGridBorderClass, getLastGridItemSpanClass } from "@/lib/grid";
 
 const offerings = [
   {
@@ -230,14 +231,12 @@ const Offerings = () => {
             </p>
           </div>
 
-          <div className="grid gap-px bg-border md:grid-cols-2">
+          <div className="grid md:grid-cols-2">
             {offerings.map((offering, index) => {
-              const isLastOddCard = offerings.length % 2 === 1 && index === offerings.length - 1;
-
               return (
                 <div
                   key={offering.title}
-                  className={`bg-background p-8 md:p-10 ${isLastOddCard ? "md:col-span-2" : ""}`}
+                  className={`bg-background p-8 md:p-10 border border-transparent ${getCardGridBorderClass({ index, itemCount: offerings.length, mdColumns: 2 })} ${getLastGridItemSpanClass({ index, itemCount: offerings.length, mdColumns: 2 })}`}
                 >
                   <h2 className="font-mono text-2xl font-bold tracking-tight md:text-3xl">
                     {offering.title}
