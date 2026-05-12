@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Landmark, BookOpenText, Settings2, Layers3, Handshake } from "lucide-react";
+import { getCardGridBorderClass, getLastGridItemSpanClass } from "@/lib/grid";
 
 const contexts = [
   {
