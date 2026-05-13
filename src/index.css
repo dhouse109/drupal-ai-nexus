@@ -8,94 +8,94 @@
   /* Dim light mode — Charcoal & Ivory with restrained orange.
      Site stays dim in both system schemes; .dark only deepens the same hues. */
   :root {
-    --background: 30 4% 17%;
-    --foreground: 40 25% 92%;
+    --background: 30 9% 16%;
+    --foreground: 30 8% 78%;
 
-    --card: 30 4% 20%;
-    --card-foreground: 40 25% 92%;
+    --card: 30 9% 19%;
+    --card-foreground: 30 8% 78%;
 
-    --popover: 30 4% 20%;
-    --popover-foreground: 40 25% 92%;
+    --popover: 30 9% 19%;
+    --popover-foreground: 30 8% 78%;
 
-    --primary: 20 75% 58%;
-    --primary-foreground: 30 10% 10%;
+    --primary: 30 55% 50%;
+    --primary-foreground: 30 10% 8%;
 
-    --secondary: 30 4% 24%;
-    --secondary-foreground: 40 25% 92%;
+    --secondary: 30 7% 23%;
+    --secondary-foreground: 30 8% 78%;
 
-    --muted: 30 4% 24%;
-    --muted-foreground: 35 8% 65%;
+    --muted: 30 7% 23%;
+    --muted-foreground: 30 6% 62%;
 
-    --accent: 20 75% 58%;
-    --accent-foreground: 30 10% 10%;
+    --accent: 30 55% 50%;
+    --accent-foreground: 30 10% 8%;
 
     --destructive: 0 65% 52%;
-    --destructive-foreground: 40 25% 92%;
+    --destructive-foreground: 30 8% 78%;
 
-    --border: 30 3% 27%;
-    --input: 30 3% 27%;
-    --ring: 20 75% 58%;
+    --border: 30 6% 27%;
+    --input: 30 6% 27%;
+    --ring: 30 55% 50%;
 
     --radius: 0.25rem;
 
-    --sidebar-background: 30 4% 18%;
-    --sidebar-foreground: 40 25% 92%;
-    --sidebar-primary: 20 75% 58%;
-    --sidebar-primary-foreground: 30 10% 10%;
-    --sidebar-accent: 30 4% 24%;
-    --sidebar-accent-foreground: 40 25% 92%;
-    --sidebar-border: 30 3% 27%;
-    --sidebar-ring: 20 75% 58%;
+    --sidebar-background: 30 9% 17%;
+    --sidebar-foreground: 30 8% 78%;
+    --sidebar-primary: 30 55% 50%;
+    --sidebar-primary-foreground: 30 10% 8%;
+    --sidebar-accent: 30 7% 23%;
+    --sidebar-accent-foreground: 30 8% 78%;
+    --sidebar-border: 30 6% 27%;
+    --sidebar-ring: 30 55% 50%;
 
-    --glow: 20 75% 58%;
-    --surface: 30 4% 20%;
-    --surface-hover: 30 4% 24%;
-    --text-dim: 35 8% 65%;
+    --glow: 30 55% 50%;
+    --surface: 30 9% 19%;
+    --surface-hover: 30 7% 23%;
+    --text-dim: 30 6% 62%;
   }
 
   /* Deep dim dark mode — same hue family, lower lightness. No inversion. */
   .dark {
-    --background: 30 4% 10%;
-    --foreground: 40 25% 90%;
+    --background: 30 9% 10%;
+    --foreground: 30 8% 76%;
 
-    --card: 30 4% 13%;
-    --card-foreground: 40 25% 90%;
+    --card: 30 9% 13%;
+    --card-foreground: 30 8% 76%;
 
-    --popover: 30 4% 13%;
-    --popover-foreground: 40 25% 90%;
+    --popover: 30 9% 13%;
+    --popover-foreground: 30 8% 76%;
 
-    --primary: 20 80% 60%;
-    --primary-foreground: 30 10% 10%;
+    --primary: 30 60% 52%;
+    --primary-foreground: 30 10% 8%;
 
-    --secondary: 30 4% 16%;
-    --secondary-foreground: 40 25% 90%;
+    --secondary: 30 7% 16%;
+    --secondary-foreground: 30 8% 76%;
 
-    --muted: 30 4% 16%;
-    --muted-foreground: 35 8% 60%;
+    --muted: 30 7% 16%;
+    --muted-foreground: 30 6% 58%;
 
-    --accent: 20 80% 60%;
-    --accent-foreground: 30 10% 10%;
+    --accent: 30 60% 52%;
+    --accent-foreground: 30 10% 8%;
 
     --destructive: 0 65% 52%;
-    --destructive-foreground: 40 25% 90%;
+    --destructive-foreground: 30 8% 76%;
 
-    --border: 30 3% 21%;
-    --input: 30 3% 21%;
-    --ring: 20 80% 60%;
+    --border: 30 6% 21%;
+    --input: 30 6% 21%;
+    --ring: 30 60% 52%;
 
-    --sidebar-background: 30 4% 11%;
-    --sidebar-foreground: 40 25% 90%;
-    --sidebar-primary: 20 80% 60%;
-    --sidebar-primary-foreground: 30 10% 10%;
-    --sidebar-accent: 30 4% 16%;
-    --sidebar-accent-foreground: 40 25% 90%;
-    --sidebar-border: 30 3% 21%;
-    --sidebar-ring: 20 80% 60%;
+    --sidebar-background: 30 9% 11%;
+    --sidebar-foreground: 30 8% 76%;
+    --sidebar-primary: 30 60% 52%;
+    --sidebar-primary-foreground: 30 10% 8%;
+    --sidebar-accent: 30 7% 16%;
+    --sidebar-accent-foreground: 30 8% 76%;
+    --sidebar-border: 30 6% 21%;
+    --sidebar-ring: 30 60% 52%;
 
-    --glow: 20 80% 60%;
-    --surface: 30 4% 13%;
-    --surface-hover: 30 4% 16%;
-    --text-dim: 35 8% 60%;
+    --glow: 30 60% 52%;
+    --surface: 30 9% 13%;
+    --surface-hover: 30 7% 16%;
+    --text-dim: 30 6% 58%;
   }
 
   html {
