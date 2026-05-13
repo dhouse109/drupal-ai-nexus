@@ -169,11 +169,11 @@ const Services = () => {
               const xlLastRow = Math.floor(i / 3) === xlRows - 1;
               const xlLastCol = i % 3 === 2;
               const cls = [
-                i < total - 1 ? "border-b border-border/35" : "",
-                mdLastRow ? "md:border-b-0" : "md:border-b md:border-border/35",
-                !mdLastCol ? "md:border-r md:border-border/35" : "",
-                xlLastRow ? "xl:border-b-0" : "xl:border-b xl:border-border/35",
-                xlLastCol ? "xl:border-r-0" : "xl:border-r xl:border-border/35",
+                i < total - 1 ? "border-b border-border/40" : "",
+                mdLastRow ? "md:border-b-0" : "md:border-b md:border-border/40",
+                !mdLastCol ? "md:border-r md:border-border/40" : "",
+                xlLastRow ? "xl:border-b-0" : "xl:border-b xl:border-border/40",
+                xlLastCol ? "xl:border-r-0" : "xl:border-r xl:border-border/40",
               ]
                 .filter(Boolean)
                 .join(" ");
