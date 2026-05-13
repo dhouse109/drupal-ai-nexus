@@ -61,8 +61,20 @@ const ProjectDetail = () => {
         body={`If this project sounds close to a decision in front of you, a short conversation is the fastest way to sort the next step. ${
           project.relatedOffer ? `Related offers: ${project.relatedOffer}.` : ""
         }`.trim()}
-        primary={{ label: "Start a conversation", to: detail.cta.primaryHref }}
-        secondary={{ label: "See starting points", to: detail.cta.secondaryHref }}
+        primary={{
+          label: "Start a conversation",
+          to: detail.cta.primaryHref === "/contact"
+            ? detail.cta.primaryHref
+            : detail.cta.secondaryHref === "/contact"
+              ? detail.cta.secondaryHref
+              : "/contact",
+        }}
+        secondary={{
+          label: "See starting points",
+          to: detail.cta.primaryHref === "/contact"
+            ? detail.cta.secondaryHref
+            : detail.cta.primaryHref,
+        }}
       />
     </div>
   );

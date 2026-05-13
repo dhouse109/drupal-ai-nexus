@@ -1,12 +1,27 @@
-# Bump grid divider opacity to /25
+## Problem
 
-Change all grid divider border opacity classes from `border-border/20` (and `border/20` variants) to `/25` so the dividers are more visible against the new Charcoal & Ivory palette.
+On project detail pages, the bottom CTA renders two buttons with fixed labels:
 
-## Files to update
+- "Start a conversation" → `detail.cta.primaryHref`
+- "See starting points" → `detail.cta.secondaryHref`
 
-- `src/lib/grid.ts` — replace `md:border-b-border/20`, `md:border-r-border/20`, `xl:border-b-border/20`, `xl:border-r-border/20` with `/25` (including the safelist comment block).
-- `src/components/FocusSection.tsx` — `md:border-r md:border-border/20` → `/25`.
-- `src/pages/AppliedAI.tsx` — same swap (1 line).
-- `src/pages/Services.tsx` — 5 lines, all `border-border/20` → `/25`.
+But in `src/data/projects.shared.js`, projects are inconsistent about which slot holds `/contact`. For some (e.g. `drupal-canvas-ai-integration-suite`), `primaryHref` is `/drupal-ai` and `secondaryHref` is `/contact`, so the labels point at the wrong routes.
 
-No other style changes. After this, you can say "lower" to go back to /20 or "up again" to try /30.
+## Fix
+
+In `src/pages/ProjectDetail.tsx`, stop trusting the slot order. Derive:
+
+- `contactHref` = whichever of `primaryHref` / `secondaryHref` equals `/contact` (fallback `/contact`)
+- `learnMoreHref` = the other one (fallback `detail.cta.secondaryHref`)
+
+Then render:
+
+- Primary button "Start a conversation" → `contactHref`
+- Secondary button "See starting points" → `learnMoreHref`
+
+This keeps the existing data file untouched and fixes every project page in one change. No data migration, no label changes.
+
+## Scope
+
+- Edit only `src/pages/ProjectDetail.tsx` (the `ContentCTA` props block).
+- No changes to data, no changes to `ContentCTA`, no changes to other pages.
