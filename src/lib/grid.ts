@@ -66,8 +66,8 @@ export const getLastGridItemSpanClass = ({
 };
 
 // Tailwind safelist (literal classes used below):
-// md:border-r-border/30 md:border-b-border/30
-// xl:border-r-border/30 xl:border-b-border/30
+// md:border-r-border/35 md:border-b-border/35
+// xl:border-r-border/35 xl:border-b-border/35
 // xl:border-r-transparent xl:border-b-transparent
 //
 // Note: cards already render `border border-transparent` (1px on all sides),
@@ -86,17 +86,17 @@ export const getCardGridBorderClass = ({
     const mdRows = Math.ceil(itemCount / mdColumns);
     const mdRow = Math.floor(index / mdColumns);
     const mdCol = index % mdColumns;
-    if (mdRow < mdRows - 1) classes.push("md:border-b-border/30");
-    if (mdCol < mdColumns - 1) classes.push("md:border-r-border/30");
+    if (mdRow < mdRows - 1) classes.push("md:border-b-border/35");
+    if (mdCol < mdColumns - 1) classes.push("md:border-r-border/35");
   }
 
   if (xlColumns) {
     const xlRows = Math.ceil(itemCount / xlColumns);
     const xlRow = Math.floor(index / xlColumns);
     const xlCol = index % xlColumns;
-    if (xlRow < xlRows - 1) classes.push("xl:border-b-border/30");
+    if (xlRow < xlRows - 1) classes.push("xl:border-b-border/35");
     else classes.push("xl:border-b-transparent");
-    if (xlCol < xlColumns - 1) classes.push("xl:border-r-border/30");
+    if (xlCol < xlColumns - 1) classes.push("xl:border-r-border/35");
     else classes.push("xl:border-r-transparent");
   }
 
