@@ -10,7 +10,7 @@ import {
   getNonFeaturedArticles,
 } from "@/data/insights";
 import { PROJECT_CATEGORIES } from "@/data/taxonomy";
-import { getLastGridItemSpanClass } from "@/lib/grid";
+import { getCardGridBorderClass, getLastGridItemSpanClass } from "@/lib/grid";
 
 const Insights = () => {
   const [searchParams] = useSearchParams();
@@ -130,19 +130,28 @@ const Insights = () => {
               </h2>
             </div>
 
-            <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
-              {publishedArticles.map((article, index) => (
-                <InsightCard
-                  key={article.slug}
-                  article={article}
-                  className={getLastGridItemSpanClass({
-                    index,
-                    itemCount: publishedArticles.length,
-                    mdColumns: 2,
-                    xlColumns: 3,
-                  })}
-                />
-              ))}
+            <div className="grid md:grid-cols-2 xl:grid-cols-3">
+              {publishedArticles.map((article, index) => {
+                const span = getLastGridItemSpanClass({
+                  index,
+                  itemCount: publishedArticles.length,
+                  mdColumns: 2,
+                  xlColumns: 3,
+                });
+                const border = getCardGridBorderClass({
+                  index,
+                  itemCount: publishedArticles.length,
+                  mdColumns: 2,
+                  xlColumns: 3,
+                });
+                return (
+                  <InsightCard
+                    key={article.slug}
+                    article={article}
+                    className={`${border} ${span}`.trim()}
+                  />
+                );
+              })}
             </div>
           </div>
         </section>
@@ -163,11 +172,16 @@ const Insights = () => {
               </p>
             </div>
 
-            <div className="grid gap-px bg-border md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid md:grid-cols-2 xl:grid-cols-3">
               {draftArticles.map((article, index) => (
                 <div
                   key={article.slug}
-                  className={`bg-background p-8 md:p-10 ${getLastGridItemSpanClass({
+                  className={`bg-background p-8 md:p-10 border border-transparent ${getCardGridBorderClass({
+                    index,
+                    itemCount: draftArticles.length,
+                    mdColumns: 2,
+                    xlColumns: 3,
+                  })} ${getLastGridItemSpanClass({
                     index,
                     itemCount: draftArticles.length,
                     mdColumns: 2,
