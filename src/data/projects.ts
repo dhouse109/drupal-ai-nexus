@@ -1,11 +1,7 @@
 import {
   projects as sharedProjects,
-  getAllProjects as sharedGetAll,
-  getProjectBySlug as sharedGetBySlug,
-  getFeaturedProject as sharedGetFeatured,
-  getProjectsByCategory as sharedGetByCategory,
-  getProjectsLinkingToInsightSlug as sharedGetByInsight,
 } from "./projects.shared.js";
+import { applyProjectQaOverrides } from "./projects.qa-overrides.js";
 import type {
   ProjectCategoryId,
   ProjectStatusId,
@@ -59,19 +55,26 @@ export interface Project {
   lastReviewedAt?: string;
 }
 
-export const projects = sharedProjects as Project[];
+export const projects = (sharedProjects as Project[]).map(applyProjectQaOverrides) as Project[];
 
-export const getAllProjects = (): Project[] => sharedGetAll() as Project[];
+export const getAllProjects = (): Project[] => projects;
 
 export const getProjectBySlug = (slug: string): Project | undefined =>
-  sharedGetBySlug(slug) as Project | undefined;
+  projects.find((p) => p.slug === slug);
 
 export const getFeaturedProject = (): Project | undefined =>
-  sharedGetFeatured() as Project | undefined;
+  projects.find((p) => p.featured);
 
 export const getProjectsByCategory = (
   categoryId: ProjectCategoryId | "all" | undefined,
-): Project[] => sharedGetByCategory(categoryId) as Project[];
+): Project[] => {
+  if (!categoryId || categoryId === "all") return projects;
+  return projects.filter(
+    (p) =>
+      p.primaryCategory === categoryId ||
+      p.secondaryCategories.includes(categoryId),
+  );
+};
 
 export const getProjectsLinkingToInsightSlug = (slug: string): Project[] =>
-  sharedGetByInsight(slug) as Project[];
+  projects.filter((p) => p.relatedInsightSlugs.includes(slug));
