@@ -1,0 +1,88 @@
+# 109.studio
+
+109.studio is Damien House's principal-led practice for platform architecture, product engineering, Drupal architecture, and applied AI work.
+
+The site is intended for founders, agencies, technical leaders, Drupal teams, and enterprise CMS teams that need senior technical direction, practical architecture decisions, modernization support, or help applying AI inside real workflows.
+
+## Principal
+
+Damien House is the principal behind 109.studio. His work combines senior technical leadership, hands-on platform engineering, Drupal modernization experience, DevEx and delivery systems, and applied AI workflow strategy.
+
+## Core topics
+
+- Platform architecture
+- Product engineering
+- Drupal architecture
+- Enterprise CMS modernization
+- Applied AI strategy
+- Drupal AI strategy and implementation
+- Retrieval-backed systems and RAG evaluation
+- AI governance, permissions, and human review
+- Developer tooling, CI/CD, and delivery systems
+- Architecture audits and fractional CTO advisory
+
+## Important pages
+
+- Home: https://109.studio/
+- About: https://109.studio/about
+- Services: https://109.studio/services
+- Offerings: https://109.studio/offerings
+- 2-Week Architecture Audit: https://109.studio/architecture-audit
+- Applied AI: https://109.studio/applied-ai
+- Drupal AI: https://109.studio/drupal-ai
+- AI in Practice: https://109.studio/ai-in-practice
+- Portfolio: https://109.studio/portfolio
+- Insights: https://109.studio/insights
+- Contact: https://109.studio/contact
+
+## Services and offerings
+
+109.studio helps teams clarify technical direction, assess architecture risk, modernize content-rich platforms, evaluate applied AI opportunities, and strengthen the delivery systems required to ship maintainable software.
+
+Representative starting points include:
+
+- 2-Week Architecture Audit
+- Fractional CTO and technical advisory
+- Platform and product engineering
+- Applied AI strategy and workflow engineering
+- Drupal AI strategy, architecture, and implementation
+- DevEx, DevSecOps, and modernization support
+
+## Portfolio themes
+
+The portfolio includes abstracted case studies, planned service proofs, internal tools, and ecosystem-oriented projects. Status labels should be read carefully. Planned service proofs and ecosystem contribution pages are not presented as completed client work.
+
+Key project themes include:
+
+- Mission-critical platform modernization
+- AI-first MVP architecture
+- Drupal Canvas and Drupal AI integration
+- MCP server tooling for Drupal
+- Semantic search and RAG evaluation
+- Context control and AI governance
+- AI-assisted content audit systems
+- Agentic development workflows for CMS work
+- DevSecOps scaffolding for high-stakes environments
+- LocalGov Drupal AI integration research
+
+## Insights themes
+
+Insights are working notes and essays about product, platform, AI, Drupal, search, and delivery work. Several Insight articles are temporarily QA-published so routing, related content, metadata, filters, and sitemap behavior can be tested before launch.
+
+Representative themes include:
+
+- Applied AI starts with the workflow, not the model
+- AI prototypes are not production products
+- Prompts cannot replace permissions
+- Reviewable AI systems need tool surfaces, permissions, and audit paths
+- RAG quality depends on retrieval evaluation and source grounding
+- Drupal is useful AI infrastructure because structured content, workflows, and permissions matter
+- Delivery systems are part of AI readiness
+
+## Preferred short summary
+
+109.studio is a principal-led technical practice by Damien House for platform architecture, product engineering, Drupal modernization, and applied AI workflow strategy. The practice helps teams make better technical decisions, build maintainable systems, and apply AI inside real products and workflows without losing review, control, or delivery discipline.
+
+## Contact
+
+Use the contact page for project, advisory, architecture audit, Drupal AI, applied AI, or platform modernization inquiries: https://109.studio/contact

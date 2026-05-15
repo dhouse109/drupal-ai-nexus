@@ -4,6 +4,7 @@ export const siteUrl = siteIdentity.url;
 export const siteName = siteIdentity.name;
 
 const reference = (id) => ({ "@id": id });
+const pageUrl = (path) => new URL(path, siteUrl).toString();
 
 export const organizationSchema = {
   "@context": "https://schema.org",
@@ -93,4 +94,31 @@ export const createServiceSchema = ({ path, name, description, serviceType }) =>
   serviceType,
   provider: reference(siteIdentity.schemaIds.organization),
   isRelatedTo: reference(siteIdentity.schemaIds.professionalService),
+});
+
+export const createBreadcrumbSchema = (items) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    item: pageUrl(item.path),
+  })),
+});
+
+export const createItemListSchema = ({ path, name, description, items }) => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": `${siteUrl}${path}#itemlist`,
+  url: `${siteUrl}${path}`,
+  name,
+  description,
+  itemListElement: items.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    url: item.url ?? pageUrl(item.path),
+    name: item.name,
+    ...(item.description ? { description: item.description } : {}),
+  })),
 });

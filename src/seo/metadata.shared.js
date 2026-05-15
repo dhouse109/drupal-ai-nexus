@@ -1,6 +1,9 @@
-import { getPublishedArticles } from "../data/insights.shared.js";
+import { articles as sharedArticles } from "../data/insights.shared.js";
+import { applyInsightQaOverrides } from "../data/insights.qa-overrides.js";
 import { getAllProjects } from "../data/projects.shared.js";
 import {
+  createBreadcrumbSchema,
+  createItemListSchema,
   createServiceSchema,
   createWebPageSchema,
   organizationSchema,
@@ -16,6 +19,22 @@ const appliedAiOgImage = "/og/og-applied-ai.png";
 const drupalAiOgImage = "/og/og-drupal-ai.png";
 const architectureAuditOgImage = "/og/og-architecture-audit.png";
 
+const normalizePublishedDate = (publishedDate) => {
+  if (!publishedDate) return undefined;
+
+  const [month, year] = String(publishedDate).split(" ");
+  if (!month || !year) return undefined;
+
+  const monthIndex = new Date(`${month} 1, ${year}`).getMonth();
+  if (Number.isNaN(monthIndex)) return undefined;
+
+  return `${year}-${String(monthIndex + 1).padStart(2, "0")}-01`;
+};
+
+const stripTitleSuffix = (title) => title.split("|")[0].trim();
+
+export const absoluteUrl = (path) => new URL(path, siteUrl).toString();
+
 const page = ({
   title,
   description,
@@ -26,51 +45,85 @@ const page = ({
   ogImage = defaultOgImage,
   pageType = "WebPage",
   schema = [],
-}) => ({
-  title,
-  description,
-  path,
-  ogTitle: ogTitle ?? title,
-  ogDescription: ogDescription ?? description,
-  ogType,
-  ogImage,
-  pageType,
-  schema: [createWebPageSchema({ path, name: title, description, pageType }), ...schema],
-});
+  breadcrumbItems,
+}) => {
+  const crumbs =
+    breadcrumbItems ??
+    (path === "/"
+      ? []
+      : [
+          { name: "Home", path: "/" },
+          { name: stripTitleSuffix(ogTitle ?? title), path },
+        ]);
 
-const createArticleSchema = (article) => ({
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "@id": `${siteUrl}/insights/${article.slug}#article`,
-  url: `${siteUrl}/insights/${article.slug}`,
-  headline: article.title,
-  description: article.description,
-  author: { "@id": `${siteUrl}/#person` },
-  publisher: { "@id": `${siteUrl}/#organization` },
-  mainEntityOfPage: { "@id": `${siteUrl}/insights/${article.slug}#webpage` },
-  articleSection: article.category,
-  inLanguage: "en-US",
-});
+  return {
+    title,
+    description,
+    path,
+    ogTitle: ogTitle ?? title,
+    ogDescription: ogDescription ?? description,
+    ogType,
+    ogImage,
+    pageType,
+    schema: [
+      createWebPageSchema({ path, name: title, description, pageType }),
+      ...(crumbs.length ? [createBreadcrumbSchema(crumbs)] : []),
+      ...schema,
+    ],
+  };
+};
 
-const insightArticleMetadata = Object.fromEntries(
-  getPublishedArticles().map((article) => {
-    const path = `/insights/${article.slug}`;
+const publicArticles = sharedArticles.map(applyInsightQaOverrides).filter((article) => article.status === "published");
+const allProjects = getAllProjects();
 
-    return [
-      path,
-      page({
-        title: `${article.title} | 109.studio`,
-        description: article.description,
-        path,
-        ogTitle: article.title,
-        ogDescription: article.description,
-        ogType: "article",
-        ogImage: appliedAiOgImage,
-        schema: [createArticleSchema(article)],
-      }),
-    ];
-  }),
-);
+const createArticleSchema = (article) => {
+  const path = `/insights/${article.slug}`;
+  const datePublished = normalizePublishedDate(article.publishedDate);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${siteUrl}${path}#article`,
+    url: `${siteUrl}${path}`,
+    headline: article.title,
+    description: article.description,
+    author: { "@id": `${siteUrl}/#person` },
+    publisher: { "@id": `${siteUrl}/#organization` },
+    mainEntityOfPage: { "@id": `${siteUrl}${path}#webpage` },
+    articleSection: article.category,
+    inLanguage: "en-US",
+    image: absoluteUrl(appliedAiOgImage),
+    ...(datePublished ? { datePublished, dateModified: datePublished } : {}),
+    ...(article.themes?.length
+      ? {
+          keywords: article.themes.join(", "),
+          about: article.themes,
+        }
+      : {}),
+  };
+};
+
+const createInsightMetadata = (article) => {
+  const path = `/insights/${article.slug}`;
+
+  return page({
+    title: `${article.title} | 109.studio`,
+    description: article.description,
+    path,
+    ogTitle: article.title,
+    ogDescription: article.description,
+    ogType: "article",
+    ogImage: appliedAiOgImage,
+    schema: [createArticleSchema(article)],
+    breadcrumbItems: [
+      { name: "Home", path: "/" },
+      { name: "Insights", path: "/insights" },
+      { name: article.title, path },
+    ],
+  });
+};
+
+const insightArticleMetadata = Object.fromEntries(publicArticles.map((article) => [`/insights/${article.slug}`, createInsightMetadata(article)]));
 
 const createProjectSchema = (project) => ({
   "@context": "https://schema.org",
@@ -87,27 +140,75 @@ const createProjectSchema = (project) => ({
   inLanguage: "en-US",
   keywords: project.themes.join(", "),
   creativeWorkStatus: project.statusLabel,
+  genre: project.primaryCategoryLabel,
 });
 
-const projectMetadata = Object.fromEntries(
-  getAllProjects().map((project) => {
-    const path = `/portfolio/${project.slug}`;
-    const description = project.detail.cardSummary;
+const createProjectMetadata = (project) => {
+  const path = `/portfolio/${project.slug}`;
+  const description = project.detail.cardSummary;
 
-    return [
-      path,
-      page({
-        title: `${project.title} | 109.studio Portfolio`,
-        description,
-        path,
-        ogTitle: project.detail.headline || project.title,
-        ogDescription: description,
-        ogType: "article",
-        schema: [createProjectSchema(project)],
-      }),
-    ];
-  }),
-);
+  return page({
+    title: `${project.title} | 109.studio Portfolio`,
+    description,
+    path,
+    ogTitle: project.detail.headline || project.title,
+    ogDescription: description,
+    ogType: "article",
+    schema: [createProjectSchema(project)],
+    breadcrumbItems: [
+      { name: "Home", path: "/" },
+      { name: "Portfolio", path: "/portfolio" },
+      { name: project.title, path },
+    ],
+  });
+};
+
+const projectMetadata = Object.fromEntries(allProjects.map((project) => [`/portfolio/${project.slug}`, createProjectMetadata(project)]));
+
+const portfolioItemListSchema = createItemListSchema({
+  path: "/portfolio",
+  name: "109.studio Portfolio",
+  description: "Selected 109.studio work, experiments, and proof of practice.",
+  items: allProjects.map((project) => ({
+    path: `/portfolio/${project.slug}`,
+    name: project.title,
+    description: project.detail.cardSummary,
+  })),
+});
+
+const insightsItemListSchema = createItemListSchema({
+  path: "/insights",
+  name: "109.studio Insights",
+  description: "Published working notes from 109.studio.",
+  items: publicArticles.map((article) => ({
+    path: `/insights/${article.slug}`,
+    name: article.title,
+    description: article.description,
+  })),
+});
+
+const offeringsItemListSchema = createItemListSchema({
+  path: "/offerings",
+  name: "109.studio Offerings",
+  description: "Focused starting points for working with 109.studio.",
+  items: [
+    {
+      path: "/architecture-audit",
+      name: "2-Week Architecture Audit",
+      description: "A focused outside read on platform risk, delivery constraints, AI readiness, and next technical steps.",
+    },
+    {
+      path: "/drupal-ai",
+      name: "Drupal AI Strategy, Architecture, and Implementation",
+      description: "Applied AI strategy and implementation support for Drupal teams and enterprise CMS workflows.",
+    },
+    {
+      path: "/applied-ai",
+      name: "Applied AI Strategy and Workflow Engineering",
+      description: "Practical applied AI strategy and workflow design for real product, content, search, and delivery systems.",
+    },
+  ],
+});
 
 export const defaultMetadata = page({
   title: "109.studio | Senior Technical Direction for Complex Products and Platforms",
@@ -181,6 +282,7 @@ export const routeMetadata = {
           "Platform modernization",
         ],
       }),
+      offeringsItemListSchema,
     ],
   }),
   "/architecture-audit": page({
@@ -260,6 +362,7 @@ export const routeMetadata = {
     ogDescription:
       "Representative work from 109.studio across platform strategy, Drupal, applied AI, technical leadership, delivery systems, and reusable experiments.",
     pageType: "CollectionPage",
+    schema: [portfolioItemListSchema],
   }),
   "/contact": page({
     title: "Contact 109.studio | Start a Technical Strategy Conversation",
@@ -280,6 +383,7 @@ export const routeMetadata = {
     ogDescription:
       "109.studio shares working notes on modernization, applied AI, search, delivery systems, and the technical decisions that shape software teams.",
     pageType: "CollectionPage",
+    schema: [insightsItemListSchema],
   }),
   ...insightArticleMetadata,
   ...projectMetadata,
@@ -292,7 +396,5 @@ export const notFoundMetadata = page({
 });
 
 export const getRouteMetadata = (pathname) => routeMetadata[pathname] ?? notFoundMetadata;
-
-export const absoluteUrl = (path) => new URL(path, siteUrl).toString();
 
 export { siteName, siteUrl };
