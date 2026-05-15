@@ -9,6 +9,15 @@ interface ProjectDetailHeroProps {
   project: Project;
 }
 
+const SHOW_BLOCK_DISCLOSURE_STATUSES = new Set([
+  "abstracted-past-work",
+  "planned-service-proof",
+  "lab",
+  "sample-only",
+  "internal-tool",
+  "ecosystem-contribution",
+]);
+
 const ProjectDetailHero = ({ project }: ProjectDetailHeroProps) => (
   <section className="relative overflow-hidden border-b border-border py-24 md:py-32">
     <div className="absolute inset-0 grid-bg opacity-40" />
