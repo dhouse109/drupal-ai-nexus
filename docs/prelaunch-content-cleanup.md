@@ -1,5 +1,10 @@
 # Pre-launch Content Cleanup
 
+> Note: the publish allow-list and editorial defaults now live in
+> `src/data/insights.editorial-overrides.js` and
+> `src/data/projects.editorial-overrides.js` (renamed from `*.qa-overrides.js`).
+> The exported allow-list constant is `PUBLISHED_INSIGHT_SLUGS`.
+
 Several Insights are temporarily published for QA coverage in this branch. They help test routing, related-content modules, footer writing links, category filters, SEO metadata, and sitemap/prerender behavior.
 
 Before the next public release, review this file and decide which notes should remain public.
