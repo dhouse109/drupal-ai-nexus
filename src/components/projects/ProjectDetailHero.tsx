@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import StatusBadge from "@/components/content/StatusBadge";
-import ChannelBadge from "@/components/content/ChannelBadge";
+
 import ThemeChips from "@/components/content/ThemeChips";
 import EditorialDisclosure from "@/components/content/EditorialDisclosure";
 import type { Project } from "@/data/projects";
@@ -82,13 +82,13 @@ const ProjectDetailHero = ({ project }: ProjectDetailHeroProps) => (
         className="mt-10 flex flex-col gap-6"
       >
         {project.themes.length > 0 && <ThemeChips themes={project.themes} />}
-        {project.publicationChannels.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {project.publicationChannels.map((channel) => (
-              <ChannelBadge key={channel} channel={channel} />
-            ))}
-          </div>
-        )}
+        {/*
+          publicationChannels intentionally not rendered here.
+          Only render channels publicly when each one links to a real
+          destination (e.g. a damien.house companion URL) or clarifies a
+          distinct publishing context. Until then, passive chips add
+          visual noise without helping the reader.
+        */}
       </motion.div>
     </div>
   </section>
