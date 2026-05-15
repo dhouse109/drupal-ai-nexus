@@ -61,7 +61,7 @@ const ProjectDetailHero = ({ project }: ProjectDetailHeroProps) => {
       >
         {project.detail.subheadline}
       </motion.p>
-      {project.aiAssisted && SHOW_BLOCK_DISCLOSURE_STATUSES.has(project.status) && (
+      {shouldShowBlockDisclosure && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -96,6 +96,7 @@ const ProjectDetailHero = ({ project }: ProjectDetailHeroProps) => {
       </motion.div>
     </div>
   </section>
-);
+  );
+};
 
 export default ProjectDetailHero;
