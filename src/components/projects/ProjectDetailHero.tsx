@@ -57,6 +57,24 @@ const ProjectDetailHero = ({ project }: ProjectDetailHeroProps) => (
       >
         {project.detail.subheadline}
       </motion.p>
+      {project.aiAssisted && SHOW_BLOCK_DISCLOSURE_STATUSES.has(project.status) && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="mt-6 max-w-2xl"
+        >
+          <EditorialDisclosure
+            variant="block"
+            aiAssisted={project.aiAssisted}
+            label={project.aiDisclosureLabel}
+            note={project.aiDisclosureNote}
+            reviewedBy={project.reviewedBy}
+            lastReviewedAt={project.lastReviewedAt}
+            showReviewer={false}
+          />
+        </motion.div>
+      )}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
