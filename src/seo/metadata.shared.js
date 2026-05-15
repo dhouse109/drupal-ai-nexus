@@ -1,6 +1,7 @@
 import { articles as sharedArticles } from "../data/insights.shared.js";
 import { applyInsightEditorialOverrides } from "../data/insights.editorial-overrides.js";
-import { getAllProjects } from "../data/projects.shared.js";
+import { projects as sharedProjects } from "../data/projects.shared.js";
+import { applyProjectEditorialOverrides } from "../data/projects.editorial-overrides.js";
 import {
   createBreadcrumbSchema,
   createItemListSchema,
@@ -74,7 +75,7 @@ const page = ({
 };
 
 const publicArticles = sharedArticles.map(applyInsightEditorialOverrides).filter((article) => article.status === "published");
-const allProjects = getAllProjects();
+const allProjects = sharedProjects.map(applyProjectEditorialOverrides);
 
 const createArticleSchema = (article) => {
   const path = `/insights/${article.slug}`;
