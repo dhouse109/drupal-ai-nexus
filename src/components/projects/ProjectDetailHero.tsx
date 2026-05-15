@@ -18,7 +18,11 @@ const SHOW_BLOCK_DISCLOSURE_STATUSES = new Set([
   "ecosystem-contribution",
 ]);
 
-const ProjectDetailHero = ({ project }: ProjectDetailHeroProps) => (
+const ProjectDetailHero = ({ project }: ProjectDetailHeroProps) => {
+  const shouldShowBlockDisclosure =
+    project.aiAssisted && SHOW_BLOCK_DISCLOSURE_STATUSES.has(project.status);
+
+  return (
   <section className="relative overflow-hidden border-b border-border py-24 md:py-32">
     <div className="absolute inset-0 grid-bg opacity-40" />
     <div className="container relative">
@@ -32,7 +36,7 @@ const ProjectDetailHero = ({ project }: ProjectDetailHeroProps) => (
           {project.primaryCategoryLabel}
         </span>
         <StatusBadge label={project.statusLabel} tone={project.statusTone} />
-        {project.aiAssisted && (
+        {project.aiAssisted && !shouldShowBlockDisclosure && (
           <EditorialDisclosure
             variant="inline"
             aiAssisted={project.aiAssisted}
@@ -57,7 +61,7 @@ const ProjectDetailHero = ({ project }: ProjectDetailHeroProps) => (
       >
         {project.detail.subheadline}
       </motion.p>
-      {project.aiAssisted && SHOW_BLOCK_DISCLOSURE_STATUSES.has(project.status) && (
+      {shouldShowBlockDisclosure && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -92,6 +96,7 @@ const ProjectDetailHero = ({ project }: ProjectDetailHeroProps) => (
       </motion.div>
     </div>
   </section>
-);
+  );
+};
 
 export default ProjectDetailHero;
