@@ -66,6 +66,7 @@ export const getLastGridItemSpanClass = ({
 };
 
 // Tailwind safelist (literal classes used below):
+// border-b-border/40 md:border-b-transparent
 // md:border-r-border/40 md:border-b-border/40
 // xl:border-r-border/40 xl:border-b-border/40
 // xl:border-r-transparent xl:border-b-transparent
