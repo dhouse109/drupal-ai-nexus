@@ -8,6 +8,7 @@ interface EditorialDisclosureProps {
   lastReviewedAt?: string;
   variant?: "inline" | "block";
   className?: string;
+  showReviewer?: boolean;
 }
 
 const DEFAULT_LABEL = "AI-assisted · Human-reviewed";
@@ -33,6 +34,7 @@ const EditorialDisclosure = ({
   lastReviewedAt,
   variant = "inline",
   className,
+  showReviewer = true,
 }: EditorialDisclosureProps) => {
   if (!aiAssisted) return null;
 
@@ -60,7 +62,7 @@ const EditorialDisclosure = ({
         </Link>
         .
       </p>
-      {(reviewedBy || lastReviewedAt) && (
+      {showReviewer && (reviewedBy || lastReviewedAt) && (
         <p className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-text-dim">
           {reviewedBy && <>Reviewed by {reviewedBy}</>}
           {reviewedBy && lastReviewedAt && <span aria-hidden="true"> · </span>}
