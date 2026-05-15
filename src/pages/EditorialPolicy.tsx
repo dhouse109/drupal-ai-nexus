@@ -66,7 +66,7 @@ const EditorialPolicy = () => (
     </section>
 
     <Section title="What we use AI for">
-      <p>AI is used as a writing partner across most of what gets published here. The typical workflow:</p>
+      <p>AI is used as a writing partner for some published pages on this site. The typical workflow:</p>
       <ul className="space-y-3 pl-0">
         {[
           "Damien provides the research, source materials, prompts, and editorial direction.",
@@ -142,7 +142,7 @@ const EditorialPolicy = () => (
       </p>
       <p>
         Published pages that carry this label have been reviewed before
-        publication. Drafts, experiments, or unreviewed notes should be
+        publication. Drafts, experiments, or notes still in progress should be
         labeled separately.
       </p>
     </Section>
