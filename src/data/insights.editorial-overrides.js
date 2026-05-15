@@ -1,13 +1,13 @@
-// Temporary QA publishing and display-label overrides for Projects/Insights testing.
+// Canonical editorial overlay for Insights.
 //
-// This file intentionally makes selected draft insights behave as published so
-// routing, related-content modules, SEO metadata, footer links, and filters can
-// be tested before launch.
+// Defines the publish allow-list (slugs treated as `status: "published"`) and
+// the default editorial overlay applied to every published insight so the
+// AI-assisted disclosure renders consistently. Article-level fields on the
+// canonical record in src/data/insights.shared.js win when explicitly set.
 //
-// Before a public release, review docs/prelaunch-content-cleanup.md and remove
-// any slug from QA_PUBLISHED_INSIGHT_SLUGS that is not ready for public launch.
+// To launch a new insight: add its slug to PUBLISHED_INSIGHT_SLUGS.
 
-export const QA_PUBLISHED_INSIGHT_SLUGS = [
+export const PUBLISHED_INSIGHT_SLUGS = [
   "why-your-ai-prototype-is-not-a-product",
   "modernization-architecture-and-delivery",
   "automating-the-boring-ai-content-operations-that-work",
