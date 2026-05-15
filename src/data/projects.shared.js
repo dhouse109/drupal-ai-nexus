@@ -305,7 +305,7 @@ export const projects = [
     "relatedOffer": "Applied AI, AI Governance Consulting, Context Control Center Implementation",
     "relatedInsightSlugs": [
       "prompts-cannot-replace-permissions-building-reviewable-ai-systems",
-      "managing-the-alien-coworker-ai-permissions-review-control",
+      "managing-the-ai-collaborator-permissions-review-control",
       "blueprint-of-agentic-engineering"
     ],
     "relatedInsightIds": [
@@ -322,7 +322,7 @@ export const projects = [
       "approach": "109 builds this around a layered architecture: context, permissions, tools, human review, and audit trail. It is a planned governance model and implementation pattern for teams introducing AI into real workflows.",
       "resultValue": "Control without blocking useful automation. AI systems can assist with real work while remaining reviewable, observable, and aligned to organizational rules.",
       "proofArtifact": "Permission framework design, brand context templates, review workflow map, and context hierarchy model. Marked as planned until a working demo or client-safe artifact exists.",
-      "relatedInsightsIntro": "The permissions and alien-coworker articles cover the core governance ideas. The agentic engineering article extends them into phase-gated AI-assisted delivery.",
+      "relatedInsightsIntro": "The permissions and AI Collaborator articles cover the core governance ideas. The agentic engineering article extends them into phase-gated AI-assisted delivery.",
       "cta": {
         "text": "Design a reviewable AI governance model",
         "primaryHref": "/applied-ai",
@@ -336,8 +336,8 @@ export const projects = [
   },
   {
     "id": "PROJ-009",
-    "slug": "ai-content-audit-system-autotron",
-    "title": "AI Content Audit System / Autotron",
+    "slug": "ai-content-audit-system-ai-collaborator",
+    "title": "AI Content Audit System / AI Collaborator",
     "status": "abstracted-past-work",
     "statusLabel": "Abstracted Past-Work Case Study / Internal Tool",
     "statusTone": "neutral",
@@ -348,7 +348,7 @@ export const projects = [
     ],
     "themes": [
       "content audit",
-      "Autotron",
+      "AI Collaborator",
       "LLM structured output",
       "migration readiness",
       "accessibility",
@@ -371,7 +371,7 @@ export const projects = [
     "detail": {
       "headline": "AI can make content audits broader, faster, and easier to review",
       "subheadline": "An abstracted case study and internal-tool proof for content auditing, classification, accessibility-adjacent review, migration readiness, and structured outputs.",
-      "cardTitle": "AI Content Audit System / Autotron",
+      "cardTitle": "AI Content Audit System / AI Collaborator",
       "cardSummary": "An abstracted content operations case study for using LLMs to structure audit data, expand review coverage, and support human QA.",
       "problem": "Large content estates are difficult to audit manually. Teams often rely on small samples, stale spreadsheets, or delayed reviews, which makes migration planning, accessibility work, and editorial cleanup harder than it needs to be.",
       "approach": "109 used structured outputs, expanded audit coverage, human review on the consequential decisions, and migration-ready evidence. The work is careful with accessibility: the system organizes and surfaces; people decide and certify.",
@@ -417,7 +417,7 @@ export const projects = [
     "relatedOffer": "Prototype-to-Production Architecture, DevEx & Platform Modernization, Applied AI",
     "relatedInsightSlugs": [
       "blueprint-of-agentic-engineering",
-      "managing-the-alien-coworker-ai-permissions-review-control"
+      "managing-the-ai-collaborator-permissions-review-control"
     ],
     "relatedInsightIds": [
       "INS-009",
@@ -432,7 +432,7 @@ export const projects = [
       "approach": "On 109 this is methodology proof rather than a full technical diary. The framework covers discovery artifacts, architecture notes, decision records, implementation stories, review checkpoints, and handoff documentation. Deeper build notes live on damien.house when they exist.",
       "resultValue": "Disciplined technical execution. The framework lets 109 use AI to support senior delivery work without giving up maintainability, review, or ownership.",
       "proofArtifact": "Downloadable Markdown templates, public repo when available, sample DECISIONS.md, architecture checklist, and changelog-style notes showing how the method evolves.",
-      "relatedInsightsIntro": "The blueprint article is the main methodology piece. The alien-coworker article is the governance companion for permissioning, review, and agent boundaries.",
+      "relatedInsightsIntro": "The blueprint article is the main methodology piece. The AI Collaborator article is the governance companion for permissioning, review, and agent boundaries.",
       "cta": {
         "text": "See how we structure technical work",
         "primaryHref": "/services",
