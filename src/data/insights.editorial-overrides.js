@@ -40,12 +40,12 @@ const DEFAULT_EDITORIAL = {
   reviewedBy: "Damien House",
 };
 
-export const applyInsightQaOverrides = (article) => {
+export const applyInsightEditorialOverrides = (article) => {
   const category = article.categoryId
     ? CATEGORY_LABEL_BY_ID[article.categoryId] ?? article.category
     : article.category;
 
-  const status = QA_PUBLISHED_INSIGHT_SLUGS.includes(article.slug)
+  const status = PUBLISHED_INSIGHT_SLUGS.includes(article.slug)
     ? "published"
     : article.status;
 
