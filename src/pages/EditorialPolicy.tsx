@@ -126,10 +126,10 @@ const EditorialPolicy = () => (
         ))}
       </ul>
       <p>
-        Most project pages on this site are AI-drafted from Damien's research
-        and reviewed before publication, so the AI-assisted chip appears on
-        them by default. The chip is omitted only when a specific project page
-        was written end-to-end without AI assistance.
+        Some project pages are developed with AI-assisted drafting from
+        Damien's research, prompts, and source materials. Pages that use this
+        workflow carry the AI-assisted chip; pages written without AI
+        assistance omit it.
       </p>
     </Section>
 
@@ -141,9 +141,9 @@ const EditorialPolicy = () => (
         edited the page before publication.
       </p>
       <p>
-        If a page is published without a human review pass, it will not carry
-        the "Human-reviewed" label. That is the exception, not the rule —
-        review is part of the standard workflow.
+        Published pages that carry this label have been reviewed before
+        publication. Drafts, experiments, or unreviewed notes should be
+        labeled separately.
       </p>
     </Section>
 
