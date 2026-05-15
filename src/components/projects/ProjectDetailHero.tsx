@@ -18,7 +18,11 @@ const SHOW_BLOCK_DISCLOSURE_STATUSES = new Set([
   "ecosystem-contribution",
 ]);
 
-const ProjectDetailHero = ({ project }: ProjectDetailHeroProps) => (
+const ProjectDetailHero = ({ project }: ProjectDetailHeroProps) => {
+  const shouldShowBlockDisclosure =
+    project.aiAssisted && SHOW_BLOCK_DISCLOSURE_STATUSES.has(project.status);
+
+  return (
   <section className="relative overflow-hidden border-b border-border py-24 md:py-32">
     <div className="absolute inset-0 grid-bg opacity-40" />
     <div className="container relative">
