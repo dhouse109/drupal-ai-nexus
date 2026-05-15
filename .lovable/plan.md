@@ -1,30 +1,30 @@
-## Why mobile rows have no dividers
+## Goal
 
-`getCardGridBorderClass` in `src/lib/grid.ts` only emits border-color classes prefixed with `md:` and `xl:`. At the base (mobile) breakpoint each card keeps its `border-transparent` from the card component, so single-column rows have nothing between them. This affects every grid that uses the helper (Projects, Insights, related blocks, etc.).
+Lighten the site background to match the warmer, slightly lifted charcoal shown in the two uploaded screenshots, without altering the rest of the palette (text, primary orange, borders).
 
-## Fix
+## Observation
 
-Extend `getCardGridBorderClass` to also emit a base-tier bottom divider for every non-last item, then explicitly clear it at `md:` for items that fall in the last `md` row (so the desktop layout stays clean and the existing `md:`/`xl:` rules continue to win).
+Current tokens in `src/index.css`:
+- `:root` `--background: 30 9% 16%` (light scheme baseline)
+- `.dark` `--background: 30 9% 10%` (currently active via system dark mode)
 
-### Class additions per item
+The uploaded screenshots show a noticeably lighter, warmer charcoal — closer to the existing `:root` value than the deep `.dark` value. The site currently renders the `.dark` variant because `main.tsx` follows `prefers-color-scheme: dark`, which is why it looks darker than the screenshots.
 
-- All but the final item: `border-b-border/40`
-- Items in the last `md` row: `md:border-b-transparent`
+## Change
 
-The existing md/xl logic for `border-b-border/40` and `border-r-border/40` is unchanged.
+Update only the `--background` token in `.dark` (and the matching `--sidebar-background`) so the dark scheme renders at the lighter level seen in the screenshots. Leave the light `:root` values, foreground, primary, accent, borders, and surfaces untouched.
 
-### Tailwind safelist
+Proposed values (matched by eye to the screenshots):
+- `.dark` `--background: 30 9% 14%` (up from 10%)
+- `.dark` `--sidebar-background: 30 9% 15%` (up from 11%) — keeps the subtle sidebar lift
 
-Add `border-b-border/40` and `md:border-b-transparent` to the safelist comment at the top of the helper so JIT keeps them.
+Card/popover/surface tokens stay where they are so cards continue to read slightly lifted from the new background.
 
-## Files touched
+## Files
 
-- `src/lib/grid.ts` — single function update + comment.
-
-No component changes are needed; every grid (`ProjectGrid`, `InsightCard` lists in `Insights.tsx`, `RelatedProjects`, `RelatedInsights`, etc.) already calls this helper and will pick up mobile dividers automatically.
+- `src/index.css` — two HSL lightness bumps inside the `.dark` block.
 
 ## Verification
 
-1. `/portfolio` at 375px: horizontal divider visible between each project card, none under the last card.
-2. `/portfolio` at md (≥768px): two-column layout with the existing dividers, no stray line under the last row.
-3. Spot-check `/insights` and a project detail page's related blocks at mobile width.
+1. Reload `/` at the current viewport — background should match the warmer charcoal in the uploads, hero copy and orange accents unchanged.
+2. Spot-check `/portfolio` and `/insights` — card surfaces still read as lifted against the new background, grid dividers still visible.
