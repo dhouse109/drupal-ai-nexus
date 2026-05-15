@@ -1,112 +1,64 @@
-## Add AI-assisted editorial disclosure pattern (revised)
+## Default AI-assisted disclosure on projects + revise editorial policy copy
 
-### 1. Data model: types + seeded values
+### 1. Seed projects with default AI-assisted disclosure
 
-**Type updates (TypeScript):**
-- `src/data/insights.ts` — add optional `authorName`, `authorRole`, `reviewedBy`, `aiAssisted: boolean`, `aiDisclosureLabel`, `aiDisclosureNote`, `lastReviewedAt` to `InsightArticle`.
-- `src/data/projects.ts` — add optional `aiAssisted: boolean`, `aiDisclosureLabel`, `aiDisclosureNote`, `reviewedBy`, `lastReviewedAt` to `Project`.
+Currently only insights have a default editorial overlay (via `insights.qa-overrides.js`). Projects only show the chip when `aiAssisted: true` is set explicitly.
 
-**Actually seed data (so the disclosure renders):**
-- Extend `src/data/insights.qa-overrides.js`. Currently it sets `category` + `status`. Add a default editorial overlay applied to every published insight inside `applyInsightQaOverrides`:
+Mirror the insights pattern for projects so the chip appears on every project detail page by default:
+
+- Create `src/data/projects.qa-overrides.js` exporting `applyProjectQaOverrides(project)` that merges a `DEFAULT_EDITORIAL` overlay (same shape as insights):
   ```
-  const DEFAULT_EDITORIAL = {
-    authorName: "Damien House",
-    authorRole: "109.studio",
+  {
     aiAssisted: true,
     aiDisclosureLabel: "AI-assisted · Human-reviewed",
     aiDisclosureNote:
-      "Drafted with AI assistance from Damien House's notes and source materials. Reviewed and edited before publication.",
+      "Drafted with AI assistance from Damien House's research and prompts. Reviewed and edited before publication.",
     reviewedBy: "Damien House",
-  };
+  }
   ```
-  Merge as defaults (article fields win if already present), and only apply when the resolved status is `published`. This guarantees every currently-published insight shows the disclosure without touching the auto-generated `insights.shared.js`.
-- Projects: do **not** apply a blanket override. Disclosure only renders when `aiAssisted === true` is explicitly set on a project. No project data is changed in this pass; project detail pages will simply omit the disclosure until a project is later marked `aiAssisted: true`. (Documented in the editorial-policy page.)
+  Project-level fields win when explicitly set, so a future project can opt out by setting `aiAssisted: false`.
+- Wire it into `src/data/projects.ts` by mapping the shared project arrays through `applyProjectQaOverrides` (mirroring how `insights.ts` maps `sharedArticles`). All exports (`projects`, `getAllProjects`, `getProjectBySlug`, etc.) will return the overlaid objects.
 
-### 2. Reusable component: `EditorialDisclosure`
+No changes needed to `ProjectDetailHero.tsx` — it already renders the chip when `aiAssisted` is truthy.
 
-`src/components/content/EditorialDisclosure.tsx`
+### 2. Revise `src/pages/EditorialPolicy.tsx` copy
 
-```
-interface Props {
-  aiAssisted?: boolean;
-  label?: string;
-  note?: string;
-  reviewedBy?: string;
-  lastReviewedAt?: string;
-  variant?: "inline" | "block";
-  className?: string;
-}
-```
+Rewrite the policy to reflect the actual workflow: AI generates most/all of the content from Damien's research and prompts; Damien reviews and edits before publication.
 
-- Returns `null` unless `aiAssisted === true`.
-- Resolved label defaults to `"AI-assisted · Human-reviewed"`; resolved note defaults to the standard sentence above.
-- Voice rule: only use `Human-reviewed` phrasing because every seeded entry is reviewed before publication. If a future entry is unreviewed, callers must pass an explicit `label` (e.g. `AI-assisted · Draft`).
-- `inline` variant: small bordered chip styled like `StatusBadge` (border, mono, uppercase, tracking-[0.25em], `text-text-dim`). Carries `aria-label={\`${label}. ${note}\`}` plus a visually-hidden `<span class="sr-only">{note}</span>` so the note is in the accessibility tree, not just a `title` attribute. Optional `title` mirrors the note for sighted hover.
-- `block` variant: same chip, then a visible `text-xs text-muted-foreground` paragraph showing the note, plus an optional mono uppercase line `Reviewed by {reviewedBy} · Last reviewed {lastReviewedAt}` when those fields are present. No background color, no warning iconography.
+**Hero subheading** — replace current paragraph with:
+> "Most content on 109.studio is drafted by AI from Damien House's research, notes, and prompts. Damien reviews and edits every published page so it reflects what 109.studio actually thinks. Damien House and 109.studio remain the accountable authors and publishers."
 
-### 3. Wire into pages
+**"What we use AI for" section** — keep section title, replace lead + list with a workflow description:
+- Lead: "AI is used as a writing partner across most of what gets published here. The typical workflow:"
+- List items:
+  1. Damien provides the research, source materials, prompts, and editorial direction.
+  2. AI drafts the page — structure, prose, summaries, and supporting copy.
+  3. Damien reviews and edits the draft for accuracy, voice, and judgment.
+  4. The reviewed page is published under Damien House / 109.studio as the accountable author.
 
-- `src/pages/InsightArticle.tsx` — inside the hero meta block (where read time / date already live), add a byline row `By {authorName ?? "Damien House"} · {authorRole ?? "109.studio"}` and render `<EditorialDisclosure variant="block" ... />` directly under it. Field reads from the article object.
-- `src/components/projects/ProjectDetailHero.tsx` — append `<EditorialDisclosure variant="inline" ... />` to the existing badge row (category + status). Renders only when the project has `aiAssisted: true`; otherwise the row is unchanged.
-- No changes to insight cards or project cards — disclosure is detail-page only.
+**"Who is accountable" section** — tighten to reinforce that AI volume does not change accountability:
+- "Damien House and 109.studio are responsible for editorial judgment and final publication. The fact that AI drafted a page does not change who is accountable for it."
+- "Author bylines on this site are never set to 'AI'. The AI-assisted chip discloses how the page was drafted; it does not replace the human author of record."
 
-### 4. `/editorial-policy` page
+**"How we label projects" section** — change the closing paragraph from the old "most projects do not show the chip" wording to:
+> "Most project pages on this site are AI-drafted from Damien's research and reviewed before publication, so the AI-assisted chip appears on them by default. The chip is omitted only when a specific project page was written end-to-end without AI assistance."
 
-`src/pages/EditorialPolicy.tsx` — full route, mirroring `InsightArticle` styling: grid-bg hero, mono headings, `border-b border-border` sections, `max-w-3xl` body. Sections:
+(Keep the existing project status taxonomy list — already reflects "released to production" wording.)
 
-1. Hero — eyebrow `Editorial policy`, H1 `How 109 uses AI in published work`.
-2. **What we use AI for** — list: research synthesis, drafting, summarization, review support.
-3. **Who is accountable** — Damien House / 109.studio remains responsible for editorial judgment and final publication; AI assistance never replaces author attribution. Author bylines are never set to "AI".
-4. **How we label projects** — list of project status taxonomy (real client work, abstracted past-work, planned, internal, lab, sample-only) and a note that the AI-assistance chip only appears when a project is explicitly marked `aiAssisted`.
-5. **How AI assistance is disclosed** — describe the inline/block disclosure pattern and what `AI-assisted · Human-reviewed` means.
-6. Reuse `ContentCTA` to send to `/contact`.
+**"How AI assistance is disclosed" section** — minor clarification:
+- Keep first paragraph (chip + note explanation).
+- Replace second paragraph with: "If a page is published without a human review pass, it will not carry the 'Human-reviewed' label. That is the exception, not the rule — review is part of the standard workflow."
 
-Register route in `src/App.tsx` (`<Route path="/editorial-policy" element={<EditorialPolicy />} />`).
+### 3. Verification
 
-### 5. SEO metadata (shared)
-
-In `src/seo/metadata.shared.js`, add an entry to `routeMetadata`:
-
-```
-"/editorial-policy": page({
-  title: "Editorial policy | 109.studio",
-  description:
-    "How 109.studio uses AI for research, drafting, and review while keeping human editorial responsibility.",
-  path: "/editorial-policy",
-  pageType: "WebPage",
-}),
-```
-
-This is the source `siteMetadata.ts` wraps, so the page picks up real metadata instead of the 404 fallback. No change to `siteMetadata.ts` is required.
-
-Optional: add `/editorial-policy` to `scripts/generate-sitemap.mjs` if it enumerates a static route list (will check during implementation; if it pulls from `routeMetadata`, no change needed).
-
-### 6. Footer link — edit the **rendered** footer
-
-The live footer is in `src/components/Layout.tsx` (the `<footer>` block). `src/components/Footer.tsx` is unused and stale.
-
-- Add `{ label: "Editorial policy", to: "/editorial-policy" }` to `footerNavItems` in `Layout.tsx` so the link appears in the rendered Navigation column.
-- Delete `src/components/Footer.tsx` to prevent confusion (no imports reference it).
-
-### 7. Verification (after implementation)
-
-Run as a final pass:
-1. Navigate to `/editorial-policy` — page renders with hero + sections, not 404.
-2. View page source / `getRouteMetadata("/editorial-policy")` returns the new entry, not `notFoundMetadata`.
-3. Open any published insight (e.g. the current `/insights/prompts-cannot-replace-permissions-...`) — byline + `AI-assisted · Human-reviewed` chip + visible note appear under the hero meta.
-4. Open a project detail page — confirm **no** disclosure chip appears (no project has `aiAssisted: true` yet).
-5. Footer renders `Editorial policy` link in the Navigation column, points to `/editorial-policy`, and `src/components/Footer.tsx` no longer exists.
-6. Inspect the inline chip in DOM — accessible name includes the disclosure note via `aria-label` or `sr-only` span (not a `title`-only fallback).
+After implementation:
+1. `/editorial-policy` reflects the new copy in all four sections.
+2. Open any project detail page (e.g. `/portfolio/<slug>`) — the AI-assisted chip appears in the badge row alongside category + status.
+3. Insight detail pages still show the block-variant disclosure as before.
+4. Voice check: no use of "ship" / "shipping" in any new copy.
 
 ### Files touched
-- `src/data/insights.ts` *(types)*
-- `src/data/projects.ts` *(types)*
-- `src/data/insights.qa-overrides.js` *(seed editorial defaults for published insights)*
-- `src/components/content/EditorialDisclosure.tsx` *(new)*
-- `src/pages/InsightArticle.tsx`
-- `src/components/projects/ProjectDetailHero.tsx`
-- `src/pages/EditorialPolicy.tsx` *(new)*
-- `src/App.tsx`
-- `src/components/Layout.tsx` *(footer nav)*
-- `src/components/Footer.tsx` *(delete)*
-- `src/seo/metadata.shared.js`
+
+- `src/data/projects.qa-overrides.js` *(new)*
+- `src/data/projects.ts` *(map shared projects through overrides)*
+- `src/pages/EditorialPolicy.tsx` *(copy revisions)*
