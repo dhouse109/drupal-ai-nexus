@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import StatusBadge from "@/components/content/StatusBadge";
 import ChannelBadge from "@/components/content/ChannelBadge";
 import ThemeChips from "@/components/content/ThemeChips";
+import EditorialDisclosure from "@/components/content/EditorialDisclosure";
 import type { Project } from "@/data/projects";
 
 interface ProjectDetailHeroProps {
@@ -22,6 +23,14 @@ const ProjectDetailHero = ({ project }: ProjectDetailHeroProps) => (
           {project.primaryCategoryLabel}
         </span>
         <StatusBadge label={project.statusLabel} tone={project.statusTone} />
+        {project.aiAssisted && (
+          <EditorialDisclosure
+            variant="inline"
+            aiAssisted={project.aiAssisted}
+            label={project.aiDisclosureLabel}
+            note={project.aiDisclosureNote}
+          />
+        )}
       </motion.div>
       <motion.h1
         initial={{ opacity: 0, y: 30 }}

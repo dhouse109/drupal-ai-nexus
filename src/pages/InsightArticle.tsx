@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import ContentCTA from "@/components/content/ContentCTA";
 import RelatedProjects from "@/components/content/RelatedProjects";
+import EditorialDisclosure from "@/components/content/EditorialDisclosure";
 import { getArticleBySlug, type InsightBlock } from "@/data/insights";
 
 const calloutEyebrow: Record<
@@ -146,10 +147,29 @@ const InsightArticle = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-8 flex flex-wrap items-center gap-4 font-mono text-xs uppercase tracking-[0.2em] text-text-dim"
           >
+            <span>By {article.authorName ?? "Damien House"} · {article.authorRole ?? "109.studio"}</span>
+            <span aria-hidden="true">·</span>
             <span>{article.readTime}</span>
             <span aria-hidden="true">·</span>
             <span>{article.publishedDate}</span>
           </motion.div>
+          {article.aiAssisted && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="mt-6 max-w-2xl"
+            >
+              <EditorialDisclosure
+                variant="block"
+                aiAssisted={article.aiAssisted}
+                label={article.aiDisclosureLabel}
+                note={article.aiDisclosureNote}
+                reviewedBy={article.reviewedBy}
+                lastReviewedAt={article.lastReviewedAt}
+              />
+            </motion.div>
+          )}
         </div>
       </section>
 
