@@ -147,7 +147,7 @@ const InsightArticle = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-8 flex flex-wrap items-center gap-4 font-mono text-xs uppercase tracking-[0.2em] text-text-dim"
           >
-            <span>Generated and reviewed by {article.authorName ?? "Damien House"} · {article.authorRole ?? "109.studio"}</span>
+            <span>By {article.authorName ?? "Damien House"} · {article.authorRole ?? "109.studio"}</span>
             <span aria-hidden="true">·</span>
             <span>{article.readTime}</span>
             <span aria-hidden="true">·</span>
