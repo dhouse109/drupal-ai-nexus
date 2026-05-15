@@ -1,9 +1,9 @@
-// QA editorial overlay for Projects.
+// Canonical editorial overlay for Projects.
 //
-// Mirrors src/data/insights.qa-overrides.js: every project is treated as
-// AI-assisted by default so the disclosure chip appears on each project
-// detail page. Project-level fields win when explicitly set, so a future
-// project can opt out by setting `aiAssisted: false` on the source record.
+// Mirrors src/data/insights.editorial-overrides.js: every project is treated
+// as AI-assisted by default so the disclosure chip appears on each project
+// detail page. Project-level fields win when explicitly set, so a project can
+// opt out by setting `aiAssisted: false` on the source record.
 
 const DEFAULT_EDITORIAL = {
   aiAssisted: true,
@@ -13,7 +13,7 @@ const DEFAULT_EDITORIAL = {
   reviewedBy: "Damien House",
 };
 
-export const applyProjectQaOverrides = (project) => ({
+export const applyProjectEditorialOverrides = (project) => ({
   ...project,
   aiAssisted:
     project.aiAssisted !== undefined
