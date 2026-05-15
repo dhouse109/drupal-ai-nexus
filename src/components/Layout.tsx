@@ -62,6 +62,7 @@ const routesWithPageLevelCta = [
   "/ai-in-practice",
   "/portfolio",
   "/insights",
+  "/editorial-policy",
 ];
 
 const hasPageLevelContentCta = (pathname: string) =>
