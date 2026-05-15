@@ -1,7 +1,7 @@
 import {
   articles as sharedArticles,
 } from "./insights.shared.js";
-import { applyInsightQaOverrides } from "./insights.qa-overrides.js";
+import { applyInsightEditorialOverrides } from "./insights.editorial-overrides.js";
 
 export type InsightBlock =
   | { type: "paragraph"; text: string }
@@ -41,7 +41,7 @@ export interface InsightArticle {
   lastReviewedAt?: string;
 }
 
-export const articles = sharedArticles.map(applyInsightQaOverrides) as InsightArticle[];
+export const articles = sharedArticles.map(applyInsightEditorialOverrides) as InsightArticle[];
 
 export const getArticleBySlug = (slug: string): InsightArticle | undefined =>
   articles.find((article) => article.slug === slug && article.status === "published");

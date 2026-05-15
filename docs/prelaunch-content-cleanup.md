@@ -1,5 +1,10 @@
 # Pre-launch Content Cleanup
 
+> Note: the publish allow-list and editorial defaults now live in
+> `src/data/insights.editorial-overrides.js` and
+> `src/data/projects.editorial-overrides.js` (renamed from `*.qa-overrides.js`).
+> The exported allow-list constant is `PUBLISHED_INSIGHT_SLUGS`.
+
 Several Insights are temporarily published for QA coverage in this branch. They help test routing, related-content modules, footer writing links, category filters, SEO metadata, and sitemap/prerender behavior.
 
 Before the next public release, review this file and decide which notes should remain public.
@@ -7,8 +12,8 @@ Before the next public release, review this file and decide which notes should r
 ## Required before launch
 
 - [ ] Review each QA-published Insight for final public readiness.
-- [ ] Keep only launch-approved notes in `QA_PUBLISHED_INSIGHT_SLUGS`.
-- [ ] Remove any unfinished notes from `QA_PUBLISHED_INSIGHT_SLUGS` in `src/data/insights.qa-overrides.js`.
+- [ ] Keep only launch-approved notes in `PUBLISHED_INSIGHT_SLUGS`.
+- [ ] Remove any unfinished notes from `PUBLISHED_INSIGHT_SLUGS` in `src/data/insights.editorial-overrides.js`.
 - [ ] Decide whether `Insights` should remain in the primary header navigation.
 - [ ] Re-run `npm run lint`.
 - [ ] Re-run `npm run build`.
@@ -17,7 +22,7 @@ Before the next public release, review this file and decide which notes should r
 
 ## QA-published Insights
 
-These slugs are temporarily treated as published by `src/data/insights.qa-overrides.js`:
+These slugs are temporarily treated as published by `src/data/insights.editorial-overrides.js`:
 
 - `why-your-ai-prototype-is-not-a-product`
 - `modernization-architecture-and-delivery`

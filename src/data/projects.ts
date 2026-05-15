@@ -1,7 +1,7 @@
 import {
   projects as sharedProjects,
 } from "./projects.shared.js";
-import { applyProjectQaOverrides } from "./projects.qa-overrides.js";
+import { applyProjectEditorialOverrides } from "./projects.editorial-overrides.js";
 import type {
   ProjectCategoryId,
   ProjectStatusId,
@@ -55,7 +55,7 @@ export interface Project {
   lastReviewedAt?: string;
 }
 
-export const projects = (sharedProjects as Project[]).map(applyProjectQaOverrides) as Project[];
+export const projects = (sharedProjects as Project[]).map(applyProjectEditorialOverrides) as Project[];
 
 export const getAllProjects = (): Project[] => projects;
 

@@ -1,5 +1,5 @@
 import { articles as sharedArticles } from "../data/insights.shared.js";
-import { applyInsightQaOverrides } from "../data/insights.qa-overrides.js";
+import { applyInsightEditorialOverrides } from "../data/insights.editorial-overrides.js";
 import { getAllProjects } from "../data/projects.shared.js";
 import {
   createBreadcrumbSchema,
@@ -73,7 +73,7 @@ const page = ({
   };
 };
 
-const publicArticles = sharedArticles.map(applyInsightQaOverrides).filter((article) => article.status === "published");
+const publicArticles = sharedArticles.map(applyInsightEditorialOverrides).filter((article) => article.status === "published");
 const allProjects = getAllProjects();
 
 const createArticleSchema = (article) => {
