@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import StatusBadge from "@/components/content/StatusBadge";
-import ChannelBadge from "@/components/content/ChannelBadge";
+
 import ThemeChips from "@/components/content/ThemeChips";
 import EditorialDisclosure from "@/components/content/EditorialDisclosure";
 import type { Project } from "@/data/projects";
