@@ -105,7 +105,7 @@ const EditorialPolicy = () => (
       </p>
       <ul className="space-y-3 pl-0">
         {[
-          "Real client work — engagements that shipped to production for an external client.",
+          "Real client work — engagements released to production for an external client.",
           "Abstracted past work — real engagements described with details abstracted for confidentiality.",
           "Planned — committed work that is scoped but not yet delivered.",
           "Internal — systems built inside 109.studio for our own operations.",
