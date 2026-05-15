@@ -36,7 +36,7 @@ const ProjectDetailHero = ({ project }: ProjectDetailHeroProps) => {
           {project.primaryCategoryLabel}
         </span>
         <StatusBadge label={project.statusLabel} tone={project.statusTone} />
-        {project.aiAssisted && (
+        {project.aiAssisted && !shouldShowBlockDisclosure && (
           <EditorialDisclosure
             variant="inline"
             aiAssisted={project.aiAssisted}
