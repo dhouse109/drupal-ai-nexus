@@ -24,6 +24,7 @@ const footerNavItems = [
   { label: "Portfolio", to: "/portfolio" },
   { label: "Insights", to: "/insights" },
   { label: "Contact", to: "/contact" },
+  { label: "Editorial policy", to: "/editorial-policy" },
 ];
 
 const buildFooterWorkLinks = () => {

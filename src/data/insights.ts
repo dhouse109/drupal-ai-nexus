@@ -32,6 +32,13 @@ export interface InsightArticle {
   publicationChannels?: ("109.studio" | "damien.house")[];
   relatedProjectSlugs?: string[];
   relatedProjectIds?: string[];
+  authorName?: string;
+  authorRole?: string;
+  reviewedBy?: string;
+  aiAssisted?: boolean;
+  aiDisclosureLabel?: string;
+  aiDisclosureNote?: string;
+  lastReviewedAt?: string;
 }
 
 export const articles = sharedArticles.map(applyInsightQaOverrides) as InsightArticle[];

@@ -385,6 +385,16 @@ export const routeMetadata = {
     pageType: "CollectionPage",
     schema: [insightsItemListSchema],
   }),
+  "/editorial-policy": page({
+    title: "Editorial policy | 109.studio",
+    description:
+      "How 109.studio uses AI for research, drafting, and review while keeping human editorial responsibility for every published insight and project page.",
+    path: "/editorial-policy",
+    ogTitle: "Editorial policy | How 109 uses AI in published work",
+    ogDescription:
+      "109.studio uses AI as a research and drafting tool. Damien House and 109.studio remain the accountable authors and publishers.",
+    pageType: "WebPage",
+  }),
   ...insightArticleMetadata,
   ...projectMetadata,
 };

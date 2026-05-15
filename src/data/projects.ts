@@ -52,6 +52,11 @@ export interface Project {
   confidence: "high" | "medium" | "low";
   overclaimingRisk: "high" | "medium" | "low";
   featured?: boolean;
+  aiAssisted?: boolean;
+  aiDisclosureLabel?: string;
+  aiDisclosureNote?: string;
+  reviewedBy?: string;
+  lastReviewedAt?: string;
 }
 
 export const projects = sharedProjects as Project[];

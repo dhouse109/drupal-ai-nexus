@@ -27,16 +27,50 @@ const CATEGORY_LABEL_BY_ID = {
   "rd-labs-learning-experiments": "R&D & Labs",
 };
 
+// Default editorial overlay applied to every published insight so the
+// AI-assisted disclosure renders consistently. Article-level fields win
+// when explicitly set on the source article.
+const DEFAULT_EDITORIAL = {
+  authorName: "Damien House",
+  authorRole: "109.studio",
+  aiAssisted: true,
+  aiDisclosureLabel: "AI-assisted · Human-reviewed",
+  aiDisclosureNote:
+    "Drafted with AI assistance from Damien House's notes and source materials. Reviewed and edited before publication.",
+  reviewedBy: "Damien House",
+};
+
 export const applyInsightQaOverrides = (article) => {
   const category = article.categoryId
     ? CATEGORY_LABEL_BY_ID[article.categoryId] ?? article.category
     : article.category;
 
+  const status = QA_PUBLISHED_INSIGHT_SLUGS.includes(article.slug)
+    ? "published"
+    : article.status;
+
+  const editorial =
+    status === "published"
+      ? {
+          authorName: article.authorName ?? DEFAULT_EDITORIAL.authorName,
+          authorRole: article.authorRole ?? DEFAULT_EDITORIAL.authorRole,
+          aiAssisted:
+            article.aiAssisted !== undefined
+              ? article.aiAssisted
+              : DEFAULT_EDITORIAL.aiAssisted,
+          aiDisclosureLabel:
+            article.aiDisclosureLabel ?? DEFAULT_EDITORIAL.aiDisclosureLabel,
+          aiDisclosureNote:
+            article.aiDisclosureNote ?? DEFAULT_EDITORIAL.aiDisclosureNote,
+          reviewedBy: article.reviewedBy ?? DEFAULT_EDITORIAL.reviewedBy,
+          lastReviewedAt: article.lastReviewedAt,
+        }
+      : {};
+
   return {
     ...article,
     category,
-    status: QA_PUBLISHED_INSIGHT_SLUGS.includes(article.slug)
-      ? "published"
-      : article.status,
+    status,
+    ...editorial,
   };
 };

@@ -19,6 +19,7 @@ import ProjectDetail from "./pages/ProjectDetail";
 import Contact from "./pages/Contact";
 import Insights from "./pages/Insights";
 import InsightArticle from "./pages/InsightArticle";
+import EditorialPolicy from "./pages/EditorialPolicy";
 import NotFound from "./pages/NotFound";
 import { getRouteMetadata } from "./seo/siteMetadata";
 
@@ -53,6 +54,7 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/insights" element={<Insights />} />
             <Route path="/insights/:slug" element={<InsightArticle />} />
+            <Route path="/editorial-policy" element={<EditorialPolicy />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
