@@ -57,10 +57,10 @@ const EditorialPolicy = () => (
           transition={{ duration: 0.7, delay: 0.2 }}
           className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
         >
-          Most content on 109.studio is drafted by AI from Damien House's
-          research, notes, and prompts. Damien reviews and edits every published
-          page so it reflects what 109.studio actually thinks. Damien House and
-          109.studio remain the accountable authors and publishers.
+          Some published pages on 109.studio are developed with AI assistance
+          from Damien House's notes, research, prompts, and source materials.
+          Damien reviews and edits published work so it reflects 109.studio's
+          actual judgment, voice, and point of view.
         </motion.p>
       </div>
     </section>
