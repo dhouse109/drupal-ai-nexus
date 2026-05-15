@@ -1,89 +1,53 @@
-## What I found in the screenshot
+## Goal
 
-Sampled key pixels from your reference image:
+Replace all user-facing references to "Alien Coworker" and "Autotron" with "AI Collaborator" across data, slugs, copy, themes, and generated SEO output. No other behavior changes.
 
-| Role | Sampled hex | HSL |
-|---|---|---|
-| Background (top) | `#2e2a25` | `33 11% 16%` |
-| Background (mid) | `#292825` | `45 5% 15%` |
-| Heading text | `#c7c3bf` | `30 7% 76%` |
-| Body text | `~#a8a29a` | `~30 6% 64%` |
-| Accent orange (large text) | `#bf7c3b` | `30 53% 49%` |
-| Button bg orange | `#ab6b2b` | `30 60% 42%` |
+## Scope of references found
 
-Compared to the current tokens in `src/index.css`:
+Search results (case-insensitive) returned matches in only two source files plus generated SEO artifacts. Nothing in `docs/`, `public/`, `scripts/`, or QA overrides.
 
-- Background is roughly the same darkness, but **warmer and slightly more saturated** (hue 30→33, sat 4%→11%).
-- Foreground text is **much dimmer and less creamy** (lightness 92%→76%, sat 25%→7%) — the reference reads almost grey-bone, not ivory.
-- Accent orange is **earthier, less neon** (hue 20→30, sat 75%→53%, lightness 58%→49%). The current orange is closer to a vivid coral; the reference is closer to terracotta / burnt sienna.
+### `src/data/insights.shared.js`
 
-## Proposed token changes
+- L221 `slug: "managing-the-alien-coworker-ai-permissions-review-control"` → `managing-the-ai-collaborator-permissions-review-control`
+- L224 title "Managing the Alien Coworker: AI Permissions, Review, and Control" → "Managing the AI Collaborator: Permissions, Review, and Control"
+- L296 body paragraph: "The Autotron content audit project…" → "The AI Collaborator content audit project…"
+- L300 `relatedProjectSlugs: ["ai-content-audit-system-autotron"]` → `["ai-content-audit-system-ai-collaborator"]`
+- L323 body paragraph: "…Context Control Center work and the Autotron content audit pattern." → "…Context Control Center work and the AI Collaborator content audit pattern."
+- L327 `relatedProjectSlugs: [..., "ai-content-audit-system-autotron"]` → `[..., "ai-content-audit-system-ai-collaborator"]`
 
-Single edit to `src/index.css`. No component or Tailwind config changes — every component already reads from these tokens.
+### `src/data/projects.shared.js`
 
-### `:root` (default / light system pref, still dim)
+- L308 relatedInsightSlugs entry → new insight slug
+- L325 relatedInsightsIntro: "permissions and alien-coworker articles" → "permissions and AI Collaborator articles"
+- L339 project slug → `ai-content-audit-system-ai-collaborator`
+- L340 project title "AI Content Audit System / Autotron" → "AI Content Audit System / AI Collaborator"
+- L351 themes entry "Autotron" → "AI Collaborator"
+- L374 cardTitle "AI Content Audit System / Autotron" → "AI Content Audit System / AI Collaborator"
+- L420 relatedInsightSlugs entry → new insight slug
+- L435 relatedInsightsIntro: "alien-coworker article" → "AI Collaborator article"
 
-```text
---background:        30  9% 16%   (was 30 4% 17%)
---foreground:        30  8% 78%   (was 40 25% 92%)
+### Generated SEO artifacts
 
---card:              30  9% 19%   (was 30 4% 20%)
---card-foreground:   30  8% 78%
---popover:           30  9% 19%
---popover-foreground:30  8% 78%
+After data updates, regenerate so sitemap and prerender HTML reflect new slugs:
 
---primary:           30 55% 50%   (was 20 75% 58%)
---primary-foreground:30 10%  8%
---accent:            30 55% 50%
---accent-foreground: 30 10%  8%
---ring:              30 55% 50%
---glow:              30 55% 50%
+- `node scripts/generate-sitemap.mjs`
+- `node scripts/prerender-seo.mjs`
+- `node scripts/prerender-qa-insights.mjs` (the renamed insight is still `status: "draft"` and not in `QA_PUBLISHED_INSIGHT_SLUGS`, so no QA route exists for it; the renamed project route is auto-derived from data)
 
---secondary:         30  7% 23%   (was 30 4% 24%)
---secondary-foreground: 30 8% 78%
---muted:             30  7% 23%
---muted-foreground:  30  6% 62%   (was 35 8% 65%)
+`src/data/insights.qa-overrides.js` does not list the alien-coworker slug, so no override edit is needed.
 
---border:            30  6% 27%   (was 30 3% 27%)
---input:             30  6% 27%
+`src/seo/metadata.shared.js` derives project/insight metadata from the data files at runtime — no manual edit needed.
 
---surface:           30  9% 19%
---surface-hover:     30  7% 23%
---text-dim:          30  6% 62%
+## Verification
 
-(sidebar-* tokens shifted in parallel to match)
-```
+1. `grep -rni "alien\|autotron" src/ docs/ public/ scripts/ supabase/ .lovable/` returns no matches.
+2. `npm run lint:editorial` (scripts/lint-editorial.mjs) passes.
+3. Build passes.
+4. Spot-check `/portfolio/ai-content-audit-system-ai-collaborator` route resolves and related-insight links navigate correctly.
 
-### `.dark` (deep variant, same hue family)
+## Implementation order
 
-Same hue/saturation shifts, every lightness dropped ~6 points to keep the existing "dark mode goes deeper" relationship:
-
-```text
---background:        30  9% 10%
---foreground:        30  8% 76%
---card:              30  9% 13%
---primary / accent:  30 60% 52%
---muted-foreground:  30  6% 58%
---border / input:    30  6% 21%
-```
-
-## What this changes visually
-
-- Page surface reads slightly warmer and a touch browner — less neutral grey, more sepia.
-- Headlines and body copy are noticeably **less bright**; the page feels calmer and more editorial. (If the resulting body copy is too dim for AA contrast against the new background, I'll bump `--foreground` lightness back up by 4–6 points.)
-- Orange accent becomes **terracotta / burnt sienna** rather than vivid coral — buttons, the "complex products and platforms" highlight, eyebrows, and link rings all shift in unison.
-
-## What does not change
-
-- No font, layout, spacing, radius, or component changes.
-- No Tailwind config edits — color tokens are the single source of truth.
-- Memory rule "warm monochrome (cream bg, charcoal text, amber/rust accents)" still holds; this is a refinement of the same family.
-
-## Memory follow-up
-
-After applying, I'll update `mem://style/visual-direction` so the recorded palette matches the new tokens (less "cream/amber", more "sepia/terracotta").
-
-## Scope
-
-- Edit only `src/index.css` (`:root` and `.dark` blocks).
-- One verification pass on the live preview to confirm contrast on body copy, muted text, and button labels; minor lightness nudges only if needed.
+1. Edit `src/data/insights.shared.js` (title, slug, body copy, related project slugs).
+2. Edit `src/data/projects.shared.js` (slug, title, theme, cardTitle, related insight slugs, intro copy).
+3. Regenerate sitemap and prerender output.
+4. Run repo-wide grep + editorial lint + build to confirm clean.
