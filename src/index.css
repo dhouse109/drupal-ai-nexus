@@ -55,7 +55,7 @@
 
   /* Deep dim dark mode — same hue family, lower lightness. No inversion. */
   .dark {
-    --background: 30 9% 10%;
+    --background: 30 9% 14%;
     --foreground: 30 8% 76%;
 
     --card: 30 9% 13%;
@@ -83,7 +83,7 @@
     --input: 30 6% 21%;
     --ring: 30 60% 52%;
 
-    --sidebar-background: 30 9% 11%;
+    --sidebar-background: 30 9% 15%;
     --sidebar-foreground: 30 8% 76%;
     --sidebar-primary: 30 60% 52%;
     --sidebar-primary-foreground: 30 10% 8%;
