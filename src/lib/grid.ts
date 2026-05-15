@@ -66,6 +66,7 @@ export const getLastGridItemSpanClass = ({
 };
 
 // Tailwind safelist (literal classes used below):
+// border-b-border/40 md:border-b-transparent
 // md:border-r-border/40 md:border-b-border/40
 // xl:border-r-border/40 xl:border-b-border/40
 // xl:border-r-transparent xl:border-b-transparent
@@ -82,11 +83,17 @@ export const getCardGridBorderClass = ({
 }: LastGridItemSpanOptions) => {
   const classes: string[] = [];
 
+  // Mobile (single-column): divider under every non-last item.
+  if (index < itemCount - 1) {
+    classes.push("border-b-border/40");
+  }
+
   if (mdColumns) {
     const mdRows = Math.ceil(itemCount / mdColumns);
     const mdRow = Math.floor(index / mdColumns);
     const mdCol = index % mdColumns;
     if (mdRow < mdRows - 1) classes.push("md:border-b-border/40");
+    else classes.push("md:border-b-transparent");
     if (mdCol < mdColumns - 1) classes.push("md:border-r-border/40");
   }
 

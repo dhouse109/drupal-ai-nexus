@@ -1,53 +1,30 @@
-## Goal
+## Why mobile rows have no dividers
 
-Replace all user-facing references to "Alien Coworker" and "Autotron" with "AI Collaborator" across data, slugs, copy, themes, and generated SEO output. No other behavior changes.
+`getCardGridBorderClass` in `src/lib/grid.ts` only emits border-color classes prefixed with `md:` and `xl:`. At the base (mobile) breakpoint each card keeps its `border-transparent` from the card component, so single-column rows have nothing between them. This affects every grid that uses the helper (Projects, Insights, related blocks, etc.).
 
-## Scope of references found
+## Fix
 
-Search results (case-insensitive) returned matches in only two source files plus generated SEO artifacts. Nothing in `docs/`, `public/`, `scripts/`, or QA overrides.
+Extend `getCardGridBorderClass` to also emit a base-tier bottom divider for every non-last item, then explicitly clear it at `md:` for items that fall in the last `md` row (so the desktop layout stays clean and the existing `md:`/`xl:` rules continue to win).
 
-### `src/data/insights.shared.js`
+### Class additions per item
 
-- L221 `slug: "managing-the-alien-coworker-ai-permissions-review-control"` → `managing-the-ai-collaborator-permissions-review-control`
-- L224 title "Managing the Alien Coworker: AI Permissions, Review, and Control" → "Managing the AI Collaborator: Permissions, Review, and Control"
-- L296 body paragraph: "The Autotron content audit project…" → "The AI Collaborator content audit project…"
-- L300 `relatedProjectSlugs: ["ai-content-audit-system-autotron"]` → `["ai-content-audit-system-ai-collaborator"]`
-- L323 body paragraph: "…Context Control Center work and the Autotron content audit pattern." → "…Context Control Center work and the AI Collaborator content audit pattern."
-- L327 `relatedProjectSlugs: [..., "ai-content-audit-system-autotron"]` → `[..., "ai-content-audit-system-ai-collaborator"]`
+- All but the final item: `border-b-border/40`
+- Items in the last `md` row: `md:border-b-transparent`
 
-### `src/data/projects.shared.js`
+The existing md/xl logic for `border-b-border/40` and `border-r-border/40` is unchanged.
 
-- L308 relatedInsightSlugs entry → new insight slug
-- L325 relatedInsightsIntro: "permissions and alien-coworker articles" → "permissions and AI Collaborator articles"
-- L339 project slug → `ai-content-audit-system-ai-collaborator`
-- L340 project title "AI Content Audit System / Autotron" → "AI Content Audit System / AI Collaborator"
-- L351 themes entry "Autotron" → "AI Collaborator"
-- L374 cardTitle "AI Content Audit System / Autotron" → "AI Content Audit System / AI Collaborator"
-- L420 relatedInsightSlugs entry → new insight slug
-- L435 relatedInsightsIntro: "alien-coworker article" → "AI Collaborator article"
+### Tailwind safelist
 
-### Generated SEO artifacts
+Add `border-b-border/40` and `md:border-b-transparent` to the safelist comment at the top of the helper so JIT keeps them.
 
-After data updates, regenerate so sitemap and prerender HTML reflect new slugs:
+## Files touched
 
-- `node scripts/generate-sitemap.mjs`
-- `node scripts/prerender-seo.mjs`
-- `node scripts/prerender-qa-insights.mjs` (the renamed insight is still `status: "draft"` and not in `QA_PUBLISHED_INSIGHT_SLUGS`, so no QA route exists for it; the renamed project route is auto-derived from data)
+- `src/lib/grid.ts` — single function update + comment.
 
-`src/data/insights.qa-overrides.js` does not list the alien-coworker slug, so no override edit is needed.
-
-`src/seo/metadata.shared.js` derives project/insight metadata from the data files at runtime — no manual edit needed.
+No component changes are needed; every grid (`ProjectGrid`, `InsightCard` lists in `Insights.tsx`, `RelatedProjects`, `RelatedInsights`, etc.) already calls this helper and will pick up mobile dividers automatically.
 
 ## Verification
 
-1. `grep -rni "alien\|autotron" src/ docs/ public/ scripts/ supabase/ .lovable/` returns no matches.
-2. `npm run lint:editorial` (scripts/lint-editorial.mjs) passes.
-3. Build passes.
-4. Spot-check `/portfolio/ai-content-audit-system-ai-collaborator` route resolves and related-insight links navigate correctly.
-
-## Implementation order
-
-1. Edit `src/data/insights.shared.js` (title, slug, body copy, related project slugs).
-2. Edit `src/data/projects.shared.js` (slug, title, theme, cardTitle, related insight slugs, intro copy).
-3. Regenerate sitemap and prerender output.
-4. Run repo-wide grep + editorial lint + build to confirm clean.
+1. `/portfolio` at 375px: horizontal divider visible between each project card, none under the last card.
+2. `/portfolio` at md (≥768px): two-column layout with the existing dividers, no stray line under the last row.
+3. Spot-check `/insights` and a project detail page's related blocks at mobile width.
