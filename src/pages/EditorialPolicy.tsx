@@ -57,21 +57,22 @@ const EditorialPolicy = () => (
           transition={{ duration: 0.7, delay: 0.2 }}
           className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
         >
-          109.studio uses AI as a research and drafting tool. Damien House and
-          109.studio remain the accountable authors and publishers of every
-          insight and project page on this site.
+          Most content on 109.studio is drafted by AI from Damien House's
+          research, notes, and prompts. Damien reviews and edits every published
+          page so it reflects what 109.studio actually thinks. Damien House and
+          109.studio remain the accountable authors and publishers.
         </motion.p>
       </div>
     </section>
 
     <Section title="What we use AI for">
-      <p>AI assistance is used for a narrow set of editorial tasks:</p>
+      <p>AI is used as a writing partner across most of what gets published here. The typical workflow:</p>
       <ul className="space-y-3 pl-0">
         {[
-          "Research synthesis from notes, transcripts, and source materials.",
-          "Drafting first passes from outlines and bullet points.",
-          "Summarization of longer working documents.",
-          "Review support — checking structure, clarity, and consistency before publication.",
+          "Damien provides the research, source materials, prompts, and editorial direction.",
+          "AI drafts the page — structure, prose, summaries, and supporting copy.",
+          "Damien reviews and edits the draft for accuracy, voice, and judgment.",
+          "The reviewed page is published under Damien House / 109.studio as the accountable author.",
         ].map((item, i) => (
           <li
             key={i}
@@ -89,12 +90,13 @@ const EditorialPolicy = () => (
     <Section title="Who is accountable">
       <p>
         Damien House and 109.studio are responsible for editorial judgment and
-        final publication. AI assistance never replaces author attribution.
+        final publication. The fact that AI drafted a page does not change who
+        is accountable for it.
       </p>
       <p>
-        Author bylines on this site are never set to "AI". Where an article was
-        drafted with AI support, that is disclosed separately through the
-        AI-assisted chip — it does not replace the human author of record.
+        Author bylines on this site are never set to "AI". The AI-assisted chip
+        discloses how the page was drafted; it does not replace the human author
+        of record.
       </p>
     </Section>
 
@@ -124,22 +126,24 @@ const EditorialPolicy = () => (
         ))}
       </ul>
       <p>
-        The AI-assistance chip only appears on a project page when that project
-        is explicitly marked as AI-assisted. Most project pages do not use AI
-        assistance and therefore do not show the chip.
+        Most project pages on this site are AI-drafted from Damien's research
+        and reviewed before publication, so the AI-assisted chip appears on
+        them by default. The chip is omitted only when a specific project page
+        was written end-to-end without AI assistance.
       </p>
     </Section>
 
     <Section title="How AI assistance is disclosed">
       <p>
-        Insights drafted with AI assistance show an "AI-assisted ·
-        Human-reviewed" chip near the byline, with a short note explaining how
-        AI was used and confirming that a human reviewed and edited the piece
-        before publication.
+        Pages drafted with AI assistance show an "AI-assisted · Human-reviewed"
+        chip near the byline or in the page header, with a short note
+        explaining how AI was used and confirming that a human reviewed and
+        edited the page before publication.
       </p>
       <p>
-        If an entry is published without a human review pass, it will not carry
-        the "Human-reviewed" label.
+        If a page is published without a human review pass, it will not carry
+        the "Human-reviewed" label. That is the exception, not the rule —
+        review is part of the standard workflow.
       </p>
     </Section>
 
