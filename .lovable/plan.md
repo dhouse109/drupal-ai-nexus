@@ -1,93 +1,45 @@
-# Content Readiness Review — Version 2
+# Implementation Handoff Map — Version 2
 
 ## Goal
 
-Produce a readiness verdict per Project and per Insight based on **effective** rendered data (raw + overrides + published allow-list), plus the lists, recommendations, and field-fill checklist the request enumerates. Deliver as two downloadable files. No source files modified.
+Produce a single read-only handoff that tells the user exactly what structured content to bring back so a future Project / Insight update is safe and predictable. No source files modified.
 
-## Deliverables (written to `/mnt/documents/`)
+## Deliverable
 
-1. `109studio-content-readiness-version-2.md` — narrative review
-2. `109studio-content-readiness-version-2.json` — structured publish queue
+One file written to `/mnt/documents/`:
+
+- `109studio-implementation-handoff-version-2.md` — markdown handoff containing all sections below, with fenced JSON/JS code blocks for every schema example, plus an "Unresolved Decisions" section at the end.
+
+(Per the request — a single downloadable file — schemas and JSON examples live inline as fenced blocks. If you'd prefer a separate `.json` companion, say so and I'll split.)
 
 ## Method
 
-Reuse the inventory script from the prior audit to compute effective project + insight records, then layer readiness judgments on top. Reads only — `code--view`, `rg`, and a Node script that imports `projects.shared.js` + `projects.editorial-overrides.js` and `insights.shared.js` + `insights.editorial-overrides.js`.
+Read-only inspection of:
 
-### Inputs
+- `src/data/projects.shared.js`, `src/data/projects.ts`, `src/data/projects.editorial-overrides.js`
+- `src/data/insights.shared.js`, `src/data/insights.ts`, `src/data/insights.editorial-overrides.js`
+- `src/data/taxonomy.shared.js`, `src/data/taxonomy.ts`
+- `src/seo/metadata.shared.js`, `src/seo/siteMetadata.ts`, `src/seo/schema.shared.js`
+- `src/components/projects/ProjectDetailHero.tsx`, `src/components/content/EditorialDisclosure.tsx`, `src/pages/InsightArticle.tsx`, `src/pages/EditorialPolicy.tsx`
+- `scripts/lint-editorial.mjs`, `scripts/generate-sitemap.mjs`, `scripts/prerender-seo.mjs`, `package.json` (for build/lint scripts)
 
-- `src/data/projects.shared.js`, `src/data/projects.editorial-overrides.js`
-- `src/data/insights.shared.js`, `src/data/insights.editorial-overrides.js` (incl. `PUBLISHED_INSIGHT_SLUGS`)
-- `src/data/taxonomy.shared.js`
-- `src/components/projects/ProjectDetailHero.tsx` (disclosure render rule), `src/components/content/EditorialDisclosure.tsx`
-- `src/pages/InsightArticle.tsx`, `src/pages/ProjectDetail.tsx` (to confirm render points)
-- `src/components/Layout.tsx` (CTA suppression context)
+Then assemble the handoff. The Project/Insight schemas are derived from the TypeScript interfaces in `projects.ts` / `insights.ts` plus the overlay defaults in the override files, so the handoff reflects exactly what the runtime expects.
 
-### Per-Project rubric → classification
+## Markdown structure
 
-For each of the 10 projects, evaluate:
-- **Status honesty**: status + statusLabel match the actual nature (abstracted past work vs planned proof vs lab vs ecosystem) and the hero renders the right disclosure.
-- **Proof artifact concreteness**: `detail.proofArtifact` is specific (named artifact, methodology, or output), not a vague claim.
-- **Related Insight that renders**: at least one entry in `relatedInsightSlugs` is in the effective published set.
-- **CTA appropriateness**: text + primary/secondary hrefs route to a relevant service/page, not a generic fallback.
-- **AI-assisted disclosure**: `aiAssisted` value + render mode (block for current statuses) is appropriate; reviewer + note are correct.
-- **Voice risks**: scan headline, subheadline, cardSummary, problem, approach, resultValue, proofArtifact, CTA text, and relatedInsightsIntro for AI-marketing tone, overclaiming, slogans, "ship/shipping", and legacy "AI Collaborator" usage.
-
-Output one of: `ready` / `needs light revision` / `needs evidence` / `hold`, with a 1–3 sentence rationale and a per-criterion checklist.
-
-### Per-Insight rubric → classification
-
-For each of the 16 insights, evaluate:
-- **Raw vs effective status** and **allow-list membership**.
-- **Role**: supports a Project, supports a service page (`/services`, `/architecture-audit`, `/applied-ai`, `/drupal-ai`, `/offerings`, `/ai-in-practice`), or standalone POV.
-- **Related projects render**: every entry in `relatedProjectSlugs` resolves to an existing project.
-- **Body completeness**: block count + presence of intro, keyTakeaway, body sections.
-- **AI-assisted disclosure**: overlay-applied label + note are correct; reviewer present.
-- **Voice risks**: title, description, intro, body samples, and any embedded CTA.
-
-Output one of: `ready to publish` / `already effectively published` / `needs light revision` / `needs article expansion` / `hold`, with rationale.
-
-### Cross-cutting lists
-
-- `effectivePublishedInsights` (11 slugs known from inventory)
-- `draftOnlyInsights` (5 slugs)
-- **Top 5 Insights to feature/promote** — pick from effectively published, balanced across categories, weighted toward Project linkage and CTA leverage.
-- **Top 5 Projects to feature/promote** — weighted toward concreteness, evidence, and category coverage.
-- **Weak relationships to remove** — Project↔Insight links that are thematically thin or point to drafts.
-- **Missing relationships to add** — orphans (`applied-ai-starts-with-the-workflow`, `modernization-architecture-and-delivery`) + suggested back-links from projects.
-- **Category labels to normalize** — single canonical set across taxonomy, project records, insight overlays, filters.
-- **CTA simplifications** — tighten weak or generic CTAs.
-- **Editorial disclosure adjustments** — drop "Damien House" from default note (identity rule), confirm `/editorial-policy` linkage.
-- **Exact data fields to fill before implementation** — itemized list per Project / per Insight (e.g., `lastReviewedAt`, missing themes, missing relatedProjectSlugs, weak CTA href).
-
-## JSON shape
-
-```json
-{
-  "projects": [{ "slug": "...", "classification": "...", "rationale": "...",
-    "statusHonesty": "ok|weak", "proofArtifactConcrete": true,
-    "hasRenderingRelatedInsight": true, "ctaAppropriate": "ok|weak",
-    "disclosureAppropriate": true, "voiceRisks": [], "fieldsToFill": [] }],
-  "insights": [{ "slug": "...", "rawStatus": "...", "effectiveStatus": "...",
-    "inAllowList": true, "classification": "...", "rationale": "...",
-    "supports": "project|service|standalone", "relatedProjectsRender": true,
-    "shouldFeature": false, "disclosureAppropriate": true,
-    "voiceRisks": [], "fieldsToFill": [] }],
-  "effectivePublishedInsights": [],
-  "draftOnlyInsights": [],
-  "recommendedTop5Insights": [],
-  "recommendedTop5Projects": [],
-  "weakRelationshipsToRemove": [],
-  "missingRelationshipsToAdd": [],
-  "categoryLabelsToNormalize": [],
-  "ctaSimplifications": [],
-  "editorialDisclosureAdjustments": [],
-  "fieldsToFillBeforeImplementation": []
-}
-```
+1. **How the data flows** — one diagram showing `*.shared.js` → `*.editorial-overrides.js` → `*.ts` → components/SEO, and where `PUBLISHED_INSIGHT_SLUGS` slots in.
+2. **Files likely involved** — table with: path · purpose · content type · expected fields · category (source data / type wrapper / editorial override / rendered component / SEO metadata / generated output / build script) · manual-edit vs generated · risks of direct edit.
+3. **Project update schema** — annotated JS object with every field, marking which are required, which are overlay-supplied (`aiAssisted`, `aiDisclosureLabel`, `aiDisclosureNote`, `reviewedBy`), and which are optional opt-outs.
+4. **Insight update schema** — annotated JS object including the discriminated `body` block shapes (`paragraph`, `heading`, `callout`, `list`, `quote`) and how raw `status` interacts with the allow-list.
+5. **Published allow-list update schema** — exact `PUBLISHED_INSIGHT_SLUGS` array shape, publish/unpublish recipe, SEO/relationship impact callouts.
+6. **Relationship update schema** — bidirectional examples for slug + id arrays, plus a note on reverse lookups (`getProjectsLinkingToInsightSlug`, footer/related modules).
+7. **Validation checklist** — every item from the request, each phrased as a runnable check (rg pattern, node one-liner, or visual QA step).
+8. **Recommended implementation sequence** — ordered steps with rationale, matching the categories the user listed (data → terminology → relationships → allow-list → disclosure → metadata → nav/CTA → QA).
+9. **Unresolved decisions** — explicit list (e.g., keep vs rename "AI Collaborator" project; promote vs remove `managing-the-ai-collaborator-permissions-review-control`; whether to set `lastReviewedAt`; whether to drop "Damien House" from disclosure default; whether to add back-links to the two orphan insights).
 
 ## Out of scope
 
-- No source file edits, no overlay/allow-list changes, no copy rewrites.
-- Recommendations only — implementation comes in a follow-up prompt.
+- No source edits, no allow-list changes, no SEO regeneration.
+- No copy rewrites — schemas only.
 
-On approval I will execute the script + write both files in a single pass and return `<presentation-artifact>` tags for download.
+On approval I will execute the inspection script and write the markdown file in one pass, returning a `<presentation-artifact>` for download.
