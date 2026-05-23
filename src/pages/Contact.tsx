@@ -242,6 +242,23 @@ const Contact = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot: hidden from real users; bots that auto-fill all fields will trip it. */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
+                >
+                  <label htmlFor="website">Website</label>
+                  <input
+                    id="website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </div>
+
                 <div className="space-y-3 border-b border-border pb-6">
                   <p className="text-sm leading-relaxed text-muted-foreground">
                     Your note goes straight to Damien. You do not need a polished brief. A few sentences or bullet
@@ -327,6 +344,10 @@ const Contact = () => {
                   />
                   {errors.message && <p className="mt-1 text-xs text-destructive">{errors.message}</p>}
                 </div>
+
+                {tooFastMessage && (
+                  <p className="text-xs leading-relaxed text-muted-foreground">{tooFastMessage}</p>
+                )}
 
                 <button
                   type="submit"
