@@ -1,48 +1,67 @@
+# Pre-public cleanup pass (revised)
 
-# Implementation Handoff Map — Version 2-1
+Safe, Lovable-compatible hardening. No key rotation, no `.env` removal, no backend secrets in client code.
 
-## Goal
+## 1. README update
 
-Deliver the same handoff content as v2, but split into two downloadable files so the JSON schemas can be consumed by tooling without parsing markdown.
+Rewrite `README.md` (currently just `https://109.studio`) to keep the link and add:
 
-## Deliverables
+- This is a Lovable-managed project. **In this Lovable-managed project, the root `.env` is intentionally tracked because it contains publishable frontend Supabase configuration used by the preview/build workflow.**
+- `VITE_SUPABASE_PROJECT_ID`, `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY` are publishable frontend configuration — safe to commit.
+- Data security is enforced via Supabase Row Level Security, not by hiding the publishable anon key.
+- Never commit: service-role keys, JWT secrets, private API keys, database passwords, or any backend-only credentials. Those belong in Lovable Cloud secrets (used only by edge functions).
 
-Two files written to `/mnt/documents/`:
+## 2. `.env.example`
 
-1. **`109studio-implementation-handoff-version-2-1.md`** — Markdown handoff containing:
-   - How the data flows (`*.shared.js` → `*.editorial-overrides.js` → `*.ts` → components/SEO, with `PUBLISHED_INSIGHT_SLUGS` slot)
-   - Files likely involved (table: path · purpose · content type · expected fields · category · manual-edit vs generated · edit risks)
-   - Project update schema (prose + field annotations; full JS example lives in companion JSON)
-   - Insight update schema (prose + body block notes; full JS example in JSON)
-   - Published allow-list update schema (publish/unpublish recipe, SEO + relationship impact)
-   - Relationship update schema (bidirectional, reverse lookup behavior via `getProjectsLinkingToInsightSlug`)
-   - Validation checklist (each item as a runnable `rg`/node/visual QA step)
-   - Recommended implementation sequence (data → terminology → relationships → allow-list → disclosure → metadata → nav/CTA → QA)
-   - **Unresolved decisions** section (AI Collaborator naming, draft permissions insight, orphan back-links, `lastReviewedAt` policy, Damien House default note, weak CTAs, `projects.shared.js` auto-gen banner, publication channel rendering)
+New file at repo root, placeholders only:
 
-2. **`109studio-implementation-handoff-version-2-1.json`** — Pure JSON containing keyed schema examples:
-   - `project` — annotated example Project object with every field, `_meta` describing required / overlay-supplied / optional opt-out per field
-   - `insight` — annotated example Insight object plus a `bodyBlocks` map showing each discriminated shape (`paragraph`, `heading`, `callout`, `list`, `quote`)
-   - `publishedAllowList` — example `PUBLISHED_INSIGHT_SLUGS` array shape and publish/unpublish diff example
-   - `relationships` — paired examples for Project↔Insight slug + id arrays
-   - `validation` — machine-readable checklist mirroring the markdown
-   - `sequence` — ordered step list
+```
+VITE_SUPABASE_PROJECT_ID="your-project-ref"
+VITE_SUPABASE_URL="https://your-project-ref.supabase.co"
+VITE_SUPABASE_PUBLISHABLE_KEY="your-publishable-anon-key"
+```
 
-## Method
+## 3. Contact form honeypot (silent no-op)
 
-Read-only inspection of (already partially in context):
+Edit `src/pages/Contact.tsx`:
 
-- `src/data/projects.shared.js`, `src/data/projects.ts`, `src/data/projects.editorial-overrides.js`
-- `src/data/insights.shared.js`, `src/data/insights.ts`, `src/data/insights.editorial-overrides.js`
-- `src/data/taxonomy.shared.js`, `src/data/taxonomy.ts`
-- `src/seo/metadata.shared.js`, `src/seo/siteMetadata.ts`, `src/seo/schema.shared.js`
-- `src/components/projects/ProjectDetailHero.tsx`, `src/components/content/EditorialDisclosure.tsx`, `src/pages/InsightArticle.tsx`, `src/pages/EditorialPolicy.tsx`
-- `scripts/lint-editorial.mjs`, `scripts/generate-sitemap.mjs`, `scripts/prerender-seo.mjs`, `package.json`
+- Add a hidden `website` honeypot input (off-screen, `tabIndex={-1}`, `autoComplete="off"`, `aria-hidden`). Never sent to Supabase.
+- In `handleSubmit`, if honeypot is non-empty → set `submitted = true` and return. No insert, no toast.
 
-Schemas derived from the TypeScript interfaces in `projects.ts` / `insights.ts` plus overlay defaults in the override files, so the handoff reflects exactly what the runtime expects.
+## 4. Time-on-page check (gentle block, no fake success)
+
+- `const mountTime = useRef(Date.now())`.
+- In `handleSubmit`, after zod validation and honeypot check, if `Date.now() - mountTime.current < 3000` ms:
+  - Do **not** insert.
+  - Do **not** show fake success.
+  - Show a gentle inline message (and/or toast): "That came through a bit too fast — please wait a moment and try again." Legitimate autofill users can simply resubmit.
+
+Threshold: 3000 ms (low enough to not frustrate real users, high enough to catch instant bot submits).
+
+## 5–8. Explicit non-changes
+
+- No `supabase--rotate_api_keys`.
+- No edits to `.env`, `src/integrations/supabase/client.ts`, or `src/integrations/supabase/types.ts`.
+- No service-role / JWT secrets in client code.
+- No Supabase project configuration changes.
+
+## 9. RLS confirmation on `contact_submissions`
+
+Read-only verification — current state already satisfies the requirement:
+
+- RLS enabled.
+- INSERT policy `Anyone can submit a contact form` with `WITH CHECK true` → anon INSERT allowed.
+- SELECT policy `No public read access` with `USING false` → anon SELECT blocked.
+- No UPDATE / DELETE policies → both implicitly denied for anon.
+
+Will run `supabase--linter` post-edit to confirm no new warnings.
+
+## Files touched
+
+- `README.md` (rewrite)
+- `.env.example` (new)
+- `src/pages/Contact.tsx` (honeypot + timing guard only)
 
 ## Out of scope
 
-- No source edits, no allow-list changes, no SEO regeneration, no copy rewrites.
-
-On approval I will inspect the remaining files, write both deliverables in one pass, and return `<presentation-artifact>` tags for download.
+Captcha, edge-function rate limiting, content/terminology cleanup, nav/CTA changes.

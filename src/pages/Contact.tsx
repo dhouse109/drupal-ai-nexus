@@ -1,7 +1,7 @@
 import { ArrowRight, Github, Mail, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
@@ -51,17 +51,22 @@ const startingOptions = [
   },
 ];
 
+const MIN_FORM_FILL_MS = 3000;
+
 const Contact = () => {
   const { toast } = useToast();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [tooFastMessage, setTooFastMessage] = useState("");
   const [form, setForm] = useState({
     name: "",
     email: "",
     organization: "",
     message: "",
   });
+  const [honeypot, setHoneypot] = useState("");
+  const mountTime = useRef(Date.now());
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -71,6 +76,13 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
+    setTooFastMessage("");
+
+    // Honeypot: silent no-op success if a bot filled the hidden field.
+    if (honeypot.trim() !== "") {
+      setSubmitted(true);
+      return;
+    }
 
     const result = contactSchema.safeParse(form);
     if (!result.success) {
@@ -79,6 +91,14 @@ const Contact = () => {
         if (err.path[0]) fieldErrors[err.path[0] as string] = err.message;
       });
       setErrors(fieldErrors);
+      return;
+    }
+
+    // Time-on-page check: block (don't fake success) so autofill users can retry.
+    if (Date.now() - mountTime.current < MIN_FORM_FILL_MS) {
+      setTooFastMessage(
+        "That came through a bit too fast. Please wait a moment and try again.",
+      );
       return;
     }
 
