@@ -4,7 +4,7 @@ https://109.studio
 
 ## About this repository
 
-This is a Lovable-managed project. In this Lovable-managed project, the root `.env` is intentionally tracked because it contains publishable frontend Supabase configuration used by the preview/build workflow.
+This is a Lovable-managed project. The root `.env` is intentionally tracked because it contains publishable frontend Supabase configuration used by the preview/build workflow.
 
 ### Environment variables
 
