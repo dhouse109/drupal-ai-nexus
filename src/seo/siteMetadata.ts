@@ -21,7 +21,13 @@ export type RouteMetadata = {
 
 export const routeMetadata = sharedRouteMetadata as Record<string, RouteMetadata>;
 
+export const normalizePathname = (pathname: string): string => {
+  if (!pathname || pathname === "/") return "/";
+
+  return pathname.replace(/\/+$/, "");
+};
+
 export const getRouteMetadata = (pathname: string): RouteMetadata =>
-  getSharedRouteMetadata(pathname) as RouteMetadata;
+  getSharedRouteMetadata(normalizePathname(pathname)) as RouteMetadata;
 
 export { absoluteUrl, defaultMetadata, siteName, siteUrl };
