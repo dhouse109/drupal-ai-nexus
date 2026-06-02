@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import CanonicalUrlRedirect from "./components/CanonicalUrlRedirect";
 import { SEO } from "./components/SEO";
 import Layout from "./components/Layout";
 import ScrollToTop from "./components/ScrollToTop";
@@ -37,6 +38,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <CanonicalUrlRedirect />
         <RouteSEO />
         <ScrollToTop />
         <Routes>
