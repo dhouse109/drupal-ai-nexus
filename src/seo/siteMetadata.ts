@@ -22,9 +22,9 @@ export type RouteMetadata = {
 export const routeMetadata = sharedRouteMetadata as Record<string, RouteMetadata>;
 
 export const normalizePathname = (pathname: string): string => {
-  if (!pathname || pathname === "/") return "/";
+  const withoutTrailingSlashes = (pathname || "/").replace(/\/+$/, "");
 
-  return pathname.replace(/\/+$/, "");
+  return withoutTrailingSlashes || "/";
 };
 
 export const getRouteMetadata = (pathname: string): RouteMetadata =>
