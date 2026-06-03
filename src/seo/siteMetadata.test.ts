@@ -6,6 +6,11 @@ describe("normalizePathname", () => {
     expect(normalizePathname("/")).toBe("/");
   });
 
+  it("treats repeated root slashes as the root path", () => {
+    expect(normalizePathname("//")).toBe("/");
+    expect(normalizePathname("///")).toBe("/");
+  });
+
   it("removes trailing slashes from nested paths", () => {
     expect(normalizePathname("/portfolio/")).toBe("/portfolio");
     expect(normalizePathname("/portfolio///")).toBe("/portfolio");
